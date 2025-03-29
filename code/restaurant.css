@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+#logo {
+    width:150px;
+    padding: 20px;
+}
+
+.gallery img {
+    width: 300px;
+}
+
+.gallery {
+    align-items: center;
+    align-content: center;
+    /* display: inline-block; */
+}
+
+.navbar {
+    padding-left: 180px;
+}
+
+.ratings {
+    display: inline-block;
+}
+
+.stars {
+    border: 1px solid;
+}
+
+.categories {
+    color: #F59A4C;
+    font-weight: bold;
+}
+
+/* #F59A4C
+Sogoeu UI
+ */
