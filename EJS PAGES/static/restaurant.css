@@ -4,12 +4,32 @@
 }
 
 body {
-    font-family: "Segoe UI", Arial, sans-serif;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.profile-col {
+    position: relative;
+    background-color: #F59A4C;
+
+    /* top ;  right ; bot ; left */
+    /* margin: 30px 100px 0px 100px; */
+    height: 100px;
+    border-radius: 10px;
 }
 
 #logo {
     width:150px;
     padding: 20px;
+}
+
+.profile-label {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.profile-label-2 {
+    font-size: 20px;
+    font-weight: 300;
 }
 
 .gallery img {
@@ -22,21 +42,57 @@ body {
     /* display: inline-block; */
 }
 
-.navbar {
-    padding-left: 180px;
+.search-bar {
+    display: inline-block;
+}
+
+.fa-star, .fa-star-half-alt {
+    font-size: 25px;
+}
+
+.checked {
+    color: #FF7721;
 }
 
 .ratings {
     display: inline-block;
 }
 
-.stars {
-    border: 1px solid;
-}
-
 .categories {
     color: #F59A4C;
-    font-weight: bold;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.rating-label {
+    color: #FF7721;
+    font-weight: 800;
+    font-size: 30px;
+}
+
+.btn {
+    background-color: #FF7721;
+}
+
+.review-title-text {
+    margin-top: -10px;
+    color: rgb(98, 98, 98);
+    line-height: 30px;
+}
+
+.profile-reviews {
+    background-color: white;
+    padding: 10px;
+    /* top ; right ; bot ; left */
+    border-radius: 5px;
+    width: 97%;
+}
+
+.review-body {
+    line-height: 25px;
+    text-align: justify;
+    margin: 10px 0px 0px 0px;
+    font-style: italic;
 }
 
 /* #F59A4C
