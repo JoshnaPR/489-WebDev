@@ -8,13 +8,11 @@ body {
 }
 
 .profile-col {
-    position: relative;
     background-color: #F59A4C;
 
     /* top ;  right ; bot ; left */
     /* margin: 30px 100px 0px 100px; */
     height: 100px;
-    border-radius: 10px;
 }
 
 #logo {
@@ -44,6 +42,7 @@ body {
 
 .search-bar {
     display: inline-block;
+    align-items: center;
 }
 
 .fa-star, .fa-star-half-alt {
@@ -72,6 +71,7 @@ body {
 
 .btn {
     background-color: #FF7721;
+    outline: none !important;
 }
 
 .review-title-text {
@@ -95,6 +95,14 @@ body {
     font-style: italic;
 }
 
+.form-inline {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+#search-button {
+    background-color: white;
+}
 /* #F59A4C
 Sogoeu UI
  */
