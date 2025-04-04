@@ -29,6 +29,10 @@ app.set("view engine", "ejs")
 //folder for finding ejs files
 app.set("views", path.join(__dirname, "/views"))
 
+app.get("/", async function (req, res) {
+  res.render("restaurantHome")
+})
+
 //this will probably have to be changed later
 async function setup() {
   //adding sample data?
