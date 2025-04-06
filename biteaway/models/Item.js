@@ -7,10 +7,16 @@ class Item extends Model {
     // sources: https://sequelize.org/docs/v7/associations/belongs-to/ ; https://stackoverflow.com/questions/58823117/how-to-use-sequelize-belongsto
     static associate = models => {
         
-        // cuisine belongs to specific restaurant
+        // item belongs to specific restaurant
         Item.belongsTo(models.Restaurant, {
             as: 'restaurant',
             foreignKey: 'restaurantID'
+        });
+
+        // item also can belong to a specific user order
+        Item.belongsTo(models.Order, {
+            as: 'order',
+            foreignKey: 'orderID'
         });
 
     };

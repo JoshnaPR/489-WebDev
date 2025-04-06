@@ -13,6 +13,12 @@ class Order extends Model {
             foreignKey: 'userID'
         });
 
+        // order belongs to specific user
+        Order.hasMany(models.Item, {
+            as: 'items',
+            foreignKey: 'orderID'
+        });
+
     };
 
     // getter function ; using findOne due to composite primary key
@@ -40,7 +46,6 @@ Order.init({
         allowNull: false
     },
 
-    // TODO: foreign key to user (belongsTo) -> https://sequelize.org/docs/v7/associations/belongs-to/
     userID: {
         type: DataTypes.NUMBER,
         primaryKey: true,
