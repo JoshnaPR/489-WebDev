@@ -6,9 +6,9 @@ class Cuisine extends Model {
     static async findCuisine({restaurantID, cuisineType}) {
         // using findOne since cuisine is a multi-valued attribute of restaurant
         try {
-            const cuisine = await Cuisine.findOne(restaurantID, cusineType)
-            if (user) {
-                return user
+            const cuisine = await Cuisine.findOne(restaurantID, cuisineType)
+            if (cuisine) {
+                return cuisine
             } else {
                 return null
             }
