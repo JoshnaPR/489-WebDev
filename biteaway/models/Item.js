@@ -51,7 +51,11 @@ Item.init({
         primaryKey: true,
         allowNull: false
     },
-
+    
+    orderID: {
+        type: DataTypes.NUMBER,
+    },
+    
     itemName: {
         type: DataTypes.NUMBER,
         allowNull: false
