@@ -6,13 +6,13 @@
         <title>Bite-a-Way</title>
 
         <!-- for star icon -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
         <!-- bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         
         <!-- css file -->
-        <link rel="stylesheet" href="home.css">
+        <link rel="stylesheet" href="/userprofile/EJS PAGES/static/stylesheets/style.css">
     </head>
 
     <body>
@@ -23,7 +23,7 @@
                 
                 <!-- profile picture -->
                 <div class="image-cropper">
-                    <img class="profile-img" src="img/tsukasa.jpg" alt=""/>
+                    <img class="profile-img" src="/userprofile/EJS PAGES/static/img/tsukasa.jpg" alt=""/>
                 </div>
 
                 <!-- user name -->
@@ -33,7 +33,7 @@
 
                 <!-- user location -->
                 <p class="profile-label-2">
-                    <img class="location-img" src="img/location.png" alt=""/>
+                    <img class="location-img" src="/userprofile/EJS PAGES/static/img/location.png" alt=""/>
                     Phoenix Wonderland
                 </p>
 
@@ -45,6 +45,7 @@
                         Reviews
                     </p>
                 </div>
+                
             </div>
         </div>
 
@@ -59,12 +60,13 @@
                     <div class="profile-sidebar shadow p-3 mb-3">
                         <h6><strong>User Information</strong></h6>
                         <a href="settings.html">Settings / Profile</a><br>
+                        <a href="home.html">Reviews</a><br>
 
                         <!-- currently used page -->
                         <div class="sidebar-select align-items-center">
-                            <a href="home.html">Reviews</a><br>
+                            <a href="recently-viewed.html">Recently Viewed</a>
                         </div>
-                        <a href="recently-viewed.html">Recently Viewed</a>
+
                     </div>
 
                     <!-- order information -->
@@ -83,92 +85,93 @@
 
                 </div>
 
-                <!-- all the reviews -->
-                 <!-- can replace with for loop iterating through database later -->
+                <!-- 5 last recently viewed -->
+                <!-- can replace with for loop iterating through database later -->
                 <div class="col-9">
 
-                    <!-- profile review example #1 -->
+                    <!-- restaurant profile #1 -->
                     <div class="profile-reviews shadow p-3">
                         
                         <!-- img, restaurant name, etc. -->
                         <div class="d-flex review-header pr-10 pl-10">
-                            <img class="restaurant-review-img" src="img/example.png" alt=""/>
+                            <img class="restaurant-review-img" src="/userprofile/EJS PAGES/static/img/tokyo-seoul.jpg" alt=""/>
 
                             <!-- restaurant title, type, and address -->
                             <div class="d-flex flex-column ml-10">
-                                <h5><strong>Restaurant Name</strong></h5>
-                                <p class="review-title-text">Food and Drink Type</p>
-                                <p class="review-title-text">88 Cougar Drive, Pullman</p>
+                                <h5><strong>Tokyo Seoul</strong></h5>
+                                <p class="review-title-text">Japanese, Korean</p>
+                                <p class="review-title-text">905 E Main St, Pullman</p>
                             </div>
                         </div>
 
                         <!-- rating -->
                         <div class="d-flex rating-container pr-10 pl-10">
                             <!-- corresponding label -->
-                            <p class="rating-label">4.0</p>
+                            <p class="rating-label">4.5</p>
 
                             <!-- stars (static for now)-->
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star-half-alt checked"></span>
                         </div>
 
                         <!-- review text -->
                          <p class="review-body pr-10 pl-10">
-                            Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            We specialize in creating authentic Sushi and Korean BBQ dishes. Whether you are looking for a special dining experience or are seeking carry out, visit our convenient location 905 E. Main St. Pullman right next to the start of campus. Please feel free to take a look at our menu page and stop by. We look forward to serving you!
                         </p>
 
                         <!-- images for review -->
                         <div class="review-img-container">
-                            <img class="review-img" src="img/pancake.jpg" alt=""/>
-                            <img class="review-img" src="img/pancake.jpg" alt=""/>
-                            <img class="review-img" src="img/pancake.jpg" alt=""/>
-                            <img class="review-img" src="img/pancake.jpg" alt=""/>
+                            <img class="review-img" src="/userprofile/EJS PAGES/static/img/food1.png" alt=""/>
+                            <img class="review-img" src="/userprofile/EJS PAGES/static/img/food2.jpg" alt=""/>
                         </div>
                     </div>
 
-                    <!-- profile review example #2 -->
-                    <div class="profile-reviews shadow p-3">
+                     <!-- restaurant profile #2 -->
+                     <div class="profile-reviews shadow p-3">
+                        
                         <!-- img, restaurant name, etc. -->
                         <div class="d-flex review-header pr-10 pl-10">
-                            <img class="restaurant-review-img" src="img/weekend-garage.png" alt=""/>
+                            <img class="restaurant-review-img" src="/userprofile/EJS PAGES/static/img/zoes.jpg" alt=""/>
 
                             <!-- restaurant title, type, and address -->
                             <div class="d-flex flex-column ml-10">
-                                <h5><strong>Weekend Garage</strong></h5>
-                                <p class="review-title-text">Coffee & Cafes</p>
-                                <p class="review-title-text">Street SEKAI, Japan</p>
+                                <h5><strong>Zoe Coffee and Kitchen</strong></h5>
+                                <p class="review-title-text">Diner</p>
+                                <p class="review-title-text">1005 E Main St, Pullman</p>
                             </div>
                         </div>
 
                         <!-- rating -->
-                        <div class="d-flex rating-container pr-10 pl-10">
+                        <div class="d-flex pr-10 pl-10">
                             <!-- corresponding label -->
-                            <p class="rating-label">5.0</p>
+                            <p class="rating-label">4.5</p>
 
                             <!-- stars (static for now)-->
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star-half-alt checked"></span>
                         </div>
 
                         <!-- review text -->
                          <p class="review-body pr-10 pl-10">
-                            WEEKEND GARAGE is the live bar and café that An's dad, Shiraishi Ken, owns. It is one of the main settings of Vivid BAD SQUAD's stories, as well as the location that Crase Cafe — the café MEIKO runs in the Street SEKAI — is based on. It is a very delicious place to eat at!
+                            Zoe Coffee & Kitchen is a small, family-owned, local restaurant dedicated to bringing you outstanding freshly made food and drink. We believe passionately in great friends, long talks, and serving our guests a positive experience. Finally, we believe that beauty and quality are made of little, important details. The dedication we have for our customers and their taste buds is truly incomparable.
                         </p>
 
                         <!-- images for review -->
                         <div class="review-img-container">
-                            <img class="review-img" src="img/food5.png" alt=""/>
-                            <img class="review-img" src="img/pancake.jpg" alt=""/>
+                            <img class="review-img" src="/userprofile/EJS PAGES/static/img/food3.jpeg" alt=""/>
+                            <img class="review-img" src="/userprofile/EJS PAGES/static/img/food4.jpeg" alt=""/>
                         </div>
                     </div>
 
+
                 </div>
+
 
               </div>
         </div>
