@@ -3,7 +3,7 @@ var router = express.Router();
 
 router.use("/static/", express.static("static"))
 
-const Restaurant = require('../models/Restaurant');
+//const Restaurant = require('../models/Restaurant');
 
 router.get("/", async function (req, res) {
 

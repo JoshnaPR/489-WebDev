@@ -6,7 +6,11 @@ const session = require("express-session");
 const sequelize = require('./db')
 
 //routes,
+var indexRouter = require('./routes/index');
 var restaurantRouter = require('./routes/restaurant');
+var userRouter = require('./routes/user');
+var adminRouter = require('./routes/admin');
+var orderRouter = require('./routes/order');
 
 // const fs = require("fs")
 const app = express();
@@ -32,7 +36,12 @@ app.set("view engine", "ejs")
 //folder for finding ejs files
 app.set("views", path.join(__dirname, "/views"))
 
-app.use('/restaurant', restaurantRouter);
+//ROUTES,
+app.use('/', indexRouter); //khushis login & homepage
+app.use('/restaurant', restaurantRouter); //trisha's restaurant homepage
+app.use('/order', orderRouter); //joshna's ordering page
+app.use('/user', userRouter); //hannah's user profile
+app.use('/admin', adminRouter); //joshna's admin pages (order management)
 
 //this will probably have to be changed later
 async function setup() {
