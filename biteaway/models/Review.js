@@ -1,15 +1,29 @@
 const sequelize = require('../db')
 const { Model, DataTypes } = require('sequelize')
 
-// note:
-// multiple reviews belong under each restaurant
-
 class Review extends Model {
-    // based on cms example, find item with restaurant and review
-    static async findReview({restaurantID,reviewID}) {
 
+    // associations
+    // sources: https://sequelize.org/docs/v7/associations/belongs-to/ ; https://stackoverflow.com/questions/58823117/how-to-use-sequelize-belongsto
+    static associate = models => {
+        
+        // review belongs to specific user
+        Review.belongsTo(models.User, {
+            as: 'user',
+            foreignKey: 'userID'
+        });
+
+        // review belongs to specific restaurant
+        Review.belongsTo(models.Restaurant, {
+            as: 'restaurant',
+            foreignKey: 'restaurantID'
+        });
+    };
+
+    // getter function ; using findOne due to composite primary key
+    static async findReview({restaurantID,reviewID}) {  
         try {
-            const review = await Review.findOne(restaurantID, reviewID);        // might have to use findOne instead of findByPl
+            const review = await Review.findOne(restaurantID, reviewID);
 
             if (review) {
                 return review
@@ -21,7 +35,6 @@ class Review extends Model {
             console.log(error)
             return null
         }
-        
     }
 }
 
@@ -32,10 +45,14 @@ Review.init({
         allowNull: false
     },
 
-    // TODO: foreign key to user (belongsTo) -> https://sequelize.org/docs/v7/associations/belongs-to/
     userID: {
         type: DataTypes.NUMBER,
-        allowNull: false
+        allowNull: false,
+    },
+
+    restaurantID: {
+        type: DataTypes.NUMBER,
+        allowNull: false,
     },
 
     reviewRating: {

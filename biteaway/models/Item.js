@@ -1,15 +1,24 @@
 const sequelize = require('../db')
 const { Model, DataTypes } = require('sequelize')
 
-// note:
-// multiple items belong under each restaurant (like a menu)
-
 class Item extends Model {
-    // based on cms example, find item with restaurant and item
-    static async findItem({restaurantID,itemID}) {
 
+    // associations
+    // sources: https://sequelize.org/docs/v7/associations/belongs-to/ ; https://stackoverflow.com/questions/58823117/how-to-use-sequelize-belongsto
+    static associate = models => {
+        
+        // cuisine belongs to specific restaurant
+        Item.belongsTo(models.Restaurant, {
+            as: 'restaurant',
+            foreignKey: 'restaurantID'
+        });
+
+    };
+
+    // getter function ; using findOne due to composite primary key
+    static async findItem({restaurantID,itemID}) {
         try {
-            const item = await Item.findOne(restaurantID, itemID);        // might have to use findOne instead of findByPl
+            const item = await Item.findOne(restaurantID, itemID);
 
             if (item) {
                 return item
@@ -21,7 +30,6 @@ class Item extends Model {
             console.log(error)
             return null
         }
-
     }
 }
 
@@ -32,7 +40,6 @@ Item.init({
         allowNull: false
     },
 
-    // TODO: foreign key to user (belongsTo) -> https://sequelize.org/docs/v7/associations/belongs-to/
     restaurantID: {
         type: DataTypes.NUMBER,
         primaryKey: true,

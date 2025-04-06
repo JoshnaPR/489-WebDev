@@ -4,7 +4,6 @@ const { Model, DataTypes } = require('sequelize')
 class User extends Model {
     // based on cms example, find user by primary key (userID)
     static async findUser(userID) {
-
         try {
             const user = await User.findByPk(userID)
             if (user) {
@@ -17,7 +16,6 @@ class User extends Model {
             console.log(error)
             return null
         }
-        
     }
 }
 
