@@ -1,8 +1,10 @@
 # 489-WebDev
 Our project, “Bite-A-Way,” is a web-based food delivery platform that combines the key features found in other popular food delivery apps like DoorDash, Uber Eats, Swiggy, and Zomato. Our platform allows its users to browse restaurants, place orders, track deliveries, and leave reviews.
 
+
 # Team Members: 
 Hannah Garcia, Joshna Prasanna Raghavan, Khushi Panchal & Trisha Teredesai
+
 
 # Details:
 - Users can browse for local restaurants. Users can be shown restaurants according to their distance from an entered delivery address. We can additionally implement a sorting system, such as within a 1-mile radius, 5-mile radius, etc.
@@ -16,6 +18,7 @@ Hannah Garcia, Joshna Prasanna Raghavan, Khushi Panchal & Trisha Teredesai
   - The order of customer’s status will follow chronological order: Payment Success, In Kitchen, In Delivery, Order Received, Review Order.
 - After receiving an order, customers can choose to rate/review. 
   - Users can leave comments, rate, and send food pictures.
+
 
 # Unique Selling Point: 
 Users can view local reviews and “Star” reviews from local food experts and critics which help you make decisions. These reviews will help users order from the best-rated restaurants. Users will also be able to choose what they’d like to order according to what they are currently craving, as we aim to have a variety of featured restaurants. Our main target audience is busy professionals who don’t have time to cook for themselves or students who are having midnight cravings.
