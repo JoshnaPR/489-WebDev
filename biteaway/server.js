@@ -5,6 +5,9 @@ const bodyParser = require("body-parser");
 const session = require("express-session");
 const sequelize = require('./db')
 
+//routes,
+var restaurantRouter = require('./routes/restaurant');
+
 // const fs = require("fs")
 const app = express();
 //app.set("trust proxy", 1); // trust first proxy
@@ -29,9 +32,7 @@ app.set("view engine", "ejs")
 //folder for finding ejs files
 app.set("views", path.join(__dirname, "/views"))
 
-app.get("/", async function (req, res) {
-  res.render("restaurantHome")
-})
+app.use('/restaurant', restaurantRouter);
 
 //this will probably have to be changed later
 async function setup() {
