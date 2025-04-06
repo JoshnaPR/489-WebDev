@@ -52,7 +52,7 @@ app.use('/admin', adminRouter); //joshna's admin pages (order management)
 //this will probably have to be changed later
 async function setup() {
   //adding sample data?
-  const John= await User.create({
+  const JohnDoe= await User.create({
     userID: 101,
     firstName: "John",
     lastName: "Doe",
@@ -63,14 +63,48 @@ async function setup() {
     password: "securepassword"
   });
 
-  const rev= await Review.create({
+  const JaneDoe= await User.create({
+    userID: 102,
+    firstName: "Jane",
+    lastName: "Doe",
+    countryCode: 1,
+    phoneNumber: 2345678901,
+    userAddress: "123 Baker's Street, Pullman, WA",
+    email: "janedoe@example.com",
+    password: "securepassword1"
+  });
+
+  const EmmaStone= await User.create({
+    userID: 103,
+    firstName: "Emma",
+    lastName: "Stone",
+    countryCode: 1,
+    phoneNumber: 3456789012,
+    userAddress: "456 Pine Lane, Pullman, WA",
+    email: "emma.stone@example.com",
+    password: "securepassword12"
+  });
+
+  const ShaneWilson= await User.create({
+    userID: 104,
+    firstName: "Shane",
+    lastName: "Wilson",
+    countryCode: 1,
+    phoneNumber: 4567890123,
+    userAddress: "789 Oak Drive, Pullman, WA",
+    email: "shanewilson@example.com",
+    password: "securepassword123"
+  });
+
+  // John Doe's review
+  const review1= await Review.create({
     reviewID: 1,
     userID: 101,
     reviewRating: 5,
     reviewDescription: "Good food, quick service and helpful staff.",
   });
 
-  const res= await Restaurant.create({
+  const ThaiGinger= await Restaurant.create({
     restaurantID: 1,
     restaurantName: "Thai Ginger",
     restaurantAddress: "256 Forest Avenue, Pullman, WA",
@@ -79,7 +113,71 @@ async function setup() {
     restaurantRating: 4.5,
   });
 
-  const ord= await Order.create({
+  const ItalianoBello = await Restaurant.create({
+    restaurantID: 2,
+    restaurantName: "Italiano Bello",
+    restaurantAddress: "128 University Way, Pullman, WA",
+    restaurantRating: 4.7,
+  });
+  
+  const BurgerShack = await Restaurant.create({
+    restaurantID: 3,
+    restaurantName: "Burger Shack",
+    restaurantAddress: "532 College Hill, Pullman, WA",
+    restaurantRating: 4.2,
+  });
+  
+  const SushiKing = await Restaurant.create({
+    restaurantID: 4,
+    restaurantName: "Sushi King",
+    restaurantAddress: "890 Downtown Plaza, Pullman, WA",
+    restaurantRating: 4.8,
+  });
+
+  const IndianSpice = await Restaurant.create({
+    restaurantID: 6,
+    restaurantName: "Indian Spice",
+    restaurantAddress: "423 Grand Avenue, Pullman, WA",
+    restaurantRating: 4.8,
+  });
+
+  const ThaiCuisine = await Cuisine.create({
+    cuisineType: "Thai",
+    restaurantID: 1,
+  });
+
+  const AsianCuisine = await Cuisine.create({
+    cuisineType: "Asian",
+    restaurantID: 1,
+  });
+
+  const ItalianCuisine = await Cuisine.create({
+    cuisineType: "Italian",
+    restaurantID: 2,
+  });
+  
+  const AmericanCuisine = await Cuisine.create({
+    cuisineType: "American",
+    restaurantID: 3,
+  });
+
+  const JapaneseCuisine = await Cuisine.create({
+    cuisineType: "Japanese",
+    restaurantID: 4,
+  });
+
+  const MexicanCuisine = await Cuisine.create({
+    cuisineType: "Mexican",
+    restaurantID: 5,
+  });
+
+  const IndianCuisine = await Cuisine.create({
+    cuisineType: "Indian",
+    restaurantID: 6,
+  });
+
+  // John Doe's order
+  const order1= await Order.create({
     orderID: 1,
     userID: 101,
     restaurantID: 1,
@@ -89,7 +187,92 @@ async function setup() {
     status: "Pending",
   });
 
-  const item1= await Item.create({
+ // Italiano Bello Items
+  const margheritaPizza = await Item.create({
+    itemID: 3,
+    restaurantID: 2,
+    itemName: "Margherita Pizza",
+    itemPrice: 15.99,
+    itemDescription: "Classic pizza with tomato sauce, mozzarella, and fresh basil"
+  });
+  
+  const fettuccineAlfredo = await Item.create({
+    itemID: 4,
+    restaurantID: 2,
+    itemName: "Fettuccine Alfredo",
+    itemPrice: 16.99,
+    itemDescription: "Creamy pasta with parmesan cheese and butter sauce"
+  });
+  
+  // Burger Shack Items
+  const classicBurger = await Item.create({
+    itemID: 5,
+    restaurantID: 3,
+    itemName: "Classic Burger",
+    itemPrice: 10.99,
+    itemDescription: "Beef patty with lettuce, tomato, onion, and house sauce"
+  });
+  
+  const loadedFries = await Item.create({
+    itemID: 6,
+    restaurantID: 3,
+    itemName: "Loaded Fries",
+    itemPrice: 6.99,
+    itemDescription: "French fries topped with cheese, bacon, and sour cream"
+  });
+  
+  // Sushi King Items
+  const californiaRoll = await Item.create({
+    itemID: 7,
+    restaurantID: 4,
+    itemName: "California Roll",
+    itemPrice: 9.99,
+    itemDescription: "Crab, avocado, and cucumber rolled in seaweed and rice"
+  });
+  
+  const salmonSashimi = await Item.create({
+    itemID: 8,
+    restaurantID: 4,
+    itemName: "Salmon Sashimi",
+    itemPrice: 12.99,
+    itemDescription: "Fresh slices of raw salmon served with wasabi and ginger"
+  });
+  
+  // Taco Cantina Items
+  const beefTacos = await Item.create({
+    itemID: 9,
+    restaurantID: 5,
+    itemName: "Beef Tacos",
+    itemPrice: 8.99,
+    itemDescription: "Three corn tortillas filled with seasoned beef, onions, and cilantro"
+  });
+  
+  const guacamole = await Item.create({
+    itemID: 10,
+    restaurantID: 5,
+    itemName: "Guacamole & Chips",
+    itemPrice: 5.99,
+    itemDescription: "Fresh guacamole served with crispy tortilla chips"
+  });
+  
+  // India Spice Items
+  const butterChicken = await Item.create({
+    itemID: 11,
+    restaurantID: 6,
+    itemName: "Butter Chicken",
+    itemPrice: 16.99,
+    itemDescription: "Tender chicken in a creamy tomato sauce with Indian spices"
+  });
+  
+  const vegetableBiryani = await Item.create({
+    itemID: 12,
+    restaurantID: 6,
+    itemName: "Vegetable Biryani",
+    itemPrice: 13.99,
+    itemDescription: "Fragrant rice dish with mixed vegetables and aromatic spices"
+  });
+
+  const PadThai= await Item.create({
     itemID: 3,
     restaurantID: 1,
     itemName: "Pad Thai",
@@ -97,22 +280,12 @@ async function setup() {
     itemDescription: "Stir fried rice noddles with egg, vegetables and peanuts ",
   });
 
-  const item2= await Item.create({
+  const ThaiGreenCurry= await Item.create({
     itemID: 4,
     restaurantID: 1,
     itemName: "Thai Green Curry",
     itemPrice: 14.99,
     itemDescription: "Spicy curry with coconut currey, vegetables and your choice of protein",
-  });
-
-  const cuisine1 = await Cuisine.create({
-    cuisineType: "Thai",
-    restaurantID: 1,
-  });
-
-  const cuisine2 = await Cuisine.create({
-    cuisineType: "Asian",
-    restaurantID: 1,
   });
 }
 
