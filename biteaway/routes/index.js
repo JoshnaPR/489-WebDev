@@ -9,3 +9,17 @@ router.use("/static/", express.static("static"))
 //if not logged in -> login page with option to sign up
 
 //admin and user can only be accessed by logged in accounts
+
+router.get("/", async function (req, res) {
+    res.redirect('/login')
+})
+
+router.get("/login", async function (req, res) {
+    //res.render('loginPage')
+})
+
+router.get("/signup", async function (req, res) {
+    //res.render('signupPage')
+})
+
+module.exports = router;

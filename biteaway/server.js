@@ -11,6 +11,8 @@ var restaurantRouter = require('./routes/restaurant');
 var userRouter = require('./routes/user');
 var adminRouter = require('./routes/admin');
 var orderRouter = require('./routes/order');
+
+//models,
 const User = require("./models/User");
 const Order = require("./models/Order");
 const Restaurant = require("./models/Restaurant");
@@ -49,9 +51,8 @@ app.use('/order', orderRouter); //joshna's ordering page
 app.use('/user', userRouter); //hannah's user profile
 app.use('/admin', adminRouter); //joshna's admin pages (order management)
 
-//this will probably have to be changed later
 async function setup() {
-  //adding sample data?
+  //adding sample data
   const JohnDoe= await User.create({
     userID: 101,
     firstName: "John",
@@ -290,7 +291,7 @@ async function setup() {
 }
 
 //sync and setup database
-//!!!!!! IMPORTANT MAKE SURE TO REMOVE  { force: true } BEFORE SUBMISSION
+//!!!!!! IMPORTANT MAKE SURE TO REMOVE  { force: true } BEFORE SUBMISSION?
 //refreshes every time (does not store data) <- for this reason
 sequelize.sync({ force: true }).then(() => {
   console.log("sequelize sync Completed...")
