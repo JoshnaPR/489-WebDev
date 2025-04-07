@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bite-a-Way</title>
+
+        <!-- for star icon -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+        <!-- bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        
+        <!-- css file -->
+        <link rel="stylesheet" href="/static/css/user.css">
+    </head>
+
+    <body>
+        
+        <!-- profile header -->
+        <div class="jumbotron profile-col shadow">
+            <div class=".d-inline-flex bottom-align-text">
+                
+                <!-- profile picture -->
+                <div class="image-cropper">
+                    <img class="profile-img" src="/static/img/tsukasa.jpg" alt=""/>
+                </div>
+
+                <!-- user name -->
+                <p class="profile-label">
+                    Tsukasa Tenma 
+                </p>
+
+                <!-- user location -->
+                <p class="profile-label-2">
+                    <img class="location-img" src="/static/img/location.png" alt=""/>
+                    Phoenix Wonderland
+                </p>
+
+                <!-- number of reviews -->
+                <div class="border-start px-3 profile-header-review justify-content-center">
+                    <!-- review statistics -->
+                    <h2>88.88k</h2>
+                    <p class="profile-review-label">
+                        Reviews
+                    </p>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- main container box for page components -->
+        <div class="container profile-content-box shadow p-3">
+            <div class="row">
+
+                <!-- left sidebar -->
+                <div class="col-3">
+                    
+                    <!-- user information -->
+                    <div class="profile-sidebar shadow p-3 mb-3">
+                        <h6><strong>User Information</strong></h6>
+                        <a href="/user/settings">Settings / Profile</a><br>
+                        <a href="/user">Reviews</a><br>
+
+                        <!-- currently used page -->
+                        <div class="sidebar-select align-items-center">
+                            <a href="/user/recently-viewed">Recently Viewed</a>
+                        </div>
+
+                    </div>
+
+                    <!-- order information -->
+                    <div class="profile-sidebar shadow p-3 mb-3">
+                        <h6><strong>Order Information</strong></h6>
+                        <a href="/user/favorites">Favorites</a><br>
+                        <a href="/user/order-history">Order History</a>
+                    </div>
+
+                    <!-- payment information -->
+                    <div class="profile-sidebar shadow p-3 mb-3">
+                        <h6><strong>Payment Information</strong></h6>
+                        <a>Manage Cards</a><br>
+                        <a>Manage Wallets</a>
+                    </div>
+
+                </div>
+
+                <!-- 5 last recently viewed -->
+                <!-- can replace with for loop iterating through database later -->
+                <div class="col-9">
+
+                    <!-- restaurant profile #1 -->
+                    <div class="profile-reviews shadow p-3">
+                        
+                        <!-- img, restaurant name, etc. -->
+                        <div class="d-flex review-header pr-10 pl-10">
+                            <img class="restaurant-review-img" src="/static/img/tokyo-seoul.jpg" alt=""/>
+
+                            <!-- restaurant title, type, and address -->
+                            <div class="d-flex flex-column ml-10">
+                                <h5><strong>Tokyo Seoul</strong></h5>
+                                <p class="review-title-text">Japanese, Korean</p>
+                                <p class="review-title-text">905 E Main St, Pullman</p>
+                            </div>
+                        </div>
+
+                        <!-- rating -->
+                        <div class="d-flex rating-container pr-10 pl-10">
+                            <!-- corresponding label -->
+                            <p class="rating-label">4.5</p>
+
+                            <!-- stars (static for now)-->
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star-half-alt checked"></span>
+                        </div>
+
+                        <!-- review text -->
+                         <p class="review-body pr-10 pl-10">
+                            We specialize in creating authentic Sushi and Korean BBQ dishes. Whether you are looking for a special dining experience or are seeking carry out, visit our convenient location 905 E. Main St. Pullman right next to the start of campus. Please feel free to take a look at our menu page and stop by. We look forward to serving you!
+                        </p>
+
+                        <!-- images for review -->
+                        <div class="review-img-container">
+                            <img class="review-img" src="/static/img/food1.png" alt=""/>
+                            <img class="review-img" src="/static/img/food2.jpg" alt=""/>
+                        </div>
+                    </div>
+
+                     <!-- restaurant profile #2 -->
+                     <div class="profile-reviews shadow p-3">
+                        
+                        <!-- img, restaurant name, etc. -->
+                        <div class="d-flex review-header pr-10 pl-10">
+                            <img class="restaurant-review-img" src="/static/img/zoes.jpg" alt=""/>
+
+                            <!-- restaurant title, type, and address -->
+                            <div class="d-flex flex-column ml-10">
+                                <h5><strong>Zoe Coffee and Kitchen</strong></h5>
+                                <p class="review-title-text">Diner</p>
+                                <p class="review-title-text">1005 E Main St, Pullman</p>
+                            </div>
+                        </div>
+
+                        <!-- rating -->
+                        <div class="d-flex pr-10 pl-10">
+                            <!-- corresponding label -->
+                            <p class="rating-label">4.5</p>
+
+                            <!-- stars (static for now)-->
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star-half-alt checked"></span>
+                        </div>
+
+                        <!-- review text -->
+                         <p class="review-body pr-10 pl-10">
+                            Zoe Coffee & Kitchen is a small, family-owned, local restaurant dedicated to bringing you outstanding freshly made food and drink. We believe passionately in great friends, long talks, and serving our guests a positive experience. Finally, we believe that beauty and quality are made of little, important details. The dedication we have for our customers and their taste buds is truly incomparable.
+                        </p>
+
+                        <!-- images for review -->
+                        <div class="review-img-container">
+                            <img class="review-img" src="/static/img/food3.jpeg" alt=""/>
+                            <img class="review-img" src="/static/img/food4.jpeg" alt=""/>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+              </div>
+        </div>
+
+        
+        <!-- keep this here for the bootstrap -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    </body>
+
+    </html>

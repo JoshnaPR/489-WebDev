@@ -1,0 +1,302 @@
+/* ------------------------------------[ BASIC BODY COMPONENTS ]------------------------------------ */
+
+body {
+    margin: 0px;
+    margin: 30px 100px 0px 100px;
+}
+
+p {
+    /* top ;  right ; bot ; left */
+    margin: 0px;
+    line-height: 30px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    line-height: 40px;
+}
+
+h6 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* ------------------------------------[ USER PROFILE: HEADER ]------------------------------------ */
+.profile-col {
+    position: relative;
+    background-color: #F59A4C;
+
+    /* top ;  right ; bot ; left */
+    /* margin: 30px 100px 0px 100px; */
+    height: 200px;
+    border-radius: 10px;
+}
+
+.profile-label {
+    color: white;
+    font-size: 30px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+
+    position: absolute;
+    bottom: 0;
+
+    /* top ;  right ; bot ; left */
+    margin: 0px 0px 50px 180px;
+}
+
+.profile-label-2 {
+    color: white;
+    font-size: 20px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 300;
+
+    position: absolute;
+    bottom: 0;
+
+    /* top ;  right ; bot ; left */
+    margin: 0px 0px 20px 180px;
+}
+
+.location-img {
+    width: 20px;
+    margin-bottom: 5px;
+}
+
+/* https://stackoverflow.com/questions/26421274/css-circular-cropping-of-rectangle-image */
+.image-cropper {
+    width: 130px;
+    height: 130px;
+    overflow: hidden;
+    border-radius: 50%;
+    
+    /* top ;  right ; bot ; left */
+    margin: 0px 10px -15px 35px;
+
+    position: absolute;
+    bottom: 0;
+
+    border-style: solid;
+    border-color: white;
+    border-width: 4px;
+}
+  
+.profile-img {
+    height: 100%;
+}
+
+/* review */
+.profile-header-review {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    /* top ;  right ; bot ; left */
+    margin: 0px 25px 20px 0px;
+    color: white;
+}
+
+.profile-review-label {
+    margin-top: -15px;
+}
+
+/* ------------------------------------[ MAIN PAGE: LEFT AND RIGHT COMPONENTS ]------------------------------------ */
+.profile-content-box {
+    background-color: transparent;
+    border-radius: 10px;
+
+    /* height: 1000px; */
+}
+
+.profile-sidebar {
+    background-color: white;
+    /* top ; right ; bot ; left */
+    margin: 30px 0px 0px 20px;
+    border-radius: 5px;
+    width: 92%;
+}
+
+.sidebar-select {
+    border-left: 5px solid #F59A4C;
+    padding-left: 8px;
+    display: flex;
+    /* height: 25px; */
+    align-items: center;
+}
+
+
+.profile-reviews {
+    background-color: white;
+    
+    /* top ; right ; bot ; left */
+    margin: 30px 25px 0px 0px;
+    border-radius: 5px;
+    width: 97%;
+}
+
+/* ------------------------------------[ MAIN PAGE: REVIEW PAGE COMPONENTS ]------------------------------------ */
+.review-header {
+    padding-top: 10px;
+}
+
+.restaurant-review-img {
+    width: 70px;
+    height: 70px;
+    border-radius: 5px;
+}
+
+.review-title-text {
+    margin-top: -10px;
+    color: rgb(98, 98, 98);
+    line-height: 30px;
+}
+
+/* rating code (from stackoverflow) */
+/* https://stackoverflow.com/questions/23404904/how-to-use-bootstrap-icons-like-star-to-give-the-star-rating */
+.rating {
+    float:left;
+    border:none;
+    margin: 10px 0px 0px 0px;
+}
+
+.fa-star, .fa-star-half-alt {
+    font-size: 25px;
+}
+
+.fa {
+    margin: 18px 2px 0px 0px;
+}
+
+.checked {
+    color: #FF7721;
+}
+
+.rating-container {
+    font-size: 25px;
+}
+
+
+.rating-label {
+    color: #FF7721;
+    font-weight: 800;
+    font-size: 30px;
+    margin: 15px 5px 0px 0px;
+}
+
+.review-body {
+    line-height: 25px;
+    text-align: justify;
+    margin: 10px 0px 0px 0px;
+}
+
+.review-img {
+    width: 160px;
+    height: 160px;
+}
+
+.review-img-container {
+    margin: 15px 20px 15px 10px;
+}
+
+
+/* ------------------------------------[ SETTINGS / PROFILE ]------------------------------------ */
+.settings-container {
+    /* top ; right ; bot ; left */
+    margin: 30px 25px 0px 0px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.settings-title {
+    margin: 10px 15px 10px 15px;
+}
+
+.settings-label {
+    margin: 10px 0px 0px 15px;
+}
+
+.name-input {
+    margin: 5px 15px 10px 15px;
+    width: 92%;
+}
+
+.country-input {
+    margin: 5px 15px 10px 15px;
+    width: 92%;
+}
+
+.phone-number-input {
+    margin: 5px 15px 10px 15px;
+    width: 95%;
+}
+
+.email-input {
+    margin: 5px 15px 10px 15px;
+    width: 96%;
+}
+
+.password-text {
+    font-size: 10px;
+    margin: -15px 0px 0px 15px;
+}
+
+.log-out-btn {
+    margin: 5px 15px 10px 15px;
+}
+
+/* ------------------------------------[ RECENTLY VIEWED / BOOKMARKS ]------------------------------------ */
+.restaurant-reviews {
+    background-color: white;
+    
+    /* top ; right ; bot ; left */
+    margin: 30px 25px 0px 0px;
+    border-radius: 5px;
+}
+
+/* ------------------------------------[ ORDER HISTORY ]------------------------------------ */
+.order-title-border {
+    border-bottom: 1px solid #c7c8c9;
+    padding: 10px 0px 15px 0px;
+    width: 100%;
+}
+
+.order-info-header {
+    color: rgb(98, 98, 98);
+    font-size: 15px;
+}
+
+.order-info-body {
+    text-align: justify;
+    font-size: 15px;
+    line-height: 25px;
+}
+
+.receipt-btn-container {
+    padding: 5px 0px 30px 0px;
+}
+
+.view-receipt-btn {
+    float: right;
+    background-color: #f7b982;
+    color: white;
+
+    border: none;
+    font-size: 15px;
+    border-radius: 10px;
+    padding: 5px 10px 5px 10px;
+}
+
+/* ------------------------------------[ VERSATILE / FORMATTING CODE ]------------------------------------ */
+.pr-10 {
+    padding-right: 10px;
+}
+
+.pl-10 {
+    padding-left: 10px;
+}
+
+.ml-10 {
+    margin-left: 10px;
+}
+
