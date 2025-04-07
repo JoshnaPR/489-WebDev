@@ -1,12 +1,30 @@
 const sequelize = require('../db')
 const { Model, DataTypes } = require('sequelize')
 
-// order will contain
 class Order extends Model {
-    // based on cms example, find order by primary key
+
+    // associations
+    // sources: https://sequelize.org/docs/v7/associations/belongs-to/ ; https://stackoverflow.com/questions/58823117/how-to-use-sequelize-belongsto
+    static associate = models => {
+        
+        // order belongs to specific user
+        Order.belongsTo(models.User, {
+            as: 'user',
+            foreignKey: 'userID'
+        });
+
+        // order belongs to specific user
+        Order.hasMany(models.Item, {
+            as: 'items',
+            foreignKey: 'orderID'
+        });
+
+    };
+
+    // getter function ; using findOne due to composite primary key
     static async findOrder({userID, orderID}) {
         try {
-            const order = await Order.findOne(userID, orderID);        // might have to use findOne instead of findByPK
+            const order = await Order.findOne(userID, orderID)
 
             if (order) {
                 return order
@@ -28,7 +46,6 @@ Order.init({
         allowNull: false
     },
 
-    // TODO: foreign key to user (belongsTo) -> https://sequelize.org/docs/v7/associations/belongs-to/
     userID: {
         type: DataTypes.NUMBER,
         primaryKey: true,
