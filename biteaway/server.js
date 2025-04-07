@@ -98,8 +98,9 @@ async function setup() {
   });
 
   // John Doe's review
-  const review1= await Review.create({
+  const review1 = await Review.create({
     reviewID: 1,
+    restaurantID: 1,
     userID: 101,
     reviewRating: 5,
     reviewDescription: "Good food, quick service and helpful staff.",

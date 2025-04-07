@@ -1,15 +1,12 @@
 var express = require('express');
 var router = express.Router();
+var controller = require('../controllers/user');
 
 router.use("/static/", express.static("static"))
 
 //home, favorites, order history,recently-viewed, settings
 
-router.get("/", async function (req, res) {
-
-    res.render('userHome')
-
-})
+router.get("/:id", controller.getUserHome);
 
 router.get("/favorites", async function (req, res) {
     res.render('userFavorites')

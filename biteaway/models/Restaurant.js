@@ -30,7 +30,7 @@ class Restaurant extends Model {
     // based on cms example, find restaurant by primary key
     static async findRestaurant(restaurantID) {
         try {
-            const restaurant = await restaurant.findByPk(restaurantID)
+            const restaurant = await Restaurant.findByPk(restaurantID)
             if (restaurant) {
                 return restaurant
             } else {

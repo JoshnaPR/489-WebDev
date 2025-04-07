@@ -1,23 +1,16 @@
 var express = require('express');
 var router = express.Router();
+var controller = require('../controllers/restaurant');
 
 router.use("/static/", express.static("static"))
 
 //const Restaurant = require('../models/Restaurant');
 
-router.get("/", async function (req, res) {
+router.get("/:id", controller.getRestaurant);
 
-    //probably find my by PK (which is recieved when user selects option from homepage)
-
-    // const courses = await Course.findAll();
-    // if(req.query.msg){
-    //   res.locals.msg = req.query.msg
-    //   res.locals.courseid = req.query.courseid
-    // }
-    // res.render('restaurantHome', { restaurant })
-    res.render('restaurantHome')
-
-})
+//probably find my by PK (which is recieved when user selects option from homepage)
+//console.log(restaurant)
+//res.render('restaurantHome')
 
 router.get("/menu", async function (req, res) {
     res.render('restaurantMenu')
