@@ -19,7 +19,7 @@ class Restaurant extends Model {
             foreignKey: 'restaurantID' // due to has-many relationship
         });
 
-        // restaurant has many reviews
+        // restaurant has many items
         Restaurant.hasMany(models.Item, {
             as: 'items',
             foreignKey: 'restaurantID' // due to has-many relationship

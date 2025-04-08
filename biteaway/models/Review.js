@@ -1,5 +1,6 @@
 const sequelize = require('../db')
-const { Model, DataTypes } = require('sequelize')
+const { Model, DataTypes } = require('sequelize');
+const Restaurant = require('./Restaurant');
 
 class Review extends Model {
 
@@ -45,6 +46,26 @@ class Review extends Model {
             })
             return reviewCount    
 
+        } catch (error) {
+            console.log(error)
+            return null
+        }
+    };
+
+    // getter function ; return list of cuisines under userID
+    static async listReviews({userID}) {
+        // source: https://stackoverflow.com/questions/53757460/sequelize-findall-include-same-models-2-times-with-different-condition
+        try {
+            const list = await Review.findAll({
+                where: { userID },
+                include: [{
+                    model: Restaurant,
+                    as: 'restaurant'
+                }]
+            })
+            
+            return list
+            
         } catch (error) {
             console.log(error)
             return null

@@ -52,6 +52,13 @@ app.use('/user', userRouter); //hannah's user profile
 app.use('/admin', adminRouter); //joshna's admin pages (order management)
 
 async function setup() {
+  // associations for models
+  Cuisine.associate({ Restaurant })
+  Item.associate({ Restaurant, Order })
+  Order.associate({ User, Item })
+  Restaurant.associate( { Cuisine, Review, Item })
+  Review.associate({ User, Restaurant });
+
   //adding sample data
   const JohnDoe= await User.create({
     userID: 101,
@@ -97,14 +104,23 @@ async function setup() {
     password: "securepassword123"
   });
 
-  // John Doe's review
+  // John Doe's review 1
   const review1 = await Review.create({
     reviewID: 1,
     restaurantID: 1,
     userID: 101,
-    reviewRating: 5,
+    reviewRating: 5.0,
     reviewDescription: "Good food, quick service and helpful staff.",
   });
+
+    // John Doe's review 2
+    const review2 = await Review.create({
+      reviewID: 2,
+      restaurantID: 2,
+      userID: 101,
+      reviewRating: 0.5,
+      reviewDescription: "Not that good tbh.",
+    });
 
   const ThaiGinger= await Restaurant.create({
     restaurantID: 1,

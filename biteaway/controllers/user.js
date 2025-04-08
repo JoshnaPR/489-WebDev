@@ -9,8 +9,9 @@ module.exports = {
     // GET METHOD for user home page
     getUserHome: async (req, res) => {
         const user = await User.findUser(req.params.id);
+        const reviews = await Review.listReviews({ userID: req.params.id });         // to display review data for home page
         const reviewNum = await Review.countReviews({ userID: req.params.id });      // to display number of reviews
-        res.render('userHome', { user, reviewNum })
+        res.render('userHome', { user, reviews, reviewNum })
     }, 
 
     // GET METHOD for user settings page

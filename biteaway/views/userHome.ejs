@@ -88,89 +88,57 @@
                 <div class="col-9">
 
                     <!-- profile review example #1 -->
-                    <div class="profile-reviews shadow p-3">
-                        
-                        <!-- img, restaurant name, etc. -->
-                        <div class="d-flex review-header pr-10 pl-10">
-                            <img class="restaurant-review-img" src="/static/img/example.png" alt=""/>
+                    
 
-                            <!-- restaurant title, type, and address -->
-                            <div class="d-flex flex-column ml-10">
-                                <h5><strong>Restaurant Name</strong></h5>
-                                <p class="review-title-text">Food and Drink Type</p>
-                                <p class="review-title-text">88 Cougar Drive, Pullman</p>
+                    <% for (review of reviews) { %>
+                        <div class="profile-reviews shadow p-3">
+
+                            <!-- img, restaurant name, etc. -->
+                            <div class="d-flex review-header pr-10 pl-10">
+                                <!-- TODO: replace with restaurant img -->
+                                <img class="restaurant-review-img" src="/static/img/example.png" alt=""/>
+
+                                <!-- restaurant title, type, and address -->
+                                <div class="d-flex flex-column ml-10">
+                                    <h5><strong><%= review.restaurant.restaurantName %></strong></h5>
+                                    <!-- TODO: update cuisines -->
+                                    <p class="review-title-text">Food and Drink Type</p>
+                                    <p class="review-title-text"><%= review.restaurant.restaurantAddress %></p>
+                                </div>
                             </div>
-                        </div>
 
-                        <!-- rating -->
-                        <div class="d-flex rating-container pr-10 pl-10">
-                            <!-- corresponding label -->
-                            <p class="rating-label">4.0</p>
+                            <!-- rating -->
+                            <div class="d-flex rating-container pr-10 pl-10">
+                                <!-- corresponding label -->
+                                <p class="rating-label"><%= review.reviewRating %></p>
 
-                            <!-- stars (static for now)-->
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                        </div>
-
-                        <!-- review text -->
-                         <p class="review-body pr-10 pl-10">
-                            Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-
-                        <!-- images for review -->
-                        <div class="review-img-container">
-                            <img class="review-img" src="/static/img/pancake.jpg" alt=""/>
-                            <img class="review-img" src="/static/img/pancake.jpg" alt=""/>
-                            <img class="review-img" src="/static/img/pancake.jpg" alt=""/>
-                            <img class="review-img" src="/static/img/pancake.jpg" alt=""/>
-                        </div>
-                    </div>
-
-                    <!-- profile review example #2 -->
-                    <div class="profile-reviews shadow p-3">
-                        <!-- img, restaurant name, etc. -->
-                        <div class="d-flex review-header pr-10 pl-10">
-                            <img class="restaurant-review-img" src="/static/img/weekend-garage.png" alt=""/>
-
-                            <!-- restaurant title, type, and address -->
-                            <div class="d-flex flex-column ml-10">
-                                <h5><strong>Weekend Garage</strong></h5>
-                                <p class="review-title-text">Coffee & Cafes</p>
-                                <p class="review-title-text">Street SEKAI, Japan</p>
+                                <!-- stars (static for now)-->
+                                <!-- TODO: update stars accordingly -->
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
                             </div>
+
+                            <!-- review text -->
+                            <p class="review-body pr-10 pl-10">
+                                <%= review.reviewDescription %>
+                            </p>
+
+                            <!-- images for review -->
+                            <!-- TODO: format img files such as /user/userID/reviewID.jpg? -->
+                            <!-- <div class="review-img-container"> -->
+                                <!-- <img class="review-img" src="/static/img/pancake.jpg" alt=""/> -->
+                                <!-- <img class="review-img" src="/static/img/pancake.jpg" alt=""/> -->
+                                <!-- <img class="review-img" src="/static/img/pancake.jpg" alt=""/> -->
+                                <!-- <img class="review-img" src="/static/img/pancake.jpg" alt=""/> -->
+                            <!-- </div> -->
                         </div>
+    
+                <% } %> <!-- end for loop for displaying each review -->
 
-                        <!-- rating -->
-                        <div class="d-flex rating-container pr-10 pl-10">
-                            <!-- corresponding label -->
-                            <p class="rating-label">5.0</p>
-
-                            <!-- stars (static for now)-->
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                        </div>
-
-                        <!-- review text -->
-                         <p class="review-body pr-10 pl-10">
-                            WEEKEND GARAGE is the live bar and café that An's dad, Shiraishi Ken, owns. It is one of the main settings of Vivid BAD SQUAD's stories, as well as the location that Crase Cafe — the café MEIKO runs in the Street SEKAI — is based on. It is a very delicious place to eat at!
-                        </p>
-
-                        <!-- images for review -->
-                        <div class="review-img-container">
-                            <img class="review-img" src="/static/img/food5.png" alt=""/>
-                            <img class="review-img" src="/static/img/pancake.jpg" alt=""/>
-                        </div>
-                    </div>
-
-                </div>
-
-              </div>
+            </div>
         </div>
 
         
