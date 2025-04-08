@@ -113,21 +113,28 @@ async function setup() {
     reviewDescription: "Good food, quick service and helpful staff.",
   });
 
-    // John Doe's review 2
-    const review2 = await Review.create({
-      reviewID: 2,
-      restaurantID: 2,
-      userID: 101,
-      reviewRating: 0.5,
-      reviewDescription: "Not that good tbh.",
-    });
+  // John Doe's review 2
+  const review2 = await Review.create({
+    reviewID: 2,
+    restaurantID: 2,
+    userID: 101,
+    reviewRating: 0.5,
+    reviewDescription: "Not that good tbh.",
+  });
+
+  // John Doe's review 3
+  const review3 = await Review.create({
+    reviewID: 3,
+    restaurantID: 3,
+    userID: 101,
+    reviewRating: 0.0,
+    reviewDescription: "My friend Akalya hated it! Her food was raw! And, she's vegan, but they put real meat in her burger! 0 stars!",
+  });
 
   const ThaiGinger= await Restaurant.create({
     restaurantID: 1,
     restaurantName: "Thai Ginger",
     restaurantAddress: "256 Forest Avenue, Pullman, WA",
-    //cuisines: "Asian",
-    // reviews
     restaurantRating: 4.5,
   });
 
@@ -150,6 +157,13 @@ async function setup() {
     restaurantName: "Sushi King",
     restaurantAddress: "890 Downtown Plaza, Pullman, WA",
     restaurantRating: 4.8,
+  });
+
+  const TacoBell = await Restaurant.create({
+    restaurantID: 5,
+    restaurantName: "Taco Bell",
+    restaurantAddress: "1234 Coug Drive, Pullman, WA",
+    restaurantRating: 4.0,
   });
 
   const IndianSpice = await Restaurant.create({
