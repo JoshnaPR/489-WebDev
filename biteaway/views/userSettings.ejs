@@ -28,13 +28,13 @@
 
                 <!-- user name -->
                 <p class="profile-label">
-                    Tsukasa Tenma 
+                    <%= user.firstName %> <%= user.lastName %>
                 </p>
 
                 <!-- user location -->
                 <p class="profile-label-2">
                     <img class="location-img" src="/static/img/location.png" alt=""/>
-                    Phoenix Wonderland
+                    <%= user.userAddress %>
                 </p>
 
                 <!-- number of reviews -->

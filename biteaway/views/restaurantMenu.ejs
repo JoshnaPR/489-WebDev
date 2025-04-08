@@ -55,17 +55,17 @@
         <div class="row">
             <!-- name & other details -->
             <div class="col">
-                <h2 class="profile-label">Weekend Garage</h2>
+                <h2 class="profile-label"><%= restaurant.restaurantName %></h2>
                 <p class="profile-label-2">Cafe, Breakfast</p>
-                <p class="profile-label-2">Vivid Street, Tokyo</p>
+                <p class="profile-label-2"><%= restaurant.restaurantAddress %></p>
                 <p class="profile-label-2">Open 10AM-10PM | ### </p>
             </div>
             <!-- ratings -->
             <div class="col-3 ratings">
                 <p class="profile-label-2" style="float:right; padding-right: 120px">Dining Ratings</p>
                 <div style="display: inline-block;" class="col-2 stars">
-                    <p class="rating-label">4.9</p>
-                <span class="fa fa-star checked"></span>
+                    <p class="rating-label"><%= restaurant.restaurantRating %></p>
+                    <span class="fa fa-star checked"></span>
                 </div>
             </div>
         </div>
