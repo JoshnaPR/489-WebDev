@@ -3,6 +3,7 @@ var router = express.Router();
 
 const User = require("../models/User");
 const Review = require("../models/Review");
+const Cuisine = require("../models/Cuisine");
 
 
 module.exports = {
@@ -11,7 +12,8 @@ module.exports = {
         const user = await User.findUser(req.params.id);
         const reviews = await Review.listReviews({ userID: req.params.id });         // to display review data for home page
         const reviewNum = await Review.countReviews({ userID: req.params.id });      // to display number of reviews
-        res.render('userHome', { user, reviews, reviewNum })
+        const cuisines = await Cuisine.listCuisines();                               // to display cuisines; will filter by restaurantID for review lists
+        res.render('userHome', { user, reviews, reviewNum, cuisines })
     }, 
 
     // GET METHOD for user settings page

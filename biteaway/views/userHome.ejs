@@ -16,7 +16,6 @@
     </head>
 
     <body>
-        
         <!-- profile header -->
         <div class="jumbotron profile-col shadow">
             <div class=".d-inline-flex bottom-align-text">
@@ -84,12 +83,8 @@
                 </div>
 
                 <!-- all the reviews -->
-                 <!-- can replace with for loop iterating through database later -->
-                <div class="col-9">
-
-                    <!-- profile review example #1 -->
-                    
-
+                <!-- can replace with for loop iterating through database later -->
+                <div class="col-9">                
                     <% for (review of reviews) { %>
                         <div class="profile-reviews shadow p-3">
 
@@ -101,24 +96,48 @@
                                 <!-- restaurant title, type, and address -->
                                 <div class="d-flex flex-column ml-10">
                                     <h5><strong><%= review.restaurant.restaurantName %></strong></h5>
-                                    <!-- TODO: update cuisines -->
-                                    <p class="review-title-text">Food and Drink Type</p>
+                                    
+                                    <!-- iterate through all cuisines, match by restaurantID -->
+                                    <!-- TODO: fix commas -->
+                                    <p class="review-title-text">
+                                    <% for ( cuisine of cuisines ) { %> 
+                                        <% if (cuisine.restaurantID == review.restaurant.restaurantID) { %>
+
+                                            <%= cuisine.cuisineType %>, 
+
+                                        <% } %> <!-- end of checking restaurantIDs -->
+                                    <% } %> <!-- end cuisine for loop-->
+                                    </p>
+
                                     <p class="review-title-text"><%= review.restaurant.restaurantAddress %></p>
                                 </div>
                             </div>
 
                             <!-- rating -->
+                            <!-- coding example: 4.5 stars 
+                                1st. filled: 3 stars; i = 3
+                                2nd. half: 4th star;  i = 4
+                                3nd. empty: 5th star; i = 5 -->
                             <div class="d-flex rating-container pr-10 pl-10">
                                 <!-- corresponding label -->
                                 <p class="rating-label"><%= review.reviewRating %></p>
 
-                                <!-- stars (static for now)-->
-                                <!-- TODO: update stars accordingly -->
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
+                                <!-- dynamic stars -->
+                                <% for (var i = 1; i < 6; i++) { %> 
+                                    <!-- number of filled stars -->
+                                    <% if ( review.reviewRating >= i ) { %>                 <!-- ex: 4.5 >= 4 -->
+                                        <span class="fa fa-star checked"></span>
+
+                                    <!-- number of half stars -->
+                                    <% } else if ( review.reviewRating >= i - 0.5 ) { %>    <!-- ex: 4.5 >= 4 - 0.5 fails, but 5 - 0.5 works -->
+                                        <span class="fa fa-star-half-o checked"></span>
+
+                                    <!-- number of empty stars -->
+                                    <% } else { %>
+                                        <span class="fa fa-star unchecked"></span>
+                                    <% } %>
+                                <% } %>
+
                             </div>
 
                             <!-- review text -->

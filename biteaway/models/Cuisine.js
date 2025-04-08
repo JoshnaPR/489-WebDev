@@ -6,7 +6,6 @@ class Cuisine extends Model {
     // associations
     // sources: https://sequelize.org/docs/v7/associations/belongs-to/ ; https://stackoverflow.com/questions/58823117/how-to-use-sequelize-belongsto
     static associate = models => {
-        
         // cuisine belongs to specific restaurant
         Cuisine.belongsTo(models.Restaurant, {
             as: 'restaurant',
@@ -31,8 +30,20 @@ class Cuisine extends Model {
         }
     };
 
+    // getter function ; return list of cuisines (without restaurantID)
+    static async listCuisines() {
+        try {
+            const list = await Cuisine.findAll()
+            return list
+            
+        } catch (error) {
+            console.log(error)
+            return null
+        }
+    };
+
     // getter function ; return list of cuisines under restaurantID
-    static async listCuisines({restaurantID}) {
+    static async listCuisinesByRestaurant({restaurantID}) {
         try {
             const list = await Cuisine.findAll({
                 where: { restaurantID }

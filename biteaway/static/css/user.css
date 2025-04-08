@@ -172,6 +172,10 @@ h6 {
     color: #FF7721;
 }
 
+.unchecked {
+    color: #fbcdaf;
+}
+
 .rating-container {
     font-size: 25px;
 }
