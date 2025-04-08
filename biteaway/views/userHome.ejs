@@ -22,7 +22,8 @@
                 
                 <!-- profile picture -->
                 <div class="image-cropper">
-                    <img class="profile-img" src="/static/img/tsukasa.jpg" alt=""/>
+                    <!-- naming convention for icons -->
+                    <img class="profile-img" src="/static/img/user/<%= user.userID %>.jpg" alt=""/>
                 </div>
 
                 <!-- user name -->
@@ -90,12 +91,11 @@
 
                             <!-- img, restaurant name, etc. -->
                             <div class="d-flex review-header pr-10 pl-10">
-                                <!-- TODO: replace with restaurant img -->
-                                <img class="restaurant-review-img" src="/static/img/example.png" alt=""/>
+                                <img class="restaurant-review-img" src="/static/img/restaurant/<%= review.restaurant.restaurantID %>.jpg" alt=""/>
 
                                 <!-- restaurant title, type, and address -->
                                 <div class="d-flex flex-column ml-10">
-                                    <h5><strong><%= review.restaurant.restaurantName %></strong></h5>
+                                    <a href="/restaurant/<%= review.restaurant.restaurantID %>"><h5><strong><%= review.restaurant.restaurantName %></strong></h5></a>
                                     
                                     <!-- iterate through all cuisines, match by restaurantID -->
                                     <!-- TODO: fix commas -->
