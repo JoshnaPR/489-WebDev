@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurant | Bite-A-Way</title>
+    <title><%= restaurant.restaurantName %> | Bite-A-Way</title>
 
     <!-- for star icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -55,7 +55,15 @@
             <!-- name & other details -->
             <div class="col">
                 <h2 class="profile-label"><%= restaurant.restaurantName %></h2>
-                <p class="profile-label-2">Cafe, Breakfast</p>
+
+                <!-- list cuisines -->
+                <!-- TODO: update so comma is excluded at the end -->
+                <p class="profile-label-2">
+                    <% for (cuisine of cuisines) { %>
+                        <%= cuisine.cuisineType %>, 
+                    <% } %>
+                </p>
+
                 <p class="profile-label-2"><%= restaurant.restaurantAddress %></p>
                 <p class="profile-label-2">Open 10AM-10PM | ### </p>
             </div>

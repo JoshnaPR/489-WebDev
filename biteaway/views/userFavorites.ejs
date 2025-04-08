@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Bite-a-Way</title>
+        <title><%= user.firstName %> <%= user.lastName %>'s Profile | Bite-a-Way</title>
 
         <!-- for star icon -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -40,9 +40,9 @@
                 <!-- number of reviews -->
                 <div class="border-start px-3 profile-header-review justify-content-center">
                     <!-- review statistics -->
-                    <h2>88.88k</h2>
+                    <h2><%= reviewNum %></h2>
                     <p class="profile-review-label">
-                        Reviews
+                        Review(s)
                     </p>
                 </div>
             </div>

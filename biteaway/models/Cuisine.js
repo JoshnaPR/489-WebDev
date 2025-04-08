@@ -29,8 +29,21 @@ class Cuisine extends Model {
             console.log(error)
             return null
         }
+    };
 
-    }
+    // getter function ; return list of cuisines under restaurantID
+    static async listCuisines({restaurantID}) {
+        try {
+            const list = await Cuisine.findAll({
+                where: { restaurantID }
+            })
+            return list
+            
+        } catch (error) {
+            console.log(error)
+            return null
+        }
+    };
 }
 
 // cuisine is a multi-valued attribute of restaurant

@@ -35,7 +35,22 @@ class Review extends Model {
             console.log(error)
             return null
         }
-    }
+    };
+
+    // count the number of reviews a user had made
+    static async countReviews({userID}) {
+        try {
+            const reviewCount = await Review.count({
+                where: { userID }
+            })
+            return reviewCount    
+
+        } catch (error) {
+            console.log(error)
+            return null
+        }
+    };
+
 }
 
 Review.init({

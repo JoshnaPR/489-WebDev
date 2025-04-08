@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Bite-a-Way</title>
+        <title><%= user.firstName %> <%= user.lastName %>'s Profile | Bite-a-Way</title>
 
         <!-- for star icon -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -40,9 +40,9 @@
                 <!-- number of reviews -->
                 <div class="border-start px-3 profile-header-review justify-content-center">
                     <!-- review statistics -->
-                    <h2>88.88k</h2>
+                    <h2><%= reviewNum %></h2>
                     <p class="profile-review-label">
-                        Reviews
+                        Review(s)
                     </p>
                 </div>
             </div>
@@ -102,7 +102,7 @@
                                         type="text" 
                                         id="first-name" 
                                         name="first-name" 
-                                        placeholder="Your First Name" 
+                                        placeholder="<%= user.firstName %>" 
                                         class="name-input";
                                     />
                                 </form>
@@ -116,7 +116,7 @@
                                         type="text" 
                                         id="last-name" 
                                         name="last-name" 
-                                        placeholder="Your Last Name" 
+                                        placeholder="<%= user.lastName %>" 
                                         class="name-input";
                                     />
                                 </form>
@@ -133,7 +133,7 @@
                                         type="text" 
                                         id="country" 
                                         name="country" 
-                                        placeholder="+1" 
+                                        placeholder="<%= user.countryCode %>" 
                                         class="country-input";
                                     />
                                 </form>
@@ -147,7 +147,7 @@
                                         type="text" 
                                         id="number" 
                                         name="number" 
-                                        placeholder="(888) 888-8888" 
+                                        placeholder="<%= user.phoneNumber %>" 
                                         class="phone-number-input";
                                     />
                                 </form>
@@ -162,7 +162,7 @@
                                     type="text" 
                                     id="email" 
                                     name="email" 
-                                    placeholder="example@email.com" 
+                                    placeholder="<%= user.email %>" 
                                     class="email-input";
                                 />
                             </form>
@@ -176,7 +176,7 @@
                                     type="text" 
                                     id="password" 
                                     name="password" 
-                                    placeholder="password" 
+                                    placeholder="***********" 
                                     class="email-input";
                                 />
                             </form>
