@@ -4,21 +4,13 @@ var controller = require('../controllers/restaurant');
 
 router.use("/static/", express.static("static"))
 
-//const Restaurant = require('../models/Restaurant');
+// home page
+router.get("/:id", controller.getRestaurantHome);
 
-router.get("/:id", controller.getRestaurant);
+// menu page
+router.get("/:id/menu", controller.getRestaurantMenu);
 
-//probably find my by PK (which is recieved when user selects option from homepage)
-//console.log(restaurant)
-//res.render('restaurantHome')
-
-router.get("/menu", async function (req, res) {
-    res.render('restaurantMenu')
-    //res.redirect("restaurantMenu")
-})
-
-router.get("/reviews", async function (req, res) {
-    res.render("restaurantReviews")
-})
+// reviews page
+router.get("/:id/reviews", controller.getRestaurantReviews);
 
 module.exports = router;

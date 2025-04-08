@@ -58,20 +58,20 @@
                     <!-- user information -->
                     <div class="profile-sidebar shadow p-3 mb-3">
                         <h6><strong>User Information</strong></h6>
-                        <a href="/user/settings">Settings / Profile</a><br>
+                        <a href="/user/<%= user.userID %>/settings">Settings / Profile</a><br>
 
                         <!-- currently used page -->
                         <div class="sidebar-select align-items-center">
-                            <a href="/user">Reviews</a><br>
+                            <a href="/user/<%= user.userID %>">Reviews</a><br>
                         </div>
-                        <a href="/user/recently-viewed">Recently Viewed</a>
+                        <a href="/user/<%= user.userID %>/recently-viewed">Recently Viewed</a>
                     </div>
 
                     <!-- order information -->
                     <div class="profile-sidebar shadow p-3 mb-3">
                         <h6><strong>Order Information</strong></h6>
-                        <a href="/user/favorites">Favorites</a><br>
-                        <a href="/user/order-history">Order History</a>
+                        <a href="/user/<%= user.userID %>/favorites">Favorites</a><br>
+                        <a href="/user/<%= user.userID %>/order-history">Order History</a>
                     </div>
 
                     <!-- payment information -->

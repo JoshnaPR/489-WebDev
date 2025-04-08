@@ -81,10 +81,10 @@
         <nav class="col-10 navbar navbar-light navbar-expand">
             <!-- <div class="collapse navbar-collapse" id="navbarNavAltMarkup"> -->
             <div class="navbar-nav">
-                <a class="nav-item nav-link active profile-label-2" href="/restaurant">Overview <span
+                <a class="nav-item nav-link active profile-label-2" href="/restaurant/<%= restaurant.restaurantID %>">Overview<span
                         class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link profile-label-2" href="/restaurant/menu">Menu</a>
-                <a class="nav-item nav-link profile-label-2" href="/restaurant/reviews">Reviews</a>
+                <a class="nav-item nav-link profile-label-2" href="/restaurant/<%= restaurant.restaurantID %>/menu">Menu</a>
+                <a class="nav-item nav-link profile-label-2" href="/restaurant/<%= restaurant.restaurantID %>/reviews">Reviews</a>
                 <!-- </div> -->
             </div>
         </nav>
