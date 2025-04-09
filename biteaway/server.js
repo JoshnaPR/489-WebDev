@@ -252,7 +252,7 @@ async function setup() {
     restaurantID: 3,
     restaurantName: "Burger Shack",
     restaurantAddress: "532 College Hill, Pullman, WA",
-    restaurantRating: 4.2,
+    restaurantRating: 1.0,
   });
   
   const SushiKing = await Restaurant.create({

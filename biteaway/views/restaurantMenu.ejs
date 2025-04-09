@@ -114,9 +114,9 @@
         <nav class="col-10 navbar navbar-light navbar-expand">
             <!-- <div class="collapse navbar-collapse" id="navbarNavAltMarkup"> -->
             <div class="navbar-nav">
-                <a class="nav-item nav-link active profile-label-2" href="/restaurant/<%= restaurant.restaurantID %>">Overview<span
-                        class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link profile-label-2" href="/restaurant/<%= restaurant.restaurantID %>/menu">Menu</a>
+                <a class="nav-item nav-link profile-label-2" href="/restaurant/<%= restaurant.restaurantID %>">Overview</a>
+                <a class="nav-item nav-link active profile-label-2" href="/restaurant/<%= restaurant.restaurantID %>/menu">Menu<span
+                    class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link profile-label-2" href="/restaurant/<%= restaurant.restaurantID %>/reviews">Reviews</a>
                 <!-- </div> -->
             </div>
@@ -133,7 +133,7 @@
                     <!-- list items on menu -->
                     <!-- formatting: https://stackoverflow.com/questions/49264980/how-do-you-do-a-for-loop-for-each-in-ejs -->
                     <% items.forEach(function(item, i) { %>
-                        <p><b><%= i+1 %>. <%= item.itemName %> <span style="float:right;"><%= item.itemPrice %></span> </b></p>
+                        <p><b><%= i+1 %>. <%= item.itemName %> <span style="float:right;">$<%= item.itemPrice %></span> </b></p>
                         <p><i><%= item.itemDescription %></i></p>
                     <% }) %>
                     

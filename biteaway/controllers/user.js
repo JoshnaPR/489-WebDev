@@ -4,7 +4,7 @@ var router = express.Router();
 const User = require("../models/User");
 const Review = require("../models/Review");
 const Cuisine = require("../models/Cuisine");
-
+const Order = require("../models/Order");
 
 module.exports = {
     // GET METHOD for user home page
@@ -41,6 +41,7 @@ module.exports = {
     getUserOrderHistory: async (req, res) => {
         const user = await User.findUser(req.params.id); 
         const reviewNum = await Review.countReviews({ userID: req.params.id });      // to display number of reviews 
-        res.render('userOrderHistory', { user, reviewNum })
+        const orders = await Order.listOrdersByUser({ userID: req.params.id });      // to display user's order history
+        res.render('userOrderHistory', { user, reviewNum, orders })
     }, 
 }
