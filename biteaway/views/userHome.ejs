@@ -119,8 +119,9 @@
                                 2nd. half: 4th star;  i = 4
                                 3nd. empty: 5th star; i = 5 -->
                             <div class="d-flex rating-container pr-10 pl-10">
-                                <!-- corresponding label -->
-                                <p class="rating-label"><%= review.reviewRating %></p>
+
+                                <!-- corresponding label : https://stackoverflow.com/questions/58269113/how-to-round-the-numerical-output-value-in-ejs -->
+                                <p class="rating-label"><%= parseFloat(review.reviewRating).toFixed(1) %></p>
 
                                 <!-- dynamic stars -->
                                 <% for (var i = 1; i < 6; i++) { %> 
@@ -138,7 +139,7 @@
                                     <% } %>
                                 <% } %>
 
-                            </div>
+                            </div> <!-- end rating div-->
 
                             <!-- review text -->
                             <p class="review-body pr-10 pl-10">

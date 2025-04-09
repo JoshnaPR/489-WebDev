@@ -44,13 +44,20 @@ body {
     display: inline-block;
     align-items: center;
 }
-
-.fa-star, .fa-star-half-alt {
+.fa-star, .fa-star-half-o {
     font-size: 25px;
+}
+
+.fa {
+    margin: 18px 2px 0px 0px;
 }
 
 .checked {
     color: #FF7721;
+}
+
+.unchecked {
+    color: #fbcdaf;
 }
 
 .ratings {

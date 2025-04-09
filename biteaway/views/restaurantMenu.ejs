@@ -73,16 +73,40 @@
                 <p class="profile-label-2" style="float:right; padding-right: 120px">Dining Ratings</p>
                 <div style="display: inline-block;" class="col-2 stars">
                     <p class="rating-label"><%= restaurant.restaurantRating %></p>
-                    <span class="fa fa-star checked"></span>
+                    
+                    <!-- dynamic stars code -->
+                    <div class="d-flex">
+                        <% for (var i = 1; i < 6; i++) { %> 
+                            <!-- number of filled stars -->
+                            <% if ( restaurant.restaurantRating >= i ) { %>
+                                <span class="fa fa-star checked"></span>
+
+                            <!-- number of half stars -->
+                            <% } else if ( restaurant.restaurantRating >= i - 0.5 ) { %>
+                                <span class="fa fa-star-half-o checked"></span>
+
+                            <!-- number of empty stars -->
+                            <% } else { %>
+                                <span class="fa fa-star unchecked"></span>
+                            <% } %>
+                        <% } %>
+                    </div>
+
                 </div>
             </div>
         </div>
-        <!-- photo gallery -->
-        <div class="row gallery">
+        
+         <!-- photo gallery -->
+         <div class="row gallery">
+
+            <!-- naming home files as /restaurant/home/id_img# -->
             <div class="col">
-                <img src="/static/img/rest1.jpg" />
-                <img src="/static/img/rest2.jpeg" />
-                <img src="/static/img/rest3.jpg" />
+                 
+                <!-- TODO: only 3 per home page? or is it more? -->
+                <% for (i = 1; i < 4; i++) { %>
+                    <img src="/static/img/restaurant/home/<%= restaurant.restaurantID %>_<%= i %>.jpg" />
+                <% } %>
+                
             </div>
         </div>
 
