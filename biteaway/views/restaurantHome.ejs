@@ -138,10 +138,12 @@
                     <% } %>
 
                     <!-- TODO: base off of admin dashboard (i.e. sales count?) -->
+                    <!-- for now, just displaying the first two items on menu -->
                     <p class="categories">Chef Recommendations</p>
-                    <p>Black Coffee</p>
-                    <p>Pancakes</p>
-                    
+                    <% for (i = 0; i < 2; i++) { %>
+                        <p><%= items[i].itemName %></p>
+                    <% } %>
+
                     <!-- TODO: edit accordingly? -->
                     <p class="categories">More Info</p>
                     <p>Open Late</p>

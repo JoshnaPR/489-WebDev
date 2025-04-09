@@ -125,17 +125,21 @@
         <div class="container">
             <!-- overview -->
             <div class="row">
+
                 <!-- details -->
                 <div class="col border">
                     <p class="categories">Add to Cart</p>
-                    <p>Black Coffee</p>
-                    <p>Latte</p>
-                    <p>Milkshake</p>
-                    <p>Pancakes</p>
-                    <p>Waffles</p>
-                    <p>Omelet</p>
+
+                    <!-- list items on menu -->
+                    <!-- formatting: https://stackoverflow.com/questions/49264980/how-do-you-do-a-for-loop-for-each-in-ejs -->
+                    <% items.forEach(function(item, i) { %>
+                        <p><b><%= i+1 %>. <%= item.itemName %> <span style="float:right;"><%= item.itemPrice %></span> </b></p>
+                        <p><i><%= item.itemDescription %></i></p>
+                    <% }) %>
+                    
                     <a class="btn btn-primary" href="/order" role="button">PLACE ORDER</a>
                 </div>
+
                 <!-- directions -->
                 <div class="col-3">
                     <!-- button to maps -->

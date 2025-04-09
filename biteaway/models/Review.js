@@ -53,7 +53,7 @@ class Review extends Model {
         }
     };
 
-    // getter function ; return list of cuisines under userID
+    // getter function ; return list of reviews under userID
     static async listReviewsByUser({userID}) {
         // source: https://stackoverflow.com/questions/53757460/sequelize-findall-include-same-models-2-times-with-different-condition
         try {
@@ -73,7 +73,7 @@ class Review extends Model {
         }
     };
 
-    // getter function ; return list of cuisines under userID
+    // getter function ; return list of reviews under restaurantID
     static async listReviewsByRestaurant({restaurantID}) {
         // source: https://stackoverflow.com/questions/53757460/sequelize-findall-include-same-models-2-times-with-different-condition
         try {
