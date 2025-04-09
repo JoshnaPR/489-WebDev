@@ -10,7 +10,13 @@ router.get("/", async function (req, res) {
 })
 
 router.get("/manage", async function (req, res) {
-    res.render('adminOrders')
+    const stats={
+        totalOrders:0,
+        processing: 0,
+        delivering: 0,
+        completed: 0
+    };
+    res.render('adminOrders', { stats: stats, orders: [] });
 })
 
 module.exports = router;
