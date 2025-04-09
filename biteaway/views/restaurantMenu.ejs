@@ -73,16 +73,40 @@
                 <p class="profile-label-2" style="float:right; padding-right: 120px">Dining Ratings</p>
                 <div style="display: inline-block;" class="col-2 stars">
                     <p class="rating-label"><%= restaurant.restaurantRating %></p>
-                    <span class="fa fa-star checked"></span>
+                    
+                    <!-- dynamic stars code -->
+                    <div class="d-flex">
+                        <% for (var i = 1; i < 6; i++) { %> 
+                            <!-- number of filled stars -->
+                            <% if ( restaurant.restaurantRating >= i ) { %>
+                                <span class="fa fa-star checked"></span>
+
+                            <!-- number of half stars -->
+                            <% } else if ( restaurant.restaurantRating >= i - 0.5 ) { %>
+                                <span class="fa fa-star-half-o checked"></span>
+
+                            <!-- number of empty stars -->
+                            <% } else { %>
+                                <span class="fa fa-star unchecked"></span>
+                            <% } %>
+                        <% } %>
+                    </div>
+
                 </div>
             </div>
         </div>
-        <!-- photo gallery -->
-        <div class="row gallery">
+        
+         <!-- photo gallery -->
+         <div class="row gallery">
+
+            <!-- naming home files as /restaurant/home/id_img# -->
             <div class="col">
-                <img src="/static/img/rest1.jpg" />
-                <img src="/static/img/rest2.jpeg" />
-                <img src="/static/img/rest3.jpg" />
+                 
+                <!-- TODO: only 3 per home page? or is it more? -->
+                <% for (i = 1; i < 4; i++) { %>
+                    <img src="/static/img/restaurant/home/<%= restaurant.restaurantID %>_<%= i %>.jpg" />
+                <% } %>
+                
             </div>
         </div>
 
@@ -90,27 +114,32 @@
         <nav class="col-10 navbar navbar-light navbar-expand">
             <!-- <div class="collapse navbar-collapse" id="navbarNavAltMarkup"> -->
             <div class="navbar-nav">
-                <a class="nav-item nav-link active profile-label-2" href="/restaurant/<%= restaurant.restaurantID %>">Overview<span
-                        class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link profile-label-2" href="/restaurant/<%= restaurant.restaurantID %>/menu">Menu</a>
+                <a class="nav-item nav-link profile-label-2" href="/restaurant/<%= restaurant.restaurantID %>">Overview</a>
+                <a class="nav-item nav-link active profile-label-2" href="/restaurant/<%= restaurant.restaurantID %>/menu">Menu<span
+                    class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link profile-label-2" href="/restaurant/<%= restaurant.restaurantID %>/reviews">Reviews</a>
                 <!-- </div> -->
             </div>
         </nav>
+        
         <div class="container">
             <!-- overview -->
             <div class="row">
+
                 <!-- details -->
                 <div class="col border">
                     <p class="categories">Add to Cart</p>
-                    <p>Black Coffee</p>
-                    <p>Latte</p>
-                    <p>Milkshake</p>
-                    <p>Pancakes</p>
-                    <p>Waffles</p>
-                    <p>Omelet</p>
+
+                    <!-- list items on menu -->
+                    <!-- formatting: https://stackoverflow.com/questions/49264980/how-do-you-do-a-for-loop-for-each-in-ejs -->
+                    <% items.forEach(function(item, i) { %>
+                        <p><b><%= i+1 %>. <%= item.itemName %> <span style="float:right;">$<%= item.itemPrice %></span> </b></p>
+                        <p><i><%= item.itemDescription %></i></p>
+                    <% }) %>
+                    
                     <a class="btn btn-primary" href="/order" role="button">PLACE ORDER</a>
                 </div>
+
                 <!-- directions -->
                 <div class="col-3">
                     <!-- button to maps -->

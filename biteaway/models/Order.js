@@ -1,5 +1,8 @@
 const sequelize = require('../db')
 const { Model, DataTypes } = require('sequelize')
+const User = require('./User');
+const Restaurant = require('./Restaurant');
+
 
 class Order extends Model {
 
@@ -36,7 +39,27 @@ class Order extends Model {
             console.log(error)
             return null
         }
-    }
+    };
+
+    // getter function ; return list of orders by user
+    static async listOrdersByUser({userID}) {
+        try {
+            const list = await Order.findAll({
+                where: { userID }, 
+                include: [{
+                    model: Restaurant,
+                    as: 'restaurant'
+                }]
+            })
+            
+            return list
+            
+        } catch (error) {
+            console.log(error)
+            return null
+        }
+    };
+
 }
 
 Order.init({

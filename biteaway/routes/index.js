@@ -11,7 +11,8 @@ router.use("/static/", express.static("static"))
 //admin and user can only be accessed by logged in accounts
 
 router.get("/", async function (req, res) {
-    res.redirect('/login')
+    //res.redirect('/login')
+    res.render('indexHome')
 })
 
 router.get("/login", async function (req, res) {

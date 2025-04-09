@@ -52,6 +52,7 @@
 
         <!-- restaurant profile -->
         <div class="row">
+
             <!-- name & other details -->
             <div class="col">
                 <h2 class="profile-label"><%= restaurant.restaurantName %></h2>
@@ -67,21 +68,48 @@
                 <p class="profile-label-2"><%= restaurant.restaurantAddress %></p>
                 <p class="profile-label-2">Open 10AM-10PM | ### </p>
             </div>
+
             <!-- ratings -->
             <div class="col-3 ratings">
                 <p class="profile-label-2" style="float:right; padding-right: 120px">Dining Ratings</p>
+                
                 <div style="display: inline-block;" class="col-2 stars">
                     <p class="rating-label"><%= restaurant.restaurantRating %></p>
-                    <span class="fa fa-star checked"></span>
+                    
+                    <!-- dynamic stars code -->
+                    <div class="d-flex">
+                        <% for (var i = 1; i < 6; i++) { %> 
+                            <!-- number of filled stars -->
+                            <% if ( restaurant.restaurantRating >= i ) { %>
+                                <span class="fa fa-star checked"></span>
+
+                            <!-- number of half stars -->
+                            <% } else if ( restaurant.restaurantRating >= i - 0.5 ) { %>
+                                <span class="fa fa-star-half-o checked"></span>
+
+                            <!-- number of empty stars -->
+                            <% } else { %>
+                                <span class="fa fa-star unchecked"></span>
+                            <% } %>
+                        <% } %>
+                    </div>
+
                 </div>
             </div>
+
         </div>
+
         <!-- photo gallery -->
         <div class="row gallery">
+
+            <!-- naming home files as /restaurant/home/id_img# -->
             <div class="col">
-                <img src="static/img/rest1.jpg" />
-                <img src="static/img/rest2.jpeg" />
-                <img src="static/img/rest3.jpg" />
+                 
+                <!-- TODO: only 3 per home page? or is it more? -->
+                <% for (i = 1; i < 4; i++) { %>
+                    <img src="/static/img/restaurant/home/<%= restaurant.restaurantID %>_<%= i %>.jpg" />
+                <% } %>
+                
             </div>
         </div>
 
@@ -102,26 +130,43 @@
             <div class="row">
                 <!-- details -->
                 <div class="col border">
+
+                    <!-- dynamic cuisines-->
                     <p class="categories">Cuisines</p>
-                    <p>French</p>
-                    <p>British</p>
+                    <% for (cuisine of cuisines) { %>
+                        <p><%= cuisine.cuisineType %></p>
+                    <% } %>
+
+                    <!-- TODO: base off of admin dashboard (i.e. sales count?) -->
+                    <!-- for now, just displaying the first two items on menu -->
                     <p class="categories">Chef Recommendations</p>
-                    <p>Black Coffee</p>
-                    <p>Pancakes</p>
+                    <% for (i = 0; i < 2; i++) { %>
+                        <p><%= items[i].itemName %></p>
+                    <% } %>
+
+                    <!-- TODO: edit accordingly? -->
                     <p class="categories">More Info</p>
                     <p>Open Late</p>
                     <p>Family-Owned</p>
+
+                    <!-- TODO: base off of admin dashboard statistics/reports? -->
                     <p class="categories">Average Cost</p>
                     <p>$10 per person</p>
+
+                    <!-- dynamically display menu (if existing) -->
                     <p class="categories">Menu Photo</p>
-                    <img src="static/img/menu.png" style="width: 300px;" />
+                    <img src="/static/img/restaurant/menu/<%= restaurant.restaurantID%>.jpg" style="width: 300px;"/>
+                    
                 </div>
+
                 <!-- directions -->
                 <div class="col-3">
+                    
                     <!-- button to maps -->
                     <a class="btn btn-primary" href="https://maps.app.goo.gl/TeEyLYUXbMmF4tzZ7" target="_blank"
                         role="button">MAP</a>
                 </div>
+
             </div>
         </div>
     </div>

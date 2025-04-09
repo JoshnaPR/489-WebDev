@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bite-A-Way | Food Delivery</title>
+  <link rel="stylesheet" href="static/css/index.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..."crossorigin="anonymous"referrerpolicy="no-referrer" />
+
+</head>
+<body>
+        <!-- Navbar -->
+        <nav class="navbar" id="navbar">
+          <div class="logo"><img src="/static/img/index/icon/logo.png" /></div>
+          <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Menu</a>
+            <a href="#">About</a>
+            <a href="#"> <i class="fas fa-shopping-cart cart-icon"></i> </a>
+            <a href="#"> <img src="/static/img/index/profile.jpg" alt="Profile" class="profile-pic" /> </a>
+           
+          </div>
+        </nav>
+      
+        <!-- Hero Section -->
+        <header class="hero">
+          <div class="hero-text">
+            <h1>Crave it? Bite-A-Way it.</h1>
+            <p>Your favorite food delivered fresh & fast, every time.</p>
+            <a href="#features" class="hero-btn">Explore Menu</a>
+          </div>
+          <img src="/static/img/index/main.jpg" alt="Food Delivery" class="hero-img"/>
+        </header>
+      
+        <!-- Features Section -->
+        <section id="features" class="features">
+          <div class="feature-card">
+            <img src="/static/img/index/icon/delivery_icon.jpg" alt="Fast Delivery"/>
+            <h3>Fast Delivery</h3>
+            <p>No more long waits. We bring food hot to your doorstep in minutes.</p>
+          </div>
+          <div class="feature-card">
+            <img src="/static/img/index/icon/var.png" alt="Wide Variety"/>
+            <h3>Endless Choices</h3>
+            <p>From sushi to shawarma, discover hundreds of local favorites.</p>
+          </div>
+          <div class="feature-card">
+            <img src="/static/img/index/icon/checkout.jpg" alt="Secure Checkout"/>
+            <h3>Secure Checkout</h3>
+            <p>Pay safely and easily with our encrypted, one-click payments.</p>
+          </div>
+        </section>
+      
+       <!-- Menu Section -->
+<section class="menu-section">
+  <h2 class="menu-title">Popular Picks</h2>
+  
+  <div class="menu-grid">
+    <div class="menu-card">
+      <div class="menu-img-container">
+        <img src="/static/img/index/burger.jpg" alt="Cheesy Beef Burger" class="menu-img">
+        <button class="remove-from-cart">-</button>
+        <button class="add-to-cart" data-item="burger">+</button>
+      </div>
+      <div class="menu-info">
+        <h3>Cheesy Beef Burger</h3>
+        <p>Loaded with double cheese, lettuce, and our signature sauce.</p>
+        <div class="reviews" id="burger-reviews"></div>
+        <div class="menu-bottom">
+          <span class="menu-price">$8.99</span>
+          <span class="cart-count" id="burger-count">0</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card">
+      <div class="menu-img-container">
+        <img src="/static/img/index/pizza.jpg" alt="Margherita Pizza" class="menu-img">
+        <button class="remove-from-cart">-</button>
+        <button class="add-to-cart" data-item="pizza">+</button>
+      </div>
+      <div class="menu-info">
+        <h3>Margherita Pizza</h3>
+        <p>Classic thin crust with fresh basil, mozzarella, and tomatoes.</p>
+        <div class="reviews" id="pizza-reviews"></div>
+        <div class="menu-bottom">
+          <span class="menu-price">$10.49</span>
+          <span class="cart-count" id="pizza-count">0</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card">
+      <div class="menu-img-container">
+        <img src="/static/img/index/noodles.jpg" alt="Spicy Garlic Noodles" class="menu-img">
+        <button class="remove-from-cart">-</button>
+        <button class="add-to-cart" data-item="noodles">+</button>
+      </div>
+      <div class="menu-info">
+        <h3>Spicy Garlic Noodles</h3>
+        <p>Wok-tossed noodles with chili garlic sauce and green onions.</p>
+        <div class="reviews" id="noodles-reviews"></div>
+        <div class="menu-bottom">
+          <span class="menu-price">$7.25</span>
+          <span class="cart-count" id="noodles-count">0</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional Menu Cards -->
+    <div class="menu-card">
+      <div class="menu-img-container">
+        <img src="/static/img/index/sushi.jpg" alt="Sushi Rolls" class="menu-img">
+        <button class="remove-from-cart">-</button>
+        <button class="add-to-cart" data-item="sushi">+</button>
+      </div>
+      <div class="menu-info">
+        <h3>Fresh Sushi Rolls</h3>
+        <p>A selection of fresh sushi rolls with wasabi and soy sauce.</p>
+        <div class="reviews" id="sushi-reviews"></div>
+        <div class="menu-bottom">
+          <span class="menu-price">$12.99</span>
+          <span class="cart-count" id="sushi-count">0</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card">
+      <div class="menu-img-container">
+        <img src="/static/img/index/alfredo.jpg" alt="Creamy Alfredo Pasta" class="menu-img">
+        <button class="remove-from-cart">-</button>
+        <button class="add-to-cart" data-item="pasta">+</button>
+      </div>
+      <div class="menu-info">
+        <h3>Creamy Alfredo Pasta</h3>
+        <p>Delicious pasta with creamy alfredo sauce and grated parmesan.</p>
+        <div class="reviews" id="pasta-reviews"></div>
+        <div class="menu-bottom">
+          <span class="menu-price">$11.49</span>
+          <span class="cart-count" id="pasta-count">0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <!-- Footer Content (Logo and Links) -->
+            <div class="footer-content">
+              <!-- Logo -->
+              <div class="footer-logo">
+                <img src="/static/img/index/icon/logo.png" alt="Bite A Way Logo"> <!-- Replace with your logo image path -->
+                
+              </div>
+              <!-- Links Section -->
+              <div class="footer-links">
+                <a href="#">Home</a>
+                <a href="#">Menu</a>
+                <a href="#">About</a>
+              </div>
+            </div>
+            
+            <!-- Licensing Text -->
+            <div class="footer-licensing">
+              <p>&copy; 2025 Bite-A-Way. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a></p>
+            </div>
+          </footer>
+    </body>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Initialize cart counts for each item
+        const cartCounts = {
+          burger: 0,
+          pizza: 0,
+          noodles: 0,
+          sushi: 0,
+          pasta: 0
+        };
+    
+        // Update the cart count on the UI
+        function updateCartCount(item) {
+          const countElement = document.getElementById(`${item}-count`);
+          if (countElement) {
+            countElement.textContent = cartCounts[item];
+          }
+        }
+    
+        // Add event listeners to the "+" buttons for adding to cart
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        addToCartButtons.forEach(button => {
+          button.addEventListener('click', () => {
+            const item = button.getAttribute('data-item');
+            cartCounts[item]++;
+            updateCartCount(item);
+          });
+        });
+    
+        // Add event listeners to the "-" buttons for removing from cart
+        const removeFromCartButtons = document.querySelectorAll('.remove-from-cart');
+        removeFromCartButtons.forEach(button => {
+          button.addEventListener('click', () => {
+            const item = button.getAttribute('data-item');
+            // Ensure the item count doesn't go below 0
+            if (cartCounts[item] > 0) {
+              cartCounts[item]--;
+              updateCartCount(item);
+            }
+          });
+        });
+      });
+    </script>
+      
+</html>

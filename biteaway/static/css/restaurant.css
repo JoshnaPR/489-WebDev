@@ -7,6 +7,11 @@ body {
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+a {
+    color: transparent;
+    text-decoration: none;
+}
+
 .profile-col {
     background-color: #F59A4C;
 
@@ -44,13 +49,20 @@ body {
     display: inline-block;
     align-items: center;
 }
-
-.fa-star, .fa-star-half-alt {
+.fa-star, .fa-star-half-o {
     font-size: 25px;
+}
+
+.fa {
+    margin: 18px 2px 0px 0px;
 }
 
 .checked {
     color: #FF7721;
+}
+
+.unchecked {
+    color: #fbcdaf;
 }
 
 .ratings {
@@ -76,6 +88,7 @@ body {
 
 .review-title-text {
     margin-top: -10px;
+    margin-bottom: -10px;
     color: rgb(98, 98, 98);
     line-height: 30px;
 }
