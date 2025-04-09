@@ -10,7 +10,7 @@ module.exports = {
     getRestaurantHome: async (req, res) => {
         const restaurant = await Restaurant.findRestaurant(req.params.id);
         const cuisines = await Cuisine.listCuisinesByRestaurant({ restaurantID: req.params.id})     // to display cuisine types
-        const reviews = await Review.listReviews({ restaurantID: req.params.id });                        // to display review data for home page
+        const reviews = await Review.listReviewsByRestaurant({ restaurantID: req.params.id });                  // to display review data for home page
         res.render('restaurantHome', { restaurant, cuisines, reviews })
     },
  
@@ -25,6 +25,7 @@ module.exports = {
     getRestaurantReviews: async (req, res) => {
         const restaurant = await Restaurant.findRestaurant(req.params.id);
         const cuisines = await Cuisine.listCuisinesByRestaurant({ restaurantID: req.params.id})     // to display cuisine types
-        res.render('restaurantReviews', { restaurant, cuisines })
+        const reviews = await Review.listReviewsByRestaurant({ restaurantID: req.params.id });                  // to display review data for home page
+        res.render('restaurantReviews', { restaurant, cuisines, reviews })
     }
 }

@@ -68,6 +68,7 @@
                 <p class="profile-label-2"><%= restaurant.restaurantAddress %></p>
                 <p class="profile-label-2">Open 10AM-10PM | ### </p>
             </div>
+
             <!-- ratings -->
             <div class="col-3 ratings">
                 <p class="profile-label-2" style="float:right; padding-right: 120px">Dining Ratings</p>
@@ -95,7 +96,7 @@
                 </div>
             </div>
         </div>
-        
+
          <!-- photo gallery -->
          <div class="row gallery">
 
@@ -129,42 +130,49 @@
                 <div class="col border">
                     <p class="categories">User Reviews</p>
 
-                    <div class="profile-reviews shadow p-3">
-                        <!-- name of reviewer -->
-                        <p class="review-title-text">Jon Smith</p>
-                        <!-- stars (static for now)-->
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <!-- review text -->
-                        <p class="review-body pr-10 pl-10">
-                            Love the pancakes!
-                        </p>
-                    </div>
-                  
-                    <div class="profile-reviews shadow p-3">
-                        <!-- name of reviewer -->
-                        <p class="review-title-text">Bob Banana</p>
-                        <!-- stars (static for now)-->
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <!-- review text -->
-                        <p class="review-body pr-10 pl-10">
-                            Favorite breakfast spot in town!
-                        </p>
-                    </div>
+                    <!-- iterate through all reviews for restaurant -->
+                    <% for (review of reviews) { %>
+
+                        <div class="profile-reviews shadow p-3">
+
+                            <!-- name of reviewer, hyperlink to account -->
+                            <a href="/user/<%= review.userID %>"><p class="review-title-text"><%= review.user.firstName %> <%= review.user.lastName %></p></a>
+
+                            <!-- dynamic stars -->
+                            <% for (var i = 1; i < 6; i++) { %> 
+                                <!-- number of filled stars -->
+                                <% if ( review.reviewRating >= i ) { %> 
+                                    <span class="fa fa-star checked"></span>
+
+                                <!-- number of half stars -->
+                                <% } else if ( review.reviewRating >= i - 0.5 ) { %>
+                                    <span class="fa fa-star-half-o checked"></span>
+
+                                <!-- number of empty stars -->
+                                <% } else { %>
+                                    <span class="fa fa-star unchecked"></span>
+                                <% } %>
+                            <% } %>
+
+                            <!-- review text -->
+                            <p class="review-body pr-10 pl-10">
+                                <%= review.reviewDescription %>
+                            </p>
+                            
+                        </div>
+
+                        
+                    <% } %> <!-- end of review loop -->
+                    
                 </div>
+
                 <!-- directions -->
                 <div class="col-3">
                     <!-- button to maps -->
                     <a class="btn btn-primary" href="https://maps.app.goo.gl/TeEyLYUXbMmF4tzZ7" target="_blank"
                         role="button">MAP</a>
                 </div>
+
             </div>
         </div>
 

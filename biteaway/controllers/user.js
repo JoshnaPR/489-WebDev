@@ -10,7 +10,7 @@ module.exports = {
     // GET METHOD for user home page
     getUserHome: async (req, res) => {
         const user = await User.findUser(req.params.id);
-        const reviews = await Review.listReviews({ userID: req.params.id });         // to display review data for home page
+        const reviews = await Review.listReviewsByUser({ userID: req.params.id });         // to display review data for home page
         const reviewNum = await Review.countReviews({ userID: req.params.id });      // to display number of reviews
         const cuisines = await Cuisine.listCuisines();                               // to display cuisines; will filter by restaurantID for review lists
         res.render('userHome', { user, reviews, reviewNum, cuisines })
