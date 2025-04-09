@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Confirmation</title>
-    <link rel="stylesheet" href="confirm.css">
+    <link rel="stylesheet" href="../static/css/orderConfirmation.css">
 </head>
 <body>
     <div class="container">
@@ -61,18 +61,18 @@
                 <div class="delivery-info">
                     <h3>Delivery Information</h3>
                     <div class="info-box" id="deliveryAddress">
-                        <%= customer.name %><br>
-                        <%= customer.address.street %><br>
-                        <%= customer.address.city %>, <%= customer.address.state %> <%= customer.address.zip %><br>
-                        <%= customer.address.country %>
+                        <%= user.firstName %> <%= user.lastName %><br>
+                        <%= user.userAddress %><br>
+                        <%= user.email %><br>
+                        Phone: <%= user.countryCode %><%= user.phoneNumber %>
                     </div>
                 </div>
                 
                 <div class="billing-info">
                     <h3>Contact Information</h3>
                     <div class="info-box" id="contactInfo">
-                        Email: <%= customer.email %><br>
-                        Phone: <%= customer.phone %>
+                        Email: <%= user.email %><br>
+                        Phone: <%= user.phoneNumber %>
                     </div>
                 </div>
                 
