@@ -9,7 +9,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Original CSS - keeping your custom styling -->
-    <link rel="stylesheet" href="Cart.css">
+    <link rel="stylesheet" href="../static/css/orderCart.css">
     <link rel="stylesheet" href="enhanced-cart.css">
     
 </head>
@@ -49,31 +49,31 @@
 
                 <% if (cartItems && cartItems.length > 0) { %>
                     <% cartItems.forEach(function(item) { %>
-                        <div class="cart-item" data-item-id="<%= item.id %>">
+                        <div class="cart-item" data-item-id="<%= item.itemID %>">
                             <div class="item-product">
                                 <div class="product-image">
-                                    <img src="<%= item.image || '/images/food-item.jpg' %>" alt="<%= item.name %>">
+                                    <!-- <img src="/images/food-item-<%= item.itemID %>.jpg" alt="<%= item.itemName %>"> -->
                                 </div>
                                 <div class="product-details">
-                                    <h3><%= item.name %></h3>
-                                    <p class="product-desc"><%= item.description %></p>
+                                    <h3><%= item.itemName %></h3>
+                                    <p class="product-desc"><%= item.itemDescription %></p>
                                 </div>
                             </div>
-                            <div class="item-price">$<%= item.price.toFixed(2) %></div>
+                            <div class="item-price">$<%= item.itemPrice.toFixed(2) %></div>
                             <div class="item-quantity">
                                 <div class="quantity-control">
-                                    <button class="quantity-btn" onclick="updateQuantity('<%= item.id %>', 'decrease')">
+                                    <button class="quantity-btn" onclick="updateQuantity('<%= item.itemID %>', 'decrease')">
                                         <i class="fas fa-minus"></i>
                                     </button>
-                                    <span class="quantity-value"><%= item.quantity %></span>
-                                    <button class="quantity-btn" onclick="updateQuantity('<%= item.id %>', 'increase')">
+                                    <span class="quantity-value"><%= item.quantity || 1 %></span>
+                                    <button class="quantity-btn" onclick="updateQuantity('<%= item.itemID %>', 'increase')">
                                         <i class="fas fa-plus"></i>
                                     </button>
                                 </div>
                             </div>
-                            <div class="item-total">$<%= (item.price * item.quantity).toFixed(2) %></div>
+                            <div class="item-total">$<%= (item.itemPrice * (item.quantity || 1)).toFixed(2) %></div>
                             <div class="item-action">
-                                <button class="remove-btn" onclick="removeItem('<%= item.id %>')">
+                                <button class="remove-btn" onclick="removeItem('<%= item.itemID %>')">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </div>
@@ -91,28 +91,28 @@
                     <div class="cart-item">
                         <div class="item-product">
                             <div class="product-image">
-                                <img src="/images/food-item.jpg" alt="Food Item">
+                                <!-- <img src="/images/food-item.jpg" alt="Food Item"> -->
                             </div>
                             <div class="product-details">
-                                <h3>Food Item Name</h3>
-                                <p class="product-desc">Fresh and delicious</p>
+                                <h3>Margherita Pizza</h3>
+                                <p class="product-desc">Classic pizza with tomato sauce and mozzarella cheese</p>
                             </div>
                         </div>
                         <div class="item-price">$10.99</div>
                         <div class="item-quantity">
                             <div class="quantity-control">
-                                <button class="quantity-btn" onclick="updateQuantity('item_id', 'decrease')">
+                                <button class="quantity-btn" onclick="updateQuantity('sample_item_1', 'decrease')">
                                     <i class="fas fa-minus"></i>
                                 </button>
                                 <span class="quantity-value">2</span>
-                                <button class="quantity-btn" onclick="updateQuantity('item_id', 'increase')">
+                                <button class="quantity-btn" onclick="updateQuantity('sample_item_1', 'increase')">
                                     <i class="fas fa-plus"></i>
                                 </button>
                             </div>
                         </div>
                         <div class="item-total">$21.98</div>
                         <div class="item-action">
-                            <button class="remove-btn" onclick="removeItem('item_id')">
+                            <button class="remove-btn" onclick="removeItem('sample_item_1')">
                                 <i class="fas fa-trash-alt"></i>
                             </button>
                         </div>
@@ -121,28 +121,28 @@
                     <div class="cart-item">
                         <div class="item-product">
                             <div class="product-image">
-                                <img src="/images/food-item.jpg" alt="Food Item">
+                                <!-- <img src="/images/food-item.jpg" alt="Food Item"> -->
                             </div>
                             <div class="product-details">
-                                <h3>Another Food Item</h3>
-                                <p class="product-desc">Premium quality</p>
+                                <h3>Chicken Caesar Salad</h3>
+                                <p class="product-desc">Fresh romaine lettuce with grilled chicken and Caesar dressing</p>
                             </div>
                         </div>
                         <div class="item-price">$15.99</div>
                         <div class="item-quantity">
                             <div class="quantity-control">
-                                <button class="quantity-btn" onclick="updateQuantity('item_id2', 'decrease')">
+                                <button class="quantity-btn" onclick="updateQuantity('sample_item_2', 'decrease')">
                                     <i class="fas fa-minus"></i>
                                 </button>
                                 <span class="quantity-value">1</span>
-                                <button class="quantity-btn" onclick="updateQuantity('item_id2', 'increase')">
+                                <button class="quantity-btn" onclick="updateQuantity('sample_item_2', 'increase')">
                                     <i class="fas fa-plus"></i>
                                 </button>
                             </div>
                         </div>
                         <div class="item-total">$15.99</div>
                         <div class="item-action">
-                            <button class="remove-btn" onclick="removeItem('item_id2')">
+                            <button class="remove-btn" onclick="removeItem('sample_item_2')">
                                 <i class="fas fa-trash-alt"></i>
                             </button>
                         </div>
@@ -190,7 +190,7 @@
                         <span>Total</span>
                         <span>$<%= cart ? cart.total.toFixed(2) : '0.00' %></span>
                     </div>
-                    <button class="checkout-btn" onclick="location.href='<%= checkoutUrl || 'order.html' %>'" <%= (!cartItems || cartItems.length === 0) ? 'disabled' : '' %>>
+                    <button class="checkout-btn" onclick="location.href='<%= checkoutUrl || '/checkout' %>'" <%= (!cartItems || cartItems.length === 0) ? 'disabled' : '' %>>
                         Proceed to Checkout
                     </button>
                 </div>
@@ -224,7 +224,10 @@
         function updateQuantity(itemId, action) {
             console.log(`${action} quantity for item: ${itemId}`);
             // In a real implementation, you would update quantities and recalculate totals
-            const quantity = parseInt(document.querySelector(`[data-item-id="${itemId}"] .quantity-value`).textContent);
+            const quantityElement = document.querySelector(`[data-item-id="${itemId}"] .quantity-value`);
+            if (!quantityElement) return;
+            
+            const quantity = parseInt(quantityElement.textContent);
             let newQuantity = quantity;
             
             if (action === 'increase') {
