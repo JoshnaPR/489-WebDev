@@ -94,9 +94,19 @@
                             <!-- restaurant title -->
                             <div class="d-flex order-header pr-10 pl-10"> 
                                 <h5 class="order-title-border"><strong>
-                                    Restaurant Name
+                                    <%= order.restaurant.restaurantName %>
                                 </strong></h5>
                             </div>
+
+                            <!-- line 1: date, price, number of items -->
+                            <div class="pr-10 pl-10">
+                                <p class="order-info-header">
+                                    <%= order.orderDate %> &#x2022 
+                                    <%= order.orderPrice %> &#x2022
+                                    8 items
+                                </p>
+                            </div>
+
 
                         </div>
                     <% } %>
