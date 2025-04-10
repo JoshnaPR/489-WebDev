@@ -41,7 +41,7 @@ module.exports = {
     getUserOrderHistory: async (req, res) => {
         const user = await User.findUser(req.params.id); 
         const reviewNum = await Review.countReviews({ userID: req.params.id });      // to display number of reviews 
-        const orders = await Order.listOrdersByUser({ userID: req.params.id });      // to display user's order history
+        const orders = await Order.listOrdersByUser({ userID: 101 });      // to display user's order history
         res.render('userOrderHistory', { user, reviewNum, orders })
     }, 
 }

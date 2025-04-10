@@ -25,6 +25,12 @@ class Restaurant extends Model {
             foreignKey: 'restaurantID' // due to has-many relationship
         });
 
+        // restaurant has many orders
+        Restaurant.hasMany(models.Order, {
+            as: 'orders',
+            foreignKey: 'restaurantID' // due to has-many relationship
+        });
+
     };
 
     // based on cms example, find restaurant by primary key

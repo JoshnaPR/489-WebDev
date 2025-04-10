@@ -55,8 +55,8 @@ async function setup() {
   // associations for models
   Cuisine.associate({ Restaurant })
   Item.associate({ Restaurant, Order })
-  Order.associate({ User, Item })
-  Restaurant.associate( { Cuisine, Review, Item })
+  Order.associate({ User, Item, Restaurant })
+  Restaurant.associate( { Cuisine, Review, Item, Order })
   Review.associate({ User, Restaurant });
 
   //adding sample data

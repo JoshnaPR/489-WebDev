@@ -2,7 +2,7 @@ const sequelize = require('../db')
 const { Model, DataTypes } = require('sequelize')
 const User = require('./User');
 const Restaurant = require('./Restaurant');
-
+const Item = require('./Item');
 
 class Order extends Model {
 
@@ -16,10 +16,16 @@ class Order extends Model {
             foreignKey: 'userID'
         });
 
-        // order belongs to specific user
+        // order has many items
         Order.hasMany(models.Item, {
             as: 'items',
             foreignKey: 'orderID'
+        });
+
+        // order belongs to specific restaurant
+        Order.belongsTo(models.Restaurant, {
+            as: 'restaurant',
+            foreignKey: 'restaurantID'
         });
 
     };
@@ -45,7 +51,7 @@ class Order extends Model {
     static async listOrdersByUser({userID}) {
         try {
             const list = await Order.findAll({
-                where: { userID }, 
+                where: { userID },
                 include: [{
                     model: Restaurant,
                     as: 'restaurant'
