@@ -239,6 +239,9 @@ async function setup() {
     restaurantName: "Thai Ginger",
     restaurantAddress: "256 Forest Avenue, Pullman, WA",
     restaurantRating: 4.5,
+    openingTime: "11AM",
+    closingTime: "9PM",
+    phoneNumber: 1263767368,
   });
 
   const ItalianoBello = await Restaurant.create({
@@ -246,6 +249,9 @@ async function setup() {
     restaurantName: "Italiano Bello",
     restaurantAddress: "128 University Way, Pullman, WA",
     restaurantRating: 4.7,
+    openingTime: "9AM",
+    closingTime: "8PM",
+    phoneNumber: 6574282874,
   });
   
   const BurgerShack = await Restaurant.create({
@@ -253,6 +259,9 @@ async function setup() {
     restaurantName: "Burger Shack",
     restaurantAddress: "532 College Hill, Pullman, WA",
     restaurantRating: 1.0,
+    openingTime: "10AM",
+    closingTime: "12AM",
+    phoneNumber: 9848947383,
   });
   
   const SushiKing = await Restaurant.create({
@@ -260,6 +269,9 @@ async function setup() {
     restaurantName: "Sushi King",
     restaurantAddress: "890 Downtown Plaza, Pullman, WA",
     restaurantRating: 4.8,
+    openingTime: "10AM",
+    closingTime: "12AM",
+    phoneNumber: 9848947383
   });
 
   const TacoBell = await Restaurant.create({
@@ -267,6 +279,9 @@ async function setup() {
     restaurantName: "Taco Bell",
     restaurantAddress: "1234 Coug Drive, Pullman, WA",
     restaurantRating: 4.0,
+    openingTime: "7AM",
+    closingTime: "3AM",
+    phoneNumber: 4545477246,
   });
 
   const IndianSpice = await Restaurant.create({
@@ -274,6 +289,9 @@ async function setup() {
     restaurantName: "Indian Spice",
     restaurantAddress: "423 Grand Avenue, Pullman, WA",
     restaurantRating: 4.8,
+    openingTime: "12PM",
+    closingTime: "8PM",
+    phoneNumber: 4392786350,
   });
 
   const MediterraneanDelight = await Restaurant.create({
@@ -281,6 +299,9 @@ async function setup() {
     restaurantName: "Mediterranean Delight",
     restaurantAddress: "789 Hillcrest Road, Pullman, WA",
     restaurantRating: 4.6,
+    openingTime: "10AM",
+    closingTime: "8PM",
+    phoneNumber: 3084734238,
   });
 
   const RedDragon = await Restaurant.create({
@@ -288,6 +309,9 @@ async function setup() {
     restaurantName: "Red Dragon",
     restaurantAddress: "345 Main Street, Pullman, WA",
     restaurantRating: 4.3,
+    openingTime: "10AM",
+    closingTime: "10PM",
+    phoneNumber: 8374323859,
   });
 
   const PhoWan = await Restaurant.create({
@@ -295,6 +319,9 @@ async function setup() {
     restaurantName: "Pho Van",
     restaurantAddress: "678 Cherry Lane, Pullman, WA",
     restaurantRating: 4.7,
+    openingTime: "11AM",
+    closingTime: "7PM",
+    phoneNumber: 5304863248,
   });
 
 

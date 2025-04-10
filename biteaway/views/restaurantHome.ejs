@@ -66,7 +66,7 @@
                 </p>
 
                 <p class="profile-label-2"><%= restaurant.restaurantAddress %></p>
-                <p class="profile-label-2">Open 10AM-10PM | ### </p>
+                <p class="profile-label-2">Open <%= restaurant.openingTime %>-<%= restaurant.closingTime %> | <%= restaurant.phoneNumber %> </p>
             </div>
 
             <!-- ratings -->
