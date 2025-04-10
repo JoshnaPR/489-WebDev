@@ -6,7 +6,8 @@ router.use("/static/", express.static("static"))
 //restaurant order management page
 
 router.get("/", async function (req, res) {
-    res.redirect('/admin/manage')
+    //res.redirect('/admin/manage')
+    res.render('adminLanding');
 })
 
 router.get("/manage", async function (req, res) {
