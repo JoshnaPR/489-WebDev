@@ -172,7 +172,7 @@ async function setup() {
   const review2 = await Review.create({
     reviewID: 2,
     restaurantID: 2,
-    userID: 101,
+    userID: 102,
     reviewRating: 0.5,
     reviewDescription: "Not that good tbh.",
   });
@@ -232,6 +232,134 @@ async function setup() {
     userID: 107,
     reviewRating: 3.0,
     reviewDescription: "Decent burgers but they forgot my order of fries.",
+  });
+
+  const review10 = await Review.create({
+    reviewID: 10,
+    restaurantID: 4,
+    userID: 105,
+    reviewRating: 3,
+    reviewDescription: "Something's fishy...",
+  });
+
+  const review11 = await Review.create({
+    reviewID: 11,
+    restaurantID: 5,
+    userID: 105,
+    reviewRating: 5,
+    reviewDescription: "Love that they're open so late!",
+  });
+
+  const review12 = await Review.create({
+    reviewID: 12,
+    restaurantID: 9,
+    userID: 101,
+    reviewRating: 5,
+    reviewDescription: "Tasty pho, no wonder they've been in the business for 30 years now!",
+  });
+
+  const review13 = await Review.create({
+    reviewID: 13,
+    restaurantID: 7,
+    userID: 102,
+    reviewRating: 5,
+    reviewDescription: "Absolutely amazing, don't forget to ask for their specials!",
+  });
+
+  const review14 = await Review.create({
+    reviewID: 14,
+    restaurantID: 8,
+    userID: 103,
+    reviewRating: 4,
+    reviewDescription: "Quick service and tasty food.",
+  });
+
+  const review15 = await Review.create({
+    reviewID: 15,
+    restaurantID: 8,
+    userID: 104,
+    reviewRating: 5,
+    reviewDescription: "Been coming here for years, watched the restaurant get passed down 4 generations. Miss you, Jim.",
+  });
+
+  const review16 = await Review.create({
+    reviewID: 16,
+    restaurantID: 6,
+    userID: 106,
+    reviewRating: 2,
+    reviewDescription: "Overpriced and bland.",
+  });
+
+  const review17 = await Review.create({
+    reviewID: 17,
+    restaurantID: 7,
+    userID: 106,
+    reviewRating: 1,
+    reviewDescription: "Idk I've never been.",
+  });
+
+  const review18 = await Review.create({
+    reviewID: 18,
+    restaurantID: 9,
+    userID: 107,
+    reviewRating: 4,
+    reviewDescription: "I like that it's close to my house.",
+  });
+
+  const review19 = await Review.create({
+    reviewID: 19,
+    restaurantID: 5,
+    userID: 107,
+    reviewRating: 4,
+    reviewDescription: "Always get Taco Bell after my gigs.",
+  });
+
+  const review20 = await Review.create({
+    reviewID: 20,
+    restaurantID: 4,
+    userID: 108,
+    reviewRating: 4,
+    reviewDescription: "Service has gone down after the management changed, but still enjoy eating here.",
+  });
+
+  const review21 = await Review.create({
+    reviewID: 21,
+    restaurantID: 7,
+    userID: 108,
+    reviewRating: 3,
+    reviewDescription: "Another reviewer recommended their specials but they didn't have any.",
+  });
+
+  const review22 = await Review.create({
+    reviewID: 22,
+    restaurantID: 6,
+    userID: 108,
+    reviewRating: 4,
+    reviewDescription: "Taste of home!",
+  });
+
+  const review23 = await Review.create({
+    reviewID: 23,
+    restaurantID: 8,
+    userID: 109,
+    reviewRating: 5,
+    reviewDescription: "A lot of quantity for the price, great bang for your buck!",
+  });
+
+  const review24 = await Review.create({
+    reviewID: 24,
+    restaurantID: 3,
+    userID: 109,
+    reviewRating: 4,
+    reviewDescription: "Tasty burgers and great ambience",
+  });
+
+  const review25 = await Review.create({
+    reviewID: 25,
+    restaurantID: 1,
+    userID: 109,
+    reviewRating: 2,
+    reviewDescription: "Ordered delivery and the food was cold.",
   });
 
   const ThaiGinger= await Restaurant.create({
