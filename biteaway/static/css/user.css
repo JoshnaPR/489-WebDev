@@ -262,7 +262,7 @@ h6 {
 /* ------------------------------------[ ORDER HISTORY ]------------------------------------ */
 .order-title-border {
     border-bottom: 1px solid #c7c8c9;
-    padding: 10px 0px 15px 0px;
+    padding: 10px 0px 0px 0px;
     width: 100%;
 }
 

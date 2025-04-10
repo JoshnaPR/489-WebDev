@@ -93,6 +93,7 @@ class Review extends Model {
         }
     };
 
+    
 }
 
 Review.init({

@@ -19,6 +19,7 @@ const Restaurant = require("./models/Restaurant");
 const Review = require("./models/Review");
 const Item = require("./models/Item");
 const Cuisine = require("./models/Cuisine");
+const OrderItem = require("./models/OrderItem");
 
 // const fs = require("fs")
 const app = express();
@@ -54,10 +55,11 @@ app.use('/admin', adminRouter); //joshna's admin pages (order management)
 async function setup() {
   // associations for models
   Cuisine.associate({ Restaurant })
-  Item.associate({ Restaurant, Order })
-  Order.associate({ User, Item, Restaurant })
+  Item.associate({ Restaurant, Order, OrderItem })
+  Order.associate({ User, Item, Restaurant, OrderItem })
   Restaurant.associate( { Cuisine, Review, Item, Order })
-  Review.associate({ User, Restaurant });
+  Review.associate({ User, Restaurant })
+  OrderItem.associate({ Order, Item })
 
   //adding sample data
   const JohnDoe= await User.create({
@@ -596,20 +598,43 @@ async function setup() {
 
  // Italiano Bello Items
   const margheritaPizza = await Item.create({
-    itemID: 3,
+    itemID: 1,
     restaurantID: 2,
     itemName: "Margherita Pizza",
     itemPrice: 15.99,
-    itemDescription: "Classic pizza with tomato sauce, mozzarella, and fresh basil"
+    itemDescription: "Classic pizza with tomato sauce, mozzarella, and fresh basil",
   });
   
   const fettuccineAlfredo = await Item.create({
-    itemID: 4,
+    itemID: 2,
     restaurantID: 2,
     itemName: "Fettuccine Alfredo",
     itemPrice: 16.99,
     itemDescription: "Creamy pasta with parmesan cheese and butter sauce"
   });
+
+  // many-to-many relationship testing
+  const orderItemTest1 = await OrderItem.create({
+    orderID: 1,
+    itemID: 1
+  });
+
+  const orderItemTest2 = await OrderItem.create({
+    orderID: 1,
+    itemID: 2
+  });
+
+  const orderItemTest3 = await OrderItem.create({
+    orderID: 7,
+    itemID: 1
+  });
+
+  const orderItemTest4 = await OrderItem.create({
+    orderID: 7,
+    itemID: 2
+  });
+
+  // end many-to-many relationship testing for orders
 
   const lasagna = await Item.create({
     itemID: 15,

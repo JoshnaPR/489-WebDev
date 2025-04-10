@@ -5,6 +5,8 @@ const User = require("../models/User");
 const Review = require("../models/Review");
 const Cuisine = require("../models/Cuisine");
 const Order = require("../models/Order");
+const Item = require("../models/Item");
+const OrderItem = require("../models/OrderItem");
 
 module.exports = {
     // GET METHOD for user home page
@@ -41,7 +43,18 @@ module.exports = {
     getUserOrderHistory: async (req, res) => {
         const user = await User.findUser(req.params.id); 
         const reviewNum = await Review.countReviews({ userID: req.params.id });      // to display number of reviews 
-        const orders = await Order.listOrdersByUser({ userID: 101 });      // to display user's order history
+        const orders = await Order.listOrdersByUser({ userID: req.params.id });      // to display user's order history
+
+        // assigining each order with their item num
+        for (const order of orders) {
+            const itemNum = await Order.countItemsByOrder({ orderID: order.orderID });
+            order.itemNum = itemNum;
+
+            // get list of items under order
+            const orderItems = await Order.listItems({ orderID: order.orderID });
+            order.items = orderItems
+        }
+
         res.render('userOrderHistory', { user, reviewNum, orders })
     }, 
 }
