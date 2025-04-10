@@ -84,207 +84,55 @@
 
                 </div>
 
-                <!-- last 5 orders -->
-                 <!-- can replace with for loop iterating through database later -->
+                <!-- list user orders -->
                 <div class="col-9">
-
+                    
                     <% for (order of orders) { %>
                         <div class="container profile-reviews shadow p-3">
 
                             <!-- restaurant title -->
                             <div class="d-flex order-header pr-10 pl-10"> 
                                 <h5 class="order-title-border"><strong>
-                                    <%= order.restaurant.restaurantName %>
+                                    <a href="/restaurant/<%= order.restaurantID %>">
+                                        <%= order.restaurant.restaurantName %>
+                                    </a>
                                 </strong></h5>
                             </div>
 
                             <!-- line 1: date, price, number of items -->
                             <div class="pr-10 pl-10">
                                 <p class="order-info-header">
-                                    <%= order.orderDate %> &#x2022 
+                                    <!-- date format: https://stackoverflow.com/questions/3552461/how-do-i-format-a-date-in-javascript -->
+                                    <%= order.orderDate.toLocaleDateString("en-US", {  weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %> &#x2022 
                                     <%= order.orderPrice %> &#x2022
-                                    8 items
+                                    <%= order.itemNum %> items
                                 </p>
                             </div>
 
+                            <!-- line 2: food items -->
+                            <div class="pr-10 pl-10">
+                                <p class="order-info-body">
 
+                                    <!-- TODO: fix printing of dot -->
+                                    <% for (orderItem of order.items) { %>
+                                        <%= orderItem.item.itemName %> &#x2022
+                                    <% } %>
+
+                                </p>
+                            </div>
+
+                            <!-- view receipt button -->
+                            <!-- TODO: link to order/receipt page -->
+                            <div class="receipt-btn-container">
+                                <button type="button" class="view-receipt-btn">View Receipt</button>
+                            </div>  
                         </div>
-                    <% } %>
-
-                    <!-- order example #1 -->
-                    <div class="container profile-reviews shadow p-3">
-
-                        <!-- restaurant title -->
-                        <div class="d-flex order-header pr-10 pl-10"> 
-                            <h5 class="order-title-border"><strong>
-                                Restaurant Name
-                            </strong></h5>
-                        </div>
-
-                        <!-- line 1: date, price, number of items -->
-                         <div class="pr-10 pl-10">
-                            <p class="order-info-header">
-                                Friday, Feb 28 &#x2022 
-                                $88.88 &#x2022
-                                8 items
-                            </p>
-                         </div>
-
-                         <!-- line 2: food items -->
-                         <div class="pr-10 pl-10">
-                            <p class="order-info-body">
-                                Food #1 &#x2022 
-                                Food #2 &#x2022
-                                Food #3 &#x2022
-                                Food #4 &#x2022
-                                Food #5 &#x2022
-                                Food #6 &#x2022
-                                Food #7 &#x2022
-                                Food #8
-                            </p>
-                         </div>
-
-                         <!-- view receipt button -->
-                          <div class="receipt-btn-container">
-                            <button type="button" class="view-receipt-btn">View Receipt</button>
-                          </div>
-                    </div>
-
-                    <!-- order example #2 -->
-                    <div class="container profile-reviews shadow p-3">
-
-                        <!-- restaurant title -->
-                        <div class="d-flex order-header pr-10 pl-10"> 
-                            <h5 class="order-title-border"><strong>
-                                Wingstop
-                            </strong></h5>
-                        </div>
-
-                        <!-- line 1: date, price, number of items -->
-                         <div class="pr-10 pl-10">
-                            <p class="order-info-header">
-                                Saturday, Jan 4 &#x2022 
-                                $17.06 &#x2022
-                                1 item
-                            </p>
-                         </div>
-
-                         <!-- line 2: food items -->
-                         <div class="pr-10 pl-10">
-                            <p class="order-info-body">
-                                Boneless Meal Deal
-                            </p>
-                         </div>
-
-                         <!-- view receipt button -->
-                          <div class="receipt-btn-container">
-                            <button type="button" class="view-receipt-btn">View Receipt</button>
-                          </div>
-                    </div>
-
-                    <!-- order example #3 -->
-                    <div class="container profile-reviews shadow p-3">
-
-                        <!-- restaurant title -->
-                        <div class="d-flex order-header pr-10 pl-10"> 
-                            <h5 class="order-title-border"><strong>
-                                Tasty Indian Bistro
-                            </strong></h5>
-                        </div>
-
-                        <!-- line 1: date, price, number of items -->
-                         <div class="pr-10 pl-10">
-                            <p class="order-info-header">
-                                Tuesday, Jul 16 &#x2022 
-                                $47.92 &#x2022
-                                4 items
-                            </p>
-                         </div>
-
-                         <!-- line 2: food items -->
-                         <div class="pr-10 pl-10">
-                            <p class="order-info-body">
-                                Tikka Masala &#x2022
-                                Garlic Naan
-                            </p>
-                         </div>
-
-                         <!-- view receipt button -->
-                          <div class="receipt-btn-container">
-                            <button type="button" class="view-receipt-btn">View Receipt</button>
-                          </div>
-                    </div>
-
-                    <!-- order example #4 -->
-                    <div class="container profile-reviews shadow p-3">
-
-                        <!-- restaurant title -->
-                        <div class="d-flex order-header pr-10 pl-10"> 
-                            <h5 class="order-title-border"><strong>
-                                La Costa Taqueria Corp #2
-                            </strong></h5>
-                        </div>
-
-                        <!-- line 1: date, price, number of items -->
-                         <div class="pr-10 pl-10">
-                            <p class="order-info-header">
-                                Thursday, Jun 27 &#x2022 
-                                $35.11 &#x2022
-                                2 items
-                            </p>
-                         </div>
-
-                         <!-- line 2: food items -->
-                         <div class="pr-10 pl-10">
-                            <p class="order-info-body">
-                                SP 3 TACOS PLATE with rice and beans &#x2022
-                                15. ASADA FRIES
-                            </p>
-                         </div>
-
-                         <!-- view receipt button -->
-                          <div class="receipt-btn-container">
-                            <button type="button" class="view-receipt-btn">View Receipt</button>
-                          </div>
-                    </div>
-
-                    <!-- order example #5 -->
-                    <div class="container profile-reviews shadow p-3">
-
-                        <!-- restaurant title -->
-                        <div class="d-flex order-header pr-10 pl-10"> 
-                            <h5 class="order-title-border"><strong>
-                                Chick-fil-A
-                            </strong></h5>
-                        </div>
-
-                        <!-- line 1: date, price, number of items -->
-                         <div class="pr-10 pl-10">
-                            <p class="order-info-header">
-                                Friday, Jun 21 &#x2022 
-                                $32.81 &#x2022
-                                4 items
-                            </p>
-                         </div>
-
-                         <!-- line 2: food items -->
-                         <div class="pr-10 pl-10">
-                            <p class="order-info-body">
-                                Chick-fil-A Chicken Sandwich &#x2022 
-                                Chick-fil-A Waffle Potato Fries
-                            </p>
-                         </div>
-
-                         <!-- view receipt button -->
-                          <div class="receipt-btn-container">
-                            <button type="button" class="view-receipt-btn">View Receipt</button>
-                          </div>
-                    </div>
                     
+                    <% } %> <!-- end looping of order history -->
 
                 </div>
 
-              </div>
+            </div>
         </div>
 
         

@@ -19,6 +19,7 @@ const Restaurant = require("./models/Restaurant");
 const Review = require("./models/Review");
 const Item = require("./models/Item");
 const Cuisine = require("./models/Cuisine");
+const OrderItem = require("./models/OrderItem");
 
 // const fs = require("fs")
 const app = express();
@@ -54,10 +55,11 @@ app.use('/admin', adminRouter); //joshna's admin pages (order management)
 async function setup() {
   // associations for models
   Cuisine.associate({ Restaurant })
-  Item.associate({ Restaurant, Order })
-  Order.associate({ User, Item, Restaurant })
+  Item.associate({ Restaurant, Order, OrderItem })
+  Order.associate({ User, Item, Restaurant, OrderItem })
   Restaurant.associate( { Cuisine, Review, Item, Order })
-  Review.associate({ User, Restaurant });
+  Review.associate({ User, Restaurant })
+  OrderItem.associate({ Order, Item })
 
   //adding sample data
   const JohnDoe= await User.create({
@@ -172,7 +174,7 @@ async function setup() {
   const review2 = await Review.create({
     reviewID: 2,
     restaurantID: 2,
-    userID: 101,
+    userID: 102,
     reviewRating: 0.5,
     reviewDescription: "Not that good tbh.",
   });
@@ -234,11 +236,142 @@ async function setup() {
     reviewDescription: "Decent burgers but they forgot my order of fries.",
   });
 
+  const review10 = await Review.create({
+    reviewID: 10,
+    restaurantID: 4,
+    userID: 105,
+    reviewRating: 3,
+    reviewDescription: "Something's fishy...",
+  });
+
+  const review11 = await Review.create({
+    reviewID: 11,
+    restaurantID: 5,
+    userID: 105,
+    reviewRating: 5,
+    reviewDescription: "Love that they're open so late!",
+  });
+
+  const review12 = await Review.create({
+    reviewID: 12,
+    restaurantID: 9,
+    userID: 101,
+    reviewRating: 5,
+    reviewDescription: "Tasty pho, no wonder they've been in the business for 30 years now!",
+  });
+
+  const review13 = await Review.create({
+    reviewID: 13,
+    restaurantID: 7,
+    userID: 102,
+    reviewRating: 5,
+    reviewDescription: "Absolutely amazing, don't forget to ask for their specials!",
+  });
+
+  const review14 = await Review.create({
+    reviewID: 14,
+    restaurantID: 8,
+    userID: 103,
+    reviewRating: 4,
+    reviewDescription: "Quick service and tasty food.",
+  });
+
+  const review15 = await Review.create({
+    reviewID: 15,
+    restaurantID: 8,
+    userID: 104,
+    reviewRating: 5,
+    reviewDescription: "Been coming here for years, watched the restaurant get passed down 4 generations. Miss you, Jim.",
+  });
+
+  const review16 = await Review.create({
+    reviewID: 16,
+    restaurantID: 6,
+    userID: 106,
+    reviewRating: 2,
+    reviewDescription: "Overpriced and bland.",
+  });
+
+  const review17 = await Review.create({
+    reviewID: 17,
+    restaurantID: 7,
+    userID: 106,
+    reviewRating: 1,
+    reviewDescription: "Idk I've never been.",
+  });
+
+  const review18 = await Review.create({
+    reviewID: 18,
+    restaurantID: 9,
+    userID: 107,
+    reviewRating: 4,
+    reviewDescription: "I like that it's close to my house.",
+  });
+
+  const review19 = await Review.create({
+    reviewID: 19,
+    restaurantID: 5,
+    userID: 107,
+    reviewRating: 4,
+    reviewDescription: "Always get Taco Bell after my gigs.",
+  });
+
+  const review20 = await Review.create({
+    reviewID: 20,
+    restaurantID: 4,
+    userID: 108,
+    reviewRating: 4,
+    reviewDescription: "Service has gone down after the management changed, but still enjoy eating here.",
+  });
+
+  const review21 = await Review.create({
+    reviewID: 21,
+    restaurantID: 7,
+    userID: 108,
+    reviewRating: 3,
+    reviewDescription: "Another reviewer recommended their specials but they didn't have any.",
+  });
+
+  const review22 = await Review.create({
+    reviewID: 22,
+    restaurantID: 6,
+    userID: 108,
+    reviewRating: 4,
+    reviewDescription: "Taste of home!",
+  });
+
+  const review23 = await Review.create({
+    reviewID: 23,
+    restaurantID: 8,
+    userID: 109,
+    reviewRating: 5,
+    reviewDescription: "A lot of quantity for the price, great bang for your buck!",
+  });
+
+  const review24 = await Review.create({
+    reviewID: 24,
+    restaurantID: 3,
+    userID: 109,
+    reviewRating: 4,
+    reviewDescription: "Tasty burgers and great ambience",
+  });
+
+  const review25 = await Review.create({
+    reviewID: 25,
+    restaurantID: 1,
+    userID: 109,
+    reviewRating: 2,
+    reviewDescription: "Ordered delivery and the food was cold.",
+  });
+
   const ThaiGinger= await Restaurant.create({
     restaurantID: 1,
     restaurantName: "Thai Ginger",
     restaurantAddress: "256 Forest Avenue, Pullman, WA",
     restaurantRating: 4.5,
+    openingTime: "11AM",
+    closingTime: "9PM",
+    phoneNumber: 1263767368,
   });
 
   const ItalianoBello = await Restaurant.create({
@@ -246,6 +379,9 @@ async function setup() {
     restaurantName: "Italiano Bello",
     restaurantAddress: "128 University Way, Pullman, WA",
     restaurantRating: 4.7,
+    openingTime: "9AM",
+    closingTime: "8PM",
+    phoneNumber: 6574282874,
   });
   
   const BurgerShack = await Restaurant.create({
@@ -253,6 +389,9 @@ async function setup() {
     restaurantName: "Burger Shack",
     restaurantAddress: "532 College Hill, Pullman, WA",
     restaurantRating: 1.0,
+    openingTime: "10AM",
+    closingTime: "12AM",
+    phoneNumber: 9848947383,
   });
   
   const SushiKing = await Restaurant.create({
@@ -260,6 +399,9 @@ async function setup() {
     restaurantName: "Sushi King",
     restaurantAddress: "890 Downtown Plaza, Pullman, WA",
     restaurantRating: 4.8,
+    openingTime: "10AM",
+    closingTime: "12AM",
+    phoneNumber: 9848947383
   });
 
   const TacoBell = await Restaurant.create({
@@ -267,6 +409,9 @@ async function setup() {
     restaurantName: "Taco Bell",
     restaurantAddress: "1234 Coug Drive, Pullman, WA",
     restaurantRating: 4.0,
+    openingTime: "7AM",
+    closingTime: "3AM",
+    phoneNumber: 4545477246,
   });
 
   const IndianSpice = await Restaurant.create({
@@ -274,6 +419,9 @@ async function setup() {
     restaurantName: "Indian Spice",
     restaurantAddress: "423 Grand Avenue, Pullman, WA",
     restaurantRating: 4.8,
+    openingTime: "12PM",
+    closingTime: "8PM",
+    phoneNumber: 4392786350,
   });
 
   const MediterraneanDelight = await Restaurant.create({
@@ -281,6 +429,9 @@ async function setup() {
     restaurantName: "Mediterranean Delight",
     restaurantAddress: "789 Hillcrest Road, Pullman, WA",
     restaurantRating: 4.6,
+    openingTime: "10AM",
+    closingTime: "8PM",
+    phoneNumber: 3084734238,
   });
 
   const RedDragon = await Restaurant.create({
@@ -288,6 +439,9 @@ async function setup() {
     restaurantName: "Red Dragon",
     restaurantAddress: "345 Main Street, Pullman, WA",
     restaurantRating: 4.3,
+    openingTime: "10AM",
+    closingTime: "10PM",
+    phoneNumber: 8374323859,
   });
 
   const PhoWan = await Restaurant.create({
@@ -295,6 +449,9 @@ async function setup() {
     restaurantName: "Pho Van",
     restaurantAddress: "678 Cherry Lane, Pullman, WA",
     restaurantRating: 4.7,
+    openingTime: "11AM",
+    closingTime: "7PM",
+    phoneNumber: 5304863248,
   });
 
 
@@ -441,20 +598,43 @@ async function setup() {
 
  // Italiano Bello Items
   const margheritaPizza = await Item.create({
-    itemID: 3,
+    itemID: 1,
     restaurantID: 2,
     itemName: "Margherita Pizza",
     itemPrice: 15.99,
-    itemDescription: "Classic pizza with tomato sauce, mozzarella, and fresh basil"
+    itemDescription: "Classic pizza with tomato sauce, mozzarella, and fresh basil",
   });
   
   const fettuccineAlfredo = await Item.create({
-    itemID: 4,
+    itemID: 2,
     restaurantID: 2,
     itemName: "Fettuccine Alfredo",
     itemPrice: 16.99,
     itemDescription: "Creamy pasta with parmesan cheese and butter sauce"
   });
+
+  // many-to-many relationship testing
+  const orderItemTest1 = await OrderItem.create({
+    orderID: 1,
+    itemID: 1
+  });
+
+  const orderItemTest2 = await OrderItem.create({
+    orderID: 1,
+    itemID: 2
+  });
+
+  const orderItemTest3 = await OrderItem.create({
+    orderID: 7,
+    itemID: 1
+  });
+
+  const orderItemTest4 = await OrderItem.create({
+    orderID: 7,
+    itemID: 2
+  });
+
+  // end many-to-many relationship testing for orders
 
   const lasagna = await Item.create({
     itemID: 15,

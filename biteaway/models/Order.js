@@ -1,8 +1,10 @@
 const sequelize = require('../db')
 const { Model, DataTypes } = require('sequelize')
 const User = require('./User');
+
 const Restaurant = require('./Restaurant');
 const Item = require('./Item');
+const OrderItem = require('./OrderItem');
 
 class Order extends Model {
 
@@ -16,16 +18,16 @@ class Order extends Model {
             foreignKey: 'userID'
         });
 
-        // order has many items
-        Order.hasMany(models.Item, {
-            as: 'items',
-            foreignKey: 'orderID'
-        });
-
         // order belongs to specific restaurant
         Order.belongsTo(models.Restaurant, {
             as: 'restaurant',
             foreignKey: 'restaurantID'
+        });
+
+        // many-to-many relationship between item and order
+        Order.hasMany(models.OrderItem, {
+            as: 'orderItems',
+            foreignKey: 'orderID'
         });
 
     };
@@ -58,6 +60,39 @@ class Order extends Model {
                 }]
             })
             
+            return list
+            
+        } catch (error) {
+            console.log(error)
+            return null
+        }
+    };
+
+    // count the number of items under a order
+    static async countItemsByOrder({orderID}) {
+        try {
+            const itemCount = await OrderItem.count({
+                where: { orderID }
+            })
+            return itemCount    
+
+        } catch (error) {
+            console.log(error)
+            return null
+        }
+    };
+
+    // getter function ; return list of items under an order
+    static async listItems({orderID}) {
+        // source: https://stackoverflow.com/questions/53757460/sequelize-findall-include-same-models-2-times-with-different-condition
+        try {
+            const list = await OrderItem.findAll({
+                where: { orderID },
+                include: [{
+                    model: Item,
+                    as: 'item'
+                }]
+            })
             return list
             
         } catch (error) {

@@ -14,10 +14,10 @@ class Item extends Model {
             foreignKey: 'restaurantID'
         });
 
-        // item also can belong to a specific user order
-        Item.belongsTo(models.Order, {
-            as: 'order',
-            foreignKey: 'orderID'
+        // many-to-many relationship between item and order
+        Item.hasMany(models.OrderItem, {
+            as: 'orderItems',
+            foreignKey: 'itemID'
         });
 
     };
@@ -64,16 +64,11 @@ Item.init({
 
     restaurantID: {
         type: DataTypes.NUMBER,
-        primaryKey: true,
         allowNull: false
     },
     
-    orderID: {
-        type: DataTypes.NUMBER,
-    },
-    
     itemName: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.STRING,
         allowNull: false
     },
 

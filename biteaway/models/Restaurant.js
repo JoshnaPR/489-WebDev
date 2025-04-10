@@ -71,7 +71,22 @@ Restaurant.init({
     restaurantRating: {
         type: DataTypes.NUMBER,
         allowNull: false
-    }
+    },
+
+    openingTime: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+
+    closingTime: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+
+    phoneNumber: {
+        type: DataTypes.NUMBER,
+        allowNull: false
+    },
 
 }, {
   sequelize, 
