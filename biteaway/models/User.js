@@ -59,13 +59,19 @@ User.init({
     password: {
         type: DataTypes.STRING,
         allowNull: false
-    }
+    },
 
     // admin: 1 & normal user: 0
-    // isAdmin: {
-    //     type: DataTypes.BOOLEAN,
-    //     allowNull: false
-    // }
+    isAdmin: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false
+    },
+
+    // star reviewer: 1 & normal user: 0
+    isStarUser: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false
+    }
 
 }, {
   sequelize, 

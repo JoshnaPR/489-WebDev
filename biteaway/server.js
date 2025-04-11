@@ -57,12 +57,27 @@ async function setup() {
   Cuisine.associate({ Restaurant })
   Item.associate({ Restaurant, Order, OrderItem })
   Order.associate({ User, Item, Restaurant, OrderItem })
-  Restaurant.associate( { Cuisine, Review, Item, Order })
+  Restaurant.associate({ Cuisine, Review, Item, Order })
   Review.associate({ User, Restaurant })
   OrderItem.associate({ Order, Item })
 
   //adding sample data
-  const JohnDoe= await User.create({
+
+  //USERS:
+  const user0 = await User.create({
+    userID: 100,
+    firstName: "Bite-A-Way",
+    lastName: "Admin",
+    countryCode: 1,
+    phoneNumber: 1234567890,
+    userAddress: "123 Baker's Street, Pullman, WA",
+    email: "johndoe@example.com",
+    password: "adminlogin",
+    isAdmin: 1,
+    isStarUser: 0,
+  });
+
+  const user1 = await User.create({
     userID: 101,
     firstName: "John",
     lastName: "Doe",
@@ -70,10 +85,12 @@ async function setup() {
     phoneNumber: 1234567890,
     userAddress: "123 Baker's Street, Pullman, WA",
     email: "johndoe@example.com",
-    password: "securepassword"
+    password: "securepassword",
+    isAdmin: 0,
+    isStarUser: 1,
   });
 
-  const JaneDoe= await User.create({
+  const user2 = await User.create({
     userID: 102,
     firstName: "Jane",
     lastName: "Doe",
@@ -81,10 +98,12 @@ async function setup() {
     phoneNumber: 2345678901,
     userAddress: "123 Baker's Street, Pullman, WA",
     email: "janedoe@example.com",
-    password: "securepassword1"
+    password: "securepassword1",
+    isAdmin: 0,
+    isStarUser: 0,
   });
 
-  const EmmaStone= await User.create({
+  const user3 = await User.create({
     userID: 103,
     firstName: "Emma",
     lastName: "Stone",
@@ -92,10 +111,12 @@ async function setup() {
     phoneNumber: 3456789012,
     userAddress: "456 Pine Lane, Pullman, WA",
     email: "emma.stone@example.com",
-    password: "securepassword12"
+    password: "securepassword12",
+    isAdmin: 0,
+    isStarUser: 0,
   });
 
-  const ShaneWilson= await User.create({
+  const user4 = await User.create({
     userID: 104,
     firstName: "Shane",
     lastName: "Wilson",
@@ -103,10 +124,12 @@ async function setup() {
     phoneNumber: 4567890123,
     userAddress: "789 Oak Drive, Pullman, WA",
     email: "shanewilson@example.com",
-    password: "securepassword123"
+    password: "securepassword123",
+    isAdmin: 0,
+    isStarUser: 0,
   });
 
-  const MichaelJohnson = await User.create({
+  const user5 = await User.create({
     userID: 105,
     firstName: "Michael",
     lastName: "Johnson",
@@ -114,10 +137,12 @@ async function setup() {
     phoneNumber: 5678901234,
     userAddress: "223 College Avenue, Pullman, WA",
     email: "michael.johnson@example.com",
-    password: "securepassword456"
+    password: "securepassword456",
+    isAdmin: 0,
+    isStarUser: 0,
   });
 
-  const SarahLee = await User.create({
+  const user6 = await User.create({
     userID: 106,
     firstName: "Sarah",
     lastName: "Lee",
@@ -125,10 +150,12 @@ async function setup() {
     phoneNumber: 6789012345,
     userAddress: "445 Maple Street, Pullman, WA",
     email: "sarah.lee@example.com",
-    password: "securepassword789"
+    password: "securepassword789",
+    isAdmin: 0,
+    isStarUser: 0,
   });
 
-  const DavidChen = await User.create({
+  const user7 = await User.create({
     userID: 107,
     firstName: "David",
     lastName: "Chen",
@@ -136,10 +163,12 @@ async function setup() {
     phoneNumber: 7890123456,
     userAddress: "890 Elm Road, Pullman, WA",
     email: "david.chen@example.com",
-    password: "securepassword321"
+    password: "securepassword321",
+    isAdmin: 0,
+    isStarUser: 0,
   });
 
-  const PriyaSharma = await User.create({
+  const user8 = await User.create({
     userID: 108,
     firstName: "Priya",
     lastName: "Sharma",
@@ -147,10 +176,12 @@ async function setup() {
     phoneNumber: 8901234567,
     userAddress: "567 University Lane, Pullman, WA",
     email: "priya.sharma@example.com",
-    password: "securepassword654"
+    password: "securepassword654",
+    isAdmin: 0,
+    isStarUser: 0,
   });
 
-  const CarlosRodriguez = await User.create({
+  const user9 = await User.create({
     userID: 109,
     firstName: "Carlos",
     lastName: "Rodriguez",
@@ -158,10 +189,12 @@ async function setup() {
     phoneNumber: 9012345678,
     userAddress: "678 Stadium Way, Pullman, WA",
     email: "carlos.rodriguez@example.com",
-    password: "securepassword987"
+    password: "securepassword987",
+    isAdmin: 0,
+    isStarUser: 0,
   });
 
-  // John Doe's review 1
+  //REVIEWS:
   const review1 = await Review.create({
     reviewID: 1,
     restaurantID: 1,
@@ -170,7 +203,6 @@ async function setup() {
     reviewDescription: "Good food, quick service and helpful staff.",
   });
 
-  // John Doe's review 2
   const review2 = await Review.create({
     reviewID: 2,
     restaurantID: 2,
@@ -179,7 +211,6 @@ async function setup() {
     reviewDescription: "Not that good tbh.",
   });
 
-  // John Doe's review 3
   const review3 = await Review.create({
     reviewID: 3,
     restaurantID: 3,
@@ -364,7 +395,8 @@ async function setup() {
     reviewDescription: "Ordered delivery and the food was cold.",
   });
 
-  const ThaiGinger= await Restaurant.create({
+  //RESTAURANTS:
+  const restaurant1 = await Restaurant.create({
     restaurantID: 1,
     restaurantName: "Thai Ginger",
     restaurantAddress: "256 Forest Avenue, Pullman, WA",
@@ -374,7 +406,7 @@ async function setup() {
     phoneNumber: 1263767368,
   });
 
-  const ItalianoBello = await Restaurant.create({
+  const restaurant2 = await Restaurant.create({
     restaurantID: 2,
     restaurantName: "Italiano Bello",
     restaurantAddress: "128 University Way, Pullman, WA",
@@ -383,8 +415,8 @@ async function setup() {
     closingTime: "8PM",
     phoneNumber: 6574282874,
   });
-  
-  const BurgerShack = await Restaurant.create({
+
+  const restaurant3 = await Restaurant.create({
     restaurantID: 3,
     restaurantName: "Burger Shack",
     restaurantAddress: "532 College Hill, Pullman, WA",
@@ -393,8 +425,8 @@ async function setup() {
     closingTime: "12AM",
     phoneNumber: 9848947383,
   });
-  
-  const SushiKing = await Restaurant.create({
+
+  const restaurant4 = await Restaurant.create({
     restaurantID: 4,
     restaurantName: "Sushi King",
     restaurantAddress: "890 Downtown Plaza, Pullman, WA",
@@ -404,7 +436,7 @@ async function setup() {
     phoneNumber: 9848947383
   });
 
-  const TacoBell = await Restaurant.create({
+  const restaurant5 = await Restaurant.create({
     restaurantID: 5,
     restaurantName: "Taco Bell",
     restaurantAddress: "1234 Coug Drive, Pullman, WA",
@@ -414,7 +446,7 @@ async function setup() {
     phoneNumber: 4545477246,
   });
 
-  const IndianSpice = await Restaurant.create({
+  const restaurant6 = await Restaurant.create({
     restaurantID: 6,
     restaurantName: "Indian Spice",
     restaurantAddress: "423 Grand Avenue, Pullman, WA",
@@ -424,7 +456,7 @@ async function setup() {
     phoneNumber: 4392786350,
   });
 
-  const MediterraneanDelight = await Restaurant.create({
+  const restaurant7 = await Restaurant.create({
     restaurantID: 7,
     restaurantName: "Mediterranean Delight",
     restaurantAddress: "789 Hillcrest Road, Pullman, WA",
@@ -434,7 +466,7 @@ async function setup() {
     phoneNumber: 3084734238,
   });
 
-  const RedDragon = await Restaurant.create({
+  const restaurant8 = await Restaurant.create({
     restaurantID: 8,
     restaurantName: "Red Dragon",
     restaurantAddress: "345 Main Street, Pullman, WA",
@@ -444,7 +476,7 @@ async function setup() {
     phoneNumber: 8374323859,
   });
 
-  const PhoWan = await Restaurant.create({
+  const restaurant9 = await Restaurant.create({
     restaurantID: 9,
     restaurantName: "Pho Van",
     restaurantAddress: "678 Cherry Lane, Pullman, WA",
@@ -454,59 +486,60 @@ async function setup() {
     phoneNumber: 5304863248,
   });
 
-
-  const ThaiCuisine = await Cuisine.create({
+  //CUISINES
+  const cuisine1 = await Cuisine.create({
     cuisineType: "Thai",
     restaurantID: 1,
   });
 
-  const AsianCuisine = await Cuisine.create({
+  const cuisine2 = await Cuisine.create({
     cuisineType: "Asian",
     restaurantID: 1,
   });
 
-  const ItalianCuisine = await Cuisine.create({
+  const cuisine3 = await Cuisine.create({
     cuisineType: "Italian",
     restaurantID: 2,
   });
-  
-  const AmericanCuisine = await Cuisine.create({
+
+  const cuisine4 = await Cuisine.create({
     cuisineType: "American",
     restaurantID: 3,
   });
 
-  const JapaneseCuisine = await Cuisine.create({
+  const cuisine5 = await Cuisine.create({
     cuisineType: "Japanese",
     restaurantID: 4,
   });
 
-  const MexicanCuisine = await Cuisine.create({
+  const cuisine6 = await Cuisine.create({
     cuisineType: "Mexican",
     restaurantID: 5,
   });
 
-  const IndianCuisine = await Cuisine.create({
+  const cuisine7 = await Cuisine.create({
     cuisineType: "Indian",
     restaurantID: 6,
   });
 
-  const MediterraneanCuisine = await Cuisine.create({
+  const cuisine8 = await Cuisine.create({
     cuisineType: "Mediterranean",
     restaurantID: 7,
   });
 
-  const ChineseCuisine = await Cuisine.create({
+  const cuisine9 = await Cuisine.create({
     cuisineType: "Chinese",
     restaurantID: 8,
   });
 
-  const VietnameseCuisine = await Cuisine.create({
+  const cuisine10 = await Cuisine.create({
     cuisineType: "Vietnamese",
     restaurantID: 9,
   });
 
-  // John Doe's order
-  const order1= await Order.create({
+  //ORDERS:
+  //for order history
+  const order1 = await Order.create({
     orderID: 1,
     userID: 101,
     restaurantID: 1,
@@ -585,7 +618,7 @@ async function setup() {
     userAddress: "890 Elm Road, Pullman, WA",
     status: "Pending",
   });
-  
+
   const order9 = await Order.create({
     orderID: 9,
     userID: 108,
@@ -596,7 +629,7 @@ async function setup() {
     status: "Cancelled",
   });
 
- // Italiano Bello Items
+  // Italiano Bello Items
   const margheritaPizza = await Item.create({
     itemID: 1,
     restaurantID: 2,
@@ -604,7 +637,7 @@ async function setup() {
     itemPrice: 15.99,
     itemDescription: "Classic pizza with tomato sauce, mozzarella, and fresh basil",
   });
-  
+
   const fettuccineAlfredo = await Item.create({
     itemID: 2,
     restaurantID: 2,
@@ -651,7 +684,7 @@ async function setup() {
     itemPrice: 8.99,
     itemDescription: "Classic Italian dessert with coffee-soaked ladyfingers and mascarpone"
   });
-  
+
   // Burger Shack Items
   const classicBurger = await Item.create({
     itemID: 5,
@@ -660,7 +693,7 @@ async function setup() {
     itemPrice: 10.99,
     itemDescription: "Beef patty with lettuce, tomato, onion, and house sauce"
   });
-  
+
   const loadedFries = await Item.create({
     itemID: 6,
     restaurantID: 3,
@@ -684,7 +717,7 @@ async function setup() {
     itemPrice: 5.99,
     itemDescription: "Creamy chocolate milkshake topped with whipped cream"
   });
-  
+
   // Sushi King Items
   const californiaRoll = await Item.create({
     itemID: 7,
@@ -693,7 +726,7 @@ async function setup() {
     itemPrice: 9.99,
     itemDescription: "Crab, avocado, and cucumber rolled in seaweed and rice"
   });
-  
+
   const salmonSashimi = await Item.create({
     itemID: 8,
     restaurantID: 4,
@@ -717,7 +750,7 @@ async function setup() {
     itemPrice: 3.99,
     itemDescription: "Traditional Japanese soup with tofu, seaweed, and green onion"
   });
-  
+
   // Taco Cantina Items
   const beefTacos = await Item.create({
     itemID: 9,
@@ -726,7 +759,7 @@ async function setup() {
     itemPrice: 8.99,
     itemDescription: "Three corn tortillas filled with seasoned beef, onions, and cilantro"
   });
-  
+
   const guacamole = await Item.create({
     itemID: 10,
     restaurantID: 5,
@@ -750,7 +783,7 @@ async function setup() {
     itemPrice: 9.99,
     itemDescription: "Large burrito with beans, rice, cheese, and your choice of protein"
   });
-  
+
   // India Spice Items
   const butterChicken = await Item.create({
     itemID: 11,
@@ -759,7 +792,7 @@ async function setup() {
     itemPrice: 16.99,
     itemDescription: "Tender chicken in a creamy tomato sauce with Indian spices"
   });
-  
+
   const vegetableBiryani = await Item.create({
     itemID: 12,
     restaurantID: 6,
@@ -784,7 +817,7 @@ async function setup() {
     itemDescription: "Crispy pastries filled with spiced potatoes and peas"
   });
 
-  const PadThai= await Item.create({
+  const PadThai = await Item.create({
     itemID: 3,
     restaurantID: 1,
     itemName: "Pad Thai",
@@ -792,7 +825,7 @@ async function setup() {
     itemDescription: "Stir fried rice noddles with egg, vegetables and peanuts ",
   });
 
-  const ThaiGreenCurry= await Item.create({
+  const ThaiGreenCurry = await Item.create({
     itemID: 4,
     restaurantID: 1,
     itemName: "Thai Green Curry",
@@ -876,4 +909,4 @@ sequelize.sync({ force: true }).then(() => {
 app.listen(3000, function () {
   console.log("server listening...");
   console.log("server started in port 3000");
-  });
+});
