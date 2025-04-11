@@ -19,7 +19,7 @@ const Restaurant = require("./models/Restaurant");
 const Review = require("./models/Review");
 const Item = require("./models/Item");
 const Cuisine = require("./models/Cuisine");
-const OrderItem = require("./models/OrderItem");
+const Cart = require("./models/Cart");
 
 // const fs = require("fs")
 const app = express();
@@ -51,15 +51,17 @@ app.use('/restaurant', restaurantRouter); //trisha's restaurant homepage
 app.use('/order', orderRouter); //joshna's ordering page
 app.use('/user', userRouter); //hannah's user profile
 app.use('/admin', adminRouter); //joshna's admin pages (order management)
+app.post("/order", orderRouter);
 
 async function setup() {
   // associations for models
+  // User.associate({ Cart })
   Cuisine.associate({ Restaurant })
-  Item.associate({ Restaurant, Order, OrderItem })
-  Order.associate({ User, Item, Restaurant, OrderItem })
+  Item.associate({ Restaurant, Order, Cart })
+  Order.associate({ User, Item, Restaurant, Cart })
   Restaurant.associate({ Cuisine, Review, Item, Order })
   Review.associate({ User, Restaurant })
-  OrderItem.associate({ Order, Item })
+  Cart.associate({ Order, Item })
 
   //adding sample data
 
@@ -540,7 +542,6 @@ async function setup() {
   //ORDERS:
   //for order history
   const order1 = await Order.create({
-    orderID: 1,
     userID: 101,
     restaurantID: 1,
     orderDate: new Date(),
@@ -550,7 +551,6 @@ async function setup() {
   });
 
   const order2 = await Order.create({
-    orderID: 2,
     userID: 102,
     restaurantID: 2,
     orderDate: new Date(Date.now() - 24 * 60 * 60 * 1000), // Yesterday
@@ -560,7 +560,6 @@ async function setup() {
   });
 
   const order3 = await Order.create({
-    orderID: 3,
     userID: 103,
     restaurantID: 4,
     orderDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000), // 2 days ago
@@ -570,7 +569,6 @@ async function setup() {
   });
 
   const order4 = await Order.create({
-    orderID: 4,
     userID: 104,
     restaurantID: 6,
     orderDate: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
@@ -580,7 +578,6 @@ async function setup() {
   });
 
   const order5 = await Order.create({
-    orderID: 5,
     userID: 105,
     restaurantID: 3,
     orderDate: new Date(),
@@ -590,7 +587,6 @@ async function setup() {
   });
 
   const order6 = await Order.create({
-    orderID: 6,
     userID: 106,
     restaurantID: 5,
     orderDate: new Date(),
@@ -600,7 +596,6 @@ async function setup() {
   });
 
   const order7 = await Order.create({
-    orderID: 7,
     userID: 101,
     restaurantID: 7,
     orderDate: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000),
@@ -610,7 +605,6 @@ async function setup() {
   });
 
   const order8 = await Order.create({
-    orderID: 8,
     userID: 107,
     restaurantID: 8,
     orderDate: new Date(),
@@ -620,7 +614,6 @@ async function setup() {
   });
 
   const order9 = await Order.create({
-    orderID: 9,
     userID: 108,
     restaurantID: 9,
     orderDate: new Date(),
@@ -647,25 +640,25 @@ async function setup() {
   });
 
   // many-to-many relationship testing
-  const orderItemTest1 = await OrderItem.create({
-    orderID: 1,
-    itemID: 1
-  });
+  // const orderItemTest1 = await Cart.create({
+  //   orderID: 1,
+  //   itemID: 1
+  // });
 
-  const orderItemTest2 = await OrderItem.create({
-    orderID: 1,
-    itemID: 2
-  });
+  // const orderItemTest2 = await Cart.create({
+  //   orderID: 1,
+  //   itemID: 2
+  // });
 
-  const orderItemTest3 = await OrderItem.create({
-    orderID: 7,
-    itemID: 1
-  });
+  // const orderItemTest3 = await Cart.create({
+  //   orderID: 7,
+  //   itemID: 1
+  // });
 
-  const orderItemTest4 = await OrderItem.create({
-    orderID: 7,
-    itemID: 2
-  });
+  // const orderItemTest4 = await Cart.create({
+  //   orderID: 7,
+  //   itemID: 2
+  // });
 
   // end many-to-many relationship testing for orders
 

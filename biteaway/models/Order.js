@@ -4,7 +4,7 @@ const User = require('./User');
 
 const Restaurant = require('./Restaurant');
 const Item = require('./Item');
-const OrderItem = require('./OrderItem');
+const Cart = require('./Cart');
 
 class Order extends Model {
 
@@ -25,8 +25,8 @@ class Order extends Model {
         });
 
         // many-to-many relationship between item and order
-        Order.hasMany(models.OrderItem, {
-            as: 'orderItems',
+        Order.hasMany(models.Cart, {
+            as: 'cart',
             foreignKey: 'orderID'
         });
 
@@ -105,14 +105,15 @@ class Order extends Model {
 
 Order.init({
     orderID: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        //generate an ID: https://www.yugabyte.com/blog/automatic-id-generation-postgresql-nodejs-sequelize/
         primaryKey: true,
         allowNull: false
     },
 
     userID: {
         type: DataTypes.NUMBER,
-        primaryKey: true,
         allowNull: false
     },
 

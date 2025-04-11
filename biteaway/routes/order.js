@@ -3,6 +3,7 @@ var router = express.Router();
 var controller = require('../controllers/order');
 
 router.use("/static/", express.static("static"))
+//router.use(express.urlencoded({ extended: true }));
 
 //view cart, place order & confirm
 
@@ -42,7 +43,16 @@ router.get("/confirm", async function (req, res) {
     res.render('orderConfirmation', { currentStep, cartItems, promoCode, promoMessage, cart, user })
 })
 
-router.get("/add2cart", controller.addToCart);
+//router.get("/add2cart", controller.addToCart);
+
+//add an item to the cart
+router.post("/add2cart", (req, res) => {
+    //get the ID from the button,
+    const { itemID, restarantID } = req.body;
+    //console.log(itemID);
+
+    controller.addToCart(itemID, restarantID);
+})
     
 
 

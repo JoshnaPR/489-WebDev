@@ -1,6 +1,7 @@
 const sequelize = require('../db')
 const { Model, DataTypes } = require('sequelize')
 const Restaurant = require('./Restaurant');
+const Cart = require('./Cart');
 
 class Item extends Model {
 
@@ -15,8 +16,8 @@ class Item extends Model {
         });
 
         // many-to-many relationship between item and order
-        Item.hasMany(models.OrderItem, {
-            as: 'orderItems',
+        Item.hasMany(models.Cart, {
+            as: 'cart',
             foreignKey: 'itemID'
         });
 

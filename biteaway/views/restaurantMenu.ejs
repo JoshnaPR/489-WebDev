@@ -149,7 +149,13 @@
 
                     <% items.forEach(function(item, i) { %>
                         <div>
-                            <a class="btn btn-primary" action="/order/add2cart" role="button" style="float:left;">+</a>
+                            <!-- <a class="btn btn-primary" method="post" action="/order/add2cart" role="button" style="float:left;">+</a> -->
+                            <form action="/order/add2cart" method="POST" style="float:left; margin-right: 10px;">
+                                <input type="hidden" name="itemID" value="<%= item.itemID %>">
+                                <input type="hidden" name="restaurantID" value="<%= restaurant.restaurantID %>">
+                                <button type="submit" class="btn btn-primary">+</button>
+                              </form>
+                              
                             <p><b>
                                     <%= i+1 %>. <%= item.itemName %> <span style="float:right;">$<%= item.itemPrice %>
                                                     </span>

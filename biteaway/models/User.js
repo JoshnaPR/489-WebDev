@@ -1,7 +1,19 @@
 const sequelize = require('../db')
 const { Model, DataTypes } = require('sequelize')
+const Cart = require('./Cart');
 
 class User extends Model {
+
+    static associate = models => {
+
+        // many-to-many relationship between item and order
+        User.hasMany(models.Cart, {
+            as: 'cart',
+            foreignKey: 'userID'
+        });
+    
+    };
+
     // based on cms example, find user by primary key (userID)
     static async findUser(userID) {
         try {
