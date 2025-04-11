@@ -178,6 +178,90 @@ body {
   margin-bottom: 10px;
 }
 
+/* Carousel Section */
+.partners-carousel-section {
+  padding: 60px 40px;
+  background-color: #fff;
+  text-align: center;
+}
+
+.partners-carousel-section .section-title {
+  font-size: 2.4rem;
+  color: #F59A4C; /* Crimson theme */
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+.carousel-container {
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 20px 0;
+}
+
+.carousel-card {
+  flex: 0 0 auto;
+  background: #f9f9f9;
+  border-radius: 20px;
+  padding: 20px;
+  width: 160px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.carousel-card:hover {
+  transform: scale(1.05);
+}
+
+.partner-logo img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.carousel-card p {
+  font-weight: 600;
+  color: #333;
+}
+
+/* Carousel Buttons */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #F59A4C; /* Crimson */
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  padding: 10px 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: background-color 0.3s ease;
+  z-index: 2;
+}
+
+.carousel-btn:hover {
+  background-color: #f7b982;
+}
+
+.carousel-btn.left {
+  left: 10px;
+}
+
+.carousel-btn.right {
+  right: 10px;
+}
+
 /* ========== Menu Section ========== */
 .menu-section {
   padding: 40px;

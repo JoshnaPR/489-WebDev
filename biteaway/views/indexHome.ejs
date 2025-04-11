@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bite-A-Way | Food Delivery</title>
-  <link rel="stylesheet" href="static/css/index.css"/>
+  <link rel="stylesheet" href="./style.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..."crossorigin="anonymous"referrerpolicy="no-referrer" />
 
@@ -12,15 +12,13 @@
 <body>
         <!-- Navbar -->
         <nav class="navbar" id="navbar">
-          <div class="logo"><img src="/static/img/index/icon/logo.png" /></div>
+          <div class="logo"><img src="img/icon/logo.png" /></div>
           <div class="nav-links">
             <a href="#">Home</a>
             <a href="#">Menu</a>
             <a href="#">About</a>
             <a href="#"> <i class="fas fa-shopping-cart cart-icon"></i> </a>
-
-            <!-- TODO: update to show current user -->
-            <a href="/user/101"> <img src="/static/img/user/101.jpg" alt="Profile" class="profile-pic" /> </a>
+            <a href="#"> <img src="img/icon/profile.jpg" alt="Profile" class="profile-pic" /> </a>
            
           </div>
         </nav>
@@ -32,120 +30,190 @@
             <p>Your favorite food delivered fresh & fast, every time.</p>
             <a href="#features" class="hero-btn">Explore Menu</a>
           </div>
-          <img src="/static/img/index/main.jpg" alt="Food Delivery" class="hero-img"/>
+          <img src="img/main.jpg" alt="Food Delivery" class="hero-img"/>
         </header>
       
         <!-- Features Section -->
         <section id="features" class="features">
           <div class="feature-card">
-            <img src="/static/img/index/icon/delivery_icon.jpg" alt="Fast Delivery"/>
+            <img src="img/icon/delivery_icon.jpg" alt="Fast Delivery"/>
             <h3>Fast Delivery</h3>
             <p>No more long waits. We bring food hot to your doorstep in minutes.</p>
           </div>
           <div class="feature-card">
-            <img src="/static/img/index/icon/var.png" alt="Wide Variety"/>
+            <img src="img/icon/var.png" alt="Wide Variety"/>
             <h3>Endless Choices</h3>
             <p>From sushi to shawarma, discover hundreds of local favorites.</p>
           </div>
           <div class="feature-card">
-            <img src="/static/img/index/icon/checkout.jpg" alt="Secure Checkout"/>
+            <img src="img/icon/checkout.jpg" alt="Secure Checkout"/>
             <h3>Secure Checkout</h3>
             <p>Pay safely and easily with our encrypted, one-click payments.</p>
           </div>
         </section>
-      
+
+         <!-- Restraunts Section -->
+         <section class="partners-carousel-section">
+          <h2 class="section-title">🍽️ Our Partnered Restaurants</h2>
+          <div class="carousel-container">
+            <button class="carousel-btn left" id="carouselLeft">&#10094;</button>
+            
+            <div class="carousel-track" id="carouselTrack">
+              <div class="carousel-card">
+                <div class="partner-logo">
+                  <img src="img/res/mc.jpeg" alt="McDonald's">
+                </div>
+                <p>McDonald's</p>
+              </div>
+              <div class="carousel-card">
+                <div class="partner-logo">
+                  <img src="img/res/dominos.jpeg" alt="Domino's">
+                </div>
+                <p>Domino's</p>
+              </div>
+              <div class="carousel-card">
+                <div class="partner-logo">
+                  <img src="img/res/panda.jpeg" alt="Panda Express">
+                </div>
+                <p>Panda Express</p>
+              </div>
+              <div class="carousel-card">
+                <div class="partner-logo">
+                  <img src="img/res/chipotle.jpeg" alt="Chipotle">
+                </div>
+                <p>Chipotle</p>
+              </div>
+              <div class="carousel-card">
+                <div class="partner-logo">
+                  <img src="img/res/subway.jpeg" alt="Subway">
+                </div>
+                <p>Subway</p>
+              </div>
+              <div class="carousel-card">
+                <div class="partner-logo">
+                  <img src="img/res/starbucks.jpeg" alt="Starbucks">
+                </div>
+                <p>Starbucks</p>
+              </div>
+              <div class="carousel-card">
+                <div class="partner-logo">
+                  <img src="img/res/dominos.jpeg" alt="Domino's">
+                </div>
+                <p>Domino's</p>
+              </div>
+              <div class="carousel-card">
+                <div class="partner-logo">
+                  <img src="img/res/panda.jpeg" alt="Panda Express">
+                </div>
+                <p>Panda Express</p>
+              </div>
+              <div class="carousel-card">
+                <div class="partner-logo">
+                  <img src="img/res/chipotle.jpeg" alt="Chipotle">
+                </div>
+                <p>Chipotle</p>
+              </div>
+              <div class="carousel-card">
+                <div class="partner-logo">
+                  <img src="img/res/subway.jpeg" alt="Subway">
+                </div>
+                <p>Subway</p>
+              </div>
+              <button class="carousel-btn right" id="carouselRight">&#10095;</button>
+          </div>
+        </section>
+
        <!-- Menu Section -->
-<section class="menu-section">
-  <h2 class="menu-title">Popular Picks</h2>
-  
-  <div class="menu-grid">
-    <div class="menu-card">
-      <div class="menu-img-container">
-        <img src="/static/img/index/burger.jpg" alt="Cheesy Beef Burger" class="menu-img">
-        <button class="remove-from-cart">-</button>
-        <button class="add-to-cart" data-item="burger">+</button>
-      </div>
-      <div class="menu-info">
-        <h3>Cheesy Beef Burger</h3>
-        <p>Loaded with double cheese, lettuce, and our signature sauce.</p>
-        <div class="reviews" id="burger-reviews"></div>
-        <div class="menu-bottom">
-          <span class="menu-price">$8.99</span>
-          <span class="cart-count" id="burger-count">0</span>
-        </div>
-      </div>
-    </div>
+    <section class="menu-section">
+      <h2 class="menu-title">Popular Picks</h2>
 
-    <div class="menu-card">
-      <div class="menu-img-container">
-        <img src="/static/img/index/pizza.jpg" alt="Margherita Pizza" class="menu-img">
-        <button class="remove-from-cart">-</button>
-        <button class="add-to-cart" data-item="pizza">+</button>
-      </div>
-      <div class="menu-info">
-        <h3>Margherita Pizza</h3>
-        <p>Classic thin crust with fresh basil, mozzarella, and tomatoes.</p>
-        <div class="reviews" id="pizza-reviews"></div>
-        <div class="menu-bottom">
-          <span class="menu-price">$10.49</span>
-          <span class="cart-count" id="pizza-count">0</span>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-img-container">
+            <img src="img/burger.jpg" alt="Cheesy Beef Burger" class="menu-img">
+            <button class="remove-from-cart">-</button>
+            <button class="add-to-cart" data-item="burger">+</button>
+          </div>
+          <div class="menu-info">
+            <h3>Cheesy Beef Burger</h3>
+            <p>Loaded with double cheese, lettuce, and our signature sauce.</p>
+            <div class="reviews" id="burger-reviews"></div>
+            <div class="menu-bottom">
+              <span class="menu-price">$8.99</span>
+              <span class="cart-count" id="burger-count">0</span>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      
+        <div class="menu-card">
+          <div class="menu-img-container">
+            <img src="img/pizza.jpg" alt="Margherita Pizza" class="menu-img">
+            <button class="remove-from-cart">-</button>
+            <button class="add-to-cart" data-item="pizza">+</button>
+          </div>
+          <div class="menu-info">
+            <h3>Margherita Pizza</h3>
+            <p>Classic thin crust with fresh basil, mozzarella, and tomatoes.</p>
+            <div class="reviews" id="pizza-reviews"></div>
+            <div class="menu-bottom">
+              <span class="menu-price">$10.49</span>
+              <span class="cart-count" id="pizza-count">0</span>
+            </div>
+          </div>
+        </div>
+      
+        <div class="menu-card">
+          <div class="menu-img-container">
+            <img src="img/noodles.jpg" alt="Spicy Garlic Noodles" class="menu-img">
+            <button class="remove-from-cart">-</button>
+            <button class="add-to-cart" data-item="noodles">+</button>
+          </div>
+          <div class="menu-info">
+            <h3>Spicy Garlic Noodles</h3>
+            <p>Wok-tossed noodles with chili garlic sauce and green onions.</p>
+            <div class="reviews" id="noodles-reviews"></div>
+            <div class="menu-bottom">
+              <span class="menu-price">$7.25</span>
+              <span class="cart-count" id="noodles-count">0</span>
+            </div>
+          </div>
+        </div>
 
-    <div class="menu-card">
-      <div class="menu-img-container">
-        <img src="/static/img/index/noodles.jpg" alt="Spicy Garlic Noodles" class="menu-img">
-        <button class="remove-from-cart">-</button>
-        <button class="add-to-cart" data-item="noodles">+</button>
-      </div>
-      <div class="menu-info">
-        <h3>Spicy Garlic Noodles</h3>
-        <p>Wok-tossed noodles with chili garlic sauce and green onions.</p>
-        <div class="reviews" id="noodles-reviews"></div>
-        <div class="menu-bottom">
-          <span class="menu-price">$7.25</span>
-          <span class="cart-count" id="noodles-count">0</span>
+        <div class="menu-card">
+          <div class="menu-img-container">
+            <img src="img/sushi.jpg" alt="Sushi Rolls" class="menu-img">
+            <button class="remove-from-cart">-</button>
+            <button class="add-to-cart" data-item="sushi">+</button>
+          </div>
+          <div class="menu-info">
+            <h3>Fresh Sushi Rolls</h3>
+            <p>A selection of fresh sushi rolls with wasabi and soy sauce.</p>
+            <div class="reviews" id="sushi-reviews"></div>
+            <div class="menu-bottom">
+              <span class="menu-price">$12.99</span>
+              <span class="cart-count" id="sushi-count">0</span>
+            </div>
+          </div>
+        </div>
+      
+        <div class="menu-card">
+          <div class="menu-img-container">
+            <img src="img/alfredo.jpg" alt="Creamy Alfredo Pasta" class="menu-img">
+            <button class="remove-from-cart">-</button>
+            <button class="add-to-cart" data-item="pasta">+</button>
+          </div>
+          <div class="menu-info">
+            <h3>Creamy Alfredo Pasta</h3>
+            <p>Delicious pasta with creamy alfredo sauce and grated parmesan.</p>
+            <div class="reviews" id="pasta-reviews"></div>
+            <div class="menu-bottom">
+              <span class="menu-price">$11.49</span>
+              <span class="cart-count" id="pasta-count">0</span>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-
-    <!-- Additional Menu Cards -->
-    <div class="menu-card">
-      <div class="menu-img-container">
-        <img src="/static/img/index/sushi.jpg" alt="Sushi Rolls" class="menu-img">
-        <button class="remove-from-cart">-</button>
-        <button class="add-to-cart" data-item="sushi">+</button>
-      </div>
-      <div class="menu-info">
-        <h3>Fresh Sushi Rolls</h3>
-        <p>A selection of fresh sushi rolls with wasabi and soy sauce.</p>
-        <div class="reviews" id="sushi-reviews"></div>
-        <div class="menu-bottom">
-          <span class="menu-price">$12.99</span>
-          <span class="cart-count" id="sushi-count">0</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="menu-card">
-      <div class="menu-img-container">
-        <img src="/static/img/index/alfredo.jpg" alt="Creamy Alfredo Pasta" class="menu-img">
-        <button class="remove-from-cart">-</button>
-        <button class="add-to-cart" data-item="pasta">+</button>
-      </div>
-      <div class="menu-info">
-        <h3>Creamy Alfredo Pasta</h3>
-        <p>Delicious pasta with creamy alfredo sauce and grated parmesan.</p>
-        <div class="reviews" id="pasta-reviews"></div>
-        <div class="menu-bottom">
-          <span class="menu-price">$11.49</span>
-          <span class="cart-count" id="pasta-count">0</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
         <!-- Footer -->
         <footer class="footer">
@@ -153,7 +221,7 @@
             <div class="footer-content">
               <!-- Logo -->
               <div class="footer-logo">
-                <img src="/static/img/index/icon/logo.png" alt="Bite A Way Logo"> <!-- Replace with your logo image path -->
+                <img src="img/icon/logo.png" alt="Bite A Way Logo"> <!-- Replace with your logo image path -->
                 
               </div>
               <!-- Links Section -->
@@ -212,6 +280,17 @@
           });
         });
       });
+
+      document.addEventListener('DOMContentLoaded', () => {
+  const track = document.getElementById('carouselTrack');
+  document.getElementById('carouselLeft').addEventListener('click', () => {
+    track.scrollBy({ left: -200, behavior: 'smooth' });
+  });
+  document.getElementById('carouselRight').addEventListener('click', () => {
+    track.scrollBy({ left: 200, behavior: 'smooth' });
+  });
+});
+
     </script>
       
 </html>
