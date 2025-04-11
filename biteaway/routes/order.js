@@ -17,6 +17,9 @@ router.get("/cart", async function (req, res) {
     const promoCode = '';
     const promoMessage = '';
     const cart = '';
+
+    // TODO; each user session has a cart automatically?
+
     res.render('orderCart' , { currentStep, cartItems, promoCode, promoMessage, cart } )
 })
 
@@ -48,12 +51,10 @@ router.get("/confirm", async function (req, res) {
 //add an item to the cart
 router.post("/add2cart", (req, res) => {
     //get the ID from the button,
-    const { itemID, restarantID } = req.body;
+    const { itemID, restaurantID } = req.body;
     //console.log(itemID);
 
-    controller.addToCart(itemID, restarantID);
+    controller.addToCart(itemID, restaurantID, res);
 })
-    
-
 
 module.exports = router;

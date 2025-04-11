@@ -21,10 +21,10 @@ class Cart extends Model {
             foreignKey: 'itemID'
         });
 
-        Cart.belongsTo(models.Order, {
-            as: 'user',
-            foreignKey: 'userID'
-        });
+        // Cart.belongsTo(models.User, {
+        //     as: 'user',
+        //     foreignKey: 'userID'
+        // });
 
     };
 }
