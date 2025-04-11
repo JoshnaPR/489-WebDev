@@ -3,120 +3,281 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Confirmation</title>
-    <link rel="stylesheet" href="../static/css/orderConfirmation.css">
+    <title>Shopping Cart | Bite-A-Way</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Original CSS - keeping your custom styling -->
+    <link rel="stylesheet" href="/static/css/orderConfirmation.css">
+    
 </head>
+
 <body>
-    <div class="container">
+   <div class="container"> 
         <header class="checkout-header">
             <h1>Your Cart</h1>
             <div class="checkout-steps">
-                <div class="step">
+                <div class="step <%= currentStep >= 1 ? 'active' : '' %>">
                     <div class="step-number">1</div>
                     <span>Shopping Cart</span>
                 </div>
-                <div class="step-connector active"></div>
-                <div class="step">
+                <div class="step-connector <%= currentStep >= 2 ? 'active' : '' %>"></div>
+                <div class="step <%= currentStep >= 2 ? 'active' : '' %>">
                     <div class="step-number">2</div>
                     <span>Checkout</span>
                 </div>
-                <div class="step-connector active"></div>
-                <div class="step active">
+                <div class="step-connector <%= currentStep >= 3 ? 'active' : '' %>"></div>
+                <div class="step <%= currentStep >= 3 ? 'active' : '' %>">
                     <div class="step-number">3</div>
                     <span>Confirmation</span>
                 </div>
             </div>
         </header>
-        
-        <div class="content">
-            <div class="confirmation-box">
-                <div class="box-title">
-                    <i></i> Order Confirmation
+
+
+        <div class="cart-container">
+            <div class="cart-items-section">
+                <div class="cart-items-header">
+                    <div class="item-product">Product</div>
+                    <div class="item-price">Price</div>
+                    <div class="item-quantity">Quantity</div>
+                    <div class="item-total">Total</div>
+                    <div class="item-action"></div>
                 </div>
-                
-                <div class="confirmation-message">
-                    <p>Thank you for your order! We've received your order and will begin processing it right away.</p>
-                </div>
-                
-                <div class="order-details">
-                    <h3>Order Information</h3>
-                    <div class="detail-row">
-                        <span class="detail-label">Order Number:</span>
-                        <span class="order-number" id="orderNumber">#<%= orderNumber %></span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Order Date:</span>
-                        <span id="orderDate"><%= orderDate %></span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Payment Method:</span>
-                        <span>Credit Card (ending in <%= cardLastFour %>)</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Estimated Delivery:</span>
-                        <span id="deliveryDate"><%= deliveryDate %></span>
-                    </div>
-                </div>
-                
-                <div class="delivery-info">
-                    <h3>Delivery Information</h3>
-                    <div class="info-box" id="deliveryAddress">
-                        <%= user.firstName %> <%= user.lastName %><br>
-                        <%= user.userAddress %><br>
-                        <%= user.email %><br>
-                        Phone: <%= user.countryCode %><%= user.phoneNumber %>
-                    </div>
-                </div>
-                
-                <div class="billing-info">
-                    <h3>Contact Information</h3>
-                    <div class="info-box" id="contactInfo">
-                        Email: <%= user.email %><br>
-                        Phone: <%= user.phoneNumber %>
-                    </div>
-                </div>
-                
-                <div class="action-buttons">
-                    <a class="button primary-button" href="/track/<%= orderNumber %>">Track Order</a>
-                    <a class="button secondary-button" href="/">Continue Shopping</a>
-                </div>
-            </div>
-            
-            <div class="order-summary">
-                <div class="box-title">
-                    <i>🛒</i> Order Summary
-                </div>
-                
-                <div id="orderItems">
-                    <% orderItems.forEach(function(item) { %>
-                        <div class="order-item">
-                            <span class="item-quantity"><%= item.quantity %>×</span>
-                            <span class="item-name"><%= item.name %></span>
-                            <span class="item-price">$<%= item.price.toFixed(2) %></span>
+
+                <% if (cartItems && cartItems.length > 0) { %>
+                    <% cartItems.forEach(function(item) { %>
+                        <div class="cart-item" data-item-id="<%= item.itemID %>">
+                            <div class="item-product">
+                                <div class="product-image">
+                                    <!-- <img src="/images/food-item-<%= item.itemID %>.jpg" alt="<%= item.itemName %>"> -->
+                                </div>
+                                <div class="product-details">
+                                    <h3><%= item.itemName %></h3>
+                                    <p class="product-desc"><%= item.itemDescription %></p>
+                                </div>
+                            </div>
+                            <div class="item-price">$<%= item.itemPrice.toFixed(2) %></div>
+                            <div class="item-quantity">
+                                <div class="quantity-control">
+                                    <button class="quantity-btn" onclick="updateQuantity('<%= item.itemID %>', 'decrease')">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <span class="quantity-value"><%= item.quantity || 1 %></span>
+                                    <button class="quantity-btn" onclick="updateQuantity('<%= item.itemID %>', 'increase')">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="item-total">$<%= (item.itemPrice * (item.quantity || 1)).toFixed(2) %></div>
+                            <div class="item-action">
+                                <button class="remove-btn" onclick="removeItem('<%= item.itemID %>')">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
                         </div>
                     <% }); %>
+                <% } else { %>
+                    <div class="empty-cart-message">
+                        <p>Your cart is empty</p>
+                        <a href="/menu" class="btn">Browse Menu</a>
+                    </div>
+                <% } %>
+
+                <% if (!cartItems || cartItems.length === 0) { %>
+                    <!-- Cart Item Examples for Empty State -->
+                    <div class="cart-item">
+                        <div class="item-product">
+                            <div class="product-image">
+                                <!-- <img src="/images/food-item.jpg" alt="Food Item"> -->
+                            </div>
+                            <div class="product-details">
+                                <h3>Margherita Pizza</h3>
+                                <p class="product-desc">Classic pizza with tomato sauce and mozzarella cheese</p>
+                            </div>
+                        </div>
+                        <div class="item-price">$10.99</div>
+                        <div class="item-quantity">
+                            <div class="quantity-control">
+                                <button class="quantity-btn" onclick="updateQuantity('sample_item_1', 'decrease')">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <span class="quantity-value">2</span>
+                                <button class="quantity-btn" onclick="updateQuantity('sample_item_1', 'increase')">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="item-total">$21.98</div>
+                        <div class="item-action">
+                            <button class="remove-btn" onclick="removeItem('sample_item_1')">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="cart-item">
+                        <div class="item-product">
+                            <div class="product-image">
+                                <!-- <img src="/images/food-item.jpg" alt="Food Item"> -->
+                            </div>
+                            <div class="product-details">
+                                <h3>Chicken Caesar Salad</h3>
+                                <p class="product-desc">Fresh romaine lettuce with grilled chicken and Caesar dressing</p>
+                            </div>
+                        </div>
+                        <div class="item-price">$15.99</div>
+                        <div class="item-quantity">
+                            <div class="quantity-control">
+                                <button class="quantity-btn" onclick="updateQuantity('sample_item_2', 'decrease')">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <span class="quantity-value">1</span>
+                                <button class="quantity-btn" onclick="updateQuantity('sample_item_2', 'increase')">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="item-total">$15.99</div>
+                        <div class="item-action">
+                            <button class="remove-btn" onclick="removeItem('sample_item_2')">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+
+            <div class="cart-summary-section">
+                <div class="promo-code-container">
+                    <h3>Promo Code</h3>
+                    <p>If you have a promo code, enter it here</p>
+                    <div class="input-group promo-input-group">
+                        <input type="text" class="form-control" placeholder="Enter promo code" value="<%= promoCode || '' %>">
+                        <button class="btn" onclick="applyPromoCode()">Apply</button>
+                    </div>
+                    <% if (promoMessage) { %>
+                        <div class="promo-message <%= promoValid ? 'valid' : 'invalid' %>">
+                            <%= promoMessage %>
+                        </div>
+                    <% } %>
                 </div>
-                
-                <div class="summary-total">
-                    <div class="total-row">
-                        <span class="total-label">Subtotal</span>
-                        <span class="total-price" id="subtotal">$<%= subtotal.toFixed(2) %></span>
+
+                <div class="order-summary-container">
+                    <h3>Order Summary</h3>
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span>$<%= cart ? cart.subtotal.toFixed(2) : '0.00' %></span>
                     </div>
-                    <div class="total-row">
-                        <span class="total-label">Delivery Fee</span>
-                        <span class="total-price" id="deliveryFee">$<%= deliveryFee.toFixed(2) %></span>
+                    <div class="summary-row">
+                        <span>Delivery Fee</span>
+                        <span>$<%= cart ? cart.deliveryFee.toFixed(2) : '0.00' %></span>
                     </div>
-                    <div class="total-row grand-total">
-                        <span class="total-label">Total</span>
-                        <span class="total-price" id="totalPrice">$<%= total.toFixed(2) %></span>
+                    <% if (cart && cart.discount > 0) { %>
+                        <div class="summary-row discount">
+                            <span>Discount</span>
+                            <span>-$<%= cart.discount.toFixed(2) %></span>
+                        </div>
+                    <% } else { %>
+                        <div class="summary-row discount hidden">
+                            <span>Discount</span>
+                            <span>-$0.00</span>
+                        </div>
+                    <% } %>
+                    <div class="summary-row total">
+                        <span>Total</span>
+                        <span>$<%= cart ? cart.total.toFixed(2) : '0.00' %></span>
                     </div>
+                    <button class="checkout-btn" onclick="location.href='/checkout'" >
+
+                    </button>
+                        <%= (!cartItems || cartItems.length === 0) ? 'disabled' : '' %>>
+                        Proceed to Checkout
+                    </button>
                 </div>
             </div>
         </div>
-        
-        <footer>
-            <p>If you have any questions about your order, please contact customer support.</p>
-        </footer>
     </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        function removeItem(itemId) {
+            console.log('Removing item:', itemId);
+            // In a real implementation, you would remove the item and update totals
+            // Using AJAX to send delete request
+            fetch(`/cart/items/${itemId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.reload();
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function updateQuantity(itemId, action) {
+            console.log(`${action} quantity for item: ${itemId}`);
+            // In a real implementation, you would update quantities and recalculate totals
+            const quantityElement = document.querySelector(`[data-item-id="${itemId}"] .quantity-value`);
+            if (!quantityElement) return;
+            
+            const quantity = parseInt(quantityElement.textContent);
+            let newQuantity = quantity;
+            
+            if (action === 'increase') {
+                newQuantity = quantity + 1;
+            } else if (action === 'decrease' && quantity > 1) {
+                newQuantity = quantity - 1;
+            }
+            
+            if (newQuantity !== quantity) {
+                fetch('/cart/update', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ itemId, quantity: newQuantity })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        window.location.reload();
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            }
+        }
+
+        function applyPromoCode() {
+            const promoInput = document.querySelector('.promo-input-group input');
+            const promoCode = promoInput.value;
+            console.log('Applying promo code:', promoCode);
+            
+            if (promoCode) {
+                fetch('/cart/promo', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ promoCode })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        window.location.reload();
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            }
+        }
+    </script>
 </body>
 </html>

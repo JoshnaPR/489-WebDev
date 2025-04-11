@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Place Order | Bite-A-Way</title>
-    <link rel="stylesheet" href="../static/css/PlaceOrder.css">
+    <link rel="stylesheet" href="/static/css/PlaceOrder.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,20 +15,17 @@
         <header class="checkout-header">
             <h1>Checkout</h1>
             <div class="checkout-steps">
-                <!-- <div class="step <%= currentStep >= 1 ? 'active' : '' %>"> -->
-                <div class="step">
+                <div class="step <%= currentStep >= 1 ? 'active' : '' %>">
                     <div class="step-number">1</div>
                     <span>Your Cart</span>
                 </div>
-                <!-- <div class="step-connector <%= currentStep >= 1 ? 'active' : '' %>"></div> -->
-                <!-- <div class="step <%= currentStep >= 2 ? 'active' : '' %>"> -->
-                    <div class="step">
+                <div class="step-connector <%= currentStep >= 1 ? 'active' : '' %>"></div>
+                <div class="step <%= currentStep >= 2 ? 'active' : '' %>">
                     <div class="step-number">2</div>
                     <span>Checkout</span>
                 </div>
-                <!-- <div class="step-connector <%= currentStep >= 2 ? 'active' : '' %>"></div> -->
-                <!-- <div class="step <%= currentStep >= 3 ? 'active' : '' %>"> -->
-                <div class="step">
+                <div class="step-connector <%= currentStep >= 2 ? 'active' : '' %>"></div>
+                <div class="step <%= currentStep >= 3 ? 'active' : '' %>">
                     <div class="step-number">3</div>
                     <span>Confirmation</span>
                 </div>
@@ -154,7 +151,7 @@
                     <div class="payment-options">
                         <div class="payment-option">
                             <div class="radio-button">
-                                <!-- <div class="radio-inner" id="cod-radio" style="opacity: <%= selectedPayment === 'cod' || !selectedPayment ? '1' : '0' %>;"></div> -->
+                                <div class="radio-inner" id="cod-radio" style="opacity: <%= selectedPayment === 'cod' || !selectedPayment ? '1' : '0' %>;"></div>
                             </div>
                             <div class="payment-label">
                                 <p>Cash on Delivery</p>
@@ -164,7 +161,7 @@
                         
                         <div class="payment-option">
                             <div class="radio-button">
-                                <!-- <div class="radio-inner" id="stripe-radio" style="opacity: <%= selectedPayment === 'stripe' ? '1' : '0' %>;"></div> -->
+                                <div class="radio-inner" id="stripe-radio" style="opacity: <%= selectedPayment === 'stripe' ? '1' : '0' %>;"></div>
                             </div>
                             <div class="payment-label">
                                 <p>Credit / Debit Card</p>
@@ -179,7 +176,7 @@
                     </div>
                 </div>
                 
-                <button class="place-order-submit" type="submit" id="submitButton">
+                <button class="place-order-submit" type="submit" id="submitButton" onclick= "location.href='/order/confirm'">
                     <span>Place Order</span>
                     <i class="fas fa-arrow-right"></i>
                 </button>

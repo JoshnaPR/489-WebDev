@@ -10,5 +10,10 @@ module.exports = {
 
         // TODO: determine order page
         // res.render('temp', { order })
+    },
+
+    addToCart: async (req, res) => {
+
     }
+
 }
