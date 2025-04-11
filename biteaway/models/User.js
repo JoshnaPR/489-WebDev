@@ -61,6 +61,12 @@ User.init({
         allowNull: false
     }
 
+    // admin: 1 & normal user: 0
+    // isAdmin: {
+    //     type: DataTypes.BOOLEAN,
+    //     allowNull: false
+    // }
+
 }, {
   sequelize, 
   modelName: 'User'

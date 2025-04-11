@@ -104,7 +104,7 @@
                                 <p class="order-info-header">
                                     <!-- date format: https://stackoverflow.com/questions/3552461/how-do-i-format-a-date-in-javascript -->
                                     <%= order.orderDate.toLocaleDateString("en-US", {  weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %> &#x2022 
-                                    <%= order.orderPrice %> &#x2022
+                                    $<%= order.orderPrice %> &#x2022
                                     <%= order.itemNum %> items
                                 </p>
                             </div>
@@ -113,7 +113,7 @@
                             <div class="pr-10 pl-10">
                                 <p class="order-info-body">
 
-                                    <!-- TODO: fix printing of dot -->
+                                    <!-- TODO: fix printing of dot -->  
                                     <% for (orderItem of order.items) { %>
                                         <%= orderItem.item.itemName %> &#x2022
                                     <% } %>

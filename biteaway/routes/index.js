@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var controller = require('../controllers/index');
 
 router.use("/static/", express.static("static"))
 
@@ -10,17 +11,13 @@ router.use("/static/", express.static("static"))
 
 //admin and user can only be accessed by logged in accounts
 
-router.get("/", async function (req, res) {
-    //res.redirect('/login')
-    res.render('indexHome')
-})
+// controller for going to homepage
+router.get("/", controller.getIndexHome);
 
-router.get("/login", async function (req, res) {
-    //res.render('loginPage')
-})
+// controller for going to login page
+router.get("/login", controller.getLogin);
 
-router.get("/signup", async function (req, res) {
-    //res.render('signupPage')
-})
+// controller for going to signup page
+router.get("/signup", controller.getSignup);
 
 module.exports = router;
