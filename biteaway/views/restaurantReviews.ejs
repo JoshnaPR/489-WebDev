@@ -216,6 +216,7 @@
                     </button>
                     
                     <!-- Modal -->
+                    <form action="/restaurant/<%= restaurant.restaurantID %>/reviews" method="POST">
                     <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                         <div class="modal-content">
@@ -232,23 +233,31 @@
 
                             <!-- choose rating -->
                             <label for="ratingRange" class="form-label"><b>Star Rating</b> ★ <span id="rangeval">2.5<!-- Default value --></span> </label>
-                            <input type="range" class="form-range" min="0" max="5" step="0.5" id="ratingRange" onInput="$('#rangeval').html($(this).val())">
+                            <input name="ratingRange" type="range" class="form-range" min="0" max="5" step="0.5" id="ratingRange" onInput="$('#rangeval').html($(this).val())">
 
                             <!-- leave review -->
                             <div class="mb-3">
                                 <label for="reviewText" class="form-label"><b>Review Content</b></label>
-                                <textarea class="form-control" id="reviewText" rows="3"></textarea>
+                                <textarea name="reviewText" class="form-control" id="reviewText" rows="3"></textarea>
                             </div>
 
                             </div>
                             <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Submit Review</button>
+
+                            <!-- other information -->
+                            <!-- TODO: update userID to be dynamic -->
+                            <input type="hidden" name="userID" value="101">
+                            <input type="hidden" name="restaurantID" value="<%= restaurant.restaurantID %>">
+
+                            <!-- handle this inside restaurant route -->
+                            <button type="submit" class="btn btn-primary">Submit Review</button> 
                             </div>
                         </div>
                         </div>
                     </div>
-
+                    </form>
+                    
                 </div>
 
             </div>
@@ -259,7 +268,7 @@
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
 
-        <!-- for leaving reviews -->
+        <!-- for rating/star slider -->
         <!-- source: https://stackoverflow.com/questions/62580923/show-value-of-bootstrap-4-range-input -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
