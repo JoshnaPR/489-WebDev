@@ -6,7 +6,7 @@ const Review = require("../models/Review");
 const Cuisine = require("../models/Cuisine");
 const Order = require("../models/Order");
 const Item = require("../models/Item");
-const OrderItem = require("../models/Cart");
+const Cart = require("../models/Cart");
 
 module.exports = {
     // GET METHOD for user home page

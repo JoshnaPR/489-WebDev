@@ -7,7 +7,7 @@ class User extends Model {
     static associate = models => {
 
         // many-to-many relationship between item and order
-        User.hasMany(models.Cart, {
+        User.belongsTo(models.Cart, {
             as: 'cart',
             foreignKey: 'userID'
         });

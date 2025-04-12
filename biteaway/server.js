@@ -61,7 +61,7 @@ async function setup() {
   Order.associate({ User, Item, Restaurant, Cart })
   Restaurant.associate({ Cuisine, Review, Item, Order })
   Review.associate({ User, Restaurant })
-  Cart.associate({ Order, Item })
+  Cart.associate({ Order, Item, User })
 
   //adding sample data
 
@@ -640,24 +640,28 @@ async function setup() {
   });
 
   // many-to-many relationship testing
-  // const orderItemTest1 = await Cart.create({
+  const cartTest1 = await Cart.create({
+    orderID: 1,
+    itemID: 1,
+    userID: 101
+  });
+
+  // const cartTest2 = await Cart.create({
   //   orderID: 1,
-  //   itemID: 1
+  //   itemID: 2,
+  //   userID: 101
   // });
 
-  // const orderItemTest2 = await Cart.create({
-  //   orderID: 1,
-  //   itemID: 2
-  // });
-
-  // const orderItemTest3 = await Cart.create({
+  // const cartTest3 = await Cart.create({
   //   orderID: 7,
-  //   itemID: 1
+  //   itemID: 1,
+  //   userID: 101
   // });
 
-  // const orderItemTest4 = await Cart.create({
+  // const cartTest4 = await Cart.create({
   //   orderID: 7,
-  //   itemID: 2
+  //   itemID: 2,
+  //   userID: 101
   // });
 
   // end many-to-many relationship testing for orders
