@@ -12,16 +12,16 @@ router.get("/:id", controller.getRestaurantHome);
 router.get("/:id/menu", controller.getRestaurantMenu);
 
 // reviews page
-router.get("/:id/reviews", controller.getRestaurantReviews);
+router.get("/:id/reviews", controller.getRestaurantReviews)
 
 // reviews - creating/posting
+// TODO: implement sorted view here?
 router.post("/:id/reviews", (req, res) => {
     console.log("Inside of router.post for reviews")
     // console.log(req.body)
     
     // getting information
     const { ratingRange, reviewText, userID, restaurantID } = req.body
-
     reviewController.leaveReview(ratingRange, reviewText, userID, restaurantID, res);
 })
 

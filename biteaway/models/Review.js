@@ -93,6 +93,59 @@ class Review extends Model {
         }
     };
 
+    // TODO:[ ---------- FINISH IMPLEMENTING/TESTING THESE ---------- ]
+
+    // SORTING/FORMATTING: return list of reviews under restaurantID, sorted by rating, descending
+    static async sortReviewsByRatingDesc({restaurantID}) {
+        // source: https://stackoverflow.com/questions/53757460/sequelize-findall-include-same-models-2-times-with-different-condition
+        try {
+            const list = await Review.findAll({
+                where: { restaurantID },
+                include: [{
+                    model: User,
+                    as: 'user'
+                }],
+
+                // sort
+                order: [
+                    ['reviewRating', 'DESC']
+                ]
+            })
+            
+            return list
+            
+        } catch (error) {
+            console.log(error)
+            return null
+        }
+    };
+
+    // SORTING/FORMATTING: return list of reviews under restaurantID, sorted by rating, ascending
+    static async sortReviewsByRatingAsc({restaurantID}) {
+        // source: https://stackoverflow.com/questions/53757460/sequelize-findall-include-same-models-2-times-with-different-condition
+        try {
+            const list = await Review.findAll({
+                where: { restaurantID },
+                include: [{
+                    model: User,
+                    as: 'user'
+                }],
+
+                // sort
+                order: [
+                    ['reviewRating', 'ASC']
+                ]
+            })
+            
+            return list
+            
+        } catch (error) {
+            console.log(error)
+            return null
+        }
+    };
+
+    // TODO:[ ---------- FINISH IMPLEMENTING/TESTING THESE ---------- ]
     
 }
 

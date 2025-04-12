@@ -47,8 +47,48 @@ class Restaurant extends Model {
             console.log(error)
             return null
         }
-
     }
+
+    // TODO:[ ---------- FINISH IMPLEMENTING/TESTING THESE ---------- ]
+
+    // SORTING/FORMATTING: return list of sorted restaurants, sorted by rating, descending
+    static async sortRestaurantByRatingDesc() {
+        try {
+            const list = await Restaurant.findAll({
+                // sort
+                order: [
+                    ['restaurantRating', 'DESC']
+                ]
+            })
+            
+            return list
+            
+        } catch (error) {
+            console.log(error)
+            return null
+        }
+    };
+
+    // SORTING/FORMATTING: return list of sorted restaurants, sorted by rating, ascending
+    static async sortRestaurantByRatingAsc() {
+        try {
+            const list = await Restaurant.findAll({
+                // sort
+                order: [
+                    ['restaurantRating', 'ASC']
+                ]
+            })
+            
+            return list
+            
+        } catch (error) {
+            console.log(error)
+            return null
+        }
+    };
+
+    // TODO:[ ---------- FINISH IMPLEMENTING/TESTING THESE ---------- ]
+
 }
 
 Restaurant.init({
