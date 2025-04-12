@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= restaurant.restaurantName %> | Bite-A-Way</title>
+    <title>
+        <%= restaurant.restaurantName %> | Bite-A-Way
+    </title>
 
     <!-- for star icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -30,10 +32,11 @@
             <div class="col search-bar">
                 <nav class="navbar navbar-light">
                     <form class="form-inline">
-                        <img src="/static/img/location_on_24dp_F59A4C_FILL0_wght400_GRAD0_opsz24.svg" class="img-thumbnail">
+                        <img src="/static/img/location_on_24dp_F59A4C_FILL0_wght400_GRAD0_opsz24.svg"
+                            class="img-thumbnail">
                         <input class="form-control" type="search" placeholder="City" aria-label="Search">
                         <form class="form-inline">
-                            <button id="search-button" class = "btn" type="submit">
+                            <button id="search-button" class="btn" type="submit">
                                 <img src="/static/img/search_24dp_F59A4C_FILL0_wght400_GRAD0_opsz24.svg">
                             </button>
                             <input class="form-control" type="search" placeholder="Search" aria-label="Search">
@@ -55,59 +58,67 @@
         <div class="row">
             <!-- name & other details -->
             <div class="col">
-                <h2 class="profile-label"><%= restaurant.restaurantName %></h2>
+                <h2 class="profile-label">
+                    <%= restaurant.restaurantName %>
+                </h2>
 
                 <!-- list cuisines -->
                 <!-- TODO: update so comma is excluded at the end -->
                 <p class="profile-label-2">
                     <% for (cuisine of cuisines) { %>
-                        <%= cuisine.cuisineType %>, 
-                    <% } %>
+                        <%= cuisine.cuisineType %>,
+                            <% } %>
                 </p>
 
-                <p class="profile-label-2"><%= restaurant.restaurantAddress %></p>
-                <p class="profile-label-2">Open <%= restaurant.openingTime %>-<%= restaurant.closingTime %> | <%= restaurant.phoneNumber %> </p>
+                <p class="profile-label-2">
+                    <%= restaurant.restaurantAddress %>
+                </p>
+                <p class="profile-label-2">Open <%= restaurant.openingTime %>-<%= restaurant.closingTime %> | <%=
+                                restaurant.phoneNumber %>
+                </p>
             </div>
 
             <!-- ratings -->
             <div class="col-3 ratings">
                 <p class="profile-label-2" style="float:right; padding-right: 120px">Dining Ratings</p>
                 <div style="display: inline-block;" class="col-2 stars">
-                    <p class="rating-label"><%= restaurant.restaurantRating %></p>
-                    
+                    <p class="rating-label">
+                        <%= restaurant.restaurantRating %>
+                    </p>
+
                     <!-- dynamic stars code -->
                     <div class="d-flex">
-                        <% for (var i = 1; i < 6; i++) { %> 
+                        <% for (var i=1; i < 6; i++) { %>
                             <!-- number of filled stars -->
-                            <% if ( restaurant.restaurantRating >= i ) { %>
+                            <% if ( restaurant.restaurantRating>= i ) { %>
                                 <span class="fa fa-star checked"></span>
 
-                            <!-- number of half stars -->
-                            <% } else if ( restaurant.restaurantRating >= i - 0.5 ) { %>
-                                <span class="fa fa-star-half-o checked"></span>
+                                <!-- number of half stars -->
+                                <% } else if ( restaurant.restaurantRating>= i - 0.5 ) { %>
+                                    <span class="fa fa-star-half-o checked"></span>
 
-                            <!-- number of empty stars -->
-                            <% } else { %>
-                                <span class="fa fa-star unchecked"></span>
-                            <% } %>
-                        <% } %>
+                                    <!-- number of empty stars -->
+                                    <% } else { %>
+                                        <span class="fa fa-star unchecked"></span>
+                                        <% } %>
+                                            <% } %>
                     </div>
 
                 </div>
             </div>
         </div>
 
-         <!-- photo gallery -->
-         <div class="row gallery">
+        <!-- photo gallery -->
+        <div class="row gallery">
 
             <!-- naming home files as /restaurant/home/id_img# -->
             <div class="col">
-                 
+
                 <!-- TODO: only 3 per home page? or is it more? -->
-                <% for (i = 1; i < 4; i++) { %>
+                <% for (i=1; i < 4; i++) { %>
                     <img src="/static/img/restaurant/home/<%= restaurant.restaurantID %>_<%= i %>.jpg" />
-                <% } %>
-                
+                    <% } %>
+
             </div>
         </div>
 
@@ -115,10 +126,13 @@
         <nav class="col-10 navbar navbar-light navbar-expand">
             <!-- <div class="collapse navbar-collapse" id="navbarNavAltMarkup"> -->
             <div class="navbar-nav">
-                <a class="nav-item nav-link profile-label-2" href="/restaurant/<%= restaurant.restaurantID %>">Overview</a>
-                <a class="nav-item nav-link profile-label-2" href="/restaurant/<%= restaurant.restaurantID %>/menu">Menu</a>
-                <a class="nav-item nav-link active profile-label-2" href="/restaurant/<%= restaurant.restaurantID %>/reviews">Reviews<span
-                    class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link profile-label-2"
+                    href="/restaurant/<%= restaurant.restaurantID %>">Overview</a>
+                <a class="nav-item nav-link profile-label-2"
+                    href="/restaurant/<%= restaurant.restaurantID %>/menu">Menu</a>
+                <a class="nav-item nav-link active profile-label-2"
+                    href="/restaurant/<%= restaurant.restaurantID %>/reviews">Reviews<span
+                        class="sr-only">(current)</span></a>
                 <!-- </div> -->
             </div>
         </nav>
@@ -135,35 +149,55 @@
 
                         <div class="profile-reviews shadow p-3">
 
-                            <!-- name of reviewer, hyperlink to account -->
-                            <a href="/user/<%= review.userID %>"><p class="review-title-text"><%= review.user.firstName %> <%= review.user.lastName %></p></a>
+                            <% for (user of users) { %>
+                                <% if (review.userID===user.userID) { %>
+                                    <% if (user.isStarUser) { %>
+                                        <!-- name of reviewer, hyperlink to account -->
+                                        <a href="/user/<%= review.userID %>">
+                                            <p class="review-title-text" style="color: #FF7721;">
+                                                <%= review.user.firstName %>
+                                                    <%= review.user.lastName %>
+                                            </p>
+                                        </a>
+                                        <img src="/static/img/hotel_class_24dp_F59A4C_FILL0_wght400_GRAD0_opsz24.svg"
+                                            style="float:right;" />
+                                        <% } else { %>
+                                            <a href="/user/<%= review.userID %>">
+                                                <p class="review-title-text">
+                                                    <%= review.user.firstName %>
+                                                        <%= review.user.lastName %>
+                                                </p>
+                                            </a>
+                                            <% } %>
+                                                <% } %>
+                                                    <% } %>
 
-                            <!-- dynamic stars -->
-                            <% for (var i = 1; i < 6; i++) { %> 
-                                <!-- number of filled stars -->
-                                <% if ( review.reviewRating >= i ) { %> 
-                                    <span class="fa fa-star checked"></span>
+                                                        <!-- dynamic stars -->
+                                                        <% for (var i=1; i < 6; i++) { %>
+                                                            <!-- number of filled stars -->
+                                                            <% if ( review.reviewRating>= i ) { %>
+                                                                <span class="fa fa-star checked"></span>
 
-                                <!-- number of half stars -->
-                                <% } else if ( review.reviewRating >= i - 0.5 ) { %>
-                                    <span class="fa fa-star-half-o checked"></span>
+                                                                <!-- number of half stars -->
+                                                                <% } else if ( review.reviewRating>= i - 0.5 ) { %>
+                                                                    <span class="fa fa-star-half-o checked"></span>
 
-                                <!-- number of empty stars -->
-                                <% } else { %>
-                                    <span class="fa fa-star unchecked"></span>
-                                <% } %>
-                            <% } %>
+                                                                    <!-- number of empty stars -->
+                                                                    <% } else { %>
+                                                                        <span class="fa fa-star unchecked"></span>
+                                                                        <% } %>
+                                                                            <% } %>
 
-                            <!-- review text -->
-                            <p class="review-body pr-10 pl-10">
-                                <%= review.reviewDescription %>
-                            </p>
-                            
+                                                                                <!-- review text -->
+                                                                                <p class="review-body pr-10 pl-10">
+                                                                                    <%= review.reviewDescription %>
+                                                                                </p>
+
                         </div>
 
-                        
-                    <% } %> <!-- end of review loop -->
-                    
+
+                        <% } %> <!-- end of review loop -->
+
                 </div>
 
                 <!-- directions -->

@@ -5,6 +5,7 @@ const Restaurant = require("../models/Restaurant");
 const Cuisine = require("../models/Cuisine");
 const Review = require("../models/Review");
 const Item = require("../models/Item");
+const User = require("../models/User");
 
 
 module.exports = {
@@ -30,6 +31,7 @@ module.exports = {
         const restaurant = await Restaurant.findRestaurant(req.params.id);
         const cuisines = await Cuisine.listCuisinesByRestaurant({ restaurantID: req.params.id})     // to display cuisine types
         const reviews = await Review.listReviewsByRestaurant({ restaurantID: req.params.id });      // to display review data for home page
-        res.render('restaurantReviews', { restaurant, cuisines, reviews })
+        const users = await User.findAll()
+        res.render('restaurantReviews', { restaurant, cuisines, reviews, users })
     }
 }
