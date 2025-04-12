@@ -72,9 +72,10 @@ class Order extends Model {
     // count the number of items under a order
     static async countItemsByOrder({orderID}) {
         try {
-            const itemCount = await Item.count({
+            const itemCount = await Cart.count({
                 where: { orderID }
             })
+
             return itemCount    
 
         } catch (error) {
@@ -87,13 +88,14 @@ class Order extends Model {
     static async listItems({orderID}) {
         // source: https://stackoverflow.com/questions/53757460/sequelize-findall-include-same-models-2-times-with-different-condition
         try {
-            const list = await Item.findAll({
+            const list = await Cart.findAll({
                 where: { orderID },
                 include: [{
                     model: Item,
                     as: 'item'
                 }]
             })
+
             return list
             
         } catch (error) {

@@ -52,7 +52,6 @@ module.exports = {
 
             // get list of items under order
             const orderItems = await Order.listItems({ orderID: order.orderID });
-            console.log(orderItems)
             order.items = orderItems
         }
 

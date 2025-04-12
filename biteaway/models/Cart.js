@@ -1,9 +1,9 @@
 const sequelize = require('../db')
 const { Model, DataTypes } = require('sequelize')
 
-const Order = require('./Order');
-const Item = require('./Item');
-const User = require('./User');
+// const Order = require('./Order');
+// const Item = require('./Item');
+// const User = require('./User');
 
 class Cart extends Model {
 
@@ -31,13 +31,22 @@ class Cart extends Model {
 }
 
 Cart.init({
+    // note: not sure if we can have order as primary key
+    cartID: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        //generate an ID: https://www.yugabyte.com/blog/automatic-id-generation-postgresql-nodejs-sequelize/
+        primaryKey: true
+    },
+    
     itemID: {
         type: DataTypes.NUMBER,
+        allowNull: false
     },
 
     orderID: {
         type: DataTypes.NUMBER,
-        primaryKey: true,
+        allowNull: false
     },
 
     userID: {
