@@ -98,7 +98,9 @@ class Review extends Model {
 
 Review.init({
     reviewID: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        //generate an ID: https://www.yugabyte.com/blog/automatic-id-generation-postgresql-nodejs-sequelize/
         primaryKey: true,
         allowNull: false
     },
