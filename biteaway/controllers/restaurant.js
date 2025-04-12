@@ -14,7 +14,7 @@ module.exports = {
         const restaurant = await Restaurant.findRestaurant(req.params.id);
         const cuisines = await Cuisine.listCuisinesByRestaurant({ restaurantID: req.params.id})     // to display cuisine types
         const reviews = await Review.listReviewsByRestaurant({ restaurantID: req.params.id });      // to display review data for home page
-        const items = await Item.listItemsByRestaurant({ restaurantID: req.params.id })              // to display items from restaurant menu
+        const items = await Item.listItemsByRestaurant({ restaurantID: req.params.id })             // to display items from restaurant menu
         res.render('restaurantHome', { restaurant, cuisines, reviews, items })
     },
  

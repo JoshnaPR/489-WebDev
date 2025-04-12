@@ -1,13 +1,13 @@
 const sequelize = require('../db')
 const { Model, DataTypes } = require('sequelize')
-const Cart = require('./Cart');
+// const Cart = require('./Cart');
 
 class User extends Model {
 
     static associate = models => {
 
-        // many-to-many relationship between item and order
-        User.belongsTo(models.Cart, {
+        // one-to-one relationship between user and cart
+        User.hasOne(models.Cart, {
             as: 'cart',
             foreignKey: 'userID'
         });

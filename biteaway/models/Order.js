@@ -1,7 +1,6 @@
 const sequelize = require('../db')
 const { Model, DataTypes } = require('sequelize')
 const User = require('./User');
-
 const Restaurant = require('./Restaurant');
 const Item = require('./Item');
 const Cart = require('./Cart');
@@ -24,12 +23,14 @@ class Order extends Model {
             foreignKey: 'restaurantID'
         });
 
-        // many-to-many relationship between item and order
-        Order.hasMany(models.Cart, {
-            as: 'cart',
-            foreignKey: 'orderID'
+        // many-to-many relationship between item and order ; will use cart as many-to-many
+        // source: https://sequelize.org/docs/v7/associations/belongs-to-many/ ; https://stackoverflow.com/questions/54865569/sequelize-belongstomany-foreignkey-attribute-not-woking
+        Order.belongsToMany(models.Item, {
+            as: 'items',
+            foreignKey: 'orderID',
+            otherKey: 'itemID',
+            through: models.Cart
         });
-
     };
 
     // getter function ; using findOne due to composite primary key
@@ -71,7 +72,7 @@ class Order extends Model {
     // count the number of items under a order
     static async countItemsByOrder({orderID}) {
         try {
-            const itemCount = await Cart.count({
+            const itemCount = await Item.count({
                 where: { orderID }
             })
             return itemCount    
@@ -86,7 +87,7 @@ class Order extends Model {
     static async listItems({orderID}) {
         // source: https://stackoverflow.com/questions/53757460/sequelize-findall-include-same-models-2-times-with-different-condition
         try {
-            const list = await Cart.findAll({
+            const list = await Item.findAll({
                 where: { orderID },
                 include: [{
                     model: Item,
@@ -134,7 +135,7 @@ Order.init({
 
     userAddress: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
     },
 
     status: {

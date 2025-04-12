@@ -1,5 +1,6 @@
 const sequelize = require('../db')
 const { Model, DataTypes } = require('sequelize')
+
 const Order = require('./Order');
 const Item = require('./Item');
 const User = require('./User');
@@ -21,7 +22,7 @@ class Cart extends Model {
             foreignKey: 'itemID'
         });
 
-        Cart.belongsTo(models.Order, {
+        Cart.belongsTo(models.User, {
             as: 'user',
             foreignKey: 'userID'
         });

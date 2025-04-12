@@ -15,11 +15,15 @@ class Item extends Model {
             foreignKey: 'restaurantID'
         });
 
-        // many-to-many relationship between item and order
-        Item.hasMany(models.Cart, {
-            as: 'cart',
-            foreignKey: 'itemID'
+        // many-to-many relationship between item and order ; will use cart as many-to-many
+        // source: https://sequelize.org/docs/v7/associations/belongs-to-many/ ; https://stackoverflow.com/questions/54865569/sequelize-belongstomany-foreignkey-attribute-not-woking
+        Item.belongsToMany(models.Order, {
+            as: 'orders',
+            foreignKey: 'itemID',
+            otherKey: 'orderID',
+            through: models.Cart
         });
+
 
     };
 
@@ -46,7 +50,7 @@ class Item extends Model {
             const list = await Item.findAll({
                 where: { restaurantID }
             })
-            
+                        
             return list
             
         } catch (error) {
@@ -61,7 +65,11 @@ Item.init({
         type: DataTypes.NUMBER,
         primaryKey: true,
         allowNull: false
-    },
+    }, 
+
+    orderID: {
+        type: DataTypes.NUMBER,
+    }, 
 
     restaurantID: {
         type: DataTypes.NUMBER,
