@@ -65,7 +65,8 @@ module.exports = {
         console.log("orderID: ", newCart.orderID)
 
         // redirect user back to restaurant
-        res.redirect(`/restaurant/${restaurantID}/menu`)
+        // can edit the url accordingly/similar to cms examples if you want (and try/catch for error, check review.js)
+        res.redirect(`/restaurant/${restaurantID}/menu?msg=success`)
     }
 
 }
