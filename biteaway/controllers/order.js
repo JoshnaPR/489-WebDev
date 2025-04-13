@@ -29,30 +29,38 @@ module.exports = {
         // TODO: update with actual user data, orderPrice
         // TODO: check if there is an existing order already - (ex: if user is ordering multiple items)
         // probably can do this by checking by userID and status of userID's order; this way, we can add (+=) each item price to orderPrice
-        const user = await Cart.findByUser(logged_in_user); // or just use logged_in_user if you already have it
+        const user = await Cart.findByUser(logged_in_user);
+        //look through cart table to see if the user already has items in the cart
         if (!user) {
-            //the current user does not have an order, create one
+            //the current user does not have an existing active order or any items in the cart
+            //create a new order
             newOrder = await Order.create({
                 userID: logged_in_user,
                 restaurantID: restaurantID,
                 orderDate: new Date(),
                 orderPrice: 0,
-                userAddress: "123 Baker's Street, Pullman, WA", // probably can update this to reference userID's address stored already
+                userAddress: "123 Baker's Street, Pullman, WA",
                 status: "Pending",
             });
+            //this will give us an order ID for this order
 
+            //add the item that the user clicked on to the cart
             const newCart = await Cart.create({
                 userID: logged_in_user,
                 itemID: itemID,
                 orderID: newOrder.orderID
             });
 
+            //update the order details by adding the item price to the total price
             newOrder.orderPrice += Item.findByPk(itemID).itemPrice;
         }
         else {
             //there is a active order, add the item to that active order
             const activeOrder = await Order.findActiveOrder(user);
+            //check order table for orders belonging to the current user which are active/pending
+            //this will give us the orderID
             if (activeOrder) {
+                //add the item to the cart with the same orderID & also update the price
                 const newCart = await Cart.create({
                     userID: logged_in_user,
                     itemID: itemID,
@@ -77,13 +85,12 @@ module.exports = {
         // console.log("-----")
 
         //cart ->
-        //orderID - randomly generrated
+        //orderID - randomly generated
         //itemID - from the button
         //userID - the user that is logged in rn
 
         // TODO: update cart, probably have a cart instance already existing per user account
         // remove items once order is done?
-
 
         // debugging
         // console.log("UserID: ", newCart.userID)
@@ -100,12 +107,20 @@ module.exports = {
         const currentStep = 1;
         const logged_in_user = 101;
 
+
+        // what orderCart ejs does ->
+        // 1. iterate through the cart and display through the item (from Cart)
+        // 2. show total price of cart (from Order)
         const cartItems = Cart.listCartByUser(logged_in_user);
+        //here i am trying to get an array/list of all the items in the cart belonging to the current user
+        const cart = Order.findActiveOrder(logged_in_user);
+        //here i want to find the current active order (associated with the above items)
+
+        //leave empty - will not be used
         const promoCode = '';
         const promoMessage = '';
-        const cart = Order.findActiveOrder(logged_in_user);
 
-        console.log(cartItems)
+        //console.log(cartItems)
 
         res.render('orderCart', { currentStep, cartItems, promoCode, promoMessage, cart })
     }
