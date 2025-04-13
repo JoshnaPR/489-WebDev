@@ -78,14 +78,6 @@ class Cart extends Model {
 }
 
 Cart.init({
-    // note: not sure if we can have order as primary key
-    // cartID: {
-    //     type: DataTypes.INTEGER,
-    //     autoIncrement: true,
-    //     //generate an ID: https://www.yugabyte.com/blog/automatic-id-generation-postgresql-nodejs-sequelize/
-    //     primaryKey: true
-    // },
-    
     itemID: {
         type: DataTypes.NUMBER,
         allowNull: false

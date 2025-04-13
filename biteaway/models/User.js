@@ -1,6 +1,7 @@
 const sequelize = require('../db')
 const { Model, DataTypes } = require('sequelize')
-// const Cart = require('./Cart');
+
+const Cart = require('./Cart');
 
 class User extends Model {
 
@@ -14,7 +15,6 @@ class User extends Model {
     
     };
 
-    
     // based on cms example, find user by primary key (userID)
     static async findUser(userID) {
         try {

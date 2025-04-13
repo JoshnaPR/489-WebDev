@@ -1,5 +1,6 @@
 const sequelize = require('../db')
 const { Model, DataTypes } = require('sequelize')
+
 const User = require('./User');
 const Restaurant = require('./Restaurant');
 const Item = require('./Item');

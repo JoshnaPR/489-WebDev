@@ -20,6 +20,7 @@ const Review = require("./models/Review");
 const Item = require("./models/Item");
 const Cuisine = require("./models/Cuisine");
 const Cart = require("./models/Cart");
+const setUpAssociations = require("./models/relation");
 
 // const fs = require("fs")
 const app = express();
@@ -56,12 +57,15 @@ app.post("/order", orderRouter);
 async function setup() {
   // associations for models
   // User.associate({ Cart })
-  Cuisine.associate({ Restaurant })
-  Item.associate({ Restaurant, Order, Cart })
-  Order.associate({ User, Item, Restaurant, Cart })
-  Restaurant.associate({ Cuisine, Review, Item, Order })
-  Review.associate({ User, Restaurant })
-  Cart.associate({ Order, Item, User })
+  // Cuisine.associate({ Restaurant })
+  // Item.associate({ Restaurant, Order, Cart })
+  // Order.associate({ User, Item, Restaurant, Cart })
+  // Restaurant.associate({ Cuisine, Review, Item, Order })
+  // Review.associate({ User, Restaurant })
+  // Cart.associate({ Order, Item, User })
+
+  // set up associations
+  setUpAssociations()
 
   //adding sample data
 

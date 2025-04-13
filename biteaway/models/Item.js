@@ -1,5 +1,6 @@
 const sequelize = require('../db')
 const { Model, DataTypes } = require('sequelize')
+
 const Restaurant = require('./Restaurant');
 const Cart = require('./Cart');
 
@@ -23,8 +24,6 @@ class Item extends Model {
             otherKey: 'orderID',
             through: models.Cart
         });
-
-
     };
 
     // getter function ; using findOne due to composite primary key
