@@ -11,16 +11,10 @@ router.get("/", async function (req, res) {
     res.redirect('/order/cart')
 })
 
-router.get("/cart", async function (req, res) {
-    const currentStep = 1;
-    const cartItems = 1;
-    const promoCode = '';
-    const promoMessage = '';
-    const cart = '';
+router.post("/cart", (req, res) => {
+    const { restaurantID } = req.body;
 
-    // TODO; each user session has a cart automatically?
-
-    res.render('orderCart' , { currentStep, cartItems, promoCode, promoMessage, cart } )
+    controller.getCart(restaurantID, res);
 })
 
 router.get("/checkout", async function (req, res) {
@@ -45,8 +39,6 @@ router.get("/confirm", async function (req, res) {
 
     res.render('orderConfirmation', { currentStep, cartItems, promoCode, promoMessage, cart, user })
 })
-
-//router.get("/add2cart", controller.addToCart);
 
 //add an item to the cart
 router.post("/add2cart", (req, res) => {

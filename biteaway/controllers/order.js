@@ -30,15 +30,13 @@ module.exports = {
         // TODO: check if there is an existing order already - (ex: if user is ordering multiple items)
         // probably can do this by checking by userID and status of userID's order; this way, we can add (+=) each item price to orderPrice
         const user = await Cart.findByUser(logged_in_user); // or just use logged_in_user if you already have it
-        if (!user)
-        {
-            console.log("i am in if")
+        if (!user) {
             //the current user does not have an order, create one
             newOrder = await Order.create({
                 userID: logged_in_user,
                 restaurantID: restaurantID,
                 orderDate: new Date(),
-                orderPrice: 0,  
+                orderPrice: 0,
                 userAddress: "123 Baker's Street, Pullman, WA", // probably can update this to reference userID's address stored already
                 status: "Pending",
             });
@@ -48,9 +46,10 @@ module.exports = {
                 itemID: itemID,
                 orderID: newOrder.orderID
             });
+
+            newOrder.orderPrice += Item.findByPk(itemID).itemPrice;
         }
         else {
-            console.log("i am in else")
             //there is a active order, add the item to that active order
             const activeOrder = await Order.findActiveOrder(user);
             if (activeOrder) {
@@ -59,6 +58,8 @@ module.exports = {
                     itemID: itemID,
                     orderID: activeOrder.orderID
                 });
+
+                activeOrder.orderPrice += Item.findByPk(itemID).itemPrice;
 
             }
 
@@ -82,7 +83,7 @@ module.exports = {
 
         // TODO: update cart, probably have a cart instance already existing per user account
         // remove items once order is done?
-    
+
 
         // debugging
         // console.log("UserID: ", newCart.userID)
@@ -92,6 +93,21 @@ module.exports = {
         // redirect user back to restaurant
         // can edit the url accordingly/similar to cms examples if you want (and try/catch for error, check review.js)
         res.redirect(`/restaurant/${restaurantID}/menu?msg=success`)
+    },
+
+    getCart: async (restaurantID, res) => {
+
+        const currentStep = 1;
+        const logged_in_user = 101;
+
+        const cartItems = Cart.listCartByUser(logged_in_user);
+        const promoCode = '';
+        const promoMessage = '';
+        const cart = Order.findActiveOrder(logged_in_user);
+
+        console.log(cartItems)
+
+        res.render('orderCart', { currentStep, cartItems, promoCode, promoMessage, cart })
     }
 
 }

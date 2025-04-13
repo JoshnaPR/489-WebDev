@@ -154,7 +154,7 @@
                                 <input type="hidden" name="itemID" value="<%= item.itemID %>">
                                 <input type="hidden" name="restaurantID" value="<%= restaurant.restaurantID %>">
                                 <button type="submit" class="btn btn-primary">+</button>
-                              </form>
+                            </form>
                               
                             <p><b>
                                     <%= i+1 %>. <%= item.itemName %> <span style="float:right;">$<%= item.itemPrice %>
@@ -166,7 +166,11 @@
                         </div>
                         <% }) %>
 
-                            <a class="btn btn-primary" href="/order" role="button">PLACE ORDER</a>
+                            <!-- <a class="btn btn-primary" href="/order" role="button">PLACE ORDER</a> -->
+                        <form action="/order/cart" method="POST" style="float:left; margin-right: 10px;">
+                                <input type="hidden" name="restaurantID" value="<%= restaurant.restaurantID %>">
+                                <button type="submit" class="btn btn-primary">PLACE ORDER</button>
+                        </form>
                 </div>
 
                 <!-- directions -->

@@ -128,6 +128,26 @@ class Order extends Model {
         }
     };
 
+    // getter function ; return list of reviews under userID
+    static async listOrderByUser({userID}) {
+        // source: https://stackoverflow.com/questions/53757460/sequelize-findall-include-same-models-2-times-with-different-condition
+        try {
+            const list = await Order.findAll({
+                where: { userID },
+                include: [{
+                    model: Restaurant,
+                    as: 'restaurant'
+                }]
+            })
+            
+            return list
+            
+        } catch (error) {
+            console.log(error)
+            return null
+        }
+    };
+
 }
 
 Order.init({
