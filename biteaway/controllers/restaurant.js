@@ -33,5 +33,26 @@ module.exports = {
         const reviews = await Review.listReviewsByRestaurant({ restaurantID: req.params.id });      // to display review data for home page
         const users = await User.findAll()
         res.render('restaurantReviews', { restaurant, cuisines, reviews, users })
+    },
+
+    // sorts reviews accordingly to the requested type
+    sortRestaurantReviews: async (restaurantID, sort, res) => {
+        const restaurant = await Restaurant.findRestaurant(restaurantID);
+        const cuisines = await Cuisine.listCuisinesByRestaurant({ restaurantID: restaurantID})     // to display cuisine types
+        const users = await User.findAll()
+
+        // temporary reviews for now, in case a sort type is not selected
+        var reviews = await Review.listReviewsByRestaurant({ restaurantID: restaurantID });
+                
+        if (sort === "asc") {
+            reviews = await Review.sortReviewsByRatingAsc({ restaurantID: restaurantID });     
+            res.render('restaurantReviews', { restaurant, cuisines, reviews, users })
+
+        } else if (sort === "desc") {
+            reviews = await Review.sortReviewsByRatingDesc({ restaurantID: restaurantID });  
+            res.render('restaurantReviews', { restaurant, cuisines, reviews, users })   
+        }
+
+        res.render('restaurantReviews', { restaurant, cuisines, reviews, users })
     }
 }

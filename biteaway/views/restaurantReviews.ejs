@@ -153,18 +153,17 @@
                                 Sort
                             </button>
                             <ul class="dropdown-menu">
-
-                                <!-- using hidden input values -->
                                 <li>
-                                    <input type="hidden" name="sort" value="desc">
-                                    <button class="dropdown-item" type="submit">Rating (DESC)</button>
+                                    <button name="sort" value="desc" class="dropdown-item" type="submit">Rating (DESC)</button>
                                 </li>
                                 <li>
-                                    <input type="hidden" name="sort" value="asc">
-                                    <button value="asc" class="dropdown-item" type="submit">Rating (ASC)</button>
+                                    <button name="sort" value="asc" class="dropdown-item" type="submit">Rating (ASC)</button>
                                 </li>
                             </ul>
                         </div>
+
+                        <!-- other info needed -->
+                        <input type="hidden" name="restaurantID" value="<%= restaurant.restaurantID %>">
                     </form>
 
                     <!-- iterate through all reviews for restaurant -->
@@ -222,7 +221,7 @@
 
                         <!-- popup for review: https://getbootstrap.com/docs/5.3/components/modal/ -->
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reviewModal" style="margin-top: 10px; margin-bottom: 10px">
-                        MAKE REVIEW
+                        LEAVE REVIEW
                     </button>
 
                     <!-- Modal -->

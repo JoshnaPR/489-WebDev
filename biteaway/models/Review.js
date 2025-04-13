@@ -94,11 +94,9 @@ class Review extends Model {
         }
     };
 
-    // TODO:[ ---------- FINISH IMPLEMENTING/TESTING THESE ---------- ]
-
     // SORTING/FORMATTING: return list of reviews under restaurantID, sorted by rating, descending
     static async sortReviewsByRatingDesc({restaurantID}) {
-        // source: https://stackoverflow.com/questions/53757460/sequelize-findall-include-same-models-2-times-with-different-condition
+        // source: https://stackoverflow.com/questions/53757460/sequelize-findall-include-same-models-2-times-with-different-condition ; https://stackoverflow.com/questions/59471358/how-sorting-according-to-created-at-in-sequelize
         try {
             const list = await Review.findAll({
                 where: { restaurantID },
@@ -145,8 +143,6 @@ class Review extends Model {
             return null
         }
     };
-
-    // TODO:[ ---------- FINISH IMPLEMENTING/TESTING THESE ---------- ]
     
 }
 
