@@ -28,16 +28,41 @@ class Cart extends Model {
         });
 
     };
+
+    // getter function ; using findOne due to composite primary key
+    static async findByUser(userID) {
+        try {
+
+            const cart = await Cart.findOne({
+                where: {
+                    userID,
+                },
+            });
+
+            if (cart){
+                return cart
+            }
+            else {
+                return null
+            }
+           
+            
+        } catch (error) {
+            console.log(error)
+            return null
+        }
+    };
+ 
 }
 
 Cart.init({
     // note: not sure if we can have order as primary key
-    cartID: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        //generate an ID: https://www.yugabyte.com/blog/automatic-id-generation-postgresql-nodejs-sequelize/
-        primaryKey: true
-    },
+    // cartID: {
+    //     type: DataTypes.INTEGER,
+    //     autoIncrement: true,
+    //     //generate an ID: https://www.yugabyte.com/blog/automatic-id-generation-postgresql-nodejs-sequelize/
+    //     primaryKey: true
+    // },
     
     itemID: {
         type: DataTypes.NUMBER,
@@ -51,7 +76,9 @@ Cart.init({
 
     userID: {
         type: DataTypes.NUMBER,
-        allowNull: false
+        allowNull: false,
+        //primaryKey: true
+
     },
 
 }, {
