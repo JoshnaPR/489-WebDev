@@ -62,6 +62,10 @@ class Cart extends Model {
                 include: [{
                     model: Item,
                     as: 'item'
+                    },
+                {
+                    model: Order,
+                    as: 'order'
                 }]
             })
 

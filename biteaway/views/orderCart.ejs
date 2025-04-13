@@ -47,33 +47,33 @@
                 </div>
 
                 <% if (cartItems && cartItems.length > 0) { %>
-                    <% cartItems.forEach(function(item) { %>
-                        <div class="cart-item" data-item-id="<%= item.itemID %>">
+                    <% cartItems.forEach(function(cart) { %>
+                        <div class="cart-item" data-item-id="<%= cart.itemID %>">
                             <div class="item-product">
                                 <div class="product-image">
-                                    <!-- <img src="/images/food-item-<%= item.itemID %>.jpg" alt="<%= item.itemName %>"> -->
+                                    <!-- <img src="/images/food-item-<%= cart.itemID %>.jpg" alt="<%= cart.itemName %>"> -->
                                 </div>
                                 <div class="product-details">
-                                    <%= item.item.itemName %>
-                                    <h3><%= item.itemName %></h3>
-                                    <p class="product-desc"><%= item.itemDescription %></p>
+                                    <%= cart.item.itemName %>
+                                    <h3><%= cart.itemName %></h3>
+                                    <p class="product-desc"><%= cart.itemDescription %></p>
                                 </div>
                             </div>
-                            <div class="item-price">$<%= item.itemPrice %></div>
+                            <div class="item-price">$<%= cart.itemPrice %></div>
                             <div class="item-quantity">
                                 <div class="quantity-control">
-                                    <button class="quantity-btn" onclick="updateQuantity('<%= item.itemID %>', 'decrease')">
+                                    <button class="quantity-btn" onclick="updateQuantity('<%= cart.itemID %>', 'decrease')">
                                         <i class="fas fa-minus"></i>
                                     </button>
-                                    <span class="quantity-value"><%= item.quantity || 1 %></span>
-                                    <button class="quantity-btn" onclick="updateQuantity('<%= item.itemID %>', 'increase')">
+                                    <span class="quantity-value"><%= cart.quantity || 1 %></span>
+                                    <button class="quantity-btn" onclick="updateQuantity('<%= cart.itemID %>', 'increase')">
                                         <i class="fas fa-plus"></i>
                                     </button>
                                 </div>
                             </div>
-                            <div class="item-total">$<%= (item.itemPrice * (item.quantity || 1)).toFixed(2) %></div>
+                            <div class="item-total">$<%= (cart.itemPrice * (cart.quantity || 1)).toFixed(2) %></div>
                             <div class="item-action">
-                                <button class="remove-btn" onclick="removeItem('<%= item.itemID %>')">
+                                <button class="remove-btn" onclick="removeItem('<%= cart.itemID %>')">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </div>
@@ -167,6 +167,36 @@
                 </div>
 
                 <!-- TODO: add code back here -->
+                <div class="order-summary-container">
+                    <h3>Order Summary</h3>
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span>$<%= cart.orderPrice %></span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Delivery Fee</span>
+                        <span>$5.00</span>
+                    </div>
+                    <% if (cart && cart.discount > 0) { %>
+                        <div class="summary-row discount">
+                            <span>Discount</span>
+                            <span>-$<%= cart.orderPrice + 5 %></span>
+                        </div>
+                    <% } else { %>
+                        <div class="summary-row discount hidden">
+                            <span>Discount</span>
+                            <span>-$0.00</span>
+                        </div>
+                    <% } %>
+                    <div class="summary-row total">
+                        <span>Total</span>
+                        <span>$<%= cart.orderPrice + 5  %></span>
+                    </div>
+                    <button class="checkout-btn" onclick= "location.href='/order/checkout'" >
+                        <%= (!cartItems || cartItems.length === 0) ? 'disabled' : '' %>
+                        Proceed to Checkout
+                    </button>
+             </div>
 
             </div>
         </div>

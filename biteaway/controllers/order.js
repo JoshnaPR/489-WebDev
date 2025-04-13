@@ -108,21 +108,22 @@ module.exports = {
         const currentStep = 1;
         const logged_in_user = 101;
 
-
         // what orderCart ejs does ->
         // 1. iterate through the cart and display through the item (from Cart)
         // 2. show total price of cart (from Order)
 
         // cartItems will return a list of cart instances belonging to userID
+        // access specific items by cartItems.item.itemID / itemName / etc, since cart is the relationship between order/item
+        // similarly, can access specific order items by cartItems.order.orderID / status / etc.
         const cartItems = await Cart.listCartByUser(logged_in_user);
-        console.log("cart instances: ", cartItems);
 
-        //here i am trying to get an array/list of all the items in the cart belonging to the current user
+        // console.log("cart instances: ", cartItems);
+
+        // cart will return the current active order (associated with the above items)
         const cart = await Order.findActiveOrder({userID : logged_in_user});
-        //here i want to find the current active order (associated with the above items)
 
-        console.log("order instance under userID, that is pending", cart);
-        console.log("-----")
+        // console.log("order instance under userID, that is pending", cart);
+        // console.log("-----")
 
         //leave empty - will not be used
         const promoCode = '';
