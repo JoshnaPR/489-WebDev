@@ -9,12 +9,6 @@ module.exports = {
     // handling reviews posted from the restaurant page
     leaveReview: async (ratingRange, reviewText, userID, restaurantID, res) => {
         console.log("Inside of leaveReview under review controller")
-        // // debugging 
-        // console.log("ratingRange: ", ratingRange)
-        // console.log("reviewText: ", reviewText)
-        // console.log("userID: ", userID)
-        // console.log("restaurantID: ", restaurantID)
-        // console.log("-----")
 
         try {
             // create new review 
@@ -32,7 +26,5 @@ module.exports = {
             res.redirect(`/restaurant/${restaurantID}/reviews?msg=new URLSearchParams(error.toString()).toString()`)
         }
         
-       
     }
-
 }

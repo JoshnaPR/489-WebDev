@@ -11,6 +11,7 @@ var restaurantRouter = require('./routes/restaurant');
 var userRouter = require('./routes/user');
 var adminRouter = require('./routes/admin');
 var orderRouter = require('./routes/order');
+var reviewRouter = require('./routes/review');
 
 //models,
 const User = require("./models/User");
@@ -52,18 +53,13 @@ app.use('/restaurant', restaurantRouter); //trisha's restaurant homepage
 app.use('/order', orderRouter); //joshna's ordering page
 app.use('/user', userRouter); //hannah's user profile
 app.use('/admin', adminRouter); //joshna's admin pages (order management)
+
 app.post("/order", orderRouter);
 
-async function setup() {
-  // associations for models
-  // User.associate({ Cart })
-  // Cuisine.associate({ Restaurant })
-  // Item.associate({ Restaurant, Order, Cart })
-  // Order.associate({ User, Item, Restaurant, Cart })
-  // Restaurant.associate({ Cuisine, Review, Item, Order })
-  // Review.associate({ User, Restaurant })
-  // Cart.associate({ Order, Item, User })
+app.use("/review", reviewRouter);
+app.post("/review", reviewRouter);
 
+async function setup() {
   // set up associations
   setUpAssociations()
 
