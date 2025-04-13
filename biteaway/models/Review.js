@@ -7,7 +7,7 @@ class Review extends Model {
 
     // associations
     // sources: https://sequelize.org/docs/v7/associations/belongs-to/ ; https://stackoverflow.com/questions/58823117/how-to-use-sequelize-belongsto
-    static associate = models => {
+    static associate (models) {
         
         // review belongs to specific user
         Review.belongsTo(models.User, {

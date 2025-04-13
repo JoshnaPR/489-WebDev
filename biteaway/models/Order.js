@@ -52,6 +52,7 @@ class Order extends Model {
 
     static async findActiveOrder({userID}) {
         try {
+            // console.log("FINDORDER userID", userID)
 
             const order = await Order.findOne({
                 where: {
@@ -128,7 +129,7 @@ class Order extends Model {
         }
     };
 
-    // getter function ; return list of reviews under userID
+    // getter function ; return list of orders under userID
     static async listOrderByUser({userID}) {
         // source: https://stackoverflow.com/questions/53757460/sequelize-findall-include-same-models-2-times-with-different-condition
         try {

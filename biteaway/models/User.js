@@ -4,7 +4,7 @@ const { Model, DataTypes } = require('sequelize')
 
 class User extends Model {
 
-    static associate = models => {
+    static associate (models) {
 
         // one-to-one relationship between user and cart
         User.hasOne(models.Cart, {
@@ -14,6 +14,7 @@ class User extends Model {
     
     };
 
+    
     // based on cms example, find user by primary key (userID)
     static async findUser(userID) {
         try {
@@ -89,5 +90,17 @@ User.init({
   sequelize, 
   modelName: 'User'
 });
+
+// moving associate to bottom?
+// static associate (models) {
+
+//     // one-to-one relationship between user and cart
+//     User.hasOne(models.Cart, {
+//         as: 'cart',
+//         foreignKey: 'userID'
+//     });
+
+// };
+
 
 module.exports = User

@@ -5,7 +5,7 @@ class Restaurant extends Model {
 
     // associations
     // sources: https://sequelize.org/docs/v7/associations/belongs-to/ ; https://stackoverflow.com/questions/58823117/how-to-use-sequelize-belongsto
-    static associate = models => {
+    static associate (models) {
         
         // restaurant has many cuisines
         Restaurant.hasMany(models.Cuisine, {

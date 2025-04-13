@@ -11,11 +11,13 @@ router.get("/", async function (req, res) {
     res.redirect('/order/cart')
 })
 
-router.post("/cart", (req, res) => {
-    const { restaurantID } = req.body;
+// router.post("/cart", (req, res) => {
+//     const { restaurantID } = req.body;
 
-    controller.getCart(restaurantID, res);
-})
+//     controller.getCart(restaurantID, res);
+// })
+
+router.get("/cart", controller.getCart);
 
 router.get("/checkout", async function (req, res) {
     const currentStep = 2;

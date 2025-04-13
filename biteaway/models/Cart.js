@@ -9,7 +9,7 @@ class Cart extends Model {
 
     // associations
     // sources: https://sequelize.org/docs/v7/associations/belongs-to/ ; https://stackoverflow.com/questions/58823117/how-to-use-sequelize-belongsto
-    static associate = models => {
+    static associate (models) {
 
         //Carts belongs to specific item and order
         Cart.belongsTo(models.Order, {
@@ -53,13 +53,19 @@ class Cart extends Model {
         }
     };
 
-    // getter function ; return list of reviews under userID
+    // getter function ; return cart for userID
     static async listCartByUser(userID) {
         // source: https://stackoverflow.com/questions/53757460/sequelize-findall-include-same-models-2-times-with-different-condition
         try {
             const list = await Cart.findAll({
-                where: userID,
+                where: { userID },
+                include: [{
+                    model: Item,
+                    as: 'item'
+                }]
             })
+
+            // console.log("DEBUG: ", list)
             
             return list
             

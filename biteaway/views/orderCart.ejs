@@ -54,6 +54,7 @@
                                     <!-- <img src="/images/food-item-<%= item.itemID %>.jpg" alt="<%= item.itemName %>"> -->
                                 </div>
                                 <div class="product-details">
+                                    <%= item.itemID %>
                                     <h3><%= item.itemName %></h3>
                                     <p class="product-desc"><%= item.itemDescription %></p>
                                 </div>
@@ -85,6 +86,7 @@
                     </div>
                 <% } %>
 
+                <!-- TODO: remove? -->
                 <% if (!cartItems || cartItems.length === 0) { %>
                     <!-- Cart Item Examples for Empty State -->
                     <div class="cart-item">
@@ -164,36 +166,8 @@
                     <% } %>
                 </div>
 
-                <div class="order-summary-container">
-                    <h3>Order Summary</h3>
-                    <div class="summary-row">
-                        <span>Subtotal</span>
-                        <span>$<%= cart.orderPrice %></span>
-                    </div>
-                    <div class="summary-row">
-                        <span>Delivery Fee</span>
-                        <span>$5.00</span>
-                    </div>
-                    <% if (cart && cart.discount > 0) { %>
-                        <div class="summary-row discount">
-                            <span>Discount</span>
-                            <span>-$<%= cart.orderPrice + 5 %></span>
-                        </div>
-                    <% } else { %>
-                        <div class="summary-row discount hidden">
-                            <span>Discount</span>
-                            <span>-$0.00</span>
-                        </div>
-                    <% } %>
-                    <div class="summary-row total">
-                        <span>Total</span>
-                        <span>$<%= cart.orderPrice + 5  %></span>
-                    </div>
-                    <button class="checkout-btn" onclick= "location.href='/order/checkout'" >
-                        <%= (!cartItems || cartItems.length === 0) ? 'disabled' : '' %>
-                        Proceed to Checkout
-                    </button>
-             </div>
+                <!-- TODO: add code back here -->
+
             </div>
         </div>
     </div>

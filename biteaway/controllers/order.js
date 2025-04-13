@@ -70,7 +70,6 @@ module.exports = {
                 activeOrder.orderPrice += Item.findByPk(itemID).itemPrice;
 
             }
-
         }
 
         // debugging
@@ -103,6 +102,8 @@ module.exports = {
     },
 
     getCart: async (restaurantID, res) => {
+        console.log("Inside of getCart function")
+        console.log("-----")
 
         const currentStep = 1;
         const logged_in_user = 101;
@@ -111,10 +112,17 @@ module.exports = {
         // what orderCart ejs does ->
         // 1. iterate through the cart and display through the item (from Cart)
         // 2. show total price of cart (from Order)
-        const cartItems = Cart.listCartByUser(logged_in_user);
+
+        // cartItems will return a list of cart instances belonging to userID
+        const cartItems = await Cart.listCartByUser(logged_in_user);
+        console.log("cart instances: ", cartItems);
+
         //here i am trying to get an array/list of all the items in the cart belonging to the current user
-        const cart = Order.findActiveOrder(logged_in_user);
+        const cart = await Order.findActiveOrder({userID : logged_in_user});
         //here i want to find the current active order (associated with the above items)
+
+        console.log("order instance under userID, that is pending", cart);
+        console.log("-----")
 
         //leave empty - will not be used
         const promoCode = '';
