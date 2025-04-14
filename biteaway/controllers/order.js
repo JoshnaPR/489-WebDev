@@ -112,6 +112,13 @@ module.exports = {
         //console.log("order instance under userID, that is pending", cart);
         // console.log("-----")
 
+        if (!cart) {
+            cart = {
+                items: [],
+                orderPrice: 0
+            };
+        }
+
         //leave empty - will not be used
         const promoCode = '';
         const promoMessage = '';
