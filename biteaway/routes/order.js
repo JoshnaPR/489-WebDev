@@ -20,6 +20,7 @@ router.get("/", async function (req, res) {
 
 // for post method
 router.post("/cart", controller.getCart);
+router.get("/cart", controller.getCart);
 
 router.get("/checkout", controller.getCheckout);
 

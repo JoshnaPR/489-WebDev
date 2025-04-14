@@ -129,12 +129,17 @@ module.exports = {
         const promoMessage = '';
 
         const cartItems = await Cart.listCartByUser(logged_in_user);
-        const cart = await Order.findActiveOrder({userID : logged_in_user});
+        let cart = await Order.findActiveOrder({userID : logged_in_user});
+        const user = await User.findUser(logged_in_user)
 
-        const user = '';
-        const selectedPayment = '';
+        if (!cart) {
+            cart = {
+                items: [],
+                orderPrice: 0
+            };
+        }
         
-        res.render('placeOrder', { currentStep, cartItems, promocode, promoMessage, cart, user, selectedPayment })
+        res.render('placeOrder', { currentStep, cartItems, promocode, promoMessage, cart, user })
     },
 
     confirmOrder: async (req, res) => {
