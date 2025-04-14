@@ -25,6 +25,8 @@ const setUpAssociations = require("./models/relation");
 
 // const fs = require("fs")
 const app = express();
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 //app.set("trust proxy", 1); // trust first proxy
 app.use(
   session({

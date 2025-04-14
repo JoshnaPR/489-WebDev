@@ -2,4 +2,4 @@
 biteaway/static/.DS_Store
 biteaway/database/biteawaydb.sqlite
 .vscode
-
+biteaway/node_modules/
