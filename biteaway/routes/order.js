@@ -20,24 +20,12 @@ router.get("/", async function (req, res) {
 
 // for post method
 router.post("/cart", controller.getCart);
+router.get("/cart", controller.getCart);
 
-router.get("/checkout", async function (req, res) {
-    const currentStep = 2;
-    const cartItems = 1;
-    const promocode = '';
-    const promoMessage = '';
-    const cart = '';
-    const user = '';
-    const selectedPayment = '';
+router.get("/checkout", controller.getCheckout);
 
-    res.render('placeOrder', { currentStep, cartItems, promocode, promoMessage, cart, user, selectedPayment })
-})
-
-router.get("/confirm", async function (req, res) {
-    
-    // TODO: implement
-    controller.confirmOrder(req, res)
-})
+router.get("/confirm", controller.confirmOrder);
+router.post("/confirm", controller.confirmOrder);
 
 //add an item to the cart
 router.post("/add2cart", (req, res) => {

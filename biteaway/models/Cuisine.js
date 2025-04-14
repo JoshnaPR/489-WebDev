@@ -1,8 +1,10 @@
 const sequelize = require('../db')
 const { Model, DataTypes } = require('sequelize')
 
+const Restaurant = require('./Restaurant');
+
 class Cuisine extends Model {
-    
+
     // associations
     // sources: https://sequelize.org/docs/v7/associations/belongs-to/ ; https://stackoverflow.com/questions/58823117/how-to-use-sequelize-belongsto
     static associate (models) {
@@ -13,7 +15,7 @@ class Cuisine extends Model {
         });
 
     };
-
+    
     // getter function ; using findOne due to composite primary key
     static async findCuisine({restaurantID, cuisineType}) {
         try {
@@ -76,5 +78,23 @@ Cuisine.init({
   sequelize, 
   modelName: 'Cuisine'
 });
+
+
+// // associations
+// // sources: https://sequelize.org/docs/v7/associations/belongs-to/ ; https://stackoverflow.com/questions/58823117/how-to-use-sequelize-belongsto
+// static associate (models) {
+//     // cuisine belongs to specific restaurant
+//     Cuisine.belongsTo(models.Restaurant, {
+//         as: 'restaurant',
+//         foreignKey: 'restaurantID'
+//     });
+
+// };
+
+// // cuisine belongs to specific restaurant
+// Cuisine.belongsTo(Restaurant, {
+//     as: 'restaurant',
+//     foreignKey: 'restaurantID'
+// });
 
 module.exports = Cuisine

@@ -1,266 +1,295 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Dashboard | Bite-A-Way</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/adminLanding.css">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/css/adminLanding.css" />
+  </head>
+  <body>
     <div class="container">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="sidebar-header">
-                <img src="../static/images/logo.png" alt="Bite-A-Way" class="logo">
-                <button class="sidebar-toggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-            
-            <div class="admin-info">
-                <div class="admin-avatar">A</div>
-                <div>
-                    <div class="admin-name">Admin User</div>
-                    <div class="admin-role">Super Admin</div>
-                </div>
-            </div>
-            
-            <ul class="nav-menu">
-                <li class="nav-item active">
-                    <a href="/admin/dashboard" class="nav-link">
-                        <span class="nav-icon"><i class="fas fa-th-large"></i></span>
-                        Dashboard
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/admin/orders" class="nav-link">
-                        <span class="nav-icon"><i class="fas fa-shopping-bag"></i></span>
-                        Orders
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/admin/restaurants" class="nav-link">
-                        <span class="nav-icon"><i class="fas fa-utensils"></i></span>
-                        Restaurants
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/admin/menu-items" class="nav-link">
-                        <span class="nav-icon"><i class="fas fa-hamburger"></i></span>
-                        Menu Items
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/admin/users" class="nav-link">
-                        <span class="nav-icon"><i class="fas fa-users"></i></span>
-                        Users
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/admin/reports" class="nav-link">
-                        <span class="nav-icon"><i class="fas fa-chart-bar"></i></span>
-                        Reports
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/admin/settings" class="nav-link">
-                        <span class="nav-icon"><i class="fas fa-cog"></i></span>
-                        Settings
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/logout" class="nav-link">
-                        <span class="nav-icon"><i class="fas fa-sign-out-alt"></i></span>
-                        Logout
-                    </a>
-                </li>
-            </ul>
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="sidebar-header">
+          <img src="../static/images/logo.png" alt="Bite-A-Way" class="logo" />
+          <button class="sidebar-toggle">
+            <i class="fas fa-bars"></i>
+          </button>
         </div>
-        
-        <!-- Main Content -->
-        <div class="main-content">
-            <div class="header">
-                <h1 class="page-title">Admin Dashboard</h1>
-                <div class="header-actions">
-                    <button>
-                        <i class="fas fa-sync-alt"></i> Refresh Data
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Dashboard Overview Cards -->
-            <div class="dashboard-cards">
-                <div class="card">
-                    <div class="card-header">
-                        <div>
-                            <div class="card-title">TOTAL ORDERS</div>
-                            <div class="card-value">254</div>
-                        </div>
-                        <div class="card-icon orders-icon">
-                            <i class="fas fa-shopping-bag"></i>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <span class="card-trend trend-up"><i class="fas fa-arrow-up"></i> 12%</span>
-                        <span>from last month</span>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <div class="card-header">
-                        <div>
-                            <div class="card-title">RESTAURANTS</div>
-                            <div class="card-value">9</div>
-                        </div>
-                        <div class="card-icon restaurants-icon">
-                            <i class="fas fa-utensils"></i>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <span class="card-trend trend-up"><i class="fas fa-arrow-up"></i> 5%</span>
-                        <span>from last month</span>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <div class="card-header">
-                        <div>
-                            <div class="card-title">ACTIVE USERS</div>
-                            <div class="card-value">20</div>
-                        </div>
-                        <div class="card-icon users-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <span class="card-trend trend-up"><i class="fas fa-arrow-up"></i> 18%</span>
-                        <span>from last month</span>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <div class="card-header">
-                        <div>
-                            <div class="card-title">REVENUE</div>
-                            <div class="card-value">$8,289</div>
-                        </div>
-                        <div class="card-icon revenue-icon">
-                            <i class="fas fa-dollar-sign"></i>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <span class="card-trend trend-up"><i class="fas fa-arrow-up"></i> 8%</span>
-                        <span>from last month</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Quick Actions Section -->
-            <div class="quick-actions">
-                <h2 class="section-title"><i class="fas fa-bolt"></i> Quick Actions</h2>
-                <div class="actions-grid">
-                    <a href="/admin/restaurants/add" class="action-card">
-                        <div class="action-icon">
-                            <i class="fas fa-plus-circle"></i>
-                        </div>
-                        <h3 class="action-title">Add Restaurant</h3>
-                        <p class="action-description">Register a new restaurant partner</p>
-                    </a>
-                    
-                    <a href="/admin/menu-items/add" class="action-card">
-                        <div class="action-icon">
-                            <i class="fas fa-hamburger"></i>
-                        </div>
-                        <h3 class="action-title">Add Menu Item</h3>
-                        <p class="action-description">Create new food items</p>
-                    </a>
-                    
-                    <a href="/admin/reports/sales" class="action-card">
-                        <div class="action-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <h3 class="action-title">Sales Report</h3>
-                        <p class="action-description">View latest sales data</p>
-                    </a>
-                    
-                    <a href="/admin/users/notifications" class="action-card">
-                        <div class="action-icon">
-                            <i class="fas fa-bell"></i>
-                        </div>
-                        <h3 class="action-title">Send Notification</h3>
-                        <p class="action-description">Push alerts to users</p>
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Recent Activity -->
-            <div class="recent-activity">
-                <h2 class="section-title"><i class="fas fa-history"></i> Recent Activity</h2>
-                <ul class="activity-list">
-                    <li class="activity-item">
-                        <div class="activity-icon">
-                            <i class="fas fa-utensils"></i>
-                        </div>
-                        <div class="activity-content">
-                            <p class="activity-text"><strong>Italian Delight</strong> restaurant was added to the platform</p>
-                            <p class="activity-time">Today, 10:45 AM</p>
-                        </div>
-                    </li>
-                    
-                    <li class="activity-item">
-                        <div class="activity-icon">
-                            <i class="fas fa-shopping-bag"></i>
-                        </div>
-                        <div class="activity-content">
-                            <p class="activity-text"><strong>Order #12458</strong> status changed to "Delivered"</p>
-                            <p class="activity-time">Today, 09:32 AM</p>
-                        </div>
-                    </li>
-                    
-                    <li class="activity-item">
-                        <div class="activity-icon">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="activity-content">
-                            <p class="activity-text"><strong>Sarah Miller</strong> registered as a new user</p>
-                            <p class="activity-time">Yesterday, 06:18 PM</p>
-                        </div>
-                    </li>
-                    
-                    <li class="activity-item">
-                        <div class="activity-icon">
-                            <i class="fas fa-exclamation-circle"></i>
-                        </div>
-                        <div class="activity-content">
-                            <p class="activity-text"><strong>System Alert:</strong> Database backup completed</p>
-                            <p class="activity-time">Yesterday, 02:00 AM</p>
-                        </div>
-                    </li>
-                    
-                    <li class="activity-item">
-                        <div class="activity-icon">
-                            <i class="fas fa-dollar-sign"></i>
-                        </div>
-                        <div class="activity-content">
-                            <p class="activity-text"><strong>Monthly report</strong> for March 2025 is available</p>
-                            <p class="activity-time">Apr 8, 11:15 AM</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+
+        <div class="admin-info">
+          <div class="admin-avatar">A</div>
+          <div>
+            <div class="admin-name">Admin User</div>
+            <div class="admin-role">Super Admin</div>
+          </div>
         </div>
+
+        <ul class="nav-menu">
+          <li class="nav-item active">
+            <a href="/admin/dashboard" class="nav-link">
+              <span class="nav-icon"><i class="fas fa-th-large"></i></span>
+              Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/admin/orders" class="nav-link">
+              <span class="nav-icon"><i class="fas fa-shopping-bag"></i></span>
+              Orders
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/admin/restaurants" class="nav-link">
+              <span class="nav-icon"><i class="fas fa-utensils"></i></span>
+              Restaurants
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/admin/menu-items" class="nav-link">
+              <span class="nav-icon"><i class="fas fa-hamburger"></i></span>
+              Menu Items
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/admin/users" class="nav-link">
+              <span class="nav-icon"><i class="fas fa-users"></i></span>
+              Users
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/admin/reports" class="nav-link">
+              <span class="nav-icon"><i class="fas fa-chart-bar"></i></span>
+              Reports
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/admin/settings" class="nav-link">
+              <span class="nav-icon"><i class="fas fa-cog"></i></span>
+              Settings
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/logout" class="nav-link">
+              <span class="nav-icon"><i class="fas fa-sign-out-alt"></i></span>
+              Logout
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <div class="header">
+          <h1 class="page-title">Admin Dashboard</h1>
+          <!-- <div class="header-actions">
+            <button><i class="fas fa-sync-alt"></i> Refresh Data</button>
+          </div> -->
+        </div>
+
+        <!-- Dashboard Overview Cards -->
+        <div class="dashboard-cards">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">TOTAL ORDERS</div>
+                <div class="card-value"><%= totalOrders %></div>
+              </div>
+              <div class="card-icon orders-icon">
+                <i class="fas fa-shopping-bag"></i>
+              </div>
+            </div>
+            <div class="card-footer">
+              <span class="card-trend trend-up"
+                ><i class="fas fa-arrow-up"></i> 12%</span
+              >
+              <span>from last month</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">RESTAURANTS</div>
+                <div class="card-value"><%= totalRestaurants %></div>
+              </div>
+              <div class="card-icon restaurants-icon">
+                <i class="fas fa-utensils"></i>
+              </div>
+            </div>
+            <div class="card-footer">
+              <span class="card-trend trend-up"
+                ><i class="fas fa-arrow-up"></i> 5%</span
+              >
+              <span>from last month</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">ACTIVE USERS</div>
+                <div class="card-value"><%= totalUsers %></div>
+              </div>
+              <div class="card-icon users-icon">
+                <i class="fas fa-users"></i>
+              </div>
+            </div>
+            <div class="card-footer">
+              <span class="card-trend trend-up"
+                ><i class="fas fa-arrow-up"></i> 18%</span
+              >
+              <span>from last month</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">REVENUE</div>
+                <div class="card-value">$<%= totalRevenue %></div>
+              </div>
+              <div class="card-icon revenue-icon">
+                <i class="fas fa-dollar-sign"></i>
+              </div>
+            </div>
+            <div class="card-footer">
+              <span class="card-trend trend-up"
+                ><i class="fas fa-arrow-up"></i> 8%</span
+              >
+              <span>from last month</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions Section -->
+        <div class="quick-actions">
+          <h2 class="section-title">
+            <i class="fas fa-bolt"></i> Quick Actions
+          </h2>
+          <div class="actions-grid">
+            <a href="/admin/restaurants" class="action-card">
+              <div class="action-icon">
+                <i class="fas fa-plus-circle"></i>
+              </div>
+              <h3 class="action-title">Add Restaurant</h3>
+              <p class="action-description">
+                Register a new restaurant partner
+              </p>
+            </a>
+
+            <a href="/admin/menu-items/add" class="action-card">
+              <div class="action-icon">
+                <i class="fas fa-hamburger"></i>
+              </div>
+              <h3 class="action-title">Add Menu Item</h3>
+              <p class="action-description">Create new food items</p>
+            </a>
+
+            <a href="/admin/reports/sales" class="action-card">
+              <div class="action-icon">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <h3 class="action-title">Sales Report</h3>
+              <p class="action-description">View latest sales data</p>
+            </a>
+
+            <!-- <a href="/admin/users/notifications" class="action-card">
+              <div class="action-icon">
+                <i class="fas fa-bell"></i>
+              </div>
+              <h3 class="action-title">Send Notification</h3>
+              <p class="action-description">Push alerts to users</p>
+            </a> -->
+          </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="recent-activity">
+          <h2 class="section-title">
+            <i class="fas fa-history"></i> Recent Activity
+          </h2>
+          <ul class="activity-list">
+            <li class="activity-item">
+              <div class="activity-icon">
+                <i class="fas fa-utensils"></i>
+              </div>
+              <div class="activity-content">
+                <p class="activity-text">
+                  <strong>Italian Delight</strong> restaurant was added to the
+                  platform
+                </p>
+                <p class="activity-time">Today, 10:45 AM</p>
+              </div>
+            </li>
+
+            <li class="activity-item">
+              <div class="activity-icon">
+                <i class="fas fa-shopping-bag"></i>
+              </div>
+              <div class="activity-content">
+                <p class="activity-text">
+                  <strong>Order #12458</strong> status changed to "Delivered"
+                </p>
+                <p class="activity-time">Today, 09:32 AM</p>
+              </div>
+            </li>
+
+            <li class="activity-item">
+              <div class="activity-icon">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="activity-content">
+                <p class="activity-text">
+                  <strong>Sarah Miller</strong> registered as a new user
+                </p>
+                <p class="activity-time">Yesterday, 06:18 PM</p>
+              </div>
+            </li>
+
+            <li class="activity-item">
+              <div class="activity-icon">
+                <i class="fas fa-exclamation-circle"></i>
+              </div>
+              <div class="activity-content">
+                <p class="activity-text">
+                  <strong>System Alert:</strong> Database backup completed
+                </p>
+                <p class="activity-time">Yesterday, 02:00 AM</p>
+              </div>
+            </li>
+
+            <li class="activity-item">
+              <div class="activity-icon">
+                <i class="fas fa-dollar-sign"></i>
+              </div>
+              <div class="activity-content">
+                <p class="activity-text">
+                  <strong>Monthly report</strong> for March 2025 is available
+                </p>
+                <p class="activity-time">Apr 8, 11:15 AM</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
 
     <script>
-        // Sidebar toggle functionality
-        document.querySelector('.sidebar-toggle').addEventListener('click', function() {
-            document.querySelector('.sidebar').classList.toggle('active');
-            document.querySelector('.main-content').classList.toggle('pushed');
-        });
+      // Sidebar toggle functionality
+      document.querySelector('.sidebar-toggle').addEventListener('click', function() {
+          document.querySelector('.sidebar').classList.toggle('active');
+          document.querySelector('.main-content').classList.toggle('pushed');
+      });
     </script>
-</body>
+  </body>
 </html>
