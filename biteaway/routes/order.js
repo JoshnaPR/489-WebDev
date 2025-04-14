@@ -17,7 +17,9 @@ router.get("/", async function (req, res) {
 //     controller.getCart(restaurantID, res);
 // })
 
-router.get("/cart", controller.getCart);
+
+// for post method
+router.post("/cart", controller.getCart);
 
 router.get("/checkout", async function (req, res) {
     const currentStep = 2;
@@ -32,14 +34,9 @@ router.get("/checkout", async function (req, res) {
 })
 
 router.get("/confirm", async function (req, res) {
-    const currentStep = 3;
-    const cartItems = 1;
-    const promoCode = '';
-    const promoMessage = '';
-    const cart = '';
-    const user = '';
-
-    res.render('orderConfirmation', { currentStep, cartItems, promoCode, promoMessage, cart, user })
+    
+    // TODO: implement
+    controller.confirmOrder(req, res)
 })
 
 //add an item to the cart

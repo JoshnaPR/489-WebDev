@@ -132,6 +132,30 @@ module.exports = {
         //console.log(cartItems)
 
         res.render('orderCart', { currentStep, cartItems, promoCode, promoMessage, cart })
+    },
+
+    confirmOrder: async (req, res) => {
+        console.log("inside of controller's confirmOrder")
+        console.log("-----")
+
+        // TODO: update to display dynamic user
+        const currentStep = 3;
+        const logged_in_user = 101;
+
+        // cartItems will return a list of cart instances belonging to userID
+        const cartItems = await Cart.listCartByUser(logged_in_user);
+
+        // leave empty - will not be used
+        const promoCode = '';
+        const promoMessage = '';
+
+        // cart will return the current active order (associated with the above items)
+        const cart = await Order.findActiveOrder({userID : logged_in_user});
+
+        // finding user
+        const user = await User.findUser(logged_in_user)
+        
+        res.render('orderConfirmation', { currentStep, cartItems, promoCode, promoMessage, cart, user })
     }
 
 }
