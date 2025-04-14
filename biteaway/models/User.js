@@ -1,8 +1,6 @@
 const sequelize = require('../db')
 const { Model, DataTypes } = require('sequelize')
 
-const Cart = require('./Cart');
-
 class User extends Model {
 
     static associate (models) {

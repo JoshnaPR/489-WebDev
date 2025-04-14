@@ -50,11 +50,47 @@ module.exports = {
             const itemNum = await Order.countItemsByOrder({ orderID: order.orderID });
             order.itemNum = itemNum;
 
+            // console.log("itemNum: ", itemNum)
+
             // get list of items under order
             const orderItems = await Order.listItems({ orderID: order.orderID });
+
+            // console.log("orderItems: ", orderItems)
             order.items = orderItems
         }
 
         res.render('userOrderHistory', { user, reviewNum, orders })
     }, 
+
+    // POST function for updating user ifnormation
+    updateUserInformation: async (userID, firstName, lastName, country, number, email, address, password, res) => {
+        const user = await User.findUser(userID);    
+        const reviewNum = await Review.countReviews({ userID: userID });      // to display number of reviews
+        
+        // update information accordingly
+        if ( firstName ) {
+            user.firstName = firstName
+        }
+        if ( lastName ) {
+            user.lastName = lastName
+        }
+        if ( country ) {
+            user.countryCode = country
+        }
+        if ( number ) {
+            user.phoneNumber = number
+        }
+        if ( email ) {
+            user.email = email
+        }
+        if ( address ) {
+            user.userAddress = address
+        }
+        if ( password ) {
+            user.password = password
+        }        
+        
+        res.render('userSettings', { user, reviewNum })
+    }
+
 }

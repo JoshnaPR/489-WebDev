@@ -1,207 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title><%= user.firstName %> <%= user.lastName %>'s Profile | Bite-a-Way</title>
 
-        <!-- for star icon -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= user.firstName %>
+            <%= user.lastName %>'s Profile | Bite-a-Way
+    </title>
 
-        <!-- bootstrap -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        
-        <!-- css file -->
-        <link rel="stylesheet" href="/static/css/user.css">
-    </head>
+    <!-- for star icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <body>
-        
-        <!-- profile header -->
-        <div class="jumbotron profile-col shadow">
-            <div class=".d-inline-flex bottom-align-text">
-                
-                <!-- profile picture -->
-                <div class="image-cropper">
-                    <!-- naming convention for icons:  -->
-                    <img class="profile-img" src="/static/img/user/<%= user.userID %>.jpg" alt=""/>
-                </div>
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-                <!-- user name -->
-                <p class="profile-label">
-                    <%= user.firstName %> <%= user.lastName %>
-                </p>
+    <!-- css file -->
+    <link rel="stylesheet" href="/static/css/user.css">
+</head>
 
-                <!-- user location -->
-                <p class="profile-label-2">
-                    <img class="location-img" src="/static/img/location.png" alt=""/>
-                    <%= user.userAddress %>
-                </p>
+<body>
 
-                <% if (user.isStarUser) { %>
-                    <img src="/static/img/hotel_class_35dp_FFFFFF_FILL0_wght400_GRAD0_opsz40.svg" style="position: absolute;
-    bottom: 0;" />
-                    <% } %>
+    <!-- profile header -->
+    <div class="jumbotron profile-col shadow">
+        <div class=".d-inline-flex bottom-align-text">
 
-                <!-- number of reviews -->
-                <div class="border-start px-3 profile-header-review justify-content-center">
-                    <!-- review statistics -->
-                    <h2><%= reviewNum %></h2>
-                    <p class="profile-review-label">
-                        Review(s)
-                    </p>
-                </div>
+            <!-- profile picture -->
+            <div class="image-cropper">
+                <!-- naming convention for icons:  -->
+                <img class="profile-img" src="/static/img/user/<%= user.userID %>.jpg" alt="" />
             </div>
+
+            <!-- user name -->
+            <p class="profile-label">
+                <%= user.firstName %>
+                    <%= user.lastName %>
+            </p>
+
+            <!-- user location -->
+            <p class="profile-label-2">
+                <img class="location-img" src="/static/img/location.png" alt="" />
+                <%= user.userAddress %>
+            </p>
+
+            <% if (user.isStarUser) { %>
+                <img src="/static/img/hotel_class_35dp_FFFFFF_FILL0_wght400_GRAD0_opsz40.svg" style="position: absolute;
+    bottom: 0;" />
+                <% } %>
+
+                    <!-- number of reviews -->
+                    <div class="border-start px-3 profile-header-review justify-content-center">
+                        <!-- review statistics -->
+                        <h2>
+                            <%= reviewNum %>
+                        </h2>
+                        <p class="profile-review-label">
+                            Review(s)
+                        </p>
+                    </div>
         </div>
+    </div>
 
-        <!-- main container box for page components -->
-        <div class="container profile-content-box shadow p-3">
-            <div class="row">
+    <!-- main container box for page components -->
+    <div class="container profile-content-box shadow p-3">
+        <div class="row">
 
-                <!-- left sidebar -->
-                <div class="col-3">
-                    
-                    <!-- user information -->
-                    <div class="profile-sidebar shadow p-3 mb-3">
-                        <h6><strong>User Information</strong></h6>
+            <!-- left sidebar -->
+            <div class="col-3">
 
-                        <!-- currently used page -->
-                        <div class="sidebar-select align-items-center">
-                            <a href="/user/<%= user.userID %>/settings">Settings / Profile</a><br>
-                        </div>
+                <!-- user information -->
+                <div class="profile-sidebar shadow p-3 mb-3">
+                    <h6><strong>User Information</strong></h6>
 
-                        <a href="/user/<%= user.userID %>">Reviews</a><br>
-                        <a href="/user/<%= user.userID %>/recently-viewed">Recently Viewed</a>
+                    <!-- currently used page -->
+                    <div class="sidebar-select align-items-center">
+                        <a href="/user/<%= user.userID %>/settings">Settings / Profile</a><br>
                     </div>
 
-                    <!-- order information -->
-                    <div class="profile-sidebar shadow p-3 mb-3">
-                        <h6><strong>Order Information</strong></h6>
-                        <a href="/user/<%= user.userID %>/favorites">Favorites</a><br>
-                        <a href="/user/<%= user.userID %>/order-history">Order History</a>
-                    </div>
-
-                    <!-- payment information -->
-                    <div class="profile-sidebar shadow p-3 mb-3">
-                        <h6><strong>Payment Information</strong></h6>
-                        <a>Manage Cards</a><br>
-                        <a>Manage Wallets</a>
-                    </div>
-
+                    <a href="/user/<%= user.userID %>">Reviews</a><br>
+                    <a href="/user/<%= user.userID %>/recently-viewed">Recently Viewed</a>
                 </div>
 
-                <!-- settings content -->
-                <div class="col-9">
+                <!-- order information -->
+                <div class="profile-sidebar shadow p-3 mb-3">
+                    <h6><strong>Order Information</strong></h6>
+                    <a href="/user/<%= user.userID %>/favorites">Favorites</a><br>
+                    <a href="/user/<%= user.userID %>/order-history">Order History</a>
+                </div>
 
-                     <!-- settings page -->
-                     <div class="settings-container shadow p-3">
-                        <h3 class="settings-title"><strong>SETTINGS & PROFILE</strong></h3>
-                        <hr>
+                <!-- payment information -->
+                <div class="profile-sidebar shadow p-3 mb-3">
+                    <h6><strong>Payment Information</strong></h6>
+                    <a>Manage Cards</a><br>
+                    <a>Manage Wallets</a>
+                </div>
 
+            </div>
+
+            <!-- settings content -->
+            <div class="col-9">
+
+                <!-- settings page -->
+                <div class="settings-container shadow p-3">
+                    <h3 class="settings-title"><strong>SETTINGS & PROFILE</strong></h3>
+                    <hr>
+
+                    <form action="" method="POST">
                         <!-- first and last name -->
-                         <div class="row">
+                        <div class="row">
+                            <input type="hidden" name="userID" value=<%= user.userID %>>
+
                             <!-- first name -->
                             <div class="col-6">
-                                <form action="" method="" onsubmit="">
-                                    <h6 class="settings-label"><strong>First Name</strong></h6>
-                                    <input 
-                                        type="text" 
-                                        id="first-name" 
-                                        name="first-name" 
-                                        placeholder="<%= user.firstName %>" 
-                                        class="name-input";
-                                    />
-                                </form>
+                                <h6 class="settings-label"><strong>First Name</strong></h6>
+                                <input type="text" id="firstName" name="firstName" placeholder="<%= user.firstName %>"
+                                    class="name-input" ; />
                             </div>
-                            
+
                             <!-- last name -->
                             <div class="col-6">
-                                <form action="" method="" onsubmit="">
-                                    <h6 class="settings-label"><strong>Last Name</strong></h6>
-                                    <input 
-                                        type="text" 
-                                        id="last-name" 
-                                        name="last-name" 
-                                        placeholder="<%= user.lastName %>" 
-                                        class="name-input";
-                                    />
-                                </form>
+                                <h6 class="settings-label"><strong>Last Name</strong></h6>
+                                <input type="text" id="lastName" name="lastName" placeholder="<%= user.lastName %>"
+                                    class="name-input" ; />
                             </div>
-                         </div>
+                        </div>
 
-                         <!-- country and phone number -->
-                         <div class="row">
+                        <!-- country and phone number -->
+                        <div class="row">
                             <!-- country; from bootstrap docs -->
                             <div class="col-3 text-start">
-                                <form action="" method="" onsubmit="">
-                                    <h6 class="settings-label"><strong>Country</strong></h6>
-                                    <input 
-                                        type="text" 
-                                        id="country" 
-                                        name="country" 
-                                        placeholder="<%= user.countryCode %>" 
-                                        class="country-input";
-                                    />
-                                </form>
+                                <h6 class="settings-label"><strong>Country</strong></h6>
+                                <input type="text" id="country" name="country" placeholder="<%= user.countryCode %>"
+                                    class="country-input" ; />
                             </div>
 
                             <!-- phone number -->
                             <div class="col-9">
-                                <form action="" method="" onsubmit="">
-                                    <h6 class="settings-label"><strong>Phone Number</strong></h6>
-                                    <input 
-                                        type="text" 
-                                        id="number" 
-                                        name="number" 
-                                        placeholder="<%= user.phoneNumber %>" 
-                                        class="phone-number-input";
-                                    />
-                                </form>
+                                <h6 class="settings-label"><strong>Phone Number</strong></h6>
+                                <input type="text" id="number" name="number" placeholder="<%= user.phoneNumber %>"
+                                    class="phone-number-input" ; />
                             </div>
-                         </div>
+                        </div>
 
                         <!-- email -->
                         <div class="col-12">
-                            <form action="" method="" onsubmit="">
-                                <h6 class="settings-label"><strong>Email Address</strong></h6>
-                                <input 
-                                    type="text" 
-                                    id="email" 
-                                    name="email" 
-                                    placeholder="<%= user.email %>" 
-                                    class="email-input";
-                                />
-                            </form>
+                            <h6 class="settings-label"><strong>Email Address</strong></h6>
+                            <input type="text" id="email" name="email" placeholder="<%= user.email %>"
+                                class="email-input" ; />
+                        </div>
+
+                        <!-- user address -->
+                        <div class="col-12">
+                            <h6 class="settings-label"><strong>Delivery Address</strong></h6>
+                            <input type="text" id="address" name="address" placeholder="<%= user.userAddress %>"
+                                class="email-input" ; />
                         </div>
 
                         <!-- password -->
                         <div class="col-12">
-                            <form action="" method="" onsubmit="">
-                                <h6 class="settings-label"><strong>Password</strong></h6>
-                                <input 
-                                    type="text" 
-                                    id="password" 
-                                    name="password" 
-                                    placeholder="***********" 
-                                    class="email-input";
-                                />
-                            </form>
+                            <h6 class="settings-label"><strong>Password</strong></h6>
+                            <input type="text" id="password" name="password" placeholder="***********"
+                                class="email-input" ; />
                         </div>
 
-                        <p class="password-text">Change Password?</p>
+                         <!-- update information button -->
+                        <button type="submit" class="btn btn-primary log-out-btn">Update Information</button>
+                    </form>
 
-                        <!-- log out button -->
-                        <button type="button" class="btn btn-primary log-out-btn">Log Out</button>
-                    </div>
+                
+                    <!-- log out button -->
+                    <button type="button" class="btn btn-primary log-out-btn">Log Out</button>
                 </div>
+            </div>
 
 
-              </div>
         </div>
+    </div>
 
-        
-        <!-- keep this here for the bootstrap -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    </body>
 
-    </html>
+    <!-- keep this here for the bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
