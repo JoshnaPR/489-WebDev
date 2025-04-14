@@ -4,7 +4,9 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const sequelize = require('./db')
-
+const app = express();
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 //routes,
 var indexRouter = require('./routes/index');
 var restaurantRouter = require('./routes/restaurant');
@@ -24,9 +26,7 @@ const Cart = require("./models/Cart");
 const setUpAssociations = require("./models/relation");
 
 // const fs = require("fs")
-const app = express();
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
+
 //app.set("trust proxy", 1); // trust first proxy
 app.use(
   session({
@@ -38,7 +38,7 @@ app.use(
 );
 
 //for body parser
-app.use(bodyParser.urlencoded());
+//app.use(bodyParser.urlencoded());
 
 //static folder for css and images
 app.use("/static/", express.static("static"))

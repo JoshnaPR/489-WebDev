@@ -45,20 +45,33 @@ module.exports = {
     },
     // POST METHOD to add home settings
     addHomeSettings: async (req, res) => {
-        try {
-            const { heroTitle, heroDescription, heroButtonText } = req.body;
-            console.log("Received data:", req.body);
+        console.log("Request body:", req.body);
 
-            const newSettings = await HomeSettings.create({
-                heroTitle,
-                heroDescription,
-                heroButtonText
-            });
-            console.log("New settings created:", newSettings);
-            // Render the adminSettings page with the newly created settings
+        try {
+            // Destructure the values from the request body (form data)
+            const { heroTitle, heroDescription, heroButtonText } = req.body;
+
+            // Check if the HomeSettings entry exists
+            let homeSettings = await HomeSettings.findOne();
+            if (homeSettings) {
+                // If the settings exist, update them
+                homeSettings.heroTitle = heroTitle;
+                homeSettings.heroDescription = heroDescription;
+                homeSettings.heroButtonText = heroButtonText;
+                await homeSettings.save();  // Save the updated settings
+            } else {
+                // If no settings exist, create a new one
+                homeSettings = await HomeSettings.create({
+                    heroTitle,
+                    heroDescription,
+                    heroButtonText
+                });
+            }
+
+            // After saving or updating the settings, render the page with the updated settings
             res.render('adminSetting', {
-                message: "Home settings added successfully.",
-                homeSettings: newSettings
+                message: "Home settings updated successfully.",
+                homeSettings
             });
         } catch (error) {
             console.error("Error adding home settings:", error);
