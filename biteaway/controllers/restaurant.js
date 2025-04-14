@@ -30,8 +30,9 @@ module.exports = {
         const restaurant = await Restaurant.findRestaurant(req.params.id);
         const cuisines = await Cuisine.listCuisinesByRestaurant({ restaurantID: req.params.id })     // to display cuisine types
         const items = await Item.listItemsByRestaurant({ restaurantID: req.params.id })              // to display items from restaurant menu
-        const user = await User.findUser(userID);
-        res.render('restaurantHome', { restaurant, cuisines, reviews, items, user });
+        const user = await User.findUser(req.session.userId);
+
+        res.render('restaurantMenu', { restaurant, cuisines, items, user });
 
     },
 
@@ -41,8 +42,7 @@ module.exports = {
         const cuisines = await Cuisine.listCuisinesByRestaurant({ restaurantID: req.params.id})     // to display cuisine types
         const reviews = await Review.listReviewsByRestaurant({ restaurantID: req.params.id });      // to display review data for home page
         const users = await User.findAll()
-        const user = await User.findUser(userID);
-        res.render('restaurantHome', { restaurant, cuisines, reviews, items, user });
-
+        const user = await User.findUser(req.params.id);
+        res.render('restaurantReviews', { restaurant, cuisines, reviews, user, users });
     }
 }
