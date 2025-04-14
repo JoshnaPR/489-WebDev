@@ -60,6 +60,7 @@
                         <!-- TODO: update delivery time, for now just adding thirty minutes  -->
                         <!-- https://stackoverflow.com/questions/1197928/how-to-add-30-minutes-to-a-javascript-date-object -->
                         <% const deliveryTime = new Date(); %>
+                        <% deliveryTime.setTime(cart.orderDate.getTime() + (30 * 60 * 1000)) %>
                         <span id="deliveryDate"><%= deliveryTime %></span>
                     
                     </div>
@@ -83,6 +84,7 @@
                 </div>
                 
                 <div class="action-buttons">
+                    <!-- TODO: fix the hyperkink to correct orer page -->
                     <a class="button primary-button" href="/track/< orderNumber %>">Track Order</a>
                     <a class="button secondary-button" href="/">Continue Shopping</a>
                 </div>
