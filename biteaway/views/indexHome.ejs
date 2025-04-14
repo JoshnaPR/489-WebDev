@@ -29,30 +29,39 @@
         <header class="hero">
           <div class="hero-text">
             <h1><%= homeSettings.heroTitle %></h1>
-            <p>Your favorite food delivered fresh & fast, every time.</p>
-            <a href="#features" class="hero-btn">Explore Menu</a>
+            <p><%= homeSettings.heroDescription %></p>
+            <a href="#features" class="hero-btn"><%= homeSettings.heroButtonText %></a>
           </div>
           <img src="/static/img/index/main.jpg" alt="Food Delivery" class="hero-img"/>
         </header>
       
         <!-- Features Section -->
-        <section id="features" class="features">
+      <!-- Features Section -->
+      <section id="features" class="features">
+        <% if (homeSettings.featureTitle1 && homeSettings.featureDescription1) { %>
           <div class="feature-card">
-            <img src="/static/img/index/icon/delivery_icon.jpg" alt="Fast Delivery"/>
-            <h3>Fast Delivery</h3>
-            <p>No more long waits. We bring food hot to your doorstep in minutes.</p>
+            <img src="/static/img/index/icon/delivery_icon.jpg" alt="Feature Icon"/>
+            <h3><%= homeSettings.featureTitle1 %></h3>
+            <p><%= homeSettings.featureDescription1 %></p>
           </div>
+        <% } %>
+      
+        <% if (homeSettings.featureTitle2 && homeSettings.featureDescription2) { %>
           <div class="feature-card">
-            <img src="/static/img/index/icon/var.png" alt="Wide Variety"/>
-            <h3>Endless Choices</h3>
-            <p>From sushi to shawarma, discover hundreds of local favorites.</p>
+            <img src="/static/img/index/icon/delivery_icon.jpg" alt="Feature Icon"/>
+            <h3><%= homeSettings.featureTitle2 %></h3>
+            <p><%= homeSettings.featureDescription2 %></p>
           </div>
+        <% } %>
+      
+        <% if (homeSettings.featureTitle3 && homeSettings.featureDescription3) { %>
           <div class="feature-card">
-            <img src="/static/img/index/icon/checkout.jpg" alt="Secure Checkout"/>
-            <h3>Secure Checkout</h3>
-            <p>Pay safely and easily with our encrypted, one-click payments.</p>
+            <img src="/static/img/index/icon/delivery_icon.jpg" alt="Feature Icon"/>
+            <h3><%= homeSettings.featureTitle3 %></h3>
+            <p><%= homeSettings.featureDescription3 %></p>
           </div>
-        </section>
+        <% } %>
+      </section>
       
          <!-- Restraunts Section -->
          <section class="partners-carousel-section">

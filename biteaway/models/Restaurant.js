@@ -1,4 +1,4 @@
-const sequelize = require('../db')
+const sequelize  = require('../db')
 const { Model, DataTypes } = require('sequelize')
 
 class Restaurant extends Model {
