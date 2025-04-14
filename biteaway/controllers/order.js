@@ -52,7 +52,10 @@ module.exports = {
             });
 
             //update the order details by adding the item price to the total price
-            newOrder.orderPrice += Item.findByPk(itemID).itemPrice;
+            const itemtemp = await Item.findByPk(itemID);
+            newOrder.orderPrice += itemtemp.itemPrice;
+            await newOrder.save();
+            console.log(newOrder.orderPrice)
         }
         else {
             //there is a active order, add the item to that active order
@@ -67,34 +70,18 @@ module.exports = {
                     orderID: activeOrder.orderID
                 });
 
-                activeOrder.orderPrice += Item.findByPk(itemID).itemPrice;
+                const itemtemp = await Item.findByPk(itemID);
+                activeOrder.orderPrice += itemtemp.itemPrice;
+                console.log(activeOrder.orderPrice)
+                await activeOrder.save();
 
             }
         }
-
-        // debugging
-        // console.log("Order has been created.")
-        // console.log("OrderID: ", newOrder.orderID)
-        // console.log("UserID: ", newOrder.userID)
-        // console.log("RestaurantID: ", newOrder.restaurantID)
-        // console.log("OrderDate: ", newOrder.orderDate)
-        // console.log("OrderPrice: ", newOrder.orderPrice)
-        // console.log("UserAddress: ", newOrder.userAddress)
-        // console.log("Status: ", newOrder.status)
-        // console.log("-----")
 
         //cart ->
         //orderID - randomly generated
         //itemID - from the button
         //userID - the user that is logged in rn
-
-        // TODO: update cart, probably have a cart instance already existing per user account
-        // remove items once order is done?
-
-        // debugging
-        // console.log("UserID: ", newCart.userID)
-        // console.log("ItemID: ", newCart.itemID)
-        // console.log("orderID: ", newCart.orderID)
 
         // redirect user back to restaurant
         // can edit the url accordingly/similar to cms examples if you want (and try/catch for error, check review.js)
@@ -122,7 +109,7 @@ module.exports = {
         // cart will return the current active order (associated with the above items)
         const cart = await Order.findActiveOrder({userID : logged_in_user});
 
-        // console.log("order instance under userID, that is pending", cart);
+        //console.log("order instance under userID, that is pending", cart);
         // console.log("-----")
 
         //leave empty - will not be used
@@ -132,6 +119,22 @@ module.exports = {
         //console.log(cartItems)
 
         res.render('orderCart', { currentStep, cartItems, promoCode, promoMessage, cart })
+    },
+
+    getCheckout: async (req, res) => {
+        const currentStep = 2;
+        const logged_in_user = 101;
+
+        const promocode = '';
+        const promoMessage = '';
+
+        const cartItems = await Cart.listCartByUser(logged_in_user);
+        const cart = await Order.findActiveOrder({userID : logged_in_user});
+
+        const user = '';
+        const selectedPayment = '';
+        
+        res.render('placeOrder', { currentStep, cartItems, promocode, promoMessage, cart, user, selectedPayment })
     },
 
     confirmOrder: async (req, res) => {

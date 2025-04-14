@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,11 +11,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Original CSS - keeping your custom styling -->
     <link rel="stylesheet" href="/static/css/orderCart.css">
-    
+
 </head>
 
 <body>
-   <div class="container"> 
+    <div class="container">
         <header class="checkout-header">
             <h1>Your Cart</h1>
             <div class="checkout-steps">
@@ -41,114 +42,37 @@
                 <div class="cart-items-header">
                     <div class="item-product">Product</div>
                     <div class="item-price">Price</div>
-                    <div class="item-quantity">Quantity</div>
-                    <div class="item-total">Total</div>
                     <div class="item-action"></div>
                 </div>
 
-                <% if (cartItems && cartItems.length > 0) { %>
+                <% if (cartItems && cartItems.length> 0) { %>
                     <% cartItems.forEach(function(cart) { %>
                         <div class="cart-item" data-item-id="<%= cart.itemID %>">
                             <div class="item-product">
-                                <div class="product-image">
-                                    <!-- <img src="/images/food-item-<%= cart.itemID %>.jpg" alt="<%= cart.itemName %>"> -->
-                                </div>
                                 <div class="product-details">
-                                    <%= cart.item.itemName %>
-                                    <h3><%= cart.itemName %></h3>
-                                    <p class="product-desc"><%= cart.itemDescription %></p>
+                                    <h3>
+                                        <%= cart.item.itemName %>
+                                    </h3>
+                                    <p class="product-desc">
+                                        <%= cart.item.itemDescription %>
+                                    </p>
                                 </div>
                             </div>
-                            <div class="item-price">$<%= cart.itemPrice %></div>
-                            <div class="item-quantity">
-                                <div class="quantity-control">
-                                    <button class="quantity-btn" onclick="updateQuantity('<%= cart.itemID %>', 'decrease')">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                    <span class="quantity-value"><%= cart.quantity || 1 %></span>
-                                    <button class="quantity-btn" onclick="updateQuantity('<%= cart.itemID %>', 'increase')">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
-                                </div>
+                            <div class="item-price">$<%= cart.item.itemPrice %>
                             </div>
-                            <div class="item-total">$<%= (cart.itemPrice * (cart.quantity || 1)).toFixed(2) %></div>
                             <div class="item-action">
                                 <button class="remove-btn" onclick="removeItem('<%= cart.itemID %>')">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </div>
                         </div>
-                    <% }); %>
-                <% } else { %>
-                    <div class="empty-cart-message">
-                        <p>Your cart is empty</p>
-                        <a href="/menu" class="btn">Browse Menu</a>
-                    </div>
-                <% } %>
-
-                <!-- TODO: remove? -->
-                <% if (!cartItems || cartItems.length === 0) { %>
-                    <!-- Cart Item Examples for Empty State -->
-                    <div class="cart-item">
-                        <div class="item-product">
-                            <div class="product-image">
-                                <!-- <img src="/images/food-item.jpg" alt="Food Item"> -->
-                            </div>
-                            <div class="product-details">
-                                <h3>Margherita Pizza</h3>
-                                <p class="product-desc">Classic pizza with tomato sauce and mozzarella cheese</p>
-                            </div>
-                        </div>
-                        <div class="item-price">$10.99</div>
-                        <div class="item-quantity">
-                            <div class="quantity-control">
-                                <button class="quantity-btn" onclick="updateQuantity('sample_item_1', 'decrease')">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                                <span class="quantity-value">2</span>
-                                <button class="quantity-btn" onclick="updateQuantity('sample_item_1', 'increase')">
-                                    <i class="fas fa-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="item-total">$21.98</div>
-                        <div class="item-action">
-                            <button class="remove-btn" onclick="removeItem('sample_item_1')">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="cart-item">
-                        <div class="item-product">
-                            <div class="product-image">
-                                <!-- <img src="/images/food-item.jpg" alt="Food Item"> -->
-                            </div>
-                            <div class="product-details">
-                                <h3>Chicken Caesar Salad</h3>
-                                <p class="product-desc">Fresh romaine lettuce with grilled chicken and Caesar dressing</p>
-                            </div>
-                        </div>
-                        <div class="item-price">$15.99</div>
-                        <div class="item-quantity">
-                            <div class="quantity-control">
-                                <button class="quantity-btn" onclick="updateQuantity('sample_item_2', 'decrease')">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                                <span class="quantity-value">1</span>
-                                <button class="quantity-btn" onclick="updateQuantity('sample_item_2', 'increase')">
-                                    <i class="fas fa-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="item-total">$15.99</div>
-                        <div class="item-action">
-                            <button class="remove-btn" onclick="removeItem('sample_item_2')">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </div>
-                    </div>
-                <% } %>
+                        <% }); %>
+                            <% } else { %>
+                                <div class="empty-cart-message">
+                                    <p>Your cart is empty</p>
+                                    <a href="/menu" class="btn">Browse Menu</a>
+                                </div>
+                                <% } %>
             </div>
 
             <div class="cart-summary-section">
@@ -163,7 +87,7 @@
                         <div class="promo-message <%= promoValid ? 'valid' : 'invalid' %>">
                             <%= promoMessage %>
                         </div>
-                    <% } %>
+                        <% } %>
                 </div>
 
                 <!-- TODO: add code back here -->
@@ -177,35 +101,35 @@
                         <span>Delivery Fee</span>
                         <span>$5.00</span>
                     </div>
-                    <% if (cart && cart.discount > 0) { %>
+                    <% if (cart && cart.discount> 0) { %>
                         <div class="summary-row discount">
                             <span>Discount</span>
                             <span>-$<%= cart.orderPrice + 5 %></span>
                         </div>
-                    <% } else { %>
-                        <div class="summary-row discount hidden">
-                            <span>Discount</span>
-                            <span>-$0.00</span>
-                        </div>
-                    <% } %>
-                    <div class="summary-row total">
-                        <span>Total</span>
-                        <span>$<%= cart.orderPrice + 5  %></span>
-                    </div>
-                    <button class="checkout-btn" onclick= "location.href='/order/checkout'" >
-                        <%= (!cartItems || cartItems.length === 0) ? 'disabled' : '' %>
-                        Proceed to Checkout
-                    </button>
-             </div>
-
+                        <% } else { %>
+                            <div class="summary-row discount hidden">
+                                <span>Discount</span>
+                                <span>-$0.00</span>
+                            </div>
+                            <% } %>
+                                <div class="summary-row total">
+                                    <span>Total</span>
+                                    <span>$<%= cart.orderPrice + 5 %></span>
+                                </div>
+                                <button class="checkout-btn" onclick="location.href='/order/checkout'">
+                                    <%= (!cartItems || cartItems.length===0) ? 'disabled' : '' %>
+                                        Proceed to Checkout
+                                </button>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    
+
     <script>
+        //TODO: fix the function
         function removeItem(itemId) {
             console.log('Removing item:', itemId);
             // In a real implementation, you would remove the item and update totals
@@ -216,13 +140,13 @@
                     'Content-Type': 'application/json',
                 }
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    window.location.reload();
-                }
-            })
-            .catch(error => console.error('Error:', error));
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        window.location.reload();
+                    }
+                })
+                .catch(error => console.error('Error:', error));
         }
 
         function updateQuantity(itemId, action) {
@@ -230,16 +154,16 @@
             // In a real implementation, you would update quantities and recalculate totals
             const quantityElement = document.querySelector(`[data-item-id="${itemId}"] .quantity-value`);
             if (!quantityElement) return;
-            
+
             const quantity = parseInt(quantityElement.textContent);
             let newQuantity = quantity;
-            
+
             if (action === 'increase') {
                 newQuantity = quantity + 1;
             } else if (action === 'decrease' && quantity > 1) {
                 newQuantity = quantity - 1;
             }
-            
+
             if (newQuantity !== quantity) {
                 fetch('/cart/update', {
                     method: 'POST',
@@ -248,13 +172,13 @@
                     },
                     body: JSON.stringify({ itemId, quantity: newQuantity })
                 })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        window.location.reload();
-                    }
-                })
-                .catch(error => console.error('Error:', error));
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            window.location.reload();
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
             }
         }
 
@@ -262,7 +186,7 @@
             const promoInput = document.querySelector('.promo-input-group input');
             const promoCode = promoInput.value;
             console.log('Applying promo code:', promoCode);
-            
+
             if (promoCode) {
                 fetch('/cart/promo', {
                     method: 'POST',
@@ -271,15 +195,16 @@
                     },
                     body: JSON.stringify({ promoCode })
                 })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        window.location.reload();
-                    }
-                })
-                .catch(error => console.error('Error:', error));
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            window.location.reload();
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
             }
         }
     </script>
 </body>
+
 </html>

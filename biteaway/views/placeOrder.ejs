@@ -98,32 +98,14 @@
                     </div>
                     
                     <div class="order-items" id="orderItems">
-                        <% if (cart && cart.items && cart.items.length > 0) { %>
                             <% cart.items.forEach(function(item) { %>
                                 <div class="order-item">
                                     <div class="item-info">
-                                        <span class="item-quantity"><%= item.quantity %>×</span>
-                                        <span class="item-name"><%= item.name %></span>
+                                        <span class="item-name"><%= cart.item.itemName %></span>
                                     </div>
                                     <span class="item-price">$<%= (item.price * item.quantity).toFixed(2) %></span>
                                 </div>
                             <% }); %>
-                        <% } else { %>
-                            <div class="order-item">
-                                <div class="item-info">
-                                    <span class="item-quantity">2×</span>
-                                    <span class="item-name">Margherita Pizza</span>
-                                </div>
-                                <span class="item-price">$25.98</span>
-                            </div>
-                            <div class="order-item">
-                                <div class="item-info">
-                                    <span class="item-quantity">1×</span>
-                                    <span class="item-name">Classic Cheeseburger</span>
-                                </div>
-                                <span class="item-price">$8.99</span>
-                            </div>
-                        <% } %>
                     </div>
                     
                     <div class="cart-total">

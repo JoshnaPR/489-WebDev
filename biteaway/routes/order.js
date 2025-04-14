@@ -21,17 +21,7 @@ router.get("/", async function (req, res) {
 // for post method
 router.post("/cart", controller.getCart);
 
-router.get("/checkout", async function (req, res) {
-    const currentStep = 2;
-    const cartItems = 1;
-    const promocode = '';
-    const promoMessage = '';
-    const cart = '';
-    const user = '';
-    const selectedPayment = '';
-
-    res.render('placeOrder', { currentStep, cartItems, promocode, promoMessage, cart, user, selectedPayment })
-})
+router.get("/checkout", controller.getCheckout);
 
 router.get("/confirm", async function (req, res) {
     
