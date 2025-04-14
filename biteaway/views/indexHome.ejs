@@ -54,76 +54,29 @@
           </div>
         </section>
       
-         <!-- Restraunts Section -->
-         <section class="partners-carousel-section">
-          <h2 class="section-title">🍽️ Our Partnered Restaurants</h2>
-          <div class="carousel-container">
-            <button class="carousel-btn left" id="carouselLeft">&#10094;</button>
-            
-            <div class="carousel-track" id="carouselTrack">
+         <!-- Restraunts Section -->   
+      <section class="partners-carousel-section">
+        <h2 class="section-title">🍽️ Our Partnered Restaurants</h2>
+        <div class="carousel-container">
+          <button class="carousel-btn left" id="carouselLeft">&#10094;</button>
+        
+          <div class="carousel-track" id="carouselTrack">
+            <% restaurants.forEach(restaurant => { %>
               <div class="carousel-card">
-                <div class="partner-logo">
-                  <img src="/static/img/restaurant/mc.jpeg" alt="McDonald's">
-                </div>
-                <p>McDonald's</p>
+                <a href="/restaurant/<%= restaurant.restaurantID %>">
+                  <div class="partner-logo">
+                    <img src="/static/img/restaurant/<%= restaurant.restaurantName.replace(/\s+/g, '') %>.jpeg" alt="<%= restaurant.restaurantName %>">
+                  </div>
+                  <p><%= restaurant.restaurantName %></p>
+                </a>
               </div>
-              <div class="carousel-card">
-                <div class="partner-logo">
-                  <img src="/static/img/restaurant/dominos.jpeg" alt="Domino's">
-                </div>
-                <p>Domino's</p>
-              </div>
-              <div class="carousel-card">
-                <div class="partner-logo">
-                  <img src="/static/img/restaurant/panda.jpeg" alt="Panda Express">
-                </div>
-                <p>Panda Express</p>
-              </div>
-              <div class="carousel-card">
-                <div class="partner-logo">
-                  <img src="/static/img/restaurant/chipotle.jpeg" alt="Chipotle">
-                </div>
-                <p>Chipotle</p>
-              </div>
-              <div class="carousel-card">
-                <div class="partner-logo">
-                  <img src="/static/img/restaurant/subway.jpeg" alt="Subway">
-                </div>
-                <p>Subway</p>
-              </div>
-              <div class="carousel-card">
-                <div class="partner-logo">
-                  <img src="/static/img/restaurant/starbucks.jpeg" alt="Starbucks">
-                </div>
-                <p>Starbucks</p>
-              </div>
-              <div class="carousel-card">
-                <div class="partner-logo">
-                  <img src="/static/img/restaurant/dominos.jpeg" alt="Domino's">
-                </div>
-                <p>Domino's</p>
-              </div>
-              <div class="carousel-card">
-                <div class="partner-logo">
-                  <img src="/static/img/restaurant/panda.jpeg" alt="Panda Express">
-                </div>
-                <p>Panda Express</p>
-              </div>
-              <div class="carousel-card">
-                <div class="partner-logo">
-                  <img src="/static/img/restaurant/chipotle.jpeg" alt="Chipotle">
-                </div>
-                <p>Chipotle</p>
-              </div>
-              <div class="carousel-card">
-                <div class="partner-logo">
-                  <img src="/static/img/restaurant/subway.jpeg" alt="Subway">
-                </div>
-                <p>Subway</p>
-              </div>
-              <button class="carousel-btn right" id="carouselRight">&#10095;</button>
+            <% }) %>
           </div>
-        </section>
+        
+          <button class="carousel-btn right" id="carouselRight">&#10095;</button>
+        </div>
+      </section>
+
 
        <!-- Menu Section -->
         <section class="menu-section">

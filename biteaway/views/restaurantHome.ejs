@@ -158,6 +158,28 @@
                     <img src="/static/img/restaurant/menu/<%= restaurant.restaurantID%>.jpg" style="width: 300px;"/>
                     
                 </div>
+                <!-- Order section -->
+                <p class="categories">Place an Order</p>
+
+                <% if (user) { %>
+                <form method="POST" action="/order">
+                    <input type="hidden" name="restaurantId" value="<%= restaurant.restaurantID %>">
+                                
+                        <% for (let i = 0; i < items.length; i++) { %>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="items" value="<%= items[i].itemID %>" id="item_<%= i %>">
+                                <label class="form-check-label" for="item_<%= i %>">
+                                    <%= items[i].itemName %>
+                                </label>
+                            </div>
+                        <% } %>
+                        
+                        <button type="submit" class="btn btn-success mt-2">Place Order</button>
+                    </form>
+                <% } else { %>
+                    <a href="/login" class="btn btn-warning mt-2">Log in to place an order</a>
+                <% } %>
+                
 
                 <!-- directions -->
                 <div class="col-3">

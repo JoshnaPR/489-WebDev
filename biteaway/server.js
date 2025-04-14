@@ -12,6 +12,7 @@ var userRouter = require('./routes/user');
 var adminRouter = require('./routes/admin');
 var orderRouter = require('./routes/order');
 var reviewRouter = require('./routes/review');
+var authRouter = require('./routes/auth');
 
 //models,
 const User = require("./models/User");
@@ -53,11 +54,62 @@ app.use('/restaurant', restaurantRouter); //trisha's restaurant homepage
 app.use('/order', orderRouter); //joshna's ordering page
 app.use('/user', userRouter); //hannah's user profile
 app.use('/admin', adminRouter); //joshna's admin pages (order management)
-
+app.use('/', authRouter);
 app.post("/order", orderRouter);
 
 app.use("/review", reviewRouter);
 app.post("/review", reviewRouter);
+
+app.get('/restaurant/:id', async (req, res) => {
+  try {
+    const restaurant = await Restaurant.findByPk(req.params.id, {
+      include: [Cuisine, Item]
+    });
+
+    if (!restaurant) {
+      return res.status(404).send('Restaurant not found');
+    }
+
+    res.render('restauranthome', {
+      restaurant,
+      cuisines: restaurant.Cuisines,
+      items: restaurant.Items,
+      user: req.session.userId // pass user session
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error loading restaurant details');
+  }
+});
+
+function isAuthenticated(req, res, next) {
+  if (req.session.userId) return next();
+  res.redirect('/login');
+}
+
+app.post('/order', isAuthenticated, async (req, res) => {
+  try {
+    const { restaurantId, items } = req.body;
+
+    const order = await Order.create({
+      userId: req.session.userId,
+      restaurantId: restaurantId,
+      status: 'Pending'
+    });
+
+    // Assume many-to-many between Order and Items
+    if (Array.isArray(items)) {
+      await order.addItems(items); // or loop if needed
+    } else {
+      await order.addItem(items);
+    }
+
+    res.redirect('/orders/' + order.id);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Order failed');
+  }
+});
 
 async function setup() {
   // set up associations
