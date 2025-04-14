@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register | Bite-A-Way</title>
+  <style>
+    :root {
+      --main-orange: #F59A4C;
+      --hover-orange: #f6b379;
+      --text-color: #333;
+      --white: #fff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--white);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 820px;
+      background-color: var(--main-orange);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .container:hover {
+      transform: translateY(-5px);
+    }
+
+    h2 {
+      text-align: center;
+      color: var(--white);
+      margin-bottom: 30px;
+      font-size: 1.8rem;
+    }
+
+    .form-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .form-group {
+      flex: 1;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    select {
+      width: 100%;
+      padding: 14px 16px;
+      margin-bottom: 18px;
+      border: none;
+      border-radius: 8px;
+      background-color: var(--white);
+      color: var(--text-color);
+      font-size: 1rem;
+      transition: box-shadow 0.2s ease;
+      position: relative;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus,
+    select:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4);
+    }
+
+    input[type="text"]::placeholder,
+    input[type="email"]::placeholder,
+    input[type="password"]::placeholder,
+    select::placeholder {
+      color: var(--text-color);
+      opacity: 0.7;
+      font-size: 0.9rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background-color: var(--white);
+      color: var(--main-orange);
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background-color: var(--hover-orange);
+      transform: scale(1.02);
+    }
+
+    .link {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.95rem;
+      color: var(--white);
+    }
+
+    .link a {
+      color: var(--white);
+      font-weight: 500;
+      text-decoration: underline;
+      transition: color 0.2s ease;
+    }
+
+    .link a:hover {
+      color: #ffffffcc;
+    }
+
+    .country-code-select {
+      width: 30%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Create Your Bite-A-Way Account</h2>
+    <form action="/signup" method="POST">
+      <div class="form-row">
+        <div class="form-group">
+          <input type="text" name="firstName" placeholder="First Name" required />
+        </div>
+        <div class="form-group">
+          <input type="text" name="lastName" placeholder="Last Name" required />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group country-code-select">
+          <select name="countryCode" required>
+            <option value="+1">+1 (USA)</option>
+            <option value="+44">+44 (UK)</option>
+            <option value="+91">+91 (India)</option>
+            <!-- Add more countries as needed -->
+          </select>
+        </div>
+        <div class="form-group">
+          <input type="text" name="phoneNumber" placeholder="Phone Number" required />
+        </div>
+        <div class="form-group">
+          <input type="text" name="zipcode" placeholder="Zip Code" required />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <input type="text" name="userAddress" placeholder="Address" required />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <input type="text" name="city" placeholder="City" required />
+        </div>
+        <div class="form-group">
+          <select name="state" required>
+            <option value="">WA</option>
+            <option value="state1">CAL</option>
+            <option value="state2">NYC</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <input type="email" name="email" placeholder="Email Address" required />
+        </div>
+        <div class="form-group">
+          <input type="password" name="password" placeholder="Password" required />
+        </div>
+        <div class="form-group">
+          <input type="password" name="confirmPassword" placeholder="Confirm Password" required />
+        </div>
+      </div>
+
+      <button type="submit">Register</button>
+    </form>
+    <div class="link">
+      Already have an account? <a href="/login">Login here</a>
+    </div>
+  </div>
+</body>
+</html>
