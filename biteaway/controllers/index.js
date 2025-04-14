@@ -15,13 +15,28 @@ module.exports = {
                 homeSettings = await HomeSettings.create({
                     heroTitle: 'Welcome to Our Platform',
                     heroDescription: 'Delivering excellence every day.',
-                    heroButtonText: 'Explore'
+                    heroButtonText: 'Explore',
+                    featureTitle1: 'Feature 1',
+                    featureDescription1: 'Description 1',
+                    featureTitle2: 'Feature 2',
+                    featureDescription2: 'Description 2',
+                    featureTitle3: 'Feature 3',
+                    featureDescription3: 'Description 3'
                 });
             }
 
-            // Pass the homeSettings object to the view for rendering
+            // Extract feature titles and descriptions from the homeSettings
+            const { featureTitle1, featureDescription1, featureTitle2, featureDescription2, featureTitle3, featureDescription3 } = homeSettings;
+
+            // Pass the homeSettings object and feature data to the view for rendering
             res.render('indexHome', {
-                homeSettings
+                homeSettings,
+                featureTitle1,
+                featureDescription1,
+                featureTitle2,
+                featureDescription2,
+                featureTitle3,
+                featureDescription3
             });
 
         } catch (error) {
@@ -30,9 +45,10 @@ module.exports = {
         }
     },
     getLogin: async (req, res) => {
-
+        // Your login logic here
     },
 
     getSignup: async (req, res) => {
+        // Your signup logic here
     }
 }

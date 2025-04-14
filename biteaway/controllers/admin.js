@@ -43,13 +43,20 @@ module.exports = {
             res.status(500).send("Internal Server Error");
         }
     },
+
     // POST METHOD to add home settings
     addHomeSettings: async (req, res) => {
         console.log("Request body:", req.body);
 
         try {
-            // Destructure the values from the request body (form data)
-            const { heroTitle, heroDescription, heroButtonText } = req.body;
+            const {
+                heroTitle,
+                heroDescription,
+                heroButtonText,
+                featureTitle1, featureDescription1,
+                featureTitle2, featureDescription2,
+                featureTitle3, featureDescription3
+            } = req.body;
 
             // Check if the HomeSettings entry exists
             let homeSettings = await HomeSettings.findOne();
@@ -58,13 +65,28 @@ module.exports = {
                 homeSettings.heroTitle = heroTitle;
                 homeSettings.heroDescription = heroDescription;
                 homeSettings.heroButtonText = heroButtonText;
+
+                // Update the feature fields with values provided in the request
+                homeSettings.featureTitle1 = featureTitle1;
+                homeSettings.featureDescription1 = featureDescription1;
+                homeSettings.featureTitle2 = featureTitle2;
+                homeSettings.featureDescription2 = featureDescription2;
+                homeSettings.featureTitle3 = featureTitle3;
+                homeSettings.featureDescription3 = featureDescription3;
+
                 await homeSettings.save();  // Save the updated settings
             } else {
                 // If no settings exist, create a new one
                 homeSettings = await HomeSettings.create({
                     heroTitle,
                     heroDescription,
-                    heroButtonText
+                    heroButtonText,
+                    featureTitle1,
+                    featureDescription1,
+                    featureTitle2,
+                    featureDescription2,
+                    featureTitle3,
+                    featureDescription3
                 });
             }
 
@@ -78,6 +100,4 @@ module.exports = {
             res.status(500).send("Internal Server Error");
         }
     }
-
-
-}
+};
