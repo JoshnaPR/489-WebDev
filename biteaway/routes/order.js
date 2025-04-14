@@ -24,11 +24,8 @@ router.get("/cart", controller.getCart);
 
 router.get("/checkout", controller.getCheckout);
 
-router.get("/confirm", async function (req, res) {
-    
-    // TODO: implement
-    controller.confirmOrder(req, res)
-})
+router.get("/confirm", controller.confirmOrder);
+router.post("/confirm", controller.confirmOrder);
 
 //add an item to the cart
 router.post("/add2cart", (req, res) => {

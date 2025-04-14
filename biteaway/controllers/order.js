@@ -158,10 +158,17 @@ module.exports = {
         const promoMessage = '';
 
         // cart will return the current active order (associated with the above items)
-        var cart = await Order.findActiveOrder({userID : logged_in_user});
+        let cart = await Order.findActiveOrder({userID : logged_in_user});
+
+        if (!cart) {
+            cart = {
+                items: [],
+                orderPrice: 0
+            };
+        }
 
         // update cart after processing order
-        cart.status = 'In the Kitchen!'
+        //cart.status = 'In the Kitchen!'
 
         // finding user
         const user = await User.findUser(logged_in_user)

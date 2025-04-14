@@ -35,7 +35,7 @@
             </div>
         </header>
 
-        <form class="place-order" id="orderForm">
+        <form class="place-order" id="orderForm" action="/order/confirm" method="POST">
             <div class="place-order-left">
                 <div class="section-card">
                     <div class="section-header">
@@ -167,8 +167,7 @@
                     </div>
                 </div>
 
-                <button class="place-order-submit" type="submit" id="submitButton"
-                    onclick="location.href='/order/confirm'">
+                <button class="place-order-submit" type="submit" id="submitButton">
                     <span>Place Order</span>
                     <i class="fas fa-arrow-right"></i>
                 </button>
