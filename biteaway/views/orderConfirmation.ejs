@@ -46,8 +46,6 @@
                     </div>
                     <div class="detail-row">
                         <span class="detail-label">Order Date:</span>
-
-                        <!-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleTimeString -->
                         <span id="orderDate"><%= cart.orderDate %></span>
                     </div>
                     <div class="detail-row">
@@ -56,12 +54,8 @@
                     </div>
                     <div class="detail-row">
                         <span class="detail-label">Estimated Delivery:</span>
-                        
-                        <!-- TODO: update delivery time, for now just adding thirty minutes  -->
-                        <!-- https://stackoverflow.com/questions/1197928/how-to-add-30-minutes-to-a-javascript-date-object -->
-                        <% const deliveryTime = new Date(); %>
-                        <% deliveryTime.setTime(cart.orderDate.getTime() + (30 * 60 * 1000)) %>
-                        <span id="deliveryDate"><%= deliveryTime %></span>
+                    
+                        <span id="deliveryDate"><%= cart.orderDate %></span>
                     
                     </div>
                 </div>
@@ -84,7 +78,6 @@
                 </div>
                 
                 <div class="action-buttons">
-                    <!-- TODO: fix the hyperkink to correct orer page -->
                     <a class="button primary-button" href="/order/tracking">Track Order</a>
                     <a class="button secondary-button" href="/">Continue Shopping</a>
                 </div>

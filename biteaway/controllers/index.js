@@ -24,6 +24,16 @@ module.exports = {
           featureDescription3: 'Pay safely and easily with our encrypted, one-click payments.'
         });
       }      
+
+      // sort accordingly
+      // store vars; might have to move restaurants var or change to let
+      // const { sort } = req.body
+      // if (sort === "asc") {
+      //   restaurants = await Restaurant.sortRestaurantByRatingAsc();     
+      // } else if (sort === "desc") {
+      //   restaurants = await Restaurant.sortRestaurantByRatingDesc();     
+      // }
+
       res.render('indexHome', {
         restaurants,
         user: req.session.userId, // optional: if you're using session
