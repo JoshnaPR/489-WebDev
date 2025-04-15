@@ -1,5 +1,7 @@
+const { Op } = require('sequelize');
 var express = require('express');
 var router = express.Router();
+
 
 const User = require("../models/User");
 const Order = require("../models/Order");
@@ -46,8 +48,6 @@ module.exports = {
 
     // POST METHOD to add home settings
     addHomeSettings: async (req, res) => {
-        console.log("Request body:", req.body);
-
         try {
             const {
                 heroTitle,
@@ -97,6 +97,28 @@ module.exports = {
             });
         } catch (error) {
             console.error("Error adding home settings:", error);
+            res.status(500).send("Internal Server Error");
+        }
+    },
+    restaurantOverview: async (req, res) => {
+        try {
+            const restaurants = await Restaurant.findAll();
+            const totalRestaurants = await Restaurant.count();
+            const topRatings = await Restaurant.count({
+                where: {
+                    restaurantRating: { [Op.gt]: 4 }
+                }
+            });
+
+            res.render('adminRestuarantOverview', {
+                restaurants,
+                totalRestaurants,
+                topRatings
+            });
+
+            console.log("Restaurants:", restaurants);
+        } catch (error) {
+            console.error("Error loading restaurant overview:", error);
             res.status(500).send("Internal Server Error");
         }
     }

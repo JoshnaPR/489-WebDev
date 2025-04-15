@@ -18,9 +18,11 @@ router.get("/orders", async function (req, res) {
     res.render('adminOrders', { stats: stats, orders: [] });
 })
 
-router.get("/restaurants", async function (req, res) {
-    res.render('adminRestaurant');
-})
+// router.get("/restaurants", async function (req, res) {
+//     res.render('adminRestaurant');
+// })
+
+router.get("/restaurants", controller.restaurantOverview);
 
 router.get("/menu-items/add", async function (req, res) {
     res.render('adminMenu');
