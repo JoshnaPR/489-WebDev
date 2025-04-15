@@ -163,6 +163,60 @@ module.exports = {
             console.error("Error adding restaurant:", error);
             res.status(500).send("Internal Server Error");
         }
+    },
+    menuOverview: async (req, res) => {
+        try {
+            const items = await Item.findAll({
+                include: [{
+                    model: Restaurant,
+                    as: 'restaurant', // match the alias used in the Item.belongsTo association
+                    attributes: ['restaurantName'] // fetch only the name
+                }]
+            });
+            res.render('adminMenuOverview', {
+                items
+            });
+        } catch (error) {
+            console.error("Error loading restaurant overview:", error);
+            res.status(500).send("Internal Server Error");
+        }
+    },
+    addMenuItem: async (req, res) => {
+        try {
+            const {
+                restaurantName,
+                itemName,
+                itemPrice,
+                itemDescription
+            } = req.body;
+
+            // Find the restaurant to get the restaurantID
+            const restaurant = await Restaurant.findOne({
+                where: { restaurantName }
+            });
+
+            if (!restaurant) {
+                return res.status(404).send("Restaurant not found");
+            }
+
+            // Create the item (auto itemID generation is expected in DB schema)
+            const item = await Item.create({
+                restaurantID: restaurant.restaurantID,
+                itemName,
+                itemPrice,
+                itemDescription
+            });
+
+            // After adding, you can redirect or re-render
+            res.render('adminMenu', {
+                message: "Menu item added successfully.",
+                item
+            });
+
+        } catch (error) {
+            console.error("Error adding menu item:", error);
+            res.status(500).send("Internal Server Error");
+        }
     }
 
 };
