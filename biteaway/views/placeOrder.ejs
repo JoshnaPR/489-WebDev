@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Order | Bite-A-Way</title>
+    <link rel="stylesheet" href="/static/css/PlaceOrder.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="page-container">
+        <header class="checkout-header">
+            <h1>Checkout</h1>
+            <div class="checkout-steps">
+                <div class="step <%= currentStep >= 1 ? 'active' : '' %>">
+                    <div class="step-number">1</div>
+                    <span>Your Cart</span>
+                </div>
+                <div class="step-connector <%= currentStep >= 1 ? 'active' : '' %>"></div>
+                <div class="step <%= currentStep >= 2 ? 'active' : '' %>">
+                    <div class="step-number">2</div>
+                    <span>Checkout</span>
+                </div>
+                <div class="step-connector <%= currentStep >= 2 ? 'active' : '' %>"></div>
+                <div class="step <%= currentStep >= 3 ? 'active' : '' %>">
+                    <div class="step-number">3</div>
+                    <span>Confirmation</span>
+                </div>
+            </div>
+        </header>
+
+        <form class="place-order" id="orderForm" action="/order/confirm" method="POST">
+            <div class="place-order-left">
+                <div class="section-card">
+                    <div class="section-header">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h2>Delivery Information</h2>
+                    </div>
+
+                    <div class="form-group multi-field">
+                        <div class="input-container">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" name="firstName" placeholder="John"
+                                value="<%= user && user.firstName || '' %>" required>
+                        </div>
+                        <div class="input-container">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" placeholder="Doe"
+                                value="<%= user && user.lastName || '' %>" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="johndoe@example.com"
+                            value="<%= user && user.email || '' %>" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="street">Address</label>
+                        <input type="text" id="street" name="street" placeholder="123 Main St"
+                            value="<%= user && user.userAddress || '' %>" required>
+                    </div>
+
+                    <div class="form-group multi-field">
+                        <div class="input-container">
+                            <label for="zipcode">Zip Code</label>
+                            <input type="text" id="zipcode" name="zipcode" placeholder="10001"
+                                value="<%= user && user.countryCode || '' %>" required>
+                        </div>
+                        <div class="input-container">
+                            <label for="country">Country</label>
+                            <input type="text" id="country" name="country" placeholder="United States" value="USA"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="text" id="phone" name="phone" placeholder="+1 (555) 123-4567"
+                            value="<%= user && user.phoneNumber || '' %>" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="place-order-right">
+                <div class="section-card order-summary">
+                    <div class="section-header">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h2>Order Summary</h2>
+                    </div>
+
+                    <div class="order-items" id="orderItems">
+                        <% if (cart && cartItems && cartItems.length> 0) { %>
+                            <% cartItems.forEach(function(cart) { %>
+                                <div class="order-item">
+                                    <div class="item-info">
+                                        <span class="item-name">
+                                            <%= cart.item.itemName %>
+                                        </span>
+                                    </div>
+                                    <span class="item-price">$<%= cart.item.itemPrice %> %></span>
+                                </div>
+                                <% }); %>
+                                    <% } else { %>
+                                        <div class="empty-cart-message">
+                                            <p>Your cart is empty.</p>
+                                        </div>
+                                        <% } %>
+                    </div>
+
+                    <div class="cart-total">
+                        <div class="cart-total-details">
+                            <p>Subtotal</p>
+                            <p id="subtotal">$<%= cart.orderPrice %></p>
+                        </div>
+                        <div class="cart-total-details">
+                            <p>Delivery Fee</p>
+                            <p id="deliveryFee">$5.00</p>
+                        </div>
+                        <div class="cart-total-details total">
+                            <p>Total</p>
+                            <p id="totalAmount">$<%= cart.orderPrice + 5 %>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <div class="section-header">
+                        <i class="fas fa-credit-card"></i>
+                        <h2>Payment Method</h2>
+                    </div>
+
+                    <div class="payment-options">
+                        <div class="payment-option">
+                            <div class="radio-button">
+                                <div class="radio-inner" id="cod-radio">
+                                </div>
+                            </div>
+                            <div class="payment-label">
+                                <p>Cash on Delivery</p>
+                                <span class="payment-description">Pay when your order arrives</span>
+                            </div>
+                        </div>
+
+                        <div class="payment-option">
+                            <div class="radio-button">
+                                <div class="radio-inner" id="stripe-radio"></div>
+                            </div>
+                            <div class="payment-label">
+                                <p>Credit / Debit Card</p>
+                                <span class="payment-description">Pay securely with Stripe</span>
+                            </div>
+                            <div class="card-icons">
+                                <i class="fab fa-cc-visa"></i>
+                                <i class="fab fa-cc-mastercard"></i>
+                                <i class="fab fa-cc-amex"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="place-order-submit" type="submit" id="submitButton">
+                    <span>Place Order</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

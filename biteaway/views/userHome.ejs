@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= user.firstName %>
+            <%= user.lastName %>'s Profile | Bite-a-Way
+    </title>
+
+    <!-- for star icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- css file -->
+    <link rel="stylesheet" href="/static/css/user.css">
+</head>
+
+<body>
+    <!-- profile header -->
+    <div class="jumbotron profile-col shadow">
+        <div class=".d-inline-flex bottom-align-text">
+
+            <!-- profile picture -->
+            <div class="image-cropper">
+                <!-- naming convention for icons -->
+                <img class="profile-img" src="/static/img/user/<%= user.userID %>.jpg" alt="" />
+            </div>
+            <!-- user name -->
+            <p class="profile-label">
+                <%= user.firstName %>
+                    <%= user.lastName %>
+            </p>
+
+            <% if (user.isStarUser) { %>
+                <img src="/static/img/hotel_class_35dp_FFFFFF_FILL0_wght400_GRAD0_opsz40.svg" style="position: absolute;
+    bottom: 0;" />
+                <% } %>
+
+                    <!-- user location -->
+                    <p class="profile-label-2">
+                        <img class="location-img" src="/static/img/location.png" alt="" />
+                        <%= user.userAddress %>
+                    </p>
+
+
+                    <!-- number of reviews -->
+                    <div class="border-start px-3 profile-header-review justify-content-center">
+                        <!-- review statistics -->
+                        <h2>
+                            <%= reviewNum %>
+                        </h2>
+                        <p class="profile-review-label">
+                            Review(s)
+                        </p>
+                    </div>
+        </div>
+    </div>
+
+    <!-- main container box for page components -->
+    <div class="container profile-content-box shadow p-3">
+        <div class="row">
+
+            <!-- left sidebar -->
+            <div class="col-3">
+
+                <!-- user information -->
+                <div class="profile-sidebar shadow p-3 mb-3">
+                    <h6><strong>User Information</strong></h6>
+                    <a href="/user/<%= user.userID %>/settings">Settings / Profile</a><br>
+
+                    <!-- currently used page -->
+                    <div class="sidebar-select align-items-center">
+                        <a href="/user/<%= user.userID %>">Reviews</a><br>
+                    </div>
+                    <a href="/user/<%= user.userID %>/recently-viewed">Recently Viewed</a>
+                </div>
+
+                <!-- order information -->
+                <div class="profile-sidebar shadow p-3 mb-3">
+                    <h6><strong>Order Information</strong></h6>
+                    <a href="/user/<%= user.userID %>/favorites">Favorites</a><br>
+                    <a href="/user/<%= user.userID %>/order-history">Order History</a>
+                </div>
+
+                <!-- payment information -->
+                <div class="profile-sidebar shadow p-3 mb-3">
+                    <h6><strong>Payment Information</strong></h6>
+                    <a>Manage Cards</a><br>
+                    <a>Manage Wallets</a>
+                </div>
+
+            </div>
+
+            <!-- all the reviews -->
+            <!-- can replace with for loop iterating through database later -->
+            <div class="col-9">
+                <% for (review of reviews) { %>
+                    <div class="profile-reviews shadow p-3">
+
+                        <!-- img, restaurant name, etc. -->
+                        <div class="d-flex review-header pr-10 pl-10">
+                            <img class="restaurant-review-img"
+                                src="/static/img/restaurant/<%= review.restaurant.restaurantID %>.jpg" alt="" />
+
+                            <!-- restaurant title, type, and address -->
+                            <div class="d-flex flex-column ml-10">
+                                <a href="/restaurant/<%= review.restaurant.restaurantID %>">
+                                    <h5><strong>
+                                            <%= review.restaurant.restaurantName %>
+                                        </strong></h5>
+                                </a>
+
+                                <!-- iterate through all cuisines, match by restaurantID -->
+                                <!-- TODO: fix commas -->
+                                <p class="review-title-text">
+                                    <% for ( cuisine of cuisines ) { %>
+                                        <% if (cuisine.restaurantID==review.restaurant.restaurantID) { %>
+
+                                            <%= cuisine.cuisineType %>,
+
+                                                <% } %> <!-- end of checking restaurantIDs -->
+                                                    <% } %> <!-- end cuisine for loop-->
+                                </p>
+
+                                <p class="review-title-text">
+                                    <%= review.restaurant.restaurantAddress %>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- rating -->
+                        <!-- coding example: 4.5 stars 
+                                1st. filled: 3 stars; i = 3
+                                2nd. half: 4th star;  i = 4
+                                3nd. empty: 5th star; i = 5 -->
+                        <div class="d-flex rating-container pr-10 pl-10">
+
+                            <!-- corresponding label : https://stackoverflow.com/questions/58269113/how-to-round-the-numerical-output-value-in-ejs -->
+                            <p class="rating-label">
+                                <%= parseFloat(review.reviewRating).toFixed(1) %>
+                            </p>
+
+                            <!-- dynamic stars -->
+                            <% for (var i=1; i < 6; i++) { %>
+                                <!-- number of filled stars -->
+                                <% if ( review.reviewRating>= i ) { %> <!-- ex: 4.5 >= 4 -->
+                                    <span class="fa fa-star checked"></span>
+
+                                    <!-- number of half stars -->
+                                    <% } else if ( review.reviewRating>= i - 0.5 ) { %>
+                                        <!-- ex: 4.5 >= 4 - 0.5 fails, but 5 - 0.5 works -->
+                                        <span class="fa fa-star-half-o checked"></span>
+
+                                        <!-- number of empty stars -->
+                                        <% } else { %>
+                                            <span class="fa fa-star unchecked"></span>
+                                            <% } %>
+                                                <% } %>
+
+                        </div> <!-- end rating div-->
+
+                        <!-- review text -->
+                        <p class="review-body pr-10 pl-10">
+                            <%= review.reviewDescription %>
+                        </p>
+
+                        <!-- images for review -->
+                        <!-- TODO: format img files such as /user/userID/reviewID.jpg? -->
+                        <!-- <div class="review-img-container"> -->
+                        <!-- <img class="review-img" src="/static/img/pancake.jpg" alt=""/> -->
+                        <!-- <img class="review-img" src="/static/img/pancake.jpg" alt=""/> -->
+                        <!-- <img class="review-img" src="/static/img/pancake.jpg" alt=""/> -->
+                        <!-- <img class="review-img" src="/static/img/pancake.jpg" alt=""/> -->
+                        <!-- </div> -->
+                    </div>
+
+                    <% } %> <!-- end for loop for displaying each review -->
+
+            </div>
+        </div>
+
+
+        <!-- keep this here for the bootstrap -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>

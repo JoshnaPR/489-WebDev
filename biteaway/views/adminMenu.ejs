@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Menu Item | Bite-A-Way : Admin</title>
+    <link rel="stylesheet" href="../static/css/AdminCommon.css">
+    <link rel="stylesheet" href="../static/css/adminMenu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <img src="../static/images/logo.png" alt="Bite-A-Way" class="logo">
+                <button class="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <div class="admin-info">
+                <div class="admin-avatar">A</div>
+                <div>
+                    <div class="admin-name">Admin User</div>
+                    <div class="admin-role">Super Admin</div>
+                </div>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="/admin/dashboard" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-th-large"></i></span>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/orders" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-shopping-bag"></i></span>
+                        Orders
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/restaurants" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-utensils"></i></span>
+                        Restaurants
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="/admin/menu-items" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-hamburger"></i></span>
+                        Menu Items
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/users" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-users"></i></span>
+                        Users
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/reports" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-chart-bar"></i></span>
+                        Reports
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/settings" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-cog"></i></span>
+                        Settings
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/logout" class="nav-link">
+                        <span class="nav-icon"><i class="fas fa-sign-out-alt"></i></span>
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <h1 class="page-title">Add New Menu Item</h1>
+                <div class="header-actions">
+                    <a href="/admin/menu-items" class="btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Back to Menu Items
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Add Menu Item Form -->
+            <form action="/admin/menu-items/add" method="POST" enctype="multipart/form-data" class="add-form">
+                <% if (typeof error !== 'undefined' && error) { %>
+                    <div class="alert alert-error">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <%= error %>
+                    </div>
+                <% } %>
+                
+                <!-- Basic Info Section -->
+                <div class="form-section">
+                    <h3 class="section-title"><i class="fas fa-info-circle"></i> Basic Information</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group form-group-large">
+                            <label for="name">Item Name *</label>
+                            <input type="text" id="name" name="name" class="form-control" required 
+                                value="<%= typeof formData !== 'undefined' && formData.name ? formData.name : '' %>">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="restaurant">Restaurant *</label>
+                            <select id="restaurant" name="restaurant" class="form-control" required>
+                                <option value="">Select Restaurant</option>
+                                <% if (typeof restaurants !== 'undefined' && restaurants.length > 0) { %>
+                                    <% restaurants.forEach(function(restaurant) { %>
+                                        <option value="<%= restaurant._id %>" 
+                                            <%= typeof formData !== 'undefined' && formData.restaurant === restaurant._id.toString() ? 'selected' : '' %>>
+                                            <%= restaurant.name %>
+                                        </option>
+                                    <% }); %>
+                                <% } %>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="category">Category *</label>
+                            <select id="category" name="category" class="form-control" required>
+                                <option value="">Select Category</option>
+                                <option value="Appetizers" <%= typeof formData !== 'undefined' && formData.category === 'Appetizers' ? 'selected' : '' %>>Appetizers</option>
+                                <option value="Main Course" <%= typeof formData !== 'undefined' && formData.category === 'Main Course' ? 'selected' : '' %>>Main Course</option>
+                                <option value="Desserts" <%= typeof formData !== 'undefined' && formData.category === 'Desserts' ? 'selected' : '' %>>Desserts</option>
+                                <option value="Beverages" <%= typeof formData !== 'undefined' && formData.category === 'Beverages' ? 'selected' : '' %>>Beverages</option>
+                                <option value="Sides" <%= typeof formData !== 'undefined' && formData.category === 'Sides' ? 'selected' : '' %>>Sides</option>
+                                <option value="Special" <%= typeof formData !== 'undefined' && formData.category === 'Special' ? 'selected' : '' %>>Special</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="description">Description *</label>
+                        <textarea id="description" name="description" class="form-control" rows="4" required><%= typeof formData !== 'undefined' && formData.description ? formData.description : '' %></textarea>
+                        <small>Describe the item (50-200 characters)</small>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="price">Price ($) *</label>
+                            <input type="number" id="price" name="price" class="form-control" min="0" step="0.01" required
+                                value="<%= typeof formData !== 'undefined' && formData.price ? formData.price : '' %>">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="preparationTime">Preparation Time (minutes) *</label>
+                            <input type="number" id="preparationTime" name="preparationTime" class="form-control" min="1" max="120" required
+                                value="<%= typeof formData !== 'undefined' && formData.preparationTime ? formData.preparationTime : '15' %>">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Item Image *</label>
+                        <div class="image-preview">
+                            <img src="<%= typeof formData !== 'undefined' && formData.imagePreview ? formData.imagePreview : 'https://via.placeholder.com/400?text=Food+Image' %>" alt="Item Preview" id="image-preview">
+                        </div>
+                        <input type="file" id="image" name="image" class="file-input" accept="image/*" <%= typeof formData === 'undefined' ? 'required' : '' %>>
+                        <label for="image" class="file-label">Choose File</label>
+                        <small>Recommended size: 800x600 pixels, Max size: 2MB</small>
+                    </div>
+                </div>
+                
+                <!-- Additional Details Section -->
+                <div class="form-section">
+                    <h3 class="section-title"><i class="fas fa-list-ul"></i> Additional Details</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="calories">Calories (kcal)</label>
+                            <input type="number" id="calories" name="calories" class="form-control" min="0"
+                                value="<%= typeof formData !== 'undefined' && formData.calories ? formData.calories : '' %>">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="servingSize">Serving Size</label>
+                            <input type="text" id="servingSize" name="servingSize" class="form-control" 
+                                value="<%= typeof formData !== 'undefined' && formData.servingSize ? formData.servingSize : '' %>"
+                                placeholder="e.g., 1 plate, 250g">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Dietary Restrictions</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="dietaryRestrictions" value="Vegetarian" 
+                                    <%= typeof formData !== 'undefined' && formData.dietaryRestrictions && formData.dietaryRestrictions.includes('Vegetarian') ? 'checked' : '' %>>
+                                Vegetarian
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="dietaryRestrictions" value="Vegan" 
+                                    <%= typeof formData !== 'undefined' && formData.dietaryRestrictions && formData.dietaryRestrictions.includes('Vegan') ? 'checked' : '' %>>
+                                Vegan
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="dietaryRestrictions" value="Gluten-Free" 
+                                    <%= typeof formData !== 'undefined' && formData.dietaryRestrictions && formData.dietaryRestrictions.includes('Gluten-Free') ? 'checked' : '' %>>
+                                Gluten-Free
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="dietaryRestrictions" value="Dairy-Free" 
+                                    <%= typeof formData !== 'undefined' && formData.dietaryRestrictions && formData.dietaryRestrictions.includes('Dairy-Free') ? 'checked' : '' %>>
+                                Dairy-Free
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="dietaryRestrictions" value="Nut-Free" 
+                                    <%= typeof formData !== 'undefined' && formData.dietaryRestrictions && formData.dietaryRestrictions.includes('Nut-Free') ? 'checked' : '' %>>
+                                Nut-Free
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Allergens</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="allergens" value="Peanuts" 
+                                    <%= typeof formData !== 'undefined' && formData.allergens && formData.allergens.includes('Peanuts') ? 'checked' : '' %>>
+                                Peanuts
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="allergens" value="Tree Nuts" 
+                                    <%= typeof formData !== 'undefined' && formData.allergens && formData.allergens.includes('Tree Nuts') ? 'checked' : '' %>>
+                                Tree Nuts
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="allergens" value="Milk" 
+                                    <%= typeof formData !== 'undefined' && formData.allergens && formData.allergens.includes('Milk') ? 'checked' : '' %>>
+                                Milk
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="allergens" value="Eggs" 
+                                    <%= typeof formData !== 'undefined' && formData.allergens && formData.allergens.includes('Eggs') ? 'checked' : '' %>>
+                                Eggs
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="allergens" value="Fish" 
+                                    <%= typeof formData !== 'undefined' && formData.allergens && formData.allergens.includes('Fish') ? 'checked' : '' %>>
+                                Fish
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="allergens" value="Shellfish" 
+                                    <%= typeof formData !== 'undefined' && formData.allergens && formData.allergens.includes('Shellfish') ? 'checked' : '' %>>
+                                Shellfish
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="allergens" value="Wheat" 
+                                    <%= typeof formData !== 'undefined' && formData.allergens && formData.allergens.includes('Wheat') ? 'checked' : '' %>>
+                                Wheat
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="allergens" value="Soy" 
+                                    <%= typeof formData !== 'undefined' && formData.allergens && formData.allergens.includes('Soy') ? 'checked' : '' %>>
+                                Soy
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ingredients">Ingredients</label>
+                        <textarea id="ingredients" name="ingredients" class="form-control" rows="3"><%= typeof formData !== 'undefined' && formData.ingredients ? formData.ingredients : '' %></textarea>
+                        <small>List main ingredients separated by commas</small>
+                    </div>
+                </div>
+                
+                <!-- Variants Section -->
+                <div class="form-section">
+                    <h3 class="section-title"><i class="fas fa-layer-group"></i> Item Variants (Optional)</h3>
+                    <p>Add size options, flavors, or other variations of this item</p>
+                    
+                    <div id="variants-container" class="variant-container">
+                        <% if (typeof formData !== 'undefined' && formData.variants && formData.variants.length > 0) { %>
+                            <% formData.variants.forEach(function(variant, index) { %>
+                                <div class="variant-item">
+                                    <button type="button" class="remove-variant"><i class="fas fa-times"></i></button>
+                                    
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="variant-name-<%= index %>">Variant Name *</label>
+                                            <input type="text" id="variant-name-<%= index %>" name="variantNames[]" class="form-control" required
+                                                value="<%= variant.name %>">
+                                            <small>E.g., Small, Medium, Large, Spicy, etc.</small>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="variant-price-<%= index %>">Price ($) *</label>
+                                            <input type="number" id="variant-price-<%= index %>" name="variantPrices[]" class="form-control" min="0" step="0.01" required
+                                                value="<%= variant.price %>">
+                                        </div>
+                                    </div>
+                                </div>
+                            <% }); %>
+                        <% } %>
+                    </div>
+                    
+                    <button type="button" id="add-variant" class="btn-secondary">
+                        <i class="fas fa-plus"></i> Add Variant
+                    </button>
+                </div>
+                
+                <!-- Settings Section -->
+                <div class="form-section">
+                    <h3 class="section-title"><i class="fas fa-sliders-h"></i> Item Settings</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Status</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="active" value="true" <%= typeof formData === 'undefined' || formData.active === true || formData.active === 'true' ? 'checked' : '' %>>
+                                    Active
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="active" value="false" <%= typeof formData !== 'undefined' && (formData.active === false || formData.active === 'false') ? 'checked' : '' %>>
+                                    Inactive
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Featured Item</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="featured" name="featured" <%= typeof formData !== 'undefined' && formData.featured ? 'checked' : '' %>>
+                                <label for="featured"></label>
+                            </div>
+                            <small>Featured items appear prominently on menus</small>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Spice Level</label>
+                            <select name="spiceLevel" class="form-control">
+                                <option value="Not Spicy" <%= typeof formData !== 'undefined' && formData.spiceLevel === 'Not Spicy' ? 'selected' : '' %>>Not Spicy</option>
+                                <option value="Mild" <%= typeof formData !== 'undefined' && formData.spiceLevel === 'Mild' ? 'selected' : '' %>>Mild</option>
+                                <option value="Medium" <%= typeof formData !== 'undefined' && formData.spiceLevel === 'Medium' ? 'selected' : '' %>>Medium</option>
+                                <option value="Hot" <%= typeof formData !== 'undefined' && formData.spiceLevel === 'Hot' ? 'selected' : '' %>>Hot</option>
+                                <option value="Extra Hot" <%= typeof formData !== 'undefined' && formData.spiceLevel === 'Extra Hot' ? 'selected' : '' %>>Extra Hot</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Customization Allowed</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="customizable" name="customizable" <%= typeof formData !== 'undefined' && formData.customizable ? 'checked' : '' %>>
+                                <label for="customizable"></label>
+                            </div>
+                            <small>Allow customers to customize this item</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-save"></i> Save Menu Item
+                    </button>
+                    <button type="reset" class="btn-secondary">
+                        <i class="fas fa-undo"></i> Reset Form
+                    </button>
+                    <a href="/admin/menu-items" class="btn-secondary">
+                        <i class="fas fa-times"></i> Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+// Sidebar toggle
+document.querySelector('.sidebar-toggle').addEventListener('click', function() {
+    document.querySelector('.sidebar').classList.toggle('active');
+    document.querySelector('.main-content').classList.toggle('pushed');
+});
+
+// Image preview
+document.getElementById('image').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('image-preview').src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
+// Add variant
+// Get initial variant count from the server-rendered variants or default to 0
+let variantCount = 0;
+if (typeof formData !== 'undefined' && formData.variants) {
+    variantCount = formData.variants.length;
+}
+
+document.getElementById('add-variant').addEventListener('click', function() {
+    const variantsContainer = document.getElementById('variants-container');
+    
+    const variantItem = document.createElement('div');
+    variantItem.className = 'variant-item';
+    variantItem.innerHTML = `
+        <button type="button" class="remove-variant"><i class="fas fa-times"></i></button>
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label for="variant-name-${variantCount}">Variant Name *</label>
+                <input type="text" id="variant-name-${variantCount}" name="variantNames[]" class="form-control" required>
+                <small>E.g., Small, Medium, Large, Spicy, etc.</small>
+            </div>
+            
+            <div class="form-group">
+                <label for="variant-price-${variantCount}">Price ($) *</label>
+                <input type="number" id="variant-price-${variantCount}" name="variantPrices[]" class="form-control" min="0" step="0.01" required>
+            </div>
+        </div>
+    `;
+    
+    variantsContainer.appendChild(variantItem);
+    variantCount++;
+    
+    // Add event listener to new remove button
+    variantItem.querySelector('.remove-variant').addEventListener('click', function() {
+        variantsContainer.removeChild(variantItem);
+    });
+});
+
+// Remove variant (for existing variants)
+document.querySelectorAll('.remove-variant').forEach(function(button) {
+    button.addEventListener('click', function() {
+        const variantItem = this.closest('.variant-item');
+        variantItem.parentNode.removeChild(variantItem);
+    });
+});
+    </script>
+</body>
+</html>
