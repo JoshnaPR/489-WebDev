@@ -6,60 +6,38 @@ const Restaurant = require("../models/Restaurant");
 
 module.exports = {
 
-    getIndexHome: async (req, res) => {
-        try {
-            const restaurants = await Restaurant.findAll(); // fetch all restaurants
-            res.render('indexHome', {
-              restaurants,
-              user: req.session.userId // optional: if you're using session
-            });
-          } catch (error) {
-            console.error("Error loading indexHome:", error);
-            res.status(500).send("Failed to load homepage.");
-          }
+  getIndexHome: async (req, res) => {
+    try {
+      const restaurants = await Restaurant.findAll(); // fetch all restaurants
+      let homeSettings = await HomeSettings.findOne();
+      if (!homeSettings) {
+        homeSettings = await HomeSettings.create({
+          heroTitle: 'Crave it? Bite-A-Way it.',
+          heroDescription: 'Your favorite food delivered fresh & fast, every time.',
+          heroButtonText: 'Explore Menu',
+          featureTitle1: 'Fast Delivery',
+          featureDescription1: 'No more long waits. We bring food hot to your doorstep in minutes.',
+          featureTitle2: 'Endless Choices',
+          featureDescription2: 'From sushi to shawarma, discover hundreds of local favorites.',
+          featureTitle3: 'Secure Checkout',
+          featureDescription3: 'Pay safely and easily with our encrypted, one-click payments.'
+        });
+      }
 
-        //   try {
-        //     // Fetch the latest home settings from the database
-        //     let homeSettings = await HomeSettings.findOne();
+      res.render('indexHome', {
+        restaurants,
+        user: req.session.userId, // optional: if you're using session
+        homeSettings
+      });
+    } catch (error) {
+      console.error("Error loading indexHome:", error);
+      res.status(500).send("Failed to load homepage.");
+    }
+  },
 
-        //     // If no settings exist, you can create default settings (this is optional)
-        //     if (!homeSettings) {
-        //         homeSettings = await HomeSettings.create({
-        //             heroTitle: 'Welcome to Our Platform',
-        //             heroDescription: 'Delivering excellence every day.',
-        //             heroButtonText: 'Explore',
-        //             featureTitle1: 'Feature 1',
-        //             featureDescription1: 'Description 1',
-        //             featureTitle2: 'Feature 2',
-        //             featureDescription2: 'Description 2',
-        //             featureTitle3: 'Feature 3',
-        //             featureDescription3: 'Description 3'
-        //         });
-        //     }
-
-        //     // Extract feature titles and descriptions from the homeSettings
-        //     const { featureTitle1, featureDescription1, featureTitle2, featureDescription2, featureTitle3, featureDescription3 } = homeSettings;
-
-        //     // Pass the homeSettings object and feature data to the view for rendering
-        //     res.render('indexHome', {
-        //         homeSettings,
-        //         featureTitle1,
-        //         featureDescription1,
-        //         featureTitle2,
-        //         featureDescription2,
-        //         featureTitle3,
-        //         featureDescription3
-        //     });
-
-        // } catch (error) {
-        //     console.error("Error loading home settings:", error);
-        //     res.status(500).send("Internal Server Error");
-        // }
-    },
-
-    getLogin: async (req, res) => {
-
-    },
+  getLogin: async (req, res) => {
+    res.render('login')
+  },
 
   getSignup: async (req, res) => {
     res.render('register'); // or your signup EJS
