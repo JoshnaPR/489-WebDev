@@ -40,6 +40,6 @@ module.exports = {
   },
 
   getSignup: async (req, res) => {
-    res.render('register'); // or your signup EJS
+    res.render('register');
   }
 };

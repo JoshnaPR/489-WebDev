@@ -14,10 +14,12 @@
         <nav class="navbar" id="navbar">
           <div class="logo"><img src="/static/img/index/icon/logo.png" /></div>
           <div class="nav-links">
-            <a href="#">Home</a>
-            <a href="#">Menu</a>
+            <a href="/">Home</a>
+            <a href="#features">Menu</a>
+
+            <!-- TODO: add feedback page here -->
             <a href="#">About</a>
-            <a href="#"> <i class="fas fa-shopping-cart cart-icon"></i> </a>
+            <a href="/order/cart"> <i class="fas fa-shopping-cart cart-icon"></i> </a>
 
             <!-- TODO: update to show current user -->
             <a href="/user/101"> <img src="/static/img/user/101.jpg" alt="Profile" class="profile-pic" /> </a>
@@ -34,8 +36,8 @@
           </div>
           <img src="/static/img/index/main.jpg" alt="Food Delivery" class="hero-img"/>
         </header>
+
         <!-- Features Section -->
-      <!-- Features Section -->
       <section id="features" class="features">
         <% if (homeSettings.featureTitle1 && homeSettings.featureDescription1) { %>
           <div class="feature-card">
@@ -73,7 +75,8 @@
               <div class="carousel-card">
                 <a href="/restaurant/<%= restaurant.restaurantID %>">
                   <div class="partner-logo">
-                    <img src="/static/img/restaurant/<%= restaurant.restaurantName.replace(/\s+/g, '') %>.jpeg" alt="<%= restaurant.restaurantName %>">
+
+                    <img src="/static/img/restaurant/<%= restaurant.restaurantID%>.jpg" alt="<%= restaurant.restaurantName %>" style="object-fit:cover;">
                   </div>
                   <p><%= restaurant.restaurantName %></p>
                 </a>
