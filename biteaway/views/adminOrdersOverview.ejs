@@ -136,28 +136,66 @@
             <div>Amount</div>
             <div>Status</div>
           </div>
-
-          <!-- Static restaurant item -->
-          <% orders.forEach(order => { %>
-          <div class="restaurant-item">
-            <div class="restaurant-info">
-              <div>
-                <p><%= order.userAddress %></p>
+        
+          <% 
+            // Define fake items array
+            const items = [
+              { itemName: "Margherita Pizza" },
+              { itemName: "Fettuccine Alfredo" },
+              { itemName: "Classic Lasagna" },
+              { itemName: "Tiramisu" },
+              { itemName: "Classic Burger" },
+              { itemName: "Loaded Fries" },
+              { itemName: "Vegan Burger" },
+              { itemName: "Chocolate Milkshake" },
+              { itemName: "California Roll" }
+            ];
+        
+            // Define fake items quantity
+            const itemsQuantity = [
+              { itemQuantiy: "1" },
+              { itemQuantiy: "3" },
+              { itemQuantiy: "4" },
+              { itemQuantiy: "1" },
+              { itemQuantiy: "3" },
+              { itemQuantiy: "5" },
+              { itemQuantiy: "6" },
+              { itemQuantiy: "1" },
+              { itemQuantiy: "3" }
+            ];
+          %>
+        
+          <% orders.forEach((order, index) => { 
+            const fakeItem = items[index % items.length]; // Get one item for each order
+            const fakeItemQuantity = itemsQuantity[index % itemsQuantity.length]; // Get one item quantity for each order
+          %>
+            <div class="restaurant-item">
+              <div class="restaurant-info">
+                <div>
+                  <p><%= fakeItem.itemName %></p>
+                  <% if (order.user) { %>
+                    <p>
+                      <strong>Phone:</strong> +<%= order.user.countryCode %> <%= order.user.phoneNumber %>
+                    </p>
+                  <% } else { %>
+                    <p><strong>Phone:</strong> Not available</p>
+                  <% } %>
+                  <p><%= order.userAddress %></p>
+                </div>
+              </div>
+              <div class="contact-info">
+                <p>Items: <%= fakeItemQuantity.itemQuantiy %></p>
+              </div>
+              <div class="status">
+                <span><%= order.orderPrice %></span>
+              </div>
+              <div class="rating">
+                <p><%= order.status %></p>
               </div>
             </div>
-            <div class="contact-info">
-              <p>Items : 2</p>
-              <!-- You can replace this with restaurant name if needed -->
-            </div>
-            <div class="status">
-              <span><%= order.orderPrice %></span>
-            </div>
-            <div class="rating">
-              <p><%= order.status %></p>
-            </div>
-          </div>
           <% }); %>
         </div>
+      </div>
       </div>
     </div>
   </body>

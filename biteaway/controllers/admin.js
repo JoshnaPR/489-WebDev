@@ -219,8 +219,14 @@ module.exports = {
     },
     orderOverview: async (req, res) => {
         try {
-            // Fetch all orders
-            const orders = await Order.findAll();
+            // Fetch all orders with user details included
+            const orders = await Order.findAll({
+                include: [{
+                    model: User,
+                    as: 'user',
+                    attributes: ['phoneNumber'] // Add any other required fields
+                }]
+            });
 
             // Count total orders
             const totalOrders = await Order.count();
