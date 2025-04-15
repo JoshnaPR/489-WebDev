@@ -16,12 +16,9 @@
           <div class="nav-links">
             <a href="/">Home</a>
             <a href="#res">Menu</a>
-
-            <!-- TODO: add feedback page here -->
             <a href="/about">About</a>
-            <a href="/order/cart"> <i class="fas fa-shopping-cart cart-icon"></i> </a>
-
             <% if (user) { %>
+            <a href="/order/cart"> <i class="fas fa-shopping-cart cart-icon"></i> </a>
               <a href="/user/<%= user %>"> <img src="/static/img/user/<%= user %>.jpg" alt="Profile" class="profile-pic" /> </a>
             <% } else { %>
               <a href="/login" class="">

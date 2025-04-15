@@ -20,6 +20,8 @@ router.get("/", controller.getIndexHome);
 // controller for going to login page
 router.get("/login", controller.getLogin);
 
+router.get("/logout", controller.getLogout);
+
 // controller for going to signup page
 router.get("/signup", controller.getSignup);
 

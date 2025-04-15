@@ -68,6 +68,11 @@
             <!-- left sidebar -->
             <div class="col-3">
 
+                <!-- back to home -->
+                <div class="profile-sidebar shadow p-3 mb-3" style="background-color:#F59A4C;">
+                    <a href="/" style="color:white"><strong><i class="fas fa-arrow-left"></i>  Return Home</strong></a>
+                </div>
+
                 <!-- user information -->
                 <div class="profile-sidebar shadow p-3 mb-3">
                     <h6><strong>User Information</strong></h6>
@@ -78,7 +83,6 @@
                         <a href="/user/<%= user.userID %>">Reviews</a><br>
                     </div>
                     <a href="/user/<%= user.userID %>/recently-viewed">Recently Viewed</a><br>
-                    <a href="/">Return Home</a>
                 </div>
 
                 <!-- order information -->

@@ -4,6 +4,7 @@ const HomeSettings = require("../models/HomeSettings");
 const User = require("../models/User");
 const Restaurant = require("../models/Restaurant");
 
+
 module.exports = {
 
   getIndexHome: async (req, res) => {
@@ -48,6 +49,10 @@ module.exports = {
 
   getLogin: async (req, res) => {
     res.render('login')
+  },
+
+  getLogout: async (req, res) => {
+    res.redirect("/")
   },
 
   getSignup: async (req, res) => {

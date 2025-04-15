@@ -69,6 +69,16 @@
             <!-- left sidebar -->
             <div class="col-3">
 
+                <!-- back to home -->
+                <div class="profile-sidebar shadow p-3 mb-3" style="background-color:#F59A4C;">
+                    <a href="/" style="color:white"><strong><i class="fas fa-arrow-left"></i> Return Home</strong></a>
+                </div>
+
+                <!-- log out -->
+                <div class="profile-sidebar shadow p-3 mb-3" style="background-color:#F59A4C;">
+                    <a href="/auth/logout" style="color:white"><strong>LOG OUT</strong></a>
+                </div>
+
                 <!-- user information -->
                 <div class="profile-sidebar shadow p-3 mb-3">
                     <h6><strong>User Information</strong></h6>
@@ -80,7 +90,6 @@
 
                     <a href="/user/<%= user.userID %>">Reviews</a><br>
                     <a href="/user/<%= user.userID %>/recently-viewed">Recently Viewed</a><br>
-                    <a href="/">Return Home</a>
                 </div>
 
                 <!-- order information -->
@@ -110,7 +119,7 @@
                     <form action="" method="POST">
                         <!-- first and last name -->
                         <div class="row">
-                            <input type="hidden" name="userID" value=<%= user.userID %>>
+                            <input type="hidden" name="userID" value=<%=user.userID %>>
 
                             <!-- first name -->
                             <div class="col-6">
@@ -165,13 +174,9 @@
                                 class="email-input" ; />
                         </div>
 
-                         <!-- update information button -->
+                        <!-- update information button -->
                         <button type="submit" class="btn btn-primary log-out-btn">Update Information</button>
                     </form>
-
-                
-                    <!-- log out button -->
-                    <button type="button" class="btn btn-primary log-out-btn">Log Out</button>
                 </div>
             </div>
 
