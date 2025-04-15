@@ -17,12 +17,14 @@
             <a href="/">Home</a>
             <a href="#features">Menu</a>
 
-            <!-- TODO: add feedback page here -->
             <a href="#">About</a>
             <a href="/order/cart"> <i class="fas fa-shopping-cart cart-icon"></i> </a>
 
-            <!-- TODO: update to show current user -->
-            <a href="/user/101"> <img src="/static/img/user/101.jpg" alt="Profile" class="profile-pic" /> </a>
+            <% if (user) { %>
+              <a href="/user/<%= user %>"> <img src="/static/img/user/<%= user %>.jpg" alt="Profile" class="profile-pic" /> </a>
+            <% } else { %>
+              <a href="/user/101"> <img src="/static/img/user/101.jpg" alt="Profile" class="profile-pic" /> </a>
+            <% } %>
            
           </div>
         </nav>

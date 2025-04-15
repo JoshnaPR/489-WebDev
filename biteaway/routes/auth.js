@@ -16,9 +16,7 @@ router.get('/register', (req, res) => {
 // Register handler
 router.post('/register', async (req, res) => {
   const { firstName, lastName, email, password, countryCode, phoneNumber, userAddress } = req.body;
-  try {
-    console.log("INSIDE REGISTER POST")
-    
+  try {    
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({
       userID: Date.now(), // Quick unique ID
@@ -46,10 +44,12 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ where: { email } });
-  if (user && await bcrypt.compare(password, user.password)) {
+
+  // if (user && await bcrypt.compare(password, user.password)) { 
+  if (user && (password == user.password)) { 
     req.session.userId = user.userID;
     req.session.isAdmin = user.isAdmin;
-    res.redirect(user.isAdmin ? '/admin/dashboard' : '/user/home');
+    res.redirect(user.isAdmin ? '/admin/' : `/user/${user.userID}`);
   } else {
     res.send('Invalid email or password');
   }

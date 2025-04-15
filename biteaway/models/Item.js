@@ -56,6 +56,21 @@ class Item extends Model {
             return null
         }
     };
+
+    // getter function ; return list of items under specific order
+    static async listItemsByOrder({orderID}) {
+        try {
+            const list = await Item.findAll({
+                where: { orderID }
+            })
+                        
+            return list
+            
+        } catch (error) {
+            console.log(error)
+            return null
+        }
+    };
 }
 
 Item.init({

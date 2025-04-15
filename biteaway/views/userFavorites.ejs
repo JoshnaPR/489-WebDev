@@ -32,6 +32,10 @@
                     <%= user.firstName %> <%= user.lastName %>
                 </p>
 
+                <% if (user.isStarUser) { %>
+                    <img src="/static/img/hotel_class_35dp_FFFFFF_FILL0_wght400_GRAD0_opsz40.svg" style="position: absolute; bottom: 0;" />
+                <% } %>
+
                 <!-- user location -->
                 <p class="profile-label-2">
                     <img class="location-img" src="/static/img/location.png" alt=""/>
@@ -61,7 +65,8 @@
                         <h6><strong>User Information</strong></h6>
                         <a href="/user/<%= user.userID %>/settings">Settings / Profile</a><br>
                         <a href="/user/<%= user.userID %>">Reviews</a><br>
-                        <a href="/user/<%= user.userID %>/recently-viewed">Recently Viewed</a>
+                        <a href="/user/<%= user.userID %>/recently-viewed">Recently Viewed</a><br>
+                        <a href="/">Return Home</a>
                     </div>
 
                     <!-- order information -->

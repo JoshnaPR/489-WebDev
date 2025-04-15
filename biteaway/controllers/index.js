@@ -10,6 +10,7 @@ module.exports = {
     try {
       const restaurants = await Restaurant.findAll(); // fetch all restaurants
       let homeSettings = await HomeSettings.findOne();
+
       if (!homeSettings) {
         homeSettings = await HomeSettings.create({
           heroTitle: 'Crave it? Bite-A-Way it.',
@@ -22,13 +23,23 @@ module.exports = {
           featureTitle3: 'Secure Checkout',
           featureDescription3: 'Pay safely and easily with our encrypted, one-click payments.'
         });
-      }
+      }      
+
+      // sort accordingly
+      // store vars; might have to move restaurants var or change to let
+      // const { sort } = req.body
+      // if (sort === "asc") {
+      //   restaurants = await Restaurant.sortRestaurantByRatingAsc();     
+      // } else if (sort === "desc") {
+      //   restaurants = await Restaurant.sortRestaurantByRatingDesc();     
+      // }
 
       res.render('indexHome', {
         restaurants,
         user: req.session.userId, // optional: if you're using session
         homeSettings
       });
+
     } catch (error) {
       console.error("Error loading indexHome:", error);
       res.status(500).send("Failed to load homepage.");

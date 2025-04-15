@@ -76,6 +76,31 @@ class Order extends Model {
         }
     };
 
+    static async findTrackingOrder({userID}) {
+        try {
+            // console.log("FINDORDER userID", userID)
+
+            const order = await Order.findOne({
+                where: {
+                    userID,
+                    status: "Preparing",
+                },
+            });
+
+            if (order){
+                return order
+            }
+            else {
+                return null
+            }
+           
+            
+        } catch (error) {
+            console.log(error)
+            return null
+        }
+    };
+
     // getter function ; return list of orders by user
     static async listOrdersByUser({userID}) {
         try {
@@ -96,6 +121,7 @@ class Order extends Model {
     };
 
     // count the number of items under a order
+    // TODO: fix this later. move to cart model?
     static async countItemsByOrder({orderID}) {
         try {
             const itemCount = await Cart.count({
@@ -111,6 +137,7 @@ class Order extends Model {
     };
 
     // getter function ; return list of items under an order
+    // TODO: fix this later. move to cart model?
     static async listItems({orderID}) {
         // source: https://stackoverflow.com/questions/53757460/sequelize-findall-include-same-models-2-times-with-different-condition
         try {

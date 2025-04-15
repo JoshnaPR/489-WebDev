@@ -53,20 +53,22 @@ app.set("views", path.join(__dirname, "/views"))
 
 //ROUTES,
 app.use('/', indexRouter); //khushis login & homepage
+
 app.use('/restaurant', restaurantRouter); //trisha's restaurant homepage
+
 app.use('/order', orderRouter); //joshna's ordering page
+app.post("/order", orderRouter);
+
 app.use('/user', userRouter); //hannah's user profile
+app.post("/user", userRouter);
+
 app.use('/admin', adminRouter); //joshna's admin pages (order management)
 
-app.use('/auth', authRouter);
+app.use('/auth', authRouter); //khushis login & register manager
 app.post('/auth', authRouter);
-
-app.post("/order", orderRouter);
 
 app.use("/review", reviewRouter);
 app.post("/review", reviewRouter);
-
-app.post("/user", userRouter);
 
 app.get('/restaurant/:id', async (req, res) => {
   try {

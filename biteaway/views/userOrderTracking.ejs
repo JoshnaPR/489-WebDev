@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,8 +10,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
 </head>
+
 <body>
     <div class="container">
         <!-- Header -->
@@ -42,70 +44,90 @@
                 <form action="/track-order" method="POST" id="trackingForm">
                     <div class="form-group">
                         <label for="order-number">Order Number</label>
-                        <input type="text" id="order-number" name="orderNumber" class="form-control" placeholder="e.g. BAW-123456" required>
+                        <input type="text" id="order-number" name="orderNumber" class="form-control"
+                            placeholder="e.g. BAW-123456" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email address" required>
+                        <input type="email" id="email" name="email" class="form-control"
+                            placeholder="Enter your email address" required>
                     </div>
                     <button type="submit" class="btn">Track Order</button>
                 </form>
             </div>
-            
+
             <!-- Order Details (Only show if tracking an order) -->
             <div class="order-details">
-                <h2>Order Details <span class="order-number">#BAW-123456</span></h2>
-                
+                <h2>Order Details <span class="order-number">
+                        <%= cart.orderID %>
+                    </span></h2>
+
                 <div class="order-summary">
                     <div class="summary-card">
                         <h3>Order Date</h3>
-                        <p>April 12, 2025</p>
+                        <p>
+                            <%= cart.orderDate %>
+                        </p>
                     </div>
                     <div class="summary-card">
                         <h3>Estimated Delivery</h3>
-                        <p>April 12, 2025 (7:30 PM - 8:00 PM)</p>
+                        <% const deliveryTime=new Date(); %>
+                            <% deliveryTime.setTime(cart.orderDate.getTime() + (30 * 60 * 1000)) %>
+                                <p>
+                                    <%= deliveryTime %>
+                                </p>
                     </div>
                     <div class="summary-card">
                         <h3>Status</h3>
-                        <p>Food Preparation</p>
+                        <p>
+                            <%= cart.status %>
+                        </p>
                     </div>
                     <div class="summary-card">
                         <h3>Total Amount</h3>
-                        <p>$42.97</p>
+                        <p>
+                            <%= cart.orderPrice %>
+                        </p>
                     </div>
                 </div>
-                
+
                 <!-- Shipping Address -->
                 <div class="delivery-address">
                     <h3>Delivery Address</h3>
-                    <p>John Doe</p>
-                    <p>123 Main Street, Apt 4B</p>
-                    <p>New York, NY 10001</p>
+                    <p>
+                        <%= user.firstName + " " + user.lastName %>
+                    </p>
+                    <p>
+                        <%= user.userAddress %>
+                    </p>
                     <p>United States</p>
-                    <p><strong>Phone:</strong> (123) 456-7890</p>
-                    <p><strong>Note:</strong> Please leave the order at the front desk.</p>
+                    <p><strong>Phone:</strong>
+                        <%= user.phoneNumber %>
+                    </p>
                 </div>
-                
+
                 <!-- Tracking Progress -->
                 <div class="tracking-progress">
                     <h3>Order Progress</h3>
-                    
+
                     <div class="progress-line">
                         <div class="progress-line-fill" style="height: 40%"></div>
                     </div>
-                    
+
                     <div class="progress-steps">
                         <div class="progress-step step-completed">
                             <div class="step-icon">
                                 <i class="fas fa-check"></i>
                             </div>
                             <div class="step-content">
-                                <div class="step-date">April 12, 2025, 6:05 PM</div>
+                                <div class="step-date">
+                                    <%= cart.orderDate %>
+                                </div>
                                 <div class="step-title">Order Confirmed</div>
                                 <div class="step-description">Your order has been received and confirmed</div>
                             </div>
                         </div>
-                        
+
                         <div class="progress-step step-active">
                             <div class="step-icon">
                                 <i class="fas fa-utensils"></i>
@@ -116,7 +138,7 @@
                                 <div class="step-description">Your food is being prepared by our chefs</div>
                             </div>
                         </div>
-                        
+
                         <div class="progress-step">
                             <div class="step-icon">
                                 <i class="fas fa-box"></i>
@@ -124,10 +146,11 @@
                             <div class="step-content">
                                 <div class="step-date">Upcoming</div>
                                 <div class="step-title">Food Ready for Pickup</div>
-                                <div class="step-description">Your order is ready and waiting for the delivery driver</div>
+                                <div class="step-description">Your order is ready and waiting for the delivery driver
+                                </div>
                             </div>
                         </div>
-                        
+
                         <div class="progress-step">
                             <div class="step-icon">
                                 <i class="fas fa-motorcycle"></i>
@@ -138,7 +161,7 @@
                                 <div class="step-description">Your order is on the way with our delivery partner</div>
                             </div>
                         </div>
-                        
+
                         <div class="progress-step">
                             <div class="step-icon">
                                 <i class="fas fa-home"></i>
@@ -151,7 +174,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Order Items -->
                 <div class="order-items">
                     <h3>Order Items</h3>
@@ -159,54 +182,23 @@
                         <thead>
                             <tr>
                                 <th>Item</th>
-                                <th>Quantity</th>
                                 <th>Price</th>
-                                <th>Total</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <div style="display: flex; align-items: center;">
-                                        <img src="https://via.placeholder.com/60" alt="Margherita Pizza" class="item-image">
-                                        <div class="item-details" style="margin-left: 15px;">
-                                            <h4>Margherita Pizza</h4>
-                                            <p>Classic cheese and tomato</p>
+                            <% cartItems.forEach(function(cart) { %>
+                                <tr>
+                                    <td>
+                                        <div style="display: flex; align-items: center;">
+                                            <div class="item-details" style="margin-left: 15px;">
+                                                <h4><%= cart.item.itemName %></h4>
+                                                <p><%= cart.item.itemDescription %></p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td class="item-quantity">1</td>
-                                <td class="item-price">$15.99</td>
-                                <td class="item-price">$15.99</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div style="display: flex; align-items: center;">
-                                        <img src="https://via.placeholder.com/60" alt="Garlic Breadsticks" class="item-image">
-                                        <div class="item-details" style="margin-left: 15px;">
-                                            <h4>Garlic Breadsticks</h4>
-                                            <p>With marinara dipping sauce</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="item-quantity">2</td>
-                                <td class="item-price">$5.99</td>
-                                <td class="item-price">$11.98</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div style="display: flex; align-items: center;">
-                                        <img src="https://via.placeholder.com/60" alt="Chocolate Brownie" class="item-image">
-                                        <div class="item-details" style="margin-left: 15px;">
-                                            <h4>Chocolate Brownie</h4>
-                                            <p>With vanilla ice cream</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="item-quantity">1</td>
-                                <td class="item-price">$7.99</td>
-                                <td class="item-price">$7.99</td>
-                            </tr>
+                                    </td>
+                                    <td class="item-price">$<%= cart.item.itemPrice %></td>
+                                </tr>
+                                <% }); %>
                         </tbody>
                     </table>
                 </div>
@@ -215,30 +207,35 @@
                 <div class="order-summary-details" style="margin-top: 30px;">
                     <h3>Payment Summary</h3>
                     <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin-top: 15px;">
-                        <div class="summary-row" style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <div class="summary-row"
+                            style="display: flex; justify-content: space-between; margin-bottom: 10px;">
                             <span>Subtotal</span>
-                            <span>$35.96</span>
+                            <span>$<%= cart.orderPrice %></span>
                         </div>
-                        <div class="summary-row" style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <div class="summary-row"
+                            style="display: flex; justify-content: space-between; margin-bottom: 10px;">
                             <span>Delivery Fee</span>
-                            <span>$3.99</span>
+                            <span>$5</span>
                         </div>
-                        <div class="summary-row" style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <div class="summary-row"
+                            style="display: flex; justify-content: space-between; margin-bottom: 10px;">
                             <span>Tax</span>
-                            <span>$3.02</span>
+                            <span>$0.00</span>
                         </div>
-                        <div class="summary-row" style="display: flex; justify-content: space-between; margin-bottom: 10px; color: var(--success-color);">
+                        <div class="summary-row"
+                            style="display: flex; justify-content: space-between; margin-bottom: 10px; color: var(--success-color);">
                             <span>Promo (WELCOME10)</span>
                             <span>-$0.00</span>
                         </div>
-                        <div class="summary-row" style="display: flex; justify-content: space-between; padding-top: 10px; border-top: 1px solid #e1e5eb; font-weight: bold; font-size: 18px; color: var(--secondary-color);">
+                        <div class="summary-row"
+                            style="display: flex; justify-content: space-between; padding-top: 10px; border-top: 1px solid #e1e5eb; font-weight: bold; font-size: 18px; color: var(--secondary-color);">
                             <span>Total</span>
-                            <span>$42.97</span>
+                            <span>$<%= cart.orderPrice + 5 %></span>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Delivery Map -->
             <div class="delivery-map">
                 <h3>Delivery Location</h3>
@@ -249,25 +246,25 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Customer Support -->
             <div class="customer-support">
                 <h3>Need Help with Your Order?</h3>
                 <p>If you have any questions or concerns about your order, please contact our customer support team.</p>
-                
+
                 <div class="support-options">
                     <div class="support-option">
                         <i class="fas fa-comments"></i>
                         <h4>Live Chat</h4>
                         <p>Chat with our customer service team</p>
                     </div>
-                    
+
                     <div class="support-option">
                         <i class="fas fa-phone-alt"></i>
                         <h4>Call Us</h4>
                         <p>1-800-BITEAWAY</p>
                     </div>
-                    
+
                     <div class="support-option">
                         <i class="fas fa-envelope"></i>
                         <h4>Email</h4>
@@ -275,9 +272,9 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Back to Orders Button -->
-            <a href="/my-orders" class="back-to-orders">
+            <a href="/user/<%= user.userID %>" class="back-to-orders">
                 <i class="fas fa-arrow-left"></i> Back to My Orders
             </a>
         </div>
@@ -285,7 +282,7 @@
 
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    
+
     <script>
         // Toggle between tracking form and order details (for demo purposes)
         function toggleTrackingView() {
@@ -293,7 +290,7 @@
             const orderDetails = document.querySelector('.order-details');
             const deliveryMap = document.querySelector('.delivery-map');
             const customerSupport = document.querySelector('.customer-support');
-            
+
             if (trackingForm.style.display === 'none') {
                 trackingForm.style.display = 'block';
                 orderDetails.style.display = 'none';
@@ -306,12 +303,12 @@
                 customerSupport.style.display = 'block';
             }
         }
-        
+
         // Form submission handling
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const trackingForm = document.getElementById('trackingForm');
             if (trackingForm) {
-                trackingForm.addEventListener('submit', function(event) {
+                trackingForm.addEventListener('submit', function (event) {
                     event.preventDefault();
                     // Here you would normally send an AJAX request to get order details
                     // For demo purposes, just toggle the view
@@ -321,4 +318,5 @@
         });
     </script>
 </body>
+
 </html>
