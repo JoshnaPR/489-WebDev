@@ -49,7 +49,7 @@ router.post('/login', async (req, res) => {
   if (user && (password == user.password)) { 
     req.session.userId = user.userID;
     req.session.isAdmin = user.isAdmin;
-    res.redirect(user.isAdmin ? '/admin/' : `/user/${user.userID}`);
+    res.redirect(user.isAdmin ? '/admin/' : `/`);
   } else {
     res.send('Invalid email or password');
   }

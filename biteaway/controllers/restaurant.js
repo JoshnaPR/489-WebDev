@@ -44,8 +44,15 @@ module.exports = {
         const cuisines = await Cuisine.listCuisinesByRestaurant({ restaurantID: req.params.id})     // to display cuisine types
         const reviews = await Review.listReviewsByRestaurant({ restaurantID: req.params.id });      // to display review data for home page
         const users = await User.findAll()
-        const user = await User.findUser(req.params.id);
-        res.render('restaurantReviews', { restaurant, cuisines, reviews, user, users });
+        let user = null;
+
+        if (req.session.userId) {
+            user = await User.findByPk(req.session.userId);
+        }
+
+        const isLoggedIn = !!req.session.userId;
+
+        res.render('restaurantReviews', { restaurant, cuisines, reviews, user, users, isLoggedIn });
     },
 
     // sorts reviews accordingly to the requested type

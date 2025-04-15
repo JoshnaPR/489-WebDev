@@ -23,4 +23,8 @@ router.get("/login", controller.getLogin);
 // controller for going to signup page
 router.get("/signup", controller.getSignup);
 
+router.get("/about", (req, res) => {
+   res.render('aboutUs')
+})
+
 module.exports = router;

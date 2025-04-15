@@ -44,10 +44,14 @@
                 </nav>
             </div>
             <!-- login button -->
-            <div class="col-2 profile-label-2">
-                <a href="/login" class="">
-                  LOG IN
-                </a>
+            <div class="col-2">
+                <% if (user) { %>
+                    <a href="/user/<%= user.userID %>"> <img src="/static/img/user/<%= user.userID %>.jpg" alt="Profile" class="profile-pic" /> </a>
+                  <% } else { %>
+                    <a href="/login" class="profile-label-2">
+                      LOG IN
+                    </a>
+                  <% } %>
               </div>
         </div>
 

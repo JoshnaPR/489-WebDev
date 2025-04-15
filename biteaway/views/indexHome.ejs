@@ -24,7 +24,9 @@
             <% if (user) { %>
               <a href="/user/<%= user %>"> <img src="/static/img/user/<%= user %>.jpg" alt="Profile" class="profile-pic" /> </a>
             <% } else { %>
-              <a href="/user/101"> <img src="/static/img/user/101.jpg" alt="Profile" class="profile-pic" /> </a>
+              <a href="/login" class="">
+                LOG IN
+              </a>
             <% } %>
            
           </div>
@@ -35,7 +37,7 @@
           <div class="hero-text">
             <h1><%= homeSettings.heroTitle %></h1>
             <p><%= homeSettings.heroDescription %></p>
-            <a href="#features" class="hero-btn"><%= homeSettings.heroButtonText %></a>
+            <a href="#res" class="hero-btn"><%= homeSettings.heroButtonText %></a>
           </div>
           <img src="/static/img/index/main.jpg" alt="Food Delivery" class="hero-img"/>
         </header>
