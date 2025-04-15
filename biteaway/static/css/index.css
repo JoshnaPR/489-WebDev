@@ -179,58 +179,96 @@ body {
 }
 
 /* Carousel Section */
-.partners-carousel-section {
-  padding: 60px 40px;
-  background-color: #fff;
+.menu-section {
+  background-color: #F59A4C; /* Theme yellow */
+  padding: 50px 0;
+}
+
+.section-title {
   text-align: center;
-}
-
-.partners-carousel-section .section-title {
-  font-size: 2.4rem;
-  color: #F59A4C; /* Crimson theme */
-  margin-bottom: 30px;
+  font-size: 2rem;
   font-weight: 700;
+  color: #fff;
+  margin-bottom: 30px;
+  font-family: 'Segoe UI', sans-serif;
 }
 
+/* Carousel Container */
 .carousel-container {
   position: relative;
-  max-width: 100%;
   overflow: hidden;
+  width: 100%;
+  padding: 0 20px;
 }
 
+/* Carousel Track */
 .carousel-track {
   display: flex;
-  gap: 20px;
+  gap: 24px;
   overflow-x: auto;
   scroll-behavior: smooth;
-  padding: 20px 0;
+  padding: 10px 0;
 }
 
+/* Hide scrollbar */
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+.carousel-track {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Carousel Card */
 .carousel-card {
-  flex: 0 0 auto;
-  background: #f9f9f9;
+  min-width: 280px; /* Ensure all cards have the same minimum width */
+  height: 380px;    /* Increased height for a more card-like look */
+  background: #fff;
   border-radius: 20px;
-  padding: 20px;
-  width: 160px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  text-align: center;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
   transition: transform 0.3s ease;
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .carousel-card:hover {
-  transform: scale(1.05);
+  transform: translateY(-5px);
+}
+
+/* Image */
+.partner-logo {
+  height: 300px;  /* Increased height to stretch image and create a card look */
+  width: 300px;    /* Set width to ensure a circular shape */
+  overflow: hidden;
+  border-radius: 10%; /* Rounds all corners to make the image circular */
+  margin: 0 auto;   /* Centers the image */
 }
 
 .partner-logo img {
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
-  margin-bottom: 10px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image is properly scaled */
 }
 
+/* Restaurant Name */
 .carousel-card p {
+  margin-top: 15px;
+  font-size: 1.2rem;
   font-weight: 600;
   color: #333;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+  font-family: 'Segoe UI', sans-serif;
+  text-decoration: none; /* Ensures no underline */
+  transition: color 0.3s ease;
+}
+
+.carousel-card p:hover {
+  color: #f6b379; /* Highlight on hover */
 }
 
 /* Carousel Buttons */
@@ -238,144 +276,28 @@ body {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: #F59A4C; /* Crimson */
+  background-color: #fff;
+  color: #F59A4C;
+  font-size: 2rem;
   border: none;
-  color: #fff;
-  font-size: 24px;
-  padding: 10px 14px;
   border-radius: 50%;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  transition: background-color 0.3s ease;
+  padding: 6px 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: background 0.3s ease;
   z-index: 2;
 }
 
 .carousel-btn:hover {
-  background-color: #f7b982;
+  background-color: #f6b379;
 }
 
 .carousel-btn.left {
-  left: 10px;
+  left: 20px;
 }
 
 .carousel-btn.right {
-  right: 10px;
-}
-
-/* ========== Menu Section ========== */
-.menu-section {
-  padding: 40px;
-  background-color: #fac35450;
-  text-align: center;
-}
-
-.menu-title {
-  font-size: 2rem;
-  color: #333;
-  margin-bottom: 30px;
-}
-
-.menu-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-}
-
-/* ========== Menu Cards ========== */
-.menu-card {
-  position: relative;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.3s ease;
-}
-
-.menu-card:hover {
-  transform: scale(1.05);
-}
-
-.menu-img-container {
-  position: relative;
-  width: 100%;
-  height: 200px;
-}
-
-.menu-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* ========== Cart Buttons ========== */
-button {
-  position: absolute;
-  top: 10px;
-  background-color: #F59A4C;
-  color: white;
-  font-size: 24px;
-  border: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.add-to-cart {
-  right: 10px;
-}
-
-.remove-from-cart {
-  left: 10px;
-}
-
-.add-to-cart:hover,
-.remove-from-cart:hover {
-  background-color: #FF7721;
-}
-
-/* ========== Menu Info ========== */
-.menu-info {
-  padding: 15px;
-}
-
-.menu-info h3 {
-  font-size: 1.5rem;
-  color: #333;
-}
-
-.menu-info p {
-  font-size: 1rem;
-  color: #666;
-}
-
-.reviews {
-  font-size: 18px;
-  color: #FFD700;
-  margin-bottom: 10px;
-}
-
-.menu-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 10px;
-}
-
-.menu-price {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #fc943a;
-}
-
-.cart-count {
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #F59A4C;
+  right: 20px;
 }
 
 /* ========== Footer ========== */

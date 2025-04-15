@@ -21,20 +21,22 @@ module.exports = {
             user = await User.findByPk(req.session.userId);
         }
     
-        res.render('restaurantHome', { restaurant, cuisines, reviews, items, user });
-    },
+        const isLoggedIn = !!req.session.userId;
     
+        res.render('restaurantHome', { restaurant, cuisines, reviews, items, user, isLoggedIn });
+    },
+       
  
-    // GET METHOD for menu page
     getRestaurantMenu: async (req, res) => {
         const restaurant = await Restaurant.findRestaurant(req.params.id);
-        const cuisines = await Cuisine.listCuisinesByRestaurant({ restaurantID: req.params.id })     // to display cuisine types
-        const items = await Item.listItemsByRestaurant({ restaurantID: req.params.id })              // to display items from restaurant menu
+        const cuisines = await Cuisine.listCuisinesByRestaurant({ restaurantID: req.params.id });
+        const items = await Item.listItemsByRestaurant({ restaurantID: req.params.id });
         const user = await User.findUser(req.session.userId);
-
-        res.render('restaurantMenu', { restaurant, cuisines, items, user });
-
-    },
+    
+        const isLoggedIn = !!req.session.userId;
+    
+        res.render('restaurantMenu', { restaurant, cuisines, items, user, isLoggedIn });
+    },    
 
     // GET METHOD for reviews page
     getRestaurantReviews: async (req, res) => {

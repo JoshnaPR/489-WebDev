@@ -1,9 +1,12 @@
-var express = require('express');
-var router = express.Router();
-var controller = require('../controllers/order');
+// routes/order.js
+const express = require('express');
+const router = express.Router();
+const controller = require('../controllers/order');
+const { isLoggedIn } = require('../controllers/auth');
+const { isAuthenticated, isAdmin } = require('../controllers/auth')
 
-router.use("/static/", express.static("static"))
-//router.use(express.urlencoded({ extended: true }));
+// Serve static assets
+router.use('/static', express.static('static'));
 
 //view cart, place order & confirm
 
@@ -82,9 +85,8 @@ router.post("/confirm", (req, res) => {
     controller.confirmOrder(userID, res);
 });
 
-//add an item to the cart
-router.post("/add2cart", (req, res) => {
-    //get the ID from the button,
+// Add an item to the cart
+router.post('/add2cart', (req, res) => {
     const { itemID, restaurantID } = req.body;
     //console.log(itemID);
 

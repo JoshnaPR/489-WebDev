@@ -30,8 +30,7 @@ const setUpAssociations = require("./models/relation");
 // const fs = require("fs")
 
 //app.set("trust proxy", 1); // trust first proxy
-app.use(
-  session({
+app.use( session({
     secret: "biteaway",
     resave: false,
     saveUninitialized: false,
@@ -71,25 +70,17 @@ app.use("/review", reviewRouter);
 app.post("/review", reviewRouter);
 
 app.get('/restaurant/:id', async (req, res) => {
-  try {
-    const restaurant = await Restaurant.findByPk(req.params.id, {
-      include: [Cuisine, Item]
-    });
-
-    if (!restaurant) {
-      return res.status(404).send('Restaurant not found');
-    }
-
-    res.render('restauranthome', {
+    const restaurantId = req.params.id;
+    const restaurant = await Restaurant.findRestaurant(restaurantId);
+    const cuisines = await Cuisine.listCuisinesByRestaurant({ restaurantID: restaurantId });
+    const items = await Item.listItemsByRestaurant({ restaurantID: restaurantId });
+    
+    res.render('restaurantMenu', {
       restaurant,
-      cuisines: restaurant.Cuisines,
-      items: restaurant.Items,
-      user: req.session.userId // pass user session
+      cuisines,
+      items,
+      userID: req.session.userId
     });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Error loading restaurant details');
-  }
 });
 
 function isAuthenticated(req, res, next) {
@@ -119,6 +110,10 @@ app.post('/order', isAuthenticated, async (req, res) => {
     console.error(err);
     res.status(500).send('Order failed');
   }
+});
+
+app.get('/about', (req, res) => {
+  res.render('abtus'); 
 });
 
 async function setup() {
