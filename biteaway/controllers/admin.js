@@ -38,7 +38,9 @@ module.exports = {
                 totalRevenue,
                 completedOrders,
                 pendingOrders,
-                cancelledOrders
+                cancelledOrders,
+                user: req.session.userId, // optional: if you're using session
+
             });
         } catch (error) {
             console.error("Error loading admin dashboard:", error);
