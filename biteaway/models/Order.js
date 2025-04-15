@@ -76,6 +76,31 @@ class Order extends Model {
         }
     };
 
+    static async findTrackingOrder({userID}) {
+        try {
+            // console.log("FINDORDER userID", userID)
+
+            const order = await Order.findOne({
+                where: {
+                    userID,
+                    status: "Preparing",
+                },
+            });
+
+            if (order){
+                return order
+            }
+            else {
+                return null
+            }
+           
+            
+        } catch (error) {
+            console.log(error)
+            return null
+        }
+    };
+
     // getter function ; return list of orders by user
     static async listOrdersByUser({userID}) {
         try {

@@ -21,7 +21,7 @@ module.exports = {
         // create an order
         // TODO: update with actual user data
         const user = await Cart.findByUser(logged_in_user);
-        
+
         //look through cart table to see if the user already has items in the cart
         if (!user) {
             //the current user does not have an existing active order or any items in the cart
@@ -99,7 +99,7 @@ module.exports = {
         // console.log("cart instances: ", cartItems);
 
         // cart will return the current active order (associated with the above items)
-        let cart = await Order.findActiveOrder({userID : logged_in_user});
+        let cart = await Order.findActiveOrder({ userID: logged_in_user });
 
         if (!cart) {
             cart = {
@@ -134,7 +134,7 @@ module.exports = {
         const promoMessage = '';
 
         const cartItems = await Cart.listCartByUser(logged_in_user);
-        let cart = await Order.findActiveOrder({userID : logged_in_user});
+        let cart = await Order.findActiveOrder({ userID: logged_in_user });
         const user = await User.findUser(logged_in_user)
 
         if (!cart) {
@@ -143,7 +143,7 @@ module.exports = {
                 orderPrice: 0
             };
         }
-        
+
         res.render('placeOrder', { currentStep, cartItems, promocode, promoMessage, cart, user })
     },
 
@@ -163,22 +163,49 @@ module.exports = {
         const promoMessage = '';
 
         // cart will return the current active order (associated with the above items)
-        let cart = await Order.findActiveOrder({userID : logged_in_user});
+        let cart = await Order.findActiveOrder({ userID: logged_in_user });
 
         if (!cart) {
             cart = {
                 items: [],
-                orderPrice: 0
+                orderPrice: 0,
+                orderDate: new Date()
+            };
+        }
+        else {
+            // update cart after processing order
+            cart.status = 'Preparing'
+            await cart.save();
+        }
+        
+        // finding user
+        const user = await User.findUser(logged_in_user)
+
+        res.render('orderConfirmation', { currentStep, cartItems, promoCode, promoMessage, cart, user })
+    },
+
+    getOrderTracking: async (req, res) => {
+
+        const logged_in_user = 101;
+
+        // cartItems will return a list of cart instances belonging to userID
+        const cartItems = await Cart.listCartByUser(logged_in_user);
+
+        // cart will return the current active order (associated with the above items)
+        let cart = await Order.findTrackingOrder({ userID: logged_in_user });
+
+        const user = await User.findUser(logged_in_user)
+
+        if (!cart) {
+            cart = {
+                items: [],
+                orderPrice: 0,
+                orderDate: new Date()
             };
         }
         
-        // update cart after processing order
-        //cart.status = 'In the Kitchen!'
+        res.render('userOrderTracking', { cartItems, cart, user })
 
-        // finding user
-        const user = await User.findUser(logged_in_user)
-        
-        res.render('orderConfirmation', { currentStep, cartItems, promoCode, promoMessage, cart, user })
     }
 
 }

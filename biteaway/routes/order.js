@@ -29,4 +29,6 @@ router.post("/add2cart", (req, res) => {
     controller.addToCart(itemID, restaurantID, res);
 })
 
+router.get("/tracking", controller.getOrderTracking);
+
 module.exports = router;
