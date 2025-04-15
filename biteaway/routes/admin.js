@@ -47,13 +47,7 @@ router.get("/settings", async function (req, res) {
 router.post("/settings", controller.addHomeSettings);
 
 router.get("/manage", async function (req, res) {
-    const stats = {
-        totalOrders: 0,
-        processing: 0,
-        delivering: 0,
-        completed: 0
-    };
-    res.render('managerOrders', { stats: stats, orders: [] });
+    controller.getManageOrders(req, res);
 })
 
 module.exports = router;

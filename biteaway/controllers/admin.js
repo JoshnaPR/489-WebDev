@@ -249,6 +249,33 @@ module.exports = {
             console.error("Error loading order overview:", error);
             res.status(500).send("Internal Server Error");
         }
+    },
+
+
+    // display currently pending/preparing orders into manageOrders.ejs
+    getManageOrders: async (req, res) => {
+
+        try {
+            // fetch all orders with user details included
+            const orders = await Order.findAllActiveOrders()
+
+            // stats to display on dashboard
+            let stats = {
+                totalOrders: await Order.count(),
+                processing: await Order.count({ where: { status: 'Preparing' } }),
+                delivering: await Order.count({ where: { status: 'Out for Delivery' } }),
+                completed: await Order.count({ where: { status: 'Delivered' } })
+            };
+
+            // render page accordingly
+            res.render('managerOrders', { stats, orders });
+
+
+        } catch (error) {
+            console.error("Error loading order overview:", error);
+            res.status(500).send("Internal Server Error");
+        }
+
     }
 
 };

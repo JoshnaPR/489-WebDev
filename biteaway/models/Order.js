@@ -101,6 +101,33 @@ class Order extends Model {
         }
     };
 
+    // return orders that are pending, preparing, delivering
+    static async findAllActiveOrders() {
+        try {
+
+            const orders = await Order.findAll({
+                where: {
+                    status: ["Pending", "Preparing", "Out for Delivery"]
+                },
+                include: [{
+                    model: User,
+                    as: 'user'
+                }]
+            });
+
+            if (orders){
+                return orders
+            }
+            else {
+                return null
+            }
+           
+        } catch (error) {
+            console.log(error)
+            return null
+        }
+    };
+
     // getter function ; return list of orders by user
     static async listOrdersByUser({userID}) {
         try {
