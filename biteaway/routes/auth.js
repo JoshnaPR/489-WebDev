@@ -17,6 +17,8 @@ router.get('/register', (req, res) => {
 router.post('/register', async (req, res) => {
   const { firstName, lastName, email, password, countryCode, phoneNumber, userAddress } = req.body;
   try {
+    console.log("INSIDE REGISTER POST")
+    
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({
       userID: Date.now(), // Quick unique ID
@@ -32,6 +34,7 @@ router.post('/register', async (req, res) => {
     });
     req.session.userId = user.userID;
     req.session.isAdmin = user.isAdmin;
+    console.log("USER ID: ", user.userID)
     res.redirect('/');
   } catch (err) {
     console.error(err);

@@ -7,6 +7,7 @@ const sequelize = require('./db')
 const app = express();
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+
 //routes,
 var indexRouter = require('./routes/index');
 var restaurantRouter = require('./routes/restaurant');
@@ -56,7 +57,10 @@ app.use('/restaurant', restaurantRouter); //trisha's restaurant homepage
 app.use('/order', orderRouter); //joshna's ordering page
 app.use('/user', userRouter); //hannah's user profile
 app.use('/admin', adminRouter); //joshna's admin pages (order management)
-app.use('/', authRouter);
+
+app.use('/auth', authRouter);
+app.post('/auth', authRouter);
+
 app.post("/order", orderRouter);
 
 app.use("/review", reviewRouter);
