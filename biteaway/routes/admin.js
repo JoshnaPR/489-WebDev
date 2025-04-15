@@ -9,15 +9,16 @@ router.use("/static/", express.static("static"))
 
 router.get("/", controller.getAdminLanding);
 
-router.get("/orders", async function (req, res) {
-    const stats = {
-        totalOrders: 0,
-        processing: 0,
-        delivering: 0,
-        completed: 0
-    };
-    res.render('adminOrders', { stats: stats, orders: [] });
-})
+// router.get("/orders", async function (req, res) {
+//     const stats = {
+//         totalOrders: 0,
+//         processing: 0,
+//         delivering: 0,
+//         completed: 0
+//     };
+//     res.render('adminOrders', { stats: stats, orders: [] });
+// })
+router.get("/orders", controller.orderOverview)
 //Restaurant management routes
 router.get("/restaurants/add", async function (req, res) {
     res.render("adminRestaurant");

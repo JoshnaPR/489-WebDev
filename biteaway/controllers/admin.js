@@ -216,6 +216,31 @@ module.exports = {
             console.error("Error adding menu item:", error);
             res.status(500).send("Internal Server Error");
         }
+    },
+    orderOverview: async (req, res) => {
+        try {
+            // Fetch all orders
+            const orders = await Order.findAll();
+
+            // Count total orders
+            const totalOrders = await Order.count();
+
+            // Count by status
+            const deliveredOrders = await Order.count({ where: { status: 'Delivered' } });
+            const preparingOrders = await Order.count({ where: { status: 'Preparing' } });
+            const OutforDeliveryOrders = await Order.count({ where: { status: 'OutforDelivery' } });
+
+            res.render('adminOrdersOverview', {
+                orders,
+                totalOrders,
+                deliveredOrders,
+                preparingOrders,
+                OutforDeliveryOrders
+            });
+        } catch (error) {
+            console.error("Error loading order overview:", error);
+            res.status(500).send("Internal Server Error");
+        }
     }
 
 };
