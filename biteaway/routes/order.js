@@ -11,14 +11,76 @@ router.get("/", async function (req, res) {
     res.redirect('/order/cart')
 })
 
-// for post method
-router.post("/cart", controller.getCart);
-router.get("/cart", controller.getCart);
+// viewing cart
+router.get("/cart", (req, res) => {
 
-router.get("/checkout", controller.getCheckout);
+    // id from currently logged in user
+    const userID = req.session.userId;
 
-router.get("/confirm", controller.confirmOrder);
-router.post("/confirm", controller.confirmOrder);
+    // https://expressjs.com/en/guide/error-handling.html
+    if (!userID) {
+        return res.status(401).send('Must login to view items to cart!')
+    }
+
+    controller.getCart(userID, res)
+});
+
+
+// viewing cart
+router.post("/cart", (req, res) => {
+
+    // id from currently logged in user
+    const userID = req.session.userId;
+
+    // https://expressjs.com/en/guide/error-handling.html
+    if (!userID) {
+        return res.status(401).send('Must login to view items to cart!')
+    }
+    
+    controller.getCart(userID, res)
+});
+
+// checkout
+router.get("/checkout", (req, res) => {
+    
+    // id from currently logged in user
+    const userID = req.session.userId;
+
+    // https://expressjs.com/en/guide/error-handling.html
+    if (!userID) {
+        return res.status(401).send('Must login to continue with checkout!')
+    }
+
+    controller.getCheckout(userID, res)
+});
+
+// confirm order
+router.get("/confirm", (req, res) => {
+
+    // id from currently logged in user
+    const userID = req.session.userId;
+
+    // https://expressjs.com/en/guide/error-handling.html
+    if (!userID) {
+        return res.status(401).send('Must login to continue with confirmation!')
+    }
+
+    controller.confirmOrder(userID, res);
+});
+
+// confirm order
+router.post("/confirm", (req, res) => {
+
+    // id from currently logged in user
+    const userID = req.session.userId;
+
+    // https://expressjs.com/en/guide/error-handling.html
+    if (!userID) {
+        return res.status(401).send('Must login to continue with confirmation!')
+    }
+
+    controller.confirmOrder(userID, res);
+});
 
 //add an item to the cart
 router.post("/add2cart", (req, res) => {
@@ -26,9 +88,28 @@ router.post("/add2cart", (req, res) => {
     const { itemID, restaurantID } = req.body;
     //console.log(itemID);
 
-    controller.addToCart(itemID, restaurantID, res);
+    // id from currently logged in user
+    const userID = req.session.userId;
+
+    // https://expressjs.com/en/guide/error-handling.html
+    if (!userID) {
+        return res.status(401).send('Must login to add items to cart!')
+    }
+
+    controller.addToCart(itemID, restaurantID, userID, res);
 })
 
-router.get("/tracking", controller.getOrderTracking);
+router.get("/tracking", (req, res) => {
+    
+    // id from currently logged in user
+    const userID = req.session.userId;
+
+    // https://expressjs.com/en/guide/error-handling.html
+    if (!userID) {
+        return res.status(401).send('Must login to add view tracking!')
+    }
+
+    controller.getOrderTracking(userID, res);
+});
 
 module.exports = router;

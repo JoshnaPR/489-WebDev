@@ -8,14 +8,14 @@ const Cart = require("../models/Cart");
 
 module.exports = {
 
-    addToCart: async (itemID, restaurantID, res) => {
+    addToCart: async (itemID, restaurantID, userID, res) => {
 
         // debugging 
         console.log("itemID: ", itemID)
         console.log("restaurantID: ", restaurantID)
         console.log("-----")
 
-        const logged_in_user = 101
+        const logged_in_user = userID
         let newOrder = ""
 
         // create an order
@@ -80,12 +80,12 @@ module.exports = {
         res.redirect(`/restaurant/${restaurantID}/menu?msg=success`)
     },
 
-    getCart: async (restaurantID, res) => {
+    getCart: async (userID, res) => {
         console.log("Inside of getCart function")
         console.log("-----")
 
         const currentStep = 1;
-        const logged_in_user = 101;
+        const logged_in_user = userID;
 
         // what orderCart ejs does ->
         // 1. iterate through the cart and display through the item (from Cart)
@@ -126,9 +126,9 @@ module.exports = {
         res.render('orderCart', { currentStep, cartItems, promoCode, promoMessage, cart })
     },
 
-    getCheckout: async (req, res) => {
+    getCheckout: async (userID, res) => {
         const currentStep = 2;
-        const logged_in_user = 101;
+        const logged_in_user = userID;
 
         const promocode = '';
         const promoMessage = '';
@@ -147,13 +147,13 @@ module.exports = {
         res.render('placeOrder', { currentStep, cartItems, promocode, promoMessage, cart, user })
     },
 
-    confirmOrder: async (req, res) => {
+    confirmOrder: async (userID, res) => {
         console.log("inside of controller's confirmOrder")
         console.log("-----")
 
         // TODO: update to display dynamic user
         const currentStep = 3;
-        const logged_in_user = 101;
+        const logged_in_user = userID;
 
         // cartItems will return a list of cart instances belonging to userID
         const cartItems = await Cart.listCartByUser(logged_in_user);
@@ -184,9 +184,9 @@ module.exports = {
         res.render('orderConfirmation', { currentStep, cartItems, promoCode, promoMessage, cart, user })
     },
 
-    getOrderTracking: async (req, res) => {
+    getOrderTracking: async (userID, res) => {
 
-        const logged_in_user = 101;
+        const logged_in_user = userID;
 
         // cartItems will return a list of cart instances belonging to userID
         const cartItems = await Cart.listCartByUser(logged_in_user);

@@ -9,6 +9,11 @@ router.post("/add-review", (req, res) => {
 
     // id from currently logged in user
     const userID = req.session.userId;
+
+    // https://expressjs.com/en/guide/error-handling.html
+    if (!userID) {
+        return res.status(401).send('Must login to leave a review!')
+    }
     
     // getting information
     const { ratingRange, reviewText, restaurantID } = req.body
