@@ -224,7 +224,7 @@ module.exports = {
                 include: [{
                     model: User,
                     as: 'user',
-                    attributes: ['phoneNumber'] // Add any other required fields
+                    attributes: ['firstName', 'lastName', 'phoneNumber'] // Add any other required fields
                 }]
             });
 

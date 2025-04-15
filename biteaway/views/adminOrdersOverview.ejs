@@ -172,7 +172,8 @@
             <div class="restaurant-item">
               <div class="restaurant-info">
                 <div>
-                  <p><%= fakeItem.itemName %></p>
+                  <!-- <p><%= fakeItem.itemName %></p> -->
+                  <p><%= order.user.firstName %>&nbsp;&nbsp;<%= order.user.lastName %> </p>
                   <% if (order.user) { %>
                     <p>
                       <strong>Phone:</strong> +<%= order.user.countryCode %> <%= order.user.phoneNumber %>
