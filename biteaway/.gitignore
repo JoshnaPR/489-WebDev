@@ -1,0 +1,5 @@
+# files to not commit to github
+biteaway/static/.DS_Store
+biteaway/database/biteawaydb.sqlite
+.vscode
+node_modules/

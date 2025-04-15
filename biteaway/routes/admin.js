@@ -17,14 +17,20 @@ router.get("/orders", async function (req, res) {
     };
     res.render('adminOrders', { stats: stats, orders: [] });
 })
+//Restaurant management routes
+router.get("/restaurants/add", async function (req, res) {
+    res.render("adminRestaurant");
+});
+router.post("/restaurants/add", controller.addRestaurant);
 
-router.get("/restaurants", async function (req, res) {
-    res.render('adminRestaurant');
-})
+router.get("/restaurants", controller.restaurantOverview);
 
+//Menu Items Routes
+router.get("/menu-items", controller.menuOverview)
 router.get("/menu-items/add", async function (req, res) {
     res.render('adminMenu');
 })
+router.post("/menu-items/add", controller.addMenuItem);
 
 router.get("/settings", async function (req, res) {
     res.render("adminSetting");

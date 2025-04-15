@@ -1,12 +1,12 @@
-const sequelize  = require('../db')
+const sequelize = require('../db')
 const { Model, DataTypes } = require('sequelize')
 
 class Restaurant extends Model {
 
     // associations
     // sources: https://sequelize.org/docs/v7/associations/belongs-to/ ; https://stackoverflow.com/questions/58823117/how-to-use-sequelize-belongsto
-    static associate (models) {
-        
+    static associate(models) {
+
         // restaurant has many cuisines
         Restaurant.hasMany(models.Cuisine, {
             as: 'cuisines',
@@ -60,9 +60,9 @@ class Restaurant extends Model {
                     ['restaurantRating', 'DESC']
                 ]
             })
-            
+
             return list
-            
+
         } catch (error) {
             console.log(error)
             return null
@@ -78,9 +78,9 @@ class Restaurant extends Model {
                     ['restaurantRating', 'ASC']
                 ]
             })
-            
+
             return list
-            
+
         } catch (error) {
             console.log(error)
             return null
@@ -93,9 +93,10 @@ class Restaurant extends Model {
 
 Restaurant.init({
     restaurantID: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.INTEGER,
         primaryKey: true,
-        allowNull: false
+        allowNull: false,
+        autoIncrement: true,
     },
 
     restaurantName: {
@@ -129,8 +130,8 @@ Restaurant.init({
     },
 
 }, {
-  sequelize, 
-  modelName: 'Restaurant'
+    sequelize,
+    modelName: 'Restaurant'
 });
 
 module.exports = Restaurant

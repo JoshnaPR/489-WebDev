@@ -15,71 +15,71 @@
         <!-- Sidebar -->
         <div class="sidebar">
             <div class="sidebar-header">
-                <img src="../static/images/logo.png" alt="Bite-A-Way" class="logo">
-                <button class="sidebar-toggle">
-                    <i class="fas fa-bars"></i>
-                </button>
+              <img src="../static/images/logo.png" alt="Bite-A-Way" class="logo" />
+              <button class="sidebar-toggle">
+                <i class="fas fa-bars"></i>
+              </button>
             </div>
-            
+    
             <div class="admin-info">
-                <div class="admin-avatar">A</div>
-                <div>
-                    <div class="admin-name">Admin User</div>
-                    <div class="admin-role">Super Admin</div>
-                </div>
+              <div class="admin-avatar">A</div>
+              <div>
+                <div class="admin-name">Admin User</div>
+                <div class="admin-role">Super Admin</div>
+              </div>
             </div>
-            
+    
             <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="/admin/dashboard" class="nav-link">
-                        <span class="nav-icon"><i class="fas fa-th-large"></i></span>
-                        Dashboard
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/admin/orders" class="nav-link">
-                        <span class="nav-icon"><i class="fas fa-shopping-bag"></i></span>
-                        Orders
-                    </a>
-                </li>
-                <li class="nav-item active">
-                    <a href="/admin/restaurants" class="nav-link">
-                        <span class="nav-icon"><i class="fas fa-utensils"></i></span>
-                        Restaurants
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/admin/menu-items" class="nav-link">
-                        <span class="nav-icon"><i class="fas fa-hamburger"></i></span>
-                        Menu Items
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/admin/users" class="nav-link">
-                        <span class="nav-icon"><i class="fas fa-users"></i></span>
-                        Users
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/admin/reports" class="nav-link">
-                        <span class="nav-icon"><i class="fas fa-chart-bar"></i></span>
-                        Reports
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/admin/settings" class="nav-link">
-                        <span class="nav-icon"><i class="fas fa-cog"></i></span>
-                        Settings
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/logout" class="nav-link">
-                        <span class="nav-icon"><i class="fas fa-sign-out-alt"></i></span>
-                        Logout
-                    </a>
-                </li>
+              <li class="nav-item active">
+                <a href="/admin" class="nav-link">
+                  <span class="nav-icon"><i class="fas fa-th-large"></i></span>
+                  Dashboard
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/admin/orders" class="nav-link">
+                  <span class="nav-icon"><i class="fas fa-shopping-bag"></i></span>
+                  Orders
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/admin/restaurants" class="nav-link">
+                  <span class="nav-icon"><i class="fas fa-utensils"></i></span>
+                  Restaurants
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/admin/menu-items/add" class="nav-link">
+                  <span class="nav-icon"><i class="fas fa-hamburger"></i></span>
+                  Menu Items
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/admin/users" class="nav-link">
+                  <span class="nav-icon"><i class="fas fa-users"></i></span>
+                  Users
+                </a>
+              </li>
+              <!-- <li class="nav-item">
+                <a href="/admin/reports" class="nav-link">
+                  <span class="nav-icon"><i class="fas fa-chart-bar"></i></span>
+                  Reports
+                </a>
+              </li> -->
+              <li class="nav-item">
+                <a href="/admin/settings" class="nav-link">
+                  <span class="nav-icon"><i class="fas fa-cog"></i></span>
+                  Settings
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/logout" class="nav-link">
+                  <span class="nav-icon"><i class="fas fa-sign-out-alt"></i></span>
+                  Logout
+                </a>
+              </li>
             </ul>
-        </div>
+          </div>
         
         <!-- Main Content -->
         <div class="main-content">
@@ -93,7 +93,7 @@
             </div>
             
             <!-- Add Restaurant Form -->
-            <form action="/admin/restaurants/add" method="POST" enctype="multipart/form-data" class="add-form">
+            <form action="/admin/restaurants/add" method="POST" enctype="application/x-www-form-urlencoded" class="add-form">
                 <% if (typeof error !== 'undefined' && error) { %>
                     <div class="alert alert-error">
                         <i class="fas fa-exclamation-circle"></i>
@@ -108,85 +108,15 @@
                     <div class="form-row">
                         <div class="form-group form-group-large">
                             <label for="name">Restaurant Name *</label>
-                            <input type="text" id="name" name="name" class="form-control" required 
+                            <input type="text" id="name" name="restaurantName" class="form-control" required 
                                 value="<%= typeof formData !== 'undefined' && formData.name ? formData.name : '' %>">
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="cuisine">Cuisine Type *</label>
-                            <select id="cuisine" name="cuisine" class="form-control" required>
-                                <option value="">Select Cuisine</option>
-                                <option value="Italian" <%= typeof formData !== 'undefined' && formData.cuisine === 'Italian' ? 'selected' : '' %>>Italian</option>
-                                <option value="Chinese" <%= typeof formData !== 'undefined' && formData.cuisine === 'Chinese' ? 'selected' : '' %>>Chinese</option>
-                                <option value="Mexican" <%= typeof formData !== 'undefined' && formData.cuisine === 'Mexican' ? 'selected' : '' %>>Mexican</option>
-                                <option value="Indian" <%= typeof formData !== 'undefined' && formData.cuisine === 'Indian' ? 'selected' : '' %>>Indian</option>
-                                <option value="Japanese" <%= typeof formData !== 'undefined' && formData.cuisine === 'Japanese' ? 'selected' : '' %>>Japanese</option>
-                                <option value="American" <%= typeof formData !== 'undefined' && formData.cuisine === 'American' ? 'selected' : '' %>>American</option>
-                                <option value="Mediterranean" <%= typeof formData !== 'undefined' && formData.cuisine === 'Mediterranean' ? 'selected' : '' %>>Mediterranean</option>
-                                <option value="Thai" <%= typeof formData !== 'undefined' && formData.cuisine === 'Thai' ? 'selected' : '' %>>Thai</option>
-                                <option value="Fast Food" <%= typeof formData !== 'undefined' && formData.cuisine === 'Fast Food' ? 'selected' : '' %>>Fast Food</option>
-                                <option value="Vegetarian" <%= typeof formData !== 'undefined' && formData.cuisine === 'Vegetarian' ? 'selected' : '' %>>Vegetarian</option>
-                                <option value="Other" <%= typeof formData !== 'undefined' && formData.cuisine === 'Other' ? 'selected' : '' %>>Other</option>
-                            </select>
-                        </div>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="description">Description *</label>
-                        <textarea id="description" name="description" class="form-control" rows="4" required><%= typeof formData !== 'undefined' && formData.description ? formData.description : '' %></textarea>
-                        <small>Brief description of the restaurant (50-200 characters)</small>
-                    </div>
-                    
-                    <div class="form-group logo-upload">
-                        <label>Restaurant Logo *</label>
-                        <div class="logo-preview">
-                            <img src="<%= typeof formData !== 'undefined' && formData.logoPreview ? formData.logoPreview : 'https://via.placeholder.com/200x100?text=Restaurant+Logo' %>" alt="Logo Preview" id="logo-preview">
-                        </div>
-                        <input type="file" id="logo" name="logo" class="file-input" accept="image/*" <%= typeof formData === 'undefined' ? 'required' : '' %>>
-                        <label for="logo" class="file-label">Choose File</label>
-                        <small>Recommended size: 400x200 pixels, Max size: 2MB</small>
-                    </div>
-                    
-                    <div class="form-group logo-upload">
-                        <label>Restaurant Banner (Optional)</label>
-                        <div class="banner-preview">
-                            <img src="<%= typeof formData !== 'undefined' && formData.bannerPreview ? formData.bannerPreview : 'https://via.placeholder.com/800x300?text=Restaurant+Banner' %>" alt="Banner Preview" id="banner-preview">
-                        </div>
-                        <input type="file" id="banner" name="banner" class="file-input" accept="image/*">
-                        <label for="banner" class="file-label">Choose File</label>
-                        <small>Recommended size: 1200x400 pixels, Max size: 5MB</small>
-                    </div>
-                </div>
-                
-                <!-- Contact Info Section -->
-                <div class="form-section">
-                    <h3 class="section-title"><i class="fas fa-phone-alt"></i> Contact Information</h3>
-                    
                     <div class="form-row">
                         <div class="form-group form-group-large">
-                            <label for="email">Email Address *</label>
-                            <input type="email" id="email" name="email" class="form-control" required
-                                value="<%= typeof formData !== 'undefined' && formData.email ? formData.email : '' %>">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="phone">Phone Number *</label>
-                            <input type="tel" id="phone" name="phoneNumber" class="form-control" required
-                                value="<%= typeof formData !== 'undefined' && formData.phoneNumber ? formData.phoneNumber : '' %>">
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group form-group-large">
-                            <label for="website">Website (Optional)</label>
-                            <input type="url" id="website" name="website" class="form-control" placeholder="https://"
-                                value="<%= typeof formData !== 'undefined' && formData.website ? formData.website : '' %>">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="ownerName">Owner/Manager Name *</label>
-                            <input type="text" id="ownerName" name="ownerName" class="form-control" required
-                                value="<%= typeof formData !== 'undefined' && formData.ownerName ? formData.ownerName : '' %>">
+                            <label for="name">Contact Number *</label>
+                            <input type="text" id="name" name="phoneNumber" class="form-control" required 
+                                value="<%= typeof formData !== 'undefined' && formData.name ? formData.name : '' %>">
                         </div>
                     </div>
                 </div>
@@ -197,56 +127,8 @@
                     
                     <div class="form-group">
                         <label for="address">Street Address *</label>
-                        <input type="text" id="address" name="address" class="form-control" required
+                        <input type="text" id="address" name="restaurantAddress" class="form-control" required
                             value="<%= typeof formData !== 'undefined' && formData.address ? formData.address : '' %>">
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="city">City *</label>
-                            <input type="text" id="city" name="city" class="form-control" required
-                                value="<%= typeof formData !== 'undefined' && formData.city ? formData.city : '' %>">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="state">State/Province *</label>
-                            <input type="text" id="state" name="state" class="form-control" required
-                                value="<%= typeof formData !== 'undefined' && formData.state ? formData.state : '' %>">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="postalCode">Postal Code *</label>
-                            <input type="text" id="postalCode" name="postalCode" class="form-control" required
-                                value="<%= typeof formData !== 'undefined' && formData.postalCode ? formData.postalCode : '' %>">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="country">Country *</label>
-                            <select id="country" name="country" class="form-control" required>
-                                <option value="">Select Country</option>
-                                <option value="United States" <%= typeof formData !== 'undefined' && formData.country === 'United States' ? 'selected' : '' %>>United States</option>
-                                <option value="Canada" <%= typeof formData !== 'undefined' && formData.country === 'Canada' ? 'selected' : '' %>>Canada</option>
-                                <option value="United Kingdom" <%= typeof formData !== 'undefined' && formData.country === 'United Kingdom' ? 'selected' : '' %>>United Kingdom</option>
-                                <option value="Australia" <%= typeof formData !== 'undefined' && formData.country === 'Australia' ? 'selected' : '' %>>Australia</option>
-                                <option value="India" <%= typeof formData !== 'undefined' && formData.country === 'India' ? 'selected' : '' %>>India</option>
-                                <!-- Add more countries as needed -->
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group form-group-large">
-                            <label for="deliveryRadius">Delivery Radius (km) *</label>
-                            <input type="number" id="deliveryRadius" name="deliveryRadius" class="form-control" min="1" max="50" required
-                                value="<%= typeof formData !== 'undefined' && formData.deliveryRadius ? formData.deliveryRadius : '5' %>">
-                            <small>Maximum distance for food delivery in kilometers</small>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="deliveryFee">Delivery Fee ($) *</label>
-                            <input type="number" id="deliveryFee" name="deliveryFee" class="form-control" min="0" step="0.01" required
-                                value="<%= typeof formData !== 'undefined' && formData.deliveryFee ? formData.deliveryFee : '2.99' %>">
-                        </div>
                     </div>
                 </div>
                 
@@ -254,133 +136,38 @@
                 <div class="form-section">
                     <h3 class="section-title"><i class="fas fa-clock"></i> Operating Information</h3>
                     
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="preparationTime">Average Preparation Time (minutes) *</label>
-                            <input type="number" id="preparationTime" name="preparationTime" class="form-control" min="5" max="120" required
-                                value="<%= typeof formData !== 'undefined' && formData.preparationTime ? formData.preparationTime : '30' %>">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="minOrderAmount">Minimum Order Amount ($) *</label>
-                            <input type="number" id="minOrderAmount" name="minOrderAmount" class="form-control" min="0" step="0.01" required
-                                value="<%= typeof formData !== 'undefined' && formData.minOrderAmount ? formData.minOrderAmount : '10.00' %>">
-                        </div>
-                    </div>
-                    
                     <div class="hours-container">
                         <label>Operating Hours *</label>
                         
-                        <div class="days-container">
-                            <% const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']; %>
-                            <% days.forEach(function(day) { %>
-                                <div class="day-row">
-                                    <div class="day-name">
-                                        <label>
-                                            <input type="checkbox" name="openDays" value="<%= day %>" class="day-checkbox"
-                                                <%= typeof formData !== 'undefined' && formData.openDays && formData.openDays.includes(day) ? 'checked' : '' %>>
-                                            <%= day %>
-                                        </label>
-                                    </div>
-                                    <div class="day-hours">
-                                        <div class="time-select">
-                                            <select name="<%= day.toLowerCase() %>OpenTime" class="form-control time-dropdown" <%= typeof formData !== 'undefined' && formData.openDays && !formData.openDays.includes(day) ? 'disabled' : '' %>>
-                                                <% for(let h=0; h<24; h++) { %>
-                                                    <% for(let m=0; m<60; m+=30) { %>
-                                                        <% const time = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`; %>
-                                                        <option value="<%= time %>" <%= typeof formData !== 'undefined' && formData[`${day.toLowerCase()}OpenTime`] === time ? 'selected' : '' %>><%= time %></option>
-                                                    <% } %>
-                                                <% } %>
-                                            </select>
-                                            <span>to</span>
-                                            <select name="<%= day.toLowerCase() %>CloseTime" class="form-control time-dropdown" <%= typeof formData !== 'undefined' && formData.openDays && !formData.openDays.includes(day) ? 'disabled' : '' %>>
-                                                <% for(let h=0; h<24; h++) { %>
-                                                    <% for(let m=0; m<60; m+=30) { %>
-                                                        <% const time = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`; %>
-                                                        <option value="<%= time %>" <%= typeof formData !== 'undefined' && formData[`${day.toLowerCase()}CloseTime`] === time ? 'selected' : '' %>><%= time %></option>
-                                                    <% } %>
-                                                <% } %>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            <% }); %>
+                        <div class="time-container">
+                            <div class="time-select">
+                                <label for="openingTime">Opening Time:</label>
+                                <select name="openingTime" class="form-control time-dropdown">
+                                    <% for(let h=0; h<24; h++) { %>
+                                        <% for(let m=0; m<60; m+=30) { %>
+                                            <% const time = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`; %>
+                                            <option value="<%= time %>" <%= typeof formData !== 'undefined' && formData.openingTime === time ? 'selected' : '' %>><%= time %></option>
+                                        <% } %>
+                                    <% } %>
+                                </select>
+                            </div>
+                            
+                            <span>to</span>
+                            
+                            <div class="time-select">
+                                <label for="closingTime">Closing Time:</label>
+                                <select name="closingTime" class="form-control time-dropdown">
+                                    <% for(let h=0; h<24; h++) { %>
+                                        <% for(let m=0; m<60; m+=30) { %>
+                                            <% const time = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`; %>
+                                            <option value="<%= time %>" <%= typeof formData !== 'undefined' && formData.closingTime === time ? 'selected' : '' %>><%= time %></option>
+                                        <% } %>
+                                    <% } %>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Settings Section -->
-                <div class="form-section">
-                    <h3 class="section-title"><i class="fas fa-sliders-h"></i> Restaurant Settings</h3>
-                    
-                    <div class="form-group">
-                        <label>Status</label>
-                        <div class="radio-group">
-                            <label class="radio-label">
-                                <input type="radio" name="status" value="Active" <%= typeof formData === 'undefined' || formData.status === 'Active' ? 'checked' : '' %>>
-                                Active
-                            </label>
-                            <label class="radio-label">
-                                <input type="radio" name="status" value="Inactive" <%= typeof formData !== 'undefined' && formData.status === 'Inactive' ? 'checked' : '' %>>
-                                Inactive
-                            </label>
-                            <label class="radio-label">
-                                <input type="radio" name="status" value="Pending" <%= typeof formData !== 'undefined' && formData.status === 'Pending' ? 'checked' : '' %>>
-                                Pending Approval
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Featured Restaurant</label>
-                        <div class="toggle-switch">
-                            <input type="checkbox" id="featured" name="featured" <%= typeof formData !== 'undefined' && formData.featured ? 'checked' : '' %>>
-                            <label for="featured"></label>
-                        </div>
-                        <small>Featured restaurants appear prominently on the homepage</small>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Payment Options</label>
-                        <div class="checkbox-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="paymentOptions" value="Credit Card" <%= typeof formData !== 'undefined' && formData.paymentOptions && formData.paymentOptions.includes('Credit Card') ? 'checked' : 'checked' %>>
-                                Credit Card
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="paymentOptions" value="Debit Card" <%= typeof formData !== 'undefined' && formData.paymentOptions && formData.paymentOptions.includes('Debit Card') ? 'checked' : 'checked' %>>
-                                Debit Card
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="paymentOptions" value="Digital Wallet" <%= typeof formData !== 'undefined' && formData.paymentOptions && formData.paymentOptions.includes('Digital Wallet') ? 'checked' : '' %>>
-                                Digital Wallet
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="paymentOptions" value="Cash on Delivery" <%= typeof formData !== 'undefined' && formData.paymentOptions && formData.paymentOptions.includes('Cash on Delivery') ? 'checked' : 'checked' %>>
-                                Cash on Delivery
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Services Offered</label>
-                        <div class="checkbox-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="services" value="Delivery" <%= typeof formData !== 'undefined' && formData.services && formData.services.includes('Delivery') ? 'checked' : 'checked' %>>
-                                Delivery
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="services" value="Takeout" <%= typeof formData !== 'undefined' && formData.services && formData.services.includes('Takeout') ? 'checked' : 'checked' %>>
-                                Takeout
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="services" value="Dine-in" <%= typeof formData !== 'undefined' && formData.services && formData.services.includes('Dine-in') ? 'checked' : '' %>>
-                                Dine-in
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                
                 <!-- Form Actions -->
                 <div class="form-actions">
                     <button type="submit" class="btn-primary">
