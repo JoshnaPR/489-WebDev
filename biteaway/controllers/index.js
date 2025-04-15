@@ -23,14 +23,13 @@ module.exports = {
           featureTitle3: 'Secure Checkout',
           featureDescription3: 'Pay safely and easily with our encrypted, one-click payments.'
         });
-      }
-
+      }      
       res.render('indexHome', {
         restaurants,
         user: req.session.userId, // optional: if you're using session
         homeSettings
       });
-      
+
     } catch (error) {
       console.error("Error loading indexHome:", error);
       res.status(500).send("Failed to load homepage.");
