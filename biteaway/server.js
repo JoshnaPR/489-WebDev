@@ -701,6 +701,33 @@ async function setup() {
     itemDescription: "Creamy pasta with parmesan cheese and butter sauce"
   });
 
+  // many-to-many relationship testing
+  // const cart1 = await Cart.create({
+  //   orderID: 1,
+  //   itemID: 3,
+  //   userID: 101
+  // });
+
+  // const cart2 = await Cart.create({
+  //   orderID: 1,
+  //   itemID: 4,
+  //   userID: 101
+  // });
+
+  // const cart3 = await Cart.create({
+  //   orderID: 7,
+  //   itemID: 1,
+  //   userID: 101
+  // });
+
+  // const cart4 = await Cart.create({
+  //   orderID: 7,
+  //   itemID: 2,
+  //   userID: 101
+  // });
+
+  // end many-to-many relationship testing for orders
+
   const lasagna = await Item.create({
     itemID: 15,
     restaurantID: 2,

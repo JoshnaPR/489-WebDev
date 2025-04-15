@@ -96,6 +96,7 @@ class Order extends Model {
     };
 
     // count the number of items under a order
+    // TODO: fix this later. move to cart model?
     static async countItemsByOrder({orderID}) {
         try {
             const itemCount = await Cart.count({
@@ -111,6 +112,7 @@ class Order extends Model {
     };
 
     // getter function ; return list of items under an order
+    // TODO: fix this later. move to cart model?
     static async listItems({orderID}) {
         // source: https://stackoverflow.com/questions/53757460/sequelize-findall-include-same-models-2-times-with-different-condition
         try {
