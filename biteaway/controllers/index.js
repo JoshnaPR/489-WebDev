@@ -10,6 +10,7 @@ module.exports = {
     try {
       const restaurants = await Restaurant.findAll(); // fetch all restaurants
       let homeSettings = await HomeSettings.findOne();
+
       if (!homeSettings) {
         homeSettings = await HomeSettings.create({
           heroTitle: 'Crave it? Bite-A-Way it.',
@@ -29,6 +30,7 @@ module.exports = {
         user: req.session.userId, // optional: if you're using session
         homeSettings
       });
+      
     } catch (error) {
       console.error("Error loading indexHome:", error);
       res.status(500).send("Failed to load homepage.");
