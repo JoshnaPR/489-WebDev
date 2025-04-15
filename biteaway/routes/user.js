@@ -21,5 +21,11 @@ router.get("/:id/favorites", controller.getUserFavorites);
 // user order history page
 router.get("/:id/order-history", controller.getUserOrderHistory);
 
-
+// updating user information
+router.post("/:id/settings", (req, res) => {
+    const { userID, firstName, lastName, country, number, email, address, password } = req.body;
+    controller.updateUserInformation( userID, firstName, lastName, country, number, email, address, password, res )
+});
+    
+    
 module.exports = router;

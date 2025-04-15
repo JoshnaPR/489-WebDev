@@ -1,4 +1,3 @@
-// models/HomeSettings.js
 const sequelize = require('../db');
 const { Model, DataTypes } = require('sequelize');
 
@@ -20,6 +19,30 @@ HomeSettings.init({
     },
     heroButtonText: {
         type: DataTypes.STRING,
+        allowNull: true
+    },
+    featureTitle1: {  // First feature title
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    featureDescription1: {  // First feature description
+        type: DataTypes.TEXT,
+        allowNull: true
+    },
+    featureTitle2: {  // Second feature title
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    featureDescription2: {  // Second feature description
+        type: DataTypes.TEXT,
+        allowNull: true
+    },
+    featureTitle3: {  // Third feature title
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    featureDescription3: {  // Third feature description
+        type: DataTypes.TEXT,
         allowNull: true
     }
 }, {

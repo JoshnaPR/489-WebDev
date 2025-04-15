@@ -14,17 +14,5 @@ sequelize.authenticate()
 });
 
 // attempting to fix circular dependency errors: https://stackoverflow.com/questions/45079710/sequelize-associate-not-executing-from-index-js
-// keeping source in case; import models and associations here if needed
-
-// module.exports = {
-//   sequelize,
-//   User,
-//   Cuisine,
-//   Item,
-//   Order,
-//   Restaurant,
-//   Review,
-//   Cart
-// };
 
 module.exports = sequelize

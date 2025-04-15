@@ -2,7 +2,6 @@ const sequelize = require('../db')
 const { Model, DataTypes } = require('sequelize')
 
 const Restaurant = require('./Restaurant');
-const Cart = require('./Cart');
 
 class Item extends Model {
 
@@ -48,6 +47,21 @@ class Item extends Model {
         try {
             const list = await Item.findAll({
                 where: { restaurantID }
+            })
+                        
+            return list
+            
+        } catch (error) {
+            console.log(error)
+            return null
+        }
+    };
+
+    // getter function ; return list of items under specific order
+    static async listItemsByOrder({orderID}) {
+        try {
+            const list = await Item.findAll({
+                where: { orderID }
             })
                         
             return list

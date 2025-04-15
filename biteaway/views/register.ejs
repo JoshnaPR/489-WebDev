@@ -134,7 +134,7 @@
 <body>
   <div class="container">
     <h2>Create Your Bite-A-Way Account</h2>
-    <form action="/signup" method="POST">
+    <form action="/auth/register" method="POST">
       <div class="form-row">
         <div class="form-group">
           <input type="text" name="firstName" placeholder="First Name" required />
@@ -173,9 +173,10 @@
         </div>
         <div class="form-group">
           <select name="state" required>
-            <option value="">WA</option>
-            <option value="state1">CAL</option>
-            <option value="state2">NYC</option>
+            <option value="">State</option>
+            <option value="state1">WA</option>
+            <option value="state2">CAL</option>
+            <option value="state3">NYC</option>
           </select>
         </div>
       </div>

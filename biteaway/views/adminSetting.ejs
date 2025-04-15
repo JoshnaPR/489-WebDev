@@ -95,7 +95,7 @@
         <form
           action="/admin/settings"
           method="POST"
-          enctype="multipart/form-data"
+          enctype="application/x-www-form-urlencoded"
           class="home-form"
         >
           <% if (typeof error !== 'undefined' && error) { %>
@@ -152,17 +152,6 @@
             </div>
 
             <div class="form-group">
-              <label for="heroButtonLink">Hero Button Link</label>
-              <input
-                type="text"
-                id="heroButtonLink"
-                name="heroButtonLink"
-                class="form-control"
-                value="<%= typeof homeData !== 'undefined' && homeData.hero ? homeData.hero.buttonLink : '' %>"
-              />
-            </div>
-
-            <div class="form-group">
               <label>Hero Image *</label>
               <div class="image-preview">
                 <img
@@ -190,54 +179,140 @@
             </h3>
             <p>Manage the three key features displayed on the home page.</p>
 
-            <% for (let i = 0; i < 3; i++) { %>
             <div class="feature-item">
-              <h4>Feature <%= i + 1 %></h4>
+              <h4>Feature 1</h4>
               <div class="form-group">
                 <label>Feature Image *</label>
                 <div class="image-preview feature-preview">
                   <img
-                    src="<%= typeof homeData !== 'undefined' && homeData.features && homeData.features[i] && homeData.features[i].image ? homeData.features[i].image : 'https://via.placeholder.com/100?text=Feature+' + (i+1) %>"
-                    alt="Feature <%= i + 1 %> Image Preview"
-                    id="feature-image-preview-<%= i %>"
+                    src="<%= typeof homeData !== 'undefined' && homeData.features && homeData.features[0] && homeData.features[0].image ? homeData.features[0].image : 'https://via.placeholder.com/100?text=Feature+1' %>"
+                    alt="Feature 1 Image Preview"
+                    id="feature-image-preview-0"
                   />
                 </div>
                 <input
                   type="file"
-                  id="featureImage<%= i %>"
+                  id="featureImage0"
                   name="featureImages[]"
                   class="file-input"
                   accept="image/*"
                 />
-                <label for="featureImage<%= i %>" class="file-label"
+                <label for="featureImage0" class="file-label"
                   >Choose File</label
                 >
               </div>
               <div class="form-group">
-                <label for="featureTitle<%= i %>">Feature Title *</label>
+                <label for="featureTitle1">Feature Title *</label>
                 <input
                   type="text"
-                  id="featureTitle<%= i %>"
-                  name="featureTitles[]"
+                  id="featureTitle1"
+                  name="featureTitle1"
                   class="form-control"
-                  value="<%= typeof homeData !== 'undefined' && homeData.features && homeData.features[i] ? homeData.features[i].title : '' %>"
+                  value="<%= typeof homeData !== 'undefined' && homeData.features && homeData.features[0] ? homeData.features[0].title : '' %>"
                 />
               </div>
               <div class="form-group">
-                <label for="featureDescription<%= i %>"
-                  >Feature Description *</label
-                >
+                <label for="featureDescription1">Feature Description *</label>
                 <textarea
-                  id="featureDescription<%= i %>"
-                  name="featureDescriptions[]"
+                  id="featureDescription1"
+                  name="featureDescription1"
                   class="form-control"
                   rows="2"
                 >
-<%= typeof homeData !== 'undefined' && homeData.features && homeData.features[i] ? homeData.features[i].description : '' %></textarea
+<%= typeof homeData !== 'undefined' && homeData.features && homeData.features[0] ? homeData.features[0].description : '' %></textarea
                 >
               </div>
             </div>
-            <% } %>
+
+            <div class="feature-item">
+              <h4>Feature 2</h4>
+              <div class="form-group">
+                <label>Feature Image *</label>
+                <div class="image-preview feature-preview">
+                  <img
+                    src="<%= typeof homeData !== 'undefined' && homeData.features && homeData.features[1] && homeData.features[1].image ? homeData.features[1].image : 'https://via.placeholder.com/100?text=Feature+2' %>"
+                    alt="Feature 2 Image Preview"
+                    id="feature-image-preview-1"
+                  />
+                </div>
+                <input
+                  type="file"
+                  id="featureImage1"
+                  name="featureImages[]"
+                  class="file-input"
+                  accept="image/*"
+                />
+                <label for="featureImage1" class="file-label"
+                  >Choose File</label
+                >
+              </div>
+              <div class="form-group">
+                <label for="featureTitle2">Feature Title *</label>
+                <input
+                  type="text"
+                  id="featureTitle2"
+                  name="featureTitle2"
+                  class="form-control"
+                  value="<%= typeof homeData !== 'undefined' && homeData.features && homeData.features[1] ? homeData.features[1].title : '' %>"
+                />
+              </div>
+              <div class="form-group">
+                <label for="featureDescription2">Feature Description *</label>
+                <textarea
+                  id="featureDescription2"
+                  name="featureDescription2"
+                  class="form-control"
+                  rows="2"
+                >
+<%= typeof homeData !== 'undefined' && homeData.features && homeData.features[1] ? homeData.features[1].description : '' %></textarea
+                >
+              </div>
+            </div>
+
+            <div class="feature-item">
+              <h4>Feature 3</h4>
+              <div class="form-group">
+                <label>Feature Image *</label>
+                <div class="image-preview feature-preview">
+                  <img
+                    src="<%= typeof homeData !== 'undefined' && homeData.features && homeData.features[2] && homeData.features[2].image ? homeData.features[2].image : 'https://via.placeholder.com/100?text=Feature+3' %>"
+                    alt="Feature 3 Image Preview"
+                    id="feature-image-preview-2"
+                  />
+                </div>
+                <input
+                  type="file"
+                  id="featureImage2"
+                  name="featureImages[]"
+                  class="file-input"
+                  accept="image/*"
+                />
+                <label for="featureImage2" class="file-label"
+                  >Choose File</label
+                >
+              </div>
+              <div class="form-group">
+                <label for="featureTitle3">Feature Title *</label>
+                <input
+                  type="text"
+                  id="featureTitle3"
+                  name="featureTitle3"
+                  class="form-control"
+                  value="<%= typeof homeData !== 'undefined' && homeData.features && homeData.features[2] ? homeData.features[2].title : '' %>"
+                />
+              </div>
+              <div class="form-group">
+                <label for="featureDescription3">Feature Description *</label>
+                <textarea
+                  id="featureDescription3"
+                  name="featureDescription3"
+                  class="form-control"
+                  rows="2"
+                >
+<%= typeof homeData !== 'undefined' && homeData.features && homeData.features[2] ? homeData.features[2].description : '' %></textarea
+                >
+              </div>
+            </div>
           </div>
 
           <div class="form-section">

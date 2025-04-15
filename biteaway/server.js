@@ -4,6 +4,9 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const sequelize = require('./db')
+const app = express();
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 //routes,
 var indexRouter = require('./routes/index');
@@ -12,6 +15,7 @@ var userRouter = require('./routes/user');
 var adminRouter = require('./routes/admin');
 var orderRouter = require('./routes/order');
 var reviewRouter = require('./routes/review');
+var authRouter = require('./routes/auth');
 
 //models,
 const User = require("./models/User");
@@ -24,9 +28,7 @@ const Cart = require("./models/Cart");
 const setUpAssociations = require("./models/relation");
 
 // const fs = require("fs")
-const app = express();
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
+
 //app.set("trust proxy", 1); // trust first proxy
 app.use(
   session({
@@ -51,15 +53,73 @@ app.set("views", path.join(__dirname, "/views"))
 
 //ROUTES,
 app.use('/', indexRouter); //khushis login & homepage
+
 app.use('/restaurant', restaurantRouter); //trisha's restaurant homepage
+
 app.use('/order', orderRouter); //joshna's ordering page
+app.post("/order", orderRouter);
+
 app.use('/user', userRouter); //hannah's user profile
+app.post("/user", userRouter);
+
 app.use('/admin', adminRouter); //joshna's admin pages (order management)
 
-app.post("/order", orderRouter);
+app.use('/auth', authRouter); //khushis login & register manager
+app.post('/auth', authRouter);
 
 app.use("/review", reviewRouter);
 app.post("/review", reviewRouter);
+
+app.get('/restaurant/:id', async (req, res) => {
+  try {
+    const restaurant = await Restaurant.findByPk(req.params.id, {
+      include: [Cuisine, Item]
+    });
+
+    if (!restaurant) {
+      return res.status(404).send('Restaurant not found');
+    }
+
+    res.render('restauranthome', {
+      restaurant,
+      cuisines: restaurant.Cuisines,
+      items: restaurant.Items,
+      user: req.session.userId // pass user session
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error loading restaurant details');
+  }
+});
+
+function isAuthenticated(req, res, next) {
+  if (req.session.userId) return next();
+  res.redirect('/login');
+}
+
+app.post('/order', isAuthenticated, async (req, res) => {
+  try {
+    const { restaurantId, items } = req.body;
+
+    const order = await Order.create({
+      userId: req.session.userId,
+      restaurantId: restaurantId,
+      status: 'Pending'
+    });
+
+    // Assume many-to-many between Order and Items
+    if (Array.isArray(items)) {
+      await order.addItems(items); // or loop if needed
+    } else {
+      await order.addItem(items);
+    }
+
+    res.redirect('/orders/' + order.id);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Order failed');
+  }
+});
 
 async function setup() {
   // set up associations

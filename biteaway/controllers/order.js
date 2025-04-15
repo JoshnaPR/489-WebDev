@@ -7,13 +7,6 @@ const User = require("../models/User");
 const Cart = require("../models/Cart");
 
 module.exports = {
-    // GET METHOD to find order
-    getOrder: async (req, res) => {
-        const order = await Order.findOrder(req.params.userID, req.params.orderID);
-
-        // TODO: determine order page
-        // res.render('temp', { order })
-    },
 
     addToCart: async (itemID, restaurantID, res) => {
 
@@ -26,10 +19,9 @@ module.exports = {
         let newOrder = ""
 
         // create an order
-        // TODO: update with actual user data, orderPrice
-        // TODO: check if there is an existing order already - (ex: if user is ordering multiple items)
-        // probably can do this by checking by userID and status of userID's order; this way, we can add (+=) each item price to orderPrice
+        // TODO: update with actual user data
         const user = await Cart.findByUser(logged_in_user);
+        
         //look through cart table to see if the user already has items in the cart
         if (!user) {
             //the current user does not have an existing active order or any items in the cart
@@ -118,6 +110,13 @@ module.exports = {
         //console.log("order instance under userID, that is pending", cart);
         // console.log("-----")
 
+        if (!cart) {
+            cart = {
+                items: [],
+                orderPrice: 0
+            };
+        }
+
         //leave empty - will not be used
         const promoCode = '';
         const promoMessage = '';
@@ -172,7 +171,7 @@ module.exports = {
                 orderPrice: 0
             };
         }
-
+        
         // update cart after processing order
         //cart.status = 'In the Kitchen!'
 
