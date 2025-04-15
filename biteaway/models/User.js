@@ -89,16 +89,4 @@ User.init({
   modelName: 'User'
 });
 
-// moving associate to bottom?
-// static associate (models) {
-
-//     // one-to-one relationship between user and cart
-//     User.hasOne(models.Cart, {
-//         as: 'cart',
-//         foreignKey: 'userID'
-//     });
-
-// };
-
-
 module.exports = User

@@ -27,8 +27,9 @@ router.get("/menu-items/add", async function (req, res) {
 })
 
 router.get("/settings", async function (req, res) {
-    res.render("adminSetting"); // Assuming you have this EJS file created
+    res.render("adminSetting");
 });
+
 router.post("/settings", controller.addHomeSettings);
 
 router.get("/manage", async function (req, res) {

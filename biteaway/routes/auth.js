@@ -16,9 +16,7 @@ router.get('/register', (req, res) => {
 // Register handler
 router.post('/register', async (req, res) => {
   const { firstName, lastName, email, password, countryCode, phoneNumber, userAddress } = req.body;
-  try {
-    console.log("INSIDE REGISTER POST")
-    
+  try {    
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({
       userID: Date.now(), // Quick unique ID

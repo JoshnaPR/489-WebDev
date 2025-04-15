@@ -53,20 +53,22 @@ app.set("views", path.join(__dirname, "/views"))
 
 //ROUTES,
 app.use('/', indexRouter); //khushis login & homepage
+
 app.use('/restaurant', restaurantRouter); //trisha's restaurant homepage
+
 app.use('/order', orderRouter); //joshna's ordering page
+app.post("/order", orderRouter);
+
 app.use('/user', userRouter); //hannah's user profile
+app.post("/user", userRouter);
+
 app.use('/admin', adminRouter); //joshna's admin pages (order management)
 
-app.use('/auth', authRouter);
+app.use('/auth', authRouter); //khushis login & register manager
 app.post('/auth', authRouter);
-
-app.post("/order", orderRouter);
 
 app.use("/review", reviewRouter);
 app.post("/review", reviewRouter);
-
-app.post("/user", userRouter);
 
 app.get('/restaurant/:id', async (req, res) => {
   try {
@@ -698,33 +700,6 @@ async function setup() {
     itemPrice: 16.99,
     itemDescription: "Creamy pasta with parmesan cheese and butter sauce"
   });
-
-  // many-to-many relationship testing
-  // const cart1 = await Cart.create({
-  //   orderID: 1,
-  //   itemID: 3,
-  //   userID: 101
-  // });
-
-  // const cart2 = await Cart.create({
-  //   orderID: 1,
-  //   itemID: 4,
-  //   userID: 101
-  // });
-
-  // const cart3 = await Cart.create({
-  //   orderID: 7,
-  //   itemID: 1,
-  //   userID: 101
-  // });
-
-  // const cart4 = await Cart.create({
-  //   orderID: 7,
-  //   itemID: 2,
-  //   userID: 101
-  // });
-
-  // end many-to-many relationship testing for orders
 
   const lasagna = await Item.create({
     itemID: 15,
