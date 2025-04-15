@@ -17,10 +17,10 @@ router.get("/orders", async function (req, res) {
     };
     res.render('adminOrders', { stats: stats, orders: [] });
 })
-
-// router.get("/restaurants", async function (req, res) {
-//     res.render('adminRestaurant');
-// })
+router.get("/restaurants/add", async function (req, res) {
+    res.render("adminRestaurant");
+});
+router.post("/restaurants/add", controller.addRestaurant);
 
 router.get("/restaurants", controller.restaurantOverview);
 

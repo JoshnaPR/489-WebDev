@@ -115,11 +115,54 @@ module.exports = {
                 totalRestaurants,
                 topRatings
             });
-
-            console.log("Restaurants:", restaurants);
         } catch (error) {
             console.error("Error loading restaurant overview:", error);
             res.status(500).send("Internal Server Error");
         }
+    },
+    addRestaurant: async (req, res) => {
+        try {
+            const {
+                restaurantName,
+                phoneNumber,
+                restaurantAddress,
+                openingTime,
+                closingTime,
+                restaurantRating = 0,  // If rating is not provided, default to 0
+            } = req.body;
+
+            // Check if the restaurant entry already exists by name or other unique identifier
+            let restaurant = await Restaurant.findOne({ where: { restaurantName: restaurantName } });
+            if (restaurant) {
+                // If the restaurant exists, update the record
+                restaurant.restaurantName = restaurantName;
+                restaurant.phoneNumber = phoneNumber;
+                restaurant.restaurantAddress = restaurantAddress;
+                restaurant.openingTime = openingTime;
+                restaurant.closingTime = closingTime;
+                restaurant.restaurantRating = restaurantRating;  // Update the rating
+
+                await restaurant.save();  // Save the updated restaurant
+            } else {
+                // If no restaurant exists, create a new entry with auto-generated restaurantID
+                restaurant = await Restaurant.create({
+                    restaurantName: restaurantName,
+                    phoneNumber: phoneNumber,
+                    restaurantAddress: restaurantAddress,
+                    openingTime: openingTime,
+                    closingTime: closingTime,
+                    restaurantRating: restaurantRating,  // Added rating for the new restaurant
+                });
+            }
+            // After saving or updating, render the page with the updated restaurant information
+            res.render('adminRestaurant', {
+                message: "Restaurant information updated successfully.",
+                restaurant
+            });
+        } catch (error) {
+            console.error("Error adding restaurant:", error);
+            res.status(500).send("Internal Server Error");
+        }
     }
+
 };

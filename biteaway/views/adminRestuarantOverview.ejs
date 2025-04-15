@@ -136,14 +136,17 @@
                 <div class="restaurant-info">
                   <div>
                     <h3><%= restaurantName %></h3>
-                    <p>Cusine Type</p>
+                    <%
+                    const cuisines = ["Thai", "Asian", "Italian", "American", "Japanese", "Mexican", "Indian", "Mediterranean", "Chinese", "Vietnamese"];
+                    const cuisine = cuisines[index % cuisines.length];
+                  %>
+                  <p><%= cuisine %> Cuisine</p>
                     <p>
                       <small><i class="fas fa-map-marker-alt"></i> <%= restaurantAddress %></small>
                     </p>
                   </div>
                 </div>
                 <div class="contact-info">
-                  <p><i class="fas fa-user"></i> Contact Name</p>
                   <p><i class="fas fa-phone"></i> <%= phoneNumber %></p>
                   <p><i class="fas fa-envelope"></i> email@example.com</p>
                 </div>
@@ -159,7 +162,7 @@
                       <i class="fas fa-star"></i>
                     <% } %>
                   </div>
-                  <p><%= restaurantRating %> (123 reviews)</p>
+                  <p><%= restaurantRating %></p>
                 </div>
               </div>
             <% }); %>
