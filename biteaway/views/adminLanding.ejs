@@ -36,7 +36,7 @@
         </div>
 
         <ul class="nav-menu">
-          <li class="nav-item active">
+          <li class="nav-item">
             <a href="/admin" class="nav-link">
               <span class="nav-icon"><i class="fas fa-th-large"></i></span>
               Dashboard
@@ -195,13 +195,13 @@
               <p class="action-description">Create new food items</p>
             </a>
 
-            <a href="/admin/reports/sales" class="action-card">
+            <!-- <a href="/admin/reports/sales" class="action-card">
               <div class="action-icon">
                 <i class="fas fa-chart-line"></i>
               </div>
               <h3 class="action-title">Sales Report</h3>
               <p class="action-description">View latest sales data</p>
-            </a>
+            </a> -->
 
             <!-- <a href="/admin/users/notifications" class="action-card">
               <div class="action-icon">
@@ -212,84 +212,40 @@
             </a> -->
           </div>
         </div>
-
-        <!-- Recent Activity -->
-        <div class="recent-activity">
-          <h2 class="section-title">
-            <i class="fas fa-history"></i> Recent Activity
-          </h2>
-          <ul class="activity-list">
-            <li class="activity-item">
-              <div class="activity-icon">
-                <i class="fas fa-utensils"></i>
-              </div>
-              <div class="activity-content">
-                <p class="activity-text">
-                  <strong>Italian Delight</strong> restaurant was added to the
-                  platform
-                </p>
-                <p class="activity-time">Today, 10:45 AM</p>
-              </div>
-            </li>
-
-            <li class="activity-item">
-              <div class="activity-icon">
-                <i class="fas fa-shopping-bag"></i>
-              </div>
-              <div class="activity-content">
-                <p class="activity-text">
-                  <strong>Order #12458</strong> status changed to "Delivered"
-                </p>
-                <p class="activity-time">Today, 09:32 AM</p>
-              </div>
-            </li>
-
-            <li class="activity-item">
-              <div class="activity-icon">
-                <i class="fas fa-user"></i>
-              </div>
-              <div class="activity-content">
-                <p class="activity-text">
-                  <strong>Sarah Miller</strong> registered as a new user
-                </p>
-                <p class="activity-time">Yesterday, 06:18 PM</p>
-              </div>
-            </li>
-
-            <li class="activity-item">
-              <div class="activity-icon">
-                <i class="fas fa-exclamation-circle"></i>
-              </div>
-              <div class="activity-content">
-                <p class="activity-text">
-                  <strong>System Alert:</strong> Database backup completed
-                </p>
-                <p class="activity-time">Yesterday, 02:00 AM</p>
-              </div>
-            </li>
-
-            <li class="activity-item">
-              <div class="activity-icon">
-                <i class="fas fa-dollar-sign"></i>
-              </div>
-              <div class="activity-content">
-                <p class="activity-text">
-                  <strong>Monthly report</strong> for March 2025 is available
-                </p>
-                <p class="activity-time">Apr 8, 11:15 AM</p>
-              </div>
-            </li>
-          </ul>
-        </div>
       </div>
     </div>
 
     <script>
-      // Sidebar toggle functionality
-      document.querySelector('.sidebar-toggle').addEventListener('click', function() {
-          document.querySelector('.sidebar').classList.toggle('active');
-          document.querySelector('.main-content').classList.toggle('pushed');
+                            // Sidebar toggle functionality
+                            document.querySelector('.sidebar-toggle').addEventListener('click', function() {
+                                document.querySelector('.sidebar').classList.toggle('active');
+                                document.querySelector('.main-content').classList.toggle('pushed');
+                            });
+                            // Set Active Menu Item
+           // Get current path from the window
+        const currentPath = window.location.pathname;
+
+      // Get all navigation items
+      const navItems = document.querySelectorAll('.nav-item');
+
+      let bestMatch = null;
+      let bestMatchLength = 0;
+
+      navItems.forEach(item => {
+        const link = item.querySelector('a');
+        const href = link?.getAttribute('href');
+
+        if (href && currentPath.startsWith(href) && href.length > bestMatchLength) {
+          bestMatch = item;
+          bestMatchLength = href.length;
+        }
       });
+
+      // Remove any previous active class
+      navItems.forEach(item => item.classList.remove('active'));
+
+      // Add the active class to best match
+      if (bestMatch) bestMatch.classList.add('active');
     </script>
   </body>
 </html>
