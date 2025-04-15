@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var controller = require('../controllers/admin');
+const Restaurant = require('../models/Restaurant');
 
 router.use("/static/", express.static("static"))
 
@@ -28,8 +29,14 @@ router.get("/restaurants", controller.restaurantOverview);
 //Menu Items Routes
 router.get("/menu-items", controller.menuOverview)
 router.get("/menu-items/add", async function (req, res) {
-    res.render('adminMenu');
-})
+    try {
+        const restaurants = await Restaurant.findAll();
+        res.render('adminMenu', { restaurants });
+    } catch (error) {
+        console.error("Error fetching restaurants:", error);
+        res.status(500).send("Internal Server Error");
+    }
+});
 router.post("/menu-items/add", controller.addMenuItem);
 
 router.get("/settings", async function (req, res) {

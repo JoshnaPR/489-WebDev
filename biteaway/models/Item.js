@@ -58,14 +58,14 @@ class Item extends Model {
     };
 
     // getter function ; return list of items under specific order
-    static async listItemsByOrder({orderID}) {
+    static async listItemsByOrder({ orderID }) {
         try {
             const list = await Item.findAll({
                 where: { orderID }
             })
-                        
+
             return list
-            
+
         } catch (error) {
             console.log(error)
             return null
@@ -75,8 +75,9 @@ class Item extends Model {
 
 Item.init({
     itemID: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.INTEGER,
         primaryKey: true,
+        autoIncrement: true,
         allowNull: false
     },
 

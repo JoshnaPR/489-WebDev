@@ -184,24 +184,23 @@ module.exports = {
     addMenuItem: async (req, res) => {
         try {
             const {
-                restaurantName,
+                restaurantID,
                 itemName,
                 itemPrice,
                 itemDescription
             } = req.body;
 
-            // Find the restaurant to get the restaurantID
+            // Find the restaurant using restaurantID
             const restaurant = await Restaurant.findOne({
-                where: { restaurantName }
+                where: { restaurantID }
             });
-
             if (!restaurant) {
                 return res.status(404).send("Restaurant not found");
             }
 
             // Create the item (auto itemID generation is expected in DB schema)
             const item = await Item.create({
-                restaurantID: restaurant.restaurantID,
+                restaurantID,
                 itemName,
                 itemPrice,
                 itemDescription
