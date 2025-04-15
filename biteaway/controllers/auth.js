@@ -1,12 +1,13 @@
 function isLoggedIn(req, res, next) {
-    if (req.session.userId) return next();
-    return res.redirect('/login');
+  if (req.isAuthenticated()) {
+    return next();
+  } else {
+    res.redirect('/login');
   }
-  
+};
 function isAdmin(req, res, next) {
-    if (req.session.isAdmin) return next();
-    return res.status(403).send('Admins only!');
-  }
-  
+  if (req.session.isAdmin) return next();
+  res.status(403).send('Admins only!');
+};
+
 module.exports = { isLoggedIn, isAdmin };
-  

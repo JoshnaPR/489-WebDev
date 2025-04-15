@@ -167,10 +167,14 @@
                         <% }) %>
 
                             <!-- <a class="btn btn-primary" href="/order" role="button">PLACE ORDER</a> -->
-                        <form action="/order/cart" method="POST" style="float:left; margin-right: 10px;">
-                                <input type="hidden" name="restaurantID" value="<%= restaurant.restaurantID %>">
-                                <button type="submit" class="btn btn-primary">PLACE ORDER</button>
-                        </form>
+                            <% if (user && user.userID) { %>
+                                <form action="/order/cart" method="POST" style="float:left; margin-right: 10px;">
+                                  <input type="hidden" name="restaurantID" value="<%= restaurant.restaurantID %>">
+                                  <button class="btn btn-warning" style="background-color: #F59A4C; border: none;">PLACE ORDER</button>
+                                </form>
+                              <% } else { %>
+                                <a href="/login" class="btn btn-warning" style="float:left; margin-right: 10px;">Login to Place Order</a>
+                              <% } %>
                 </div>
 
                 <!-- directions -->

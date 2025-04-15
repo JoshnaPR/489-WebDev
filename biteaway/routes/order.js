@@ -1,39 +1,37 @@
-var express = require('express');
-var router = express.Router();
-var controller = require('../controllers/order');
+// routes/order.js
+const express = require('express');
+const router = express.Router();
+const controller = require('../controllers/order');
+const { isLoggedIn } = require('../controllers/auth');
+const { isAuthenticated, isAdmin } = require('../controllers/auth')
 
-router.use("/static/", express.static("static"))
-//router.use(express.urlencoded({ extended: true }));
+// Serve static assets
+router.use('/static', express.static('static'));
 
-//view cart, place order & confirm
+// Redirect root order path to cart
+router.get('/', (req, res) => {
+    res.redirect('/order/cart');
+});
 
-router.get("/", async function (req, res) {
-    res.redirect('/order/cart')
-})
+// View cart (GET + POST supported)
+router.get('/cart', controller.getCart);
+router.post('/cart', controller.getCart);
 
-// router.post("/cart", (req, res) => {
-//     const { restaurantID } = req.body;
+// Checkout and confirm pages
+router.get('/checkout', controller.getCheckout);
+router.get('/confirm', controller.confirmOrder);
+router.post('/confirm', controller.confirmOrder);
 
-//     controller.getCart(restaurantID, res);
-// })
-
-
-// for post method
-router.post("/cart", controller.getCart);
-router.get("/cart", controller.getCart);
-
-router.get("/checkout", controller.getCheckout);
-
-router.get("/confirm", controller.confirmOrder);
-router.post("/confirm", controller.confirmOrder);
-
-//add an item to the cart
-router.post("/add2cart", (req, res) => {
-    //get the ID from the button,
+// Add an item to the cart
+router.post('/add2cart', (req, res) => {
     const { itemID, restaurantID } = req.body;
-    //console.log(itemID);
-
     controller.addToCart(itemID, restaurantID, res);
-})
+});
+
+// Protected route for placing order
+router.post('/order', isLoggedIn, async (req, res) => {
+    // You can implement logic here if needed
+    res.send('Order placed!');
+});
 
 module.exports = router;
