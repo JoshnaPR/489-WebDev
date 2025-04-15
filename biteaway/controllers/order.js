@@ -107,7 +107,7 @@ module.exports = {
         // console.log("cart instances: ", cartItems);
 
         // cart will return the current active order (associated with the above items)
-        const cart = await Order.findActiveOrder({userID : logged_in_user});
+        let cart = await Order.findActiveOrder({userID : logged_in_user});
 
         //console.log("order instance under userID, that is pending", cart);
         // console.log("-----")

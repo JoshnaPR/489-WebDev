@@ -4,7 +4,7 @@ const { Model, DataTypes } = require('sequelize')
 const User = require('./User');
 const Restaurant = require('./Restaurant');
 const Item = require('./Item');
-const Cart = require('./Cart');
+// const Cart = require('./Cart');
 
 class Order extends Model {
 
