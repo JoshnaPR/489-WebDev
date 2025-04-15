@@ -24,6 +24,12 @@ router.get("/:id/order-history", controller.getUserOrderHistory);
 // updating user information
 router.post("/:id/settings", (req, res) => {
     const { userID, firstName, lastName, country, number, email, address, password } = req.body;
+
+    // check if correct user
+    if (userID != req.session.userId) {
+        return res.status(401).send('You do not have permission to edit this data!')
+    }
+
     controller.updateUserInformation( userID, firstName, lastName, country, number, email, address, password, res )
 });
     

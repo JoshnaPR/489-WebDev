@@ -53,7 +53,7 @@ router.get("/manage", async function (req, res) {
         delivering: 0,
         completed: 0
     };
-    res.render('adminOrders', { stats: stats, orders: [] });
+    res.render('managerOrders', { stats: stats, orders: [] });
 })
 
 module.exports = router;
