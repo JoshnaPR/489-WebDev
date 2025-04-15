@@ -113,60 +113,56 @@
             <div class="label">Pending Approval</div>
           </div> -->
           <div class="stat-card">
-            <div class="number"><%= topRatings  %></div>
+            <div class="number"><%= topRatings %></div>
             <div class="label">Top Rated (4+)</div>
           </div>
         </div>
 
         <div class="restaurant-list">
-            <div class="restaurant-header">
-              <div>Restaurant</div>
-              <div>Contact Info</div>
-              <div>Status</div>
-              <div>Rating</div>
-            </div>
-          
-            <% restaurants.forEach((restaurant, index) => { 
-                const { restaurantID, restaurantName, restaurantAddress, restaurantRating, phoneNumber } = restaurant.dataValues;
-                const status = index % 3 === 0 ? "Active" : index % 3 === 1 ? "Inactive" : "Pending";
-                const starsFilled = Math.floor(restaurantRating);
-                const starsEmpty = 5 - starsFilled;
-            %>
-              <div class="restaurant-item">
-                <div class="restaurant-info">
-                  <div>
-                    <h3><%= restaurantName %></h3>
-                    <%
-                    const cuisines = ["Thai", "Asian", "Italian", "American", "Japanese", "Mexican", "Indian", "Mediterranean", "Chinese", "Vietnamese"];
-                    const cuisine = cuisines[index % cuisines.length];
-                  %>
-                  <p><%= cuisine %> Cuisine</p>
-                    <p>
-                      <small><i class="fas fa-map-marker-alt"></i> <%= restaurantAddress %></small>
-                    </p>
-                  </div>
-                </div>
-                <div class="contact-info">
-                  <p><i class="fas fa-phone"></i> <%= phoneNumber %></p>
-                  <p><i class="fas fa-envelope"></i> email@example.com</p>
-                </div>
-                <div class="status">
-                  <span class="badge badge-<%= status.toLowerCase().replace(" ", "-") %>"><%= status %></span>
-                </div>
-                <div class="rating">
-                  <div class="stars">
-                    <% for(let i = 0; i < starsFilled; i++) { %>
-                      <i class="fas fa-star filled"></i>
-                    <% } %>
-                    <% for(let i = 0; i < starsEmpty; i++) { %>
-                      <i class="fas fa-star"></i>
-                    <% } %>
-                  </div>
-                  <p><%= restaurantRating %></p>
-                </div>
-              </div>
-            <% }); %>
+          <div class="restaurant-header">
+            <div>Restaurant</div>
+            <div>Contact Info</div>
+            <div>Rating</div>
           </div>
+
+          <% restaurants.forEach((restaurant, index) => { const { restaurantID,
+          restaurantName, restaurantAddress, restaurantRating, phoneNumber } =
+          restaurant.dataValues; const status = index % 3 === 0 ? "Active" :
+          index % 3 === 1 ? "Inactive" : "Pending"; const starsFilled =
+          Math.floor(restaurantRating); const starsEmpty = 5 - starsFilled; %>
+          <div class="restaurant-item">
+            <div class="restaurant-info">
+              <div>
+                <h3><%= restaurantName %></h3>
+                <% const cuisines = ["Thai", "Italian","American", "Japanese",
+                "Mexican", "Indian", "Mediterranean", "Chinese", "Vietnamese"];
+                const cuisine = cuisines[index % cuisines.length]; %>
+                <p><%= cuisine %> Cuisine</p>
+                <p>
+                  <small
+                    ><i class="fas fa-map-marker-alt"></i> <%= restaurantAddress
+                    %></small
+                  >
+                </p>
+              </div>
+            </div>
+            <div class="contact-info">
+              <p><i class="fas fa-phone"></i> <%= phoneNumber %></p>
+              <p><i class="fas fa-envelope"></i> email@example.com</p>
+            </div>
+            <div class="rating">
+              <div class="stars">
+                <% for(let i = 0; i < starsFilled; i++) { %>
+                <i class="fas fa-star filled"></i>
+                <% } %> <% for(let i = 0; i < starsEmpty; i++) { %>
+                <i class="fas fa-star"></i>
+                <% } %>
+              </div>
+              <p><%= restaurantRating %></p>
+            </div>
+          </div>
+          <% }); %>
+        </div>
       </div>
     </div>
 
