@@ -6,6 +6,11 @@ Our project, “Bite-A-Way,” is a web-based food delivery platform that combin
 Hannah Garcia, Joshna Prasanna Raghavan, Khushi Panchal & Trisha Teredesai
 
 
+# Running Code:
+Ensure that you have all packages/modules installed by running npm install. 
+To start the application via localhost:3000 on the browser, run nodemon server.js in the terminal.
+
+
 # Details:
 - Users can browse for local restaurants. Users can be shown restaurants according to their distance from an entered delivery address. We can additionally implement a sorting system, such as within a 1-mile radius, 5-mile radius, etc.
 - Restaurant profiles with pictures, customer reviews, and directions. For the simple implementation and examples, we can put in sample profiles for some restaurants or user reviews to provide a preview of what the site would look like.

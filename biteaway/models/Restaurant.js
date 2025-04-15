@@ -49,8 +49,6 @@ class Restaurant extends Model {
         }
     }
 
-    // TODO:[ ---------- FINISH IMPLEMENTING/TESTING THESE ---------- ]
-
     // SORTING/FORMATTING: return list of sorted restaurants, sorted by rating, descending
     static async sortRestaurantByRatingDesc() {
         try {
@@ -86,8 +84,6 @@ class Restaurant extends Model {
             return null
         }
     };
-
-    // TODO:[ ---------- FINISH IMPLEMENTING/TESTING THESE ---------- ]
 
 }
 

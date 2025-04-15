@@ -3,7 +3,6 @@ var router = express.Router();
 var controller = require('../controllers/order');
 
 router.use("/static/", express.static("static"))
-//router.use(express.urlencoded({ extended: true }));
 
 //view cart, place order & confirm
 
@@ -86,7 +85,6 @@ router.post("/confirm", (req, res) => {
 router.post("/add2cart", (req, res) => {
     //get the ID from the button,
     const { itemID, restaurantID } = req.body;
-    //console.log(itemID);
 
     // id from currently logged in user
     const userID = req.session.userId;

@@ -46,9 +46,7 @@ module.exports = {
         const orders = await Order.listOrdersByUser({ userID: req.params.id });      // to display user's order history
 
         // find items under order number
-
         // assigining each order with their item num
-        // TODO: fix logic later
         for (const order of orders) {
             var itemNum = await Order.countItemsByOrder({ orderID: order.orderID });
             // order.itemNum = itemNum;

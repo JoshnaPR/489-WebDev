@@ -8,7 +8,7 @@ const User = require("../models/User");
 module.exports = {
     // handling reviews posted from the restaurant page
     leaveReview: async (ratingRange, reviewText, userID, restaurantID, res) => {
-        console.log("Inside of leaveReview under review controller")
+        // console.log("Inside of leaveReview under review controller")
 
         try {
             // create new review 

@@ -36,7 +36,7 @@ module.exports = {
 
       res.render('indexHome', {
         restaurants,
-        user: req.session.userId, // optional: if you're using session
+        user: req.session.userId,
         homeSettings
       });
 

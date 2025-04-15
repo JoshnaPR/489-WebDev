@@ -10,16 +10,10 @@ module.exports = {
 
     addToCart: async (itemID, restaurantID, userID, res) => {
 
-        // debugging 
-        console.log("itemID: ", itemID)
-        console.log("restaurantID: ", restaurantID)
-        console.log("-----")
-
         const logged_in_user = userID
         let newOrder = ""
 
         // create an order
-        // TODO: update with actual user data
         const user = await Cart.findByUser(logged_in_user);
 
         //look through cart table to see if the user already has items in the cart
@@ -70,19 +64,13 @@ module.exports = {
             }
         }
 
-        //cart ->
-        //orderID - randomly generated
-        //itemID - from the button
-        //userID - the user that is logged in rn
-
         // redirect user back to restaurant
-        // can edit the url accordingly/similar to cms examples if you want (and try/catch for error, check review.js)
         res.redirect(`/restaurant/${restaurantID}/menu?msg=success`)
     },
 
     getCart: async (userID, res) => {
-        console.log("Inside of getCart function")
-        console.log("-----")
+        // console.log("Inside of getCart function")
+        // console.log("-----")
 
         const currentStep = 1;
         const logged_in_user = userID;
@@ -96,19 +84,8 @@ module.exports = {
         // similarly, can access specific order items by cartItems.order.orderID / status / etc.
         const cartItems = await Cart.listCartByUser(logged_in_user);
 
-        // console.log("cart instances: ", cartItems);
-
         // cart will return the current active order (associated with the above items)
         let cart = await Order.findActiveOrder({ userID: logged_in_user });
-
-        if (!cart) {
-            cart = {
-                items: [],
-                orderPrice: 0
-            };
-        }
-        //console.log("order instance under userID, that is pending", cart);
-        // console.log("-----")
 
         if (!cart) {
             cart = {
@@ -120,8 +97,6 @@ module.exports = {
         //leave empty - will not be used
         const promoCode = '';
         const promoMessage = '';
-
-        //console.log(cartItems)
 
         res.render('orderCart', { currentStep, cartItems, promoCode, promoMessage, cart })
     },
@@ -148,10 +123,9 @@ module.exports = {
     },
 
     confirmOrder: async (userID, res) => {
-        console.log("inside of controller's confirmOrder")
-        console.log("-----")
+        // console.log("inside of controller's confirmOrder")
+        // console.log("-----")
 
-        // TODO: update to display dynamic user
         const currentStep = 3;
         const logged_in_user = userID;
 
